@@ -1,0 +1,19 @@
+.app {
+  width: 100%;
+}
+
+.app__container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $gray-lightest;
+}
+
+.app__main {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 52px 0 0 0; // верхний паддинг равен высоте хедера
+}

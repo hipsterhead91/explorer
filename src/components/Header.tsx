@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import Chains from "./Chains";
 
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setCurrentChain, resetCurrentChain, } from "../app/reducers/currentChainSlice";
+import { useAppDispatch } from "../store/hooks";
+import { resetCurrentChain, } from "../store/reducers/currentChainSlice";
 
 function Header() {
 
-  const dispatch = useAppDispatch(); // для удобства и лаконичности
-
-  const resetChain = () => {
-    dispatch(resetCurrentChain())
-  }
+  // В доках и видосах всегда выносят useAppDispatch() в переменную dispatch. Судя по всему, это делается потому,
+  // что хуки нельзя использовать в коллбэках: то есть, например, его не получится повесить на кнопку в onClick
+  // напрямую, а через такую "прослойку" - можно.
+  const dispatch = useAppDispatch();
+  const resetChain = () => dispatch(resetCurrentChain());
 
   return (
     <header className="header">

@@ -1,6 +1,6 @@
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setCurrentChain, resetCurrentChain, } from "../app/reducers/currentChainSlice";
-import { selectCurrentChain } from "../app/reducers/currentChainSlice";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { setCurrentChain, resetCurrentChain, } from "../store/reducers/currentChainSlice";
+import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 function Dashboard() {
 

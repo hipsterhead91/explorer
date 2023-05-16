@@ -3,7 +3,7 @@ import currentChainReducer from './reducers//currentChainSlice';
 
 const store = configureStore({
   reducer: {
-    currentChain: currentChainReducer
+    currentChain: currentChainReducer,
   },
 });
 

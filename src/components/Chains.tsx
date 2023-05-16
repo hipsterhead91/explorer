@@ -4,21 +4,22 @@ import { chains } from "../chains/chains";
 import { getPath } from "../utils/formatting";
 import INavLink from "../models/INavLink";
 import IChain from "../models/IChain";
-import { useAppSelector, useAppDispatch } from "../app/hooks";
-import { setCurrentChain, resetCurrentChain, } from "../app/reducers/currentChainSlice";
-import { selectCurrentChain } from "../app/reducers/currentChainSlice";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { setCurrentChain, resetCurrentChain, } from "../store/reducers/currentChainSlice";
+import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 function Chains() {
-  
+
+  // В доках и видосах всегда выносят useAppDispatch() в переменную dispatch. Судя по всему, это делается потому,
+  // что хуки нельзя использовать в коллбэках: то есть, например, его не получится повесить на кнопку в onClick
+  // напрямую, а через такую "прослойку" - можно.
+  const dispatch = useAppDispatch();
   const currentChain = useAppSelector(selectCurrentChain);
-  const dispatch = useAppDispatch(); // для удобства и лаконичности
 
   const list = useRef<HTMLDivElement | null>(null);
   const arrow = useRef<HTMLSpanElement | null>(null);
   const overlay = useRef<HTMLDivElement | null>(null);
 
-  
-  
   const toggleChainList = () => {
     list.current?.classList.toggle("chains__list_hidden");
     arrow.current?.classList.toggle("chains__switcher-arrow_up");

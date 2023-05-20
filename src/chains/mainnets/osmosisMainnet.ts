@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const osmosisMainnet: IChain = {
   name: "Osmosis",
-  path: "osmosis",
-  cosmostation: "osmosis",
-  coinGecko: "osmosis",
-  chain: "osmosis-1",
-  isMain: true,
-  denom: "uosmo",
+  chainId: "osmosis-1",
+  coinGeckoId: "osmosis",
+  cosmostationId: "osmosis",
+  isMainnet: true,
   symbol: "OSMO",
+  denom: "uosmo",
   decimals: 6,
   api: [
     "https://api-osmosis-ia.cosmosia.notional.ventures",

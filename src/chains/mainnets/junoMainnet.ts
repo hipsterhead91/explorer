@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const junoMainnet: IChain = {
   name: "Juno",
-  path: "juno",
-  cosmostation: "juno",
-  coinGecko: "juno-network",
-  chain: "juno-1",
-  isMain: true,
-  denom: "ujuno",
+  chainId: "juno-1",
+  coinGeckoId: "juno-network",
+  cosmostationId: "juno",
+  isMainnet: true,
   symbol: "JUNO",
+  denom: "ujuno",
   decimals: 6,
   api: [
     "https://api-juno-ia.cosmosia.notional.ventures",

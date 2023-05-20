@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const crescentMainnet: IChain = {
   name: "Crescent Network",
-  path: "crescent",
-  cosmostation: "crescent",
-  coinGecko: "crescent-network",
-  chain: "crescent-1",
-  isMain: true,
-  denom: "ucre",
+  chainId: "crescent-1",
+  coinGeckoId: "crescent-network",
+  cosmostationId: "crescent",
+  isMainnet: true,
   symbol: "CRE",
+  denom: "ucre",
   decimals: 6,
   api: [
     "https://crescent-api.polkachu.com",

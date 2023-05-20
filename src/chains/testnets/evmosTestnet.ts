@@ -1,14 +1,13 @@
 import IChain from "../../models/IChain";
 
-const evmosTestnet: IChain  = {
+const evmosTestnet: IChain = {
   name: "Evmos",
-  path: "evmos",
-  cosmostation: "evmos",
-  coinGecko: "",
-  chain: "evmos_9001-4",
-  isMain: false,
-  denom: "atevmos",
+  chainId: "evmos_9001-4",
+  coinGeckoId: "",
+  cosmostationId: "evmos",
+  isMainnet: false,
   symbol: "TEVMOS",
+  denom: "atevmos",
   decimals: 18,
   api: [
     "https://rest.bd.evmos.dev:1317",

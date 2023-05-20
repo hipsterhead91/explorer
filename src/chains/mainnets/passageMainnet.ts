@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const passageMainnet: IChain = {
   name: "Passage",
-  path: "passage",
-  cosmostation: "passage",
-  coinGecko: "",
-  chain: "passage-1",
-  isMain: true,
-  denom: "upasg",
+  chainId: "passage-1",
+  coinGeckoId: "",
+  cosmostationId: "passage",
+  isMainnet: true,
   symbol: "PASG",
+  denom: "upasg",
   decimals: 6,
   api: [
     "https://passage-api.polkachu.com",

@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const axelarMainnet: IChain = {
   name: "Axelar",
-  path: "axelar",
-  cosmostation: "axelar",
-  coinGecko: "axelar",
-  chain: "axelar-dojo-1",
-  isMain: true,
-  denom: "uaxl",
+  chainId: "axelar-dojo-1",
+  coinGeckoId: "axelar",
+  cosmostationId: "axelar",
+  isMainnet: true,
   symbol: "AXL",
+  denom: "uaxl",
   decimals: 6,
   api: [
     "https://api-axelar-ia.cosmosia.notional.ventures",

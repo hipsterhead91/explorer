@@ -5,16 +5,26 @@ import { Outlet } from "react-router-dom";
 import INavLink from "../models/INavLink";
 import { coinGeckoApi } from "../services/coinGecko";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { selectBlockHeight, selectCurrentChain, selectInflation, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
+import { setCurrentChain, selectBlockHeight, selectCurrentChain, selectInflation, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
 import { cutExtra } from "../utils/formatting";
 import CosmosRestApi from "../services/CosmosRestApi";
 import IPool from "../models/IPools";
 import IProposal from "../models/IProposal";
+import { chains } from "../chains/chains";
 
 function Chain(props: IChainProps) {
 
   const currentChain = useAppSelector(selectCurrentChain);
   const dispatch = useAppDispatch();
+
+  // Обновляем текущую сеть, извлекая айдишник из УРЛа страницы, на случай, если переход в сеть осуществлён
+  // не пошагово с домашней, а копипастом готовой ссылки, ну и просто на случай обновления страницы.
+  useEffect(() => {
+    const url = window.location.pathname;
+    const id = url.split('/')[1];
+    const chain = chains.find(c => c.chainId === id);
+    if (chain) dispatch(setCurrentChain(chain));
+  }, [])
 
   // ПОЛУЧАЕМ ДАННЫЕ О СЕТИ (с дополнительным форматированием)
   // Примечание: исходное значение каждого стейта - null, и если данные загрузились успешно, то стейт меняется на 

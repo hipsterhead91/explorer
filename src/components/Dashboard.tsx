@@ -22,8 +22,8 @@ function Dashboard() {
   let wholeSetLength;
   let activeSetLength;
 
-  if (coins && currentChain?.coinGecko) {
-    const currentCoin = coins.find((coin: ICoin) => coin.id === currentChain.coinGecko);
+  if (coins && currentChain?.coinGeckoId) {
+    const currentCoin = coins.find((coin: ICoin) => coin.id === currentChain.coinGeckoId);
     currentCoin ? price = currentCoin.current_price : price = null;
   }
 
@@ -33,16 +33,16 @@ function Dashboard() {
   }
 
   // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ О СЕТИ
-  const heading = (currentChain === null) ? '' : currentChain.isMain ? currentChain.name : `${currentChain.name} Testnet`;
-  const subheading = (currentChain === null) ? '' : `${currentChain.isMain ? 'mainnet' : 'testnet'} · ${currentChain.chain}`;
+  const heading = (currentChain === null) ? '' : currentChain.isMainnet ? currentChain.name : `${currentChain.name} Testnet`;
+  const subheading = (currentChain === null) ? '' : `${currentChain.isMainnet ? 'mainnet' : 'testnet'} · ${currentChain.chainId}`;
   const description = (currentChain === null) ? '' : currentChain.description;
-  const errorEl = <span className="dashboard__plate-error"><span>Oops!</span><br />something<br />went wrong</span>;
+  const errorEl = <span className="dashboard__plate-error">Oops! something went wrong</span>;
 
   // РЕНДЕР ИНФЛЯЦИИ
   let inflationEl = errorEl;
   if (inflation) {
     const value = (Number(inflation) * 100).toFixed(2) + '%';
-    inflationEl = <span className="chain__plate-data">{value}</span>;
+    inflationEl = <span className="dashboard__plate-data">{value}</span>;
   }
 
   // РЕНДЕР ПУЛА СООБЩЕСТВА
@@ -63,20 +63,20 @@ function Dashboard() {
   let unbondingEl = errorEl;
   if (unbondingTime) {
     const value = `${unbondingTime} days`;
-    unbondingEl = <span className="chain__plate-data">{value}</span>;
+    unbondingEl = <span className="dashboard__plate-data">{value}</span>;
   }
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   let blockHeightEl = errorEl;
   if (blockHeight) {
     const value = Number(blockHeight).toLocaleString('en');
-    blockHeightEl = <span className="chain__plate-data">{value}</span>;
+    blockHeightEl = <span className="dashboard__plate-data">{value}</span>;
   }
 
   // РЕНДЕР ВАЛИДАТОРОВ
   let validatorsEl = errorEl;
   if (activeSetLength && wholeSetLength) {
-    validatorsEl = <Link to="validators" className="chain__plate-link">{activeSetLength}/{wholeSetLength}</Link>;
+    validatorsEl = <Link to="somewhere" className="dashboard__plate-link">{activeSetLength}/{wholeSetLength}</Link>;
   }
 
   // РЕНДЕР ГОЛОСОВАНИЙ
@@ -88,72 +88,26 @@ function Dashboard() {
     proposalsEl = <span className="dashboard__plate-data">none</span>;
   }
 
+  // РЕНДЕР ЦЕНЫ
+  let priceEl = errorEl;
+  if (price && currentChain) {
+    const value = '$' + tweakPrice(Number(price));
+    priceEl = <a href={`https://www.coingecko.com/en/coins/${currentChain.coinGeckoId}`} target="_blank" className="dasgboard-link">{value}</a>;
+  }
 
   return (
     <div className="dashboard">
-      <div className="dashboard__plates">
-
-        {/* ОПИСАНИЕ */}
-        <div id="description-plate" className="dashboard__plate">
-          <h1 className="dashboard__chain-heading">{heading}</h1>
-          <span className="dashboard__chain-subheading">{subheading}</span>
-          <p className="dashboard__chain-description">{description}</p>
-        </div>
-
-        {/* ЗАСТЕЙКАНО */}
-        <div id="bonded-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Tokens Bonded:</span>
-          {totalBondedEl}
-        </div>
-
-        {/* ПУЛ СООБЩЕСТВА */}
-        <div id="community-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Community Pool:</span>
-          {communityPoolEl}
-        </div>
-
-        {/* ГОЛОСОВАНИЯ */}
-        <div id="proposals-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Active Proposals:</span>
-          {proposalsEl}
-        </div>
-
-        {/* ЛОГО */}
-        <div id="logo-plate" className="dashboard__plate">
-          <div style={{ backgroundImage: `url()` }} className="dashboard__plate-logo" />
-        </div>
-
-        {/* ВЫСОТА БЛОКА */}
-        <div id="block-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Block Height:</span>
-          {blockHeightEl}
-        </div>
-
-        {/* ВАЛИДАТОРЫ */}
-        <div id="validators-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Validators:</span>
-          {validatorsEl}
-        </div>
-
-        {/* ИНФЛЯЦИЯ */}
-        <div id="inflation-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Inflation:</span>
-          {inflationEl}
-        </div>
-
-        {/* СРОКИ АНБОНДА */}
-        <div id="unbonding-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Unbonding:</span>
-          {unbondingEl}
-        </div>
-
-        {/* ЦЕНА */}
-        <div id="price-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Price by CoinGecko:</span>
-          {price}
-        </div>
-
-      </div>
+      <h1 className="dashboard__el">{heading}</h1>
+      <span className="dashboard__el">{subheading}</span>
+      <p className="dashboard__el">{description}</p>
+      <span className="dashboard__el">Inflation: {inflationEl}</span>
+      <span className="dashboard__el">Community Pool: {communityPoolEl}</span>
+      <span className="dashboard__el">Total Bonded: {totalBondedEl}</span>
+      <span className="dashboard__el">Unbonding Time: {unbondingEl}</span>
+      <span className="dashboard__el">Block Height: {blockHeightEl} </span>
+      <span className="dashboard__el">Validators: {validatorsEl}</span>
+      <span className="dashboard__el">Proposals: {proposalsEl}</span>
+      <span className="dashboard__el">Price: {priceEl}</span>
     </div>
   );
 }

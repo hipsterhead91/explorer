@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const evmosMainnet: IChain = {
   name: "Evmos",
-  path: "evmos",
-  cosmostation: "evmos",
-  coinGecko: "evmos",
-  chain: "evmos_9001-2",
-  isMain: true,
-  denom: "aevmos",
+  chainId: "evmos_9001-2",
+  coinGeckoId: "evmos",
+  cosmostationId: "evmos",
+  isMainnet: true,
   symbol: "EVMOS",
+  denom: "aevmos",
   decimals: 18,
   api: [
     "https://rest.bd.evmos.org:1317",

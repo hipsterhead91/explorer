@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const bandMainnet: IChain = {
   name: "Band Protocol",
-  path: "band",
-  cosmostation: "bandprotocol",
-  coinGecko: "band-protocol",
-  chain: "laozi-mainnet",
-  isMain: true,
-  denom: "uband",
+  chainId: "laozi-mainnet",
+  coinGeckoId: "band-protocol",
+  cosmostationId: "bandprotocol",
+  isMainnet: true,
   symbol: "BAND",
+  denom: "uband",
   decimals: 6,
   api: [
     "https://laozi1.bandchain.org/api"

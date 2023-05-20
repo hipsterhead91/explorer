@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const secretMainnet: IChain = {
   name: "Secret Network",
-  path: "secret",
-  cosmostation: "secret",
-  coinGecko: "secret",
-  chain: "secret-4",
-  isMain: true,
-  denom: "uscrt",
+  chainId: "secret-4",
+  coinGeckoId: "secret",
+  cosmostationId: "secret",
+  isMainnet: true,
   symbol: "SCRT",
+  denom: "uscrt",
   decimals: 6,
   api: [
     "https://secretnetwork-lcd.stakely.io",

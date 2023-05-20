@@ -36,7 +36,7 @@ export const chains: Array<IChain> = [
 const getCoinGeckoIds = (): string => {
   const idList: Array<string> = [];
   chains.forEach(chain => {
-    if (chain.coinGecko) idList.push(chain.coinGecko)
+    if (chain.coinGeckoId) idList.push(chain.coinGeckoId)
   });
   return idList.join("%2C%20");
 }

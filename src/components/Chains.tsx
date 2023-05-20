@@ -37,7 +37,7 @@ function Chains() {
     hideChainList();
   };
 
-  const currentChainText = (currentChain === null) ? 'Chain is not selected' : `${currentChain.name} ${currentChain.isMain ? '' : 'Testnet'}`;
+  const currentChainText = (currentChain === null) ? 'Chain is not selected' : `${currentChain.name} ${currentChain.isMainnet ? '' : 'Testnet'}`;
 
   const chainButtonStyle = ({ isActive }: INavLink) => isActive ? "chains__chain chains__chain_selected" : "chains__chain";
 
@@ -53,9 +53,9 @@ function Chains() {
       <div ref={list} className="chains__list chains__list_hidden">
         {chains.map((chain) => {
           return (
-            <NavLink key={chain.chain} to={`/${getPath(chain)}/dashboard`} onClick={() => switchChain(chain)} className={chainButtonStyle}>
-              {`${chain.name} ${chain.isMain ? "" : "Testnet"}`}{" "}
-              <span>({chain.chain})</span>
+            <NavLink key={chain.chainId} to={`/${chain.chainId}/dashboard`} onClick={() => switchChain(chain)} className={chainButtonStyle}>
+              {`${chain.name} ${chain.isMainnet ? "" : "Testnet"}`}
+              <span>({chain.chainId})</span>
             </NavLink>
           );
         })}

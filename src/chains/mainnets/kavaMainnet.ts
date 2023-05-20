@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const kavaMainnet: IChain = {
   name: "Kava",
-  path: "kava",
-  cosmostation: "kava",
-  coinGecko: "kava",
-  chain: "kava_2222-10",
-  isMain: true,
-  denom: "ukava",
+  chainId: "kava_2222-10",
+  coinGeckoId: "kava",
+  cosmostationId: "kava",
+  isMainnet: true,
   symbol: "KAVA",
+  denom: "ukava",
   decimals: 6,
   api: [
     "https://api.data.kava.io"

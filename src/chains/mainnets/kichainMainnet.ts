@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const kichainMainnet: IChain = {
   name: "KiChain",
-  path: "kichain",
-  cosmostation: "ki",
-  coinGecko: "ki",
-  chain: "kichain-2",
-  isMain: true,
-  denom: "uxki",
+  chainId: "kichain-2",
+  coinGeckoId: "ki",
+  cosmostationId: "ki",
+  isMainnet: true,
   symbol: "XKI",
+  denom: "uxki",
   decimals: 6,
   api: [
     "https://api-mainnet.blockchain.ki",

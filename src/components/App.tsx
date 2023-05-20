@@ -24,7 +24,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
 
           {chains.map(chain => {
-            return <Route key={chain.chain} path={getPath(chain)} element={<Chain chain={chain} />}>
+            return <Route key={chain.chainId} path={getPath(chain)} element={<Chain chain={chain} />}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="validators" element={<Validators />} />
             </Route>

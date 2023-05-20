@@ -1,4 +1,28 @@
 .validators {
   width: 100%;
-  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.validators__container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.validators__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.validators__navigation {
+  width: 100%;
+}
+
+.validators__table {
+  width: 100%;
 }

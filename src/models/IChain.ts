@@ -3,13 +3,12 @@ import IValidator from "./IValidator";
 
 interface IChain {
   "name": string,
-  "path": string,
-  "cosmostation": string,
-  "coinGecko": string,
-  "chain": string,
-  "isMain": boolean,
-  "denom": string,
+  "chainId": string,
+  "coinGeckoId": string,
+  "cosmostationId": string,
+  "isMainnet": boolean,
   "symbol": string,
+  "denom": string,
   "decimals": number,
   "api": Array<string>,
   "description": string,

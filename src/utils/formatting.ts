@@ -4,8 +4,7 @@ import ICosmostationData from "../models/ICosmostationData";
 
 // ПОЛУЧИТЬ ПУТЬ
 export function getPath(chain: IChain): string {
-  const network = (chain.isMain) ? "mainnet" : "testnet";
-  return chain.path + "-" + network;
+  return chain.chainId
 }
 
 // ОБРЕЗАТЬ КОПЕЙКИ

@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const chihuahuaMainnet: IChain = {
   name: "Chihuahua",
-  path: "chihuahua",
-  cosmostation: "chihuahua",
-  coinGecko: "chihuahua-token",
-  chain: "chihuahua-1",
-  isMain: true,
-  denom: "uhuahua",
+  chainId: "chihuahua-1",
+  coinGeckoId: "chihuahua-token",
+  cosmostationId: "chihuahua",
+  isMainnet: true,
   symbol: "HUAHUA",
+  denom: "uhuahua",
   decimals: 6,
   api: [
     "https://chihuahua-api.polkachu.com",

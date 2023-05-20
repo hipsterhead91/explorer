@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const akashMainnet: IChain = {
   name: "Akash Network",
-  path: "akash",
-  cosmostation: "akash",
-  coinGecko: "akash-network",
-  chain: "akashnet-2",
-  isMain: true,
-  denom: "uakt",
+  chainId: "akashnet-2",
+  coinGeckoId: "akash-network",
+  cosmostationId: "akash",
+  isMainnet: true,
   symbol: "AKT",
+  denom: "uakt",
   decimals: 6,
   api: [
     "https://api-akash-ia.cosmosia.notional.ventures/",

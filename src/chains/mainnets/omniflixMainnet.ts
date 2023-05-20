@@ -2,13 +2,12 @@ import IChain from "../../models/IChain";
 
 const omniflixMainnet: IChain = {
   name: "Omniflix",
-  path: "omniflix",
-  cosmostation: "omniflix",
-  coinGecko: "",
-  chain: "omniflixhub-1",
-  isMain: true,
-  denom: "uflix",
+  chainId: "omniflixhub-1",
+  coinGeckoId: "",
+  cosmostationId: "omniflix",
+  isMainnet: true,
   symbol: "FLIX",
+  denom: "uflix",
   decimals: 6,
   api: [
     "https://api.omniflix.nodestake.top",

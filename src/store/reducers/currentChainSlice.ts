@@ -2,10 +2,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import IChain from "../../models/IChain";
 import ICurrentChainState from "../../models/ICurrentChainState";
+import IValidator from "../../models/IValidator";
+import IProposal from "../../models/IProposal";
 
 // ИСХОДНОЕ СОСТОЯНИЕ ТЕКУЩЕЙ СЕТИ
 const initialState: ICurrentChainState = {
   value: null,
+  price: null,
+  inflation: null,
+  communityPool: null,
+  totalBonded: null,
+  unbondingTime: null,
+  blockHeight: null,
+  validators: null,
+  activeProposals: null,
 };
 
 // СЛАЙС ТЕКУЩЕЙ СЕТИ
@@ -17,11 +27,35 @@ export const currentChainSlice = createSlice({
   name: "currentChain",
   initialState,
   reducers: {
-    setCurrentChain: (state, action: PayloadAction<IChain>) => {
+    setCurrentChain: (state, action: PayloadAction<IChain | null>) => {
       state.value = action.payload;
     },
-    resetCurrentChain: (state) => {
-      state.value = null;
+    // resetCurrentChain: (state) => {
+    //   state.value = null;
+    // },
+    // setPrice: (state, action: PayloadAction<string | null>) => {
+    //   state.price = action.payload;
+    // },
+    setInflation: (state, action: PayloadAction<string | null>) => {
+      state.inflation = action.payload;
+    },
+    setCommunityPool: (state, action: PayloadAction<string | null>) => {
+      state.communityPool = action.payload;
+    },
+    setTotalBonded: (state, action: PayloadAction<string | null>) => {
+      state.totalBonded = action.payload;
+    },
+    setUnbondingTime: (state, action: PayloadAction<number | null>) => {
+      state.unbondingTime = action.payload;
+    },
+    setBlockHeight: (state, action: PayloadAction<string | null>) => {
+      state.blockHeight = action.payload;
+    },
+    setValidators: (state, action: PayloadAction<IValidator[] | null>) => {
+      state.validators = action.payload;
+    },
+    setActiveProposals: (state, action: PayloadAction<IProposal[] | null>) => {
+      state.activeProposals = action.payload;
     },
   },
 });
@@ -32,13 +66,32 @@ export const currentChainSlice = createSlice({
 // это именно криэйтеры, они находятся в свойстве actions? Мне это всё не понятно, но кого это волнует.
 // По существу: setCurrentChain принимает в качестве аргумента объект сети, которую нужно установить в качестве
 // текущей; resetCurrentChain никаких аргументов не принимает.
-export const { setCurrentChain, resetCurrentChain } = currentChainSlice.actions;
+export const {
+  setCurrentChain,
+  // resetCurrentChain,
+  // setPrice,
+  setInflation,
+  setCommunityPool,
+  setTotalBonded,
+  setUnbondingTime,
+  setBlockHeight,
+  setValidators,
+  setActiveProposals
+} = currentChainSlice.actions;
 
 // selectCurrentChain - это функция, которую называют селектором; она предоставляет доступ к текущему стейту 
 // (в нашем случае это выбранная сеть) и всем его свойствам. Однако, в голом виде функция-селектор не возвращает
 // нужное нам значение: для этого её нужно использовать в качестве аргумента в хуке useAppSelector. В компоненте
 // это будет выглядеть примерно так: const currentChain = useAppSelector(selectCurrentChain).
 export const selectCurrentChain = (state: RootState) => state.currentChain.value;
+// export const selectPrice = (state: RootState) => state.currentChain.price;
+export const selectInflation = (state: RootState) => state.currentChain.inflation;
+export const selectCommunityPool = (state: RootState) => state.currentChain.communityPool;
+export const selectTotalBonded = (state: RootState) => state.currentChain.totalBonded;
+export const selectUnbondingTime = (state: RootState) => state.currentChain.unbondingTime;
+export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
+export const selectValidators = (state: RootState) => state.currentChain.validators;
+export const selectActiveProposals = (state: RootState) => state.currentChain.activeProposals;
 
 // Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно
 // назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется

@@ -5,7 +5,7 @@ import { getPath } from "../utils/formatting";
 import INavLink from "../models/INavLink";
 import IChain from "../models/IChain";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setCurrentChain, resetCurrentChain, } from "../store/reducers/currentChainSlice";
+import { setCurrentChain } from "../store/reducers/currentChainSlice";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 function Chains() {

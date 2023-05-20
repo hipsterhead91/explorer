@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Chains from "./Chains";
 
 import { useAppDispatch } from "../store/hooks";
-import { resetCurrentChain, } from "../store/reducers/currentChainSlice";
+import { setCurrentChain, } from "../store/reducers/currentChainSlice";
 
 function Header() {
 
@@ -10,7 +10,7 @@ function Header() {
   // что хуки нельзя использовать в коллбэках: то есть, например, его не получится повесить на кнопку в onClick
   // напрямую, а через такую "прослойку" - можно.
   const dispatch = useAppDispatch();
-  const resetChain = () => dispatch(resetCurrentChain());
+  const resetChain = () => dispatch(setCurrentChain(null));
 
   return (
     <header className="header">

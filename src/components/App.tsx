@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 import Layout from "./Layout";
 import Homepage from "./Homepage";
 import { chains } from "../chains/chains";
-import { getPath } from "../utils/formatting";
+
 import Chain from "./Chain";
 import NotFound from "./NotFound";
 import Dashboard from "./Dashboard";
@@ -24,7 +24,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
 
           {chains.map(chain => {
-            return <Route key={chain.chainId} path={getPath(chain)} element={<Chain chain={chain} />}>
+            return <Route key={chain.chainId} path={chain.chainId} element={<Chain />}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="validators" element={<Validators />} />
             </Route>

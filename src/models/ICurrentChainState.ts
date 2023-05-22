@@ -8,7 +8,7 @@ interface ICurrentChainState {
   inflation: string | null,
   communityPool: string | null,
   totalBonded: string | null,
-  unbondingTime: number | null,
+  unbondingTime: string | null,
   blockHeight: string | null,
   validators: IValidator[] | null,
   activeProposals: IProposal[] | null,

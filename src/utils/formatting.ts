@@ -2,11 +2,6 @@ import IChain from "../models/IChain";
 import IValidator from "../models/IValidator";
 import ICosmostationData from "../models/ICosmostationData";
 
-// ПОЛУЧИТЬ ПУТЬ
-export function getPath(chain: IChain): string {
-  return chain.chainId
-}
-
 // ОБРЕЗАТЬ КОПЕЙКИ
 export function cutDecimals(tokens: string, decimals: number): string {
   return (tokens.length > decimals)
@@ -118,4 +113,25 @@ export function tweakProposalPeriod(period: string): string {
   const date = period.split("T")[0];
   const time = period.split("T")[1].split(".")[0];
   return date + ", " + time;
+}
+
+// ОТФОРМАТИРОВАТЬ ИНФЛЯЦИЮ
+export function tweakInflation(inflation: string): string {
+  return (Number(inflation) * 100).toFixed(2);
+}
+
+// ОТФОРМАТИРОВАТЬ ПУЛ СООБЩЕСТВА
+export function tweakCommunityPool(communityPool: string, decimals: number): string {
+  const cutted = cutExtra(communityPool, 19); // хардкод, но здесь работает (19 символов это точка + 18 цифр после неё)
+  const cuttedAgain = cutDecimals(cutted, decimals);
+  return cuttedAgain;
+}
+
+// ОТФОРМАТИРОВАТЬ СРОК АНБОНДА
+export function tweakUnbondingTime(unbondingTime: string): string {
+  const seconds = unbondingTime.slice(0, -1);
+  const minutes = Number(seconds) / 60;
+  const hours = minutes / 60;
+  const days = hours / 24 + '';
+  return days;
 }

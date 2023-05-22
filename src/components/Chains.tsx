@@ -1,7 +1,6 @@
 import { useContext, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { chains } from "../chains/chains";
-import { getPath } from "../utils/formatting";
 import INavLink from "../models/INavLink";
 import IChain from "../models/IChain";
 import { useAppSelector, useAppDispatch } from "../store/hooks";

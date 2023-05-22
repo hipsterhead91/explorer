@@ -45,7 +45,7 @@ export const currentChainSlice = createSlice({
     setTotalBonded: (state, action: PayloadAction<string | null>) => {
       state.totalBonded = action.payload;
     },
-    setUnbondingTime: (state, action: PayloadAction<number | null>) => {
+    setUnbondingTime: (state, action: PayloadAction<string | null>) => {
       state.unbondingTime = action.payload;
     },
     setBlockHeight: (state, action: PayloadAction<string | null>) => {

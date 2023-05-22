@@ -1,11 +1,10 @@
-import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setCurrentChain, selectCommunityPool, selectTotalBonded, selectUnbondingTime, selectValidators, selectActiveProposals, selectBlockHeight, } from "../store/reducers/currentChainSlice";
+import { useAppSelector } from "../store/hooks";
+import { selectCommunityPool, selectTotalBonded, selectUnbondingTime, selectValidators, selectActiveProposals, selectBlockHeight, } from "../store/reducers/currentChainSlice";
 import { selectCurrentChain, selectInflation } from "../store/reducers/currentChainSlice";
 import { coinGeckoApi } from "../services/coinGecko";
 import ICoin from "../models/ICoin";
 import { Link } from "react-router-dom";
-import { cutDecimals, cutExtra, tweakPrice, filterActive, getPath } from "../utils/formatting";
-import { useEffect, useState } from "react";
+import { tweakPrice, filterActive } from "../utils/formatting";
 
 function Dashboard() {
 
@@ -40,31 +39,25 @@ function Dashboard() {
 
   // РЕНДЕР ИНФЛЯЦИИ
   let inflationEl = errorEl;
-  if (inflation) {
-    const value = (Number(inflation) * 100).toFixed(2) + '%';
-    inflationEl = <span className="dashboard__plate-data">{value}</span>;
-  }
+  if (inflation) inflationEl = <span className="dashboard__plate-data">{inflation}%</span>;
 
   // РЕНДЕР ПУЛА СООБЩЕСТВА
   let communityPoolEl = errorEl;
   if (communityPool && currentChain) {
-    const value = Number(cutDecimals(communityPool, currentChain.decimals)).toLocaleString('en');
-    communityPoolEl = <span className="dashboard__plate-tokens">{value}<span>{currentChain.symbol}</span></span>;
+    const formatted = Number(communityPool).toLocaleString('en');
+    communityPoolEl = <span className="dashboard__plate-tokens">{formatted}<span>{currentChain.symbol}</span></span>;
   }
 
   // РЕНДЕР ЗАСТЕЙКАННЫХ ТОКЕНОВ
   let totalBondedEl = errorEl;
   if (totalBonded && currentChain) {
-    const value = Number(cutDecimals(totalBonded, currentChain.decimals)).toLocaleString('en');
-    totalBondedEl = <span className="dashboard__plate-tokens">{value}<span>{currentChain.symbol}</span></span>;
+    const formatted = Number(totalBonded).toLocaleString('en');
+    totalBondedEl = <span className="dashboard__plate-tokens">{formatted}<span>{currentChain.symbol}</span></span>;
   }
 
   // РЕНДЕР АНБОНДИНГА
   let unbondingEl = errorEl;
-  if (unbondingTime) {
-    const value = `${unbondingTime} days`;
-    unbondingEl = <span className="dashboard__plate-data">{value}</span>;
-  }
+  if (unbondingTime) unbondingEl = <span className="dashboard__plate-data">{unbondingTime} days</span>;
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   let blockHeightEl = errorEl;

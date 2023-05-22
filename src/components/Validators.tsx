@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
-import IChainProps from "../models/IChainProps";
-import { Link, NavLink } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import INavLink from "../models/INavLink";
-import { coinGeckoApi } from "../services/coinGecko";
+import { useState } from "react";
+
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { setCurrentChain, selectBlockHeight, selectCurrentChain, selectValidators, selectTotalBonded, selectInflation, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
-import { cutExtra } from "../utils/formatting";
-import CosmosRestApi from "../services/CosmosRestApi";
-import IPool from "../models/IPools";
-import IProposal from "../models/IProposal";
-import { chains } from "../chains/chains";
+import { selectCurrentChain, selectValidators, selectTotalBonded } from "../store/reducers/currentChainSlice";
 import ValidatorsTableHeader from "./ValidatorsTableHeader";
 import ValidatorsTableRow from "./ValidatorsTableRow";
-import { sortByTokens, addRanks, addVotingPower, addAvatars, filterActive, filterInactive } from "../utils/formatting";
 
 function Validators() {
 

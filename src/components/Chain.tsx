@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
-import IChainProps from "../models/IChainProps";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import INavLink from "../models/INavLink";
-import { coinGeckoApi } from "../services/coinGecko";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { setCurrentChain, selectBlockHeight, selectCurrentChain, selectInflation, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
-import { cutExtra } from "../utils/formatting";
+import { setCurrentChain, selectCurrentChain, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
+import { cutDecimals, tweakCommunityPool, tweakInflation, tweakUnbondingTime } from "../utils/formatting";
 import CosmosRestApi from "../services/CosmosRestApi";
 import IPool from "../models/IPools";
 import IProposal from "../models/IProposal";
 import { chains } from "../chains/chains";
 
-function Chain(props: IChainProps) {
+function Chain() {
 
   const currentChain = useAppSelector(selectCurrentChain);
   const dispatch = useAppDispatch();
@@ -27,10 +25,6 @@ function Chain(props: IChainProps) {
   }, [])
 
   // ПОЛУЧАЕМ ДАННЫЕ О СЕТИ (с дополнительным форматированием)
-  // Примечание: исходное значение каждого стейта - null, и если данные загрузились успешно, то стейт меняется на 
-  // загруженные данные. Но возник вопрос: если загруженные данные - это пустой массив (например в пропозалах), 
-  // надо ли отправлять его в стейт пустым, или лучше сделать проверку на пустоту и также отправлять null?
-  // Пока решил отправлять как есть, пустым так пустым.
   useEffect(() => {
     if (currentChain) {
 
@@ -38,7 +32,10 @@ function Chain(props: IChainProps) {
 
       // ИНФЛЯЦИЯ
       chainApi.getInflation()
-        .then(result => dispatch(setInflation(result.inflation)))
+        .then(result => {
+          const tweaked = tweakInflation(result.inflation);
+          dispatch(setInflation(tweaked));
+        })
         .catch(() => dispatch(setInflation(null)))
 
       // ПУЛ СООБЩЕСТВА
@@ -46,24 +43,24 @@ function Chain(props: IChainProps) {
         .then(result => {
           const pool = result.pool.find((el: IPool) => el.denom === currentChain.denom);
           const amount = pool.amount;
-          const cutted = cutExtra(amount, 19); // точка + 18 символов
-          dispatch(setCommunityPool(cutted));
+          const tweaked = tweakCommunityPool(amount, currentChain.decimals);
+          dispatch(setCommunityPool(tweaked));
         })
         .catch(() => dispatch(setCommunityPool(null)))
 
       // ЗАСТЕЙКАННЫЕ МОНЕТЫ
       chainApi.getBondedTokens()
-        .then(result => dispatch(setTotalBonded(result)))
+        .then(result => {
+          const cutted = cutDecimals(result, currentChain.decimals);
+          dispatch(setTotalBonded(cutted));
+        })
         .catch(() => dispatch(setTotalBonded(null)))
 
       // СРОК АНБОНДА
       chainApi.getStakingParams()
         .then(result => {
-          const seconds = result.unbonding_time.slice(0, -1);
-          const minutes = seconds / 60;
-          const hours = minutes / 60;
-          const days = hours / 24;
-          dispatch(setUnbondingTime(days));
+          const tweaked = tweakUnbondingTime(result.unbonding_time);
+          dispatch(setUnbondingTime(tweaked));
         })
         .catch(() => dispatch(setUnbondingTime(null)))
 
@@ -85,6 +82,7 @@ function Chain(props: IChainProps) {
         .then(result => dispatch(setBlockHeight(result.block.last_commit.height)))
         .catch(() => dispatch(setBlockHeight(null)))
     }
+
   }, [currentChain])
 
 

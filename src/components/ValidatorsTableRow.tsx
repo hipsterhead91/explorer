@@ -2,6 +2,7 @@ import IValidatorsTableRowProps from "../models/IValidatorsTableRowProps";
 import { cutDecimals, tweakCommission } from "../utils/formatting";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setCurrentChain, selectBlockHeight, selectCurrentChain, selectValidators, selectTotalBonded, selectInflation, setActiveProposals, setBlockHeight, setCommunityPool, setInflation, setTotalBonded, setUnbondingTime, setValidators } from "../store/reducers/currentChainSlice";
+import { Link } from "react-router-dom";
 
 function ValidatorsTableRow(props: IValidatorsTableRowProps) {
 
@@ -44,8 +45,34 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
   const commission = tweakCommission(validator.commission.commission_rates.rate) + '%';
 
   return (
-    <div>
-      {/* {validator.description.moniker} */}
+    <div className="validators__table-row">
+
+      {/* ВАЛИДАТОР */}
+      <div className="validators__validator">
+        <div style={{ backgroundImage: `url("${avatarUrl}")` }} className="validators__avatar" />
+        <div className="validators__validator-info">
+          <div className="validators__validator-main-info">
+            <span className="validators__rank">{rank}</span>
+            <Link to={`/${currentChain?.chainId}/validators/${validator.operator_address}`} state={validator} className="validators__moniker">{moniker}</Link>
+          </div>
+          <div className="validators__statuses">
+            <span className={activityStyle}>{activity}</span>
+            <span className={bondStyle}>{bond}</span>
+            <span className={jailStyle}>{jail}</span>
+            <span className={highCommissionStyle}>{highCommission}</span>
+          </div>
+          <div className="validators__vp-adaptive">{}<span>{}</span> ({votingPower})</div>
+        </div>
+      </div>
+
+      {/* ВЕС ГОЛОСА */}
+      <div className="validators__voting-power">
+        <span className="validators__stake">{}<span>{}</span></span>
+        <span className="validators__power">{votingPower}</span>
+      </div>
+
+      {/* КОМИССИЯ */}
+      <span className="validators__commission">{commission}</span>
     </div>
   )
 }

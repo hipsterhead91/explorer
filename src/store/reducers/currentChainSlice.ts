@@ -7,7 +7,7 @@ import IProposal from "../../models/IProposal";
 
 // ИСХОДНОЕ СОСТОЯНИЕ ТЕКУЩЕЙ СЕТИ
 const initialState: ICurrentChainState = {
-  value: null,
+  chain: null,
   price: null,
   inflation: null,
   communityPool: null,
@@ -16,6 +16,7 @@ const initialState: ICurrentChainState = {
   blockHeight: null,
   validators: null,
   activeProposals: null,
+  avatarsData: null
 };
 
 // СЛАЙС ТЕКУЩЕЙ СЕТИ
@@ -28,10 +29,10 @@ export const currentChainSlice = createSlice({
   initialState,
   reducers: {
     setCurrentChain: (state, action: PayloadAction<IChain | null>) => {
-      state.value = action.payload;
+      state.chain = action.payload;
     },
     // resetCurrentChain: (state) => {
-    //   state.value = null;
+    //   state.chain = null;
     // },
     // setPrice: (state, action: PayloadAction<string | null>) => {
     //   state.price = action.payload;
@@ -57,6 +58,9 @@ export const currentChainSlice = createSlice({
     setActiveProposals: (state, action: PayloadAction<IProposal[] | null>) => {
       state.activeProposals = action.payload;
     },
+    setAvatarsData: (state, action: PayloadAction<any>) => {
+      state.avatarsData = action.payload;
+    },
   },
 });
 
@@ -76,14 +80,15 @@ export const {
   setUnbondingTime,
   setBlockHeight,
   setValidators,
-  setActiveProposals
+  setActiveProposals,
+  setAvatarsData,
 } = currentChainSlice.actions;
 
 // selectCurrentChain - это функция, которую называют селектором; она предоставляет доступ к текущему стейту 
 // (в нашем случае это выбранная сеть) и всем его свойствам. Однако, в голом виде функция-селектор не возвращает
 // нужное нам значение: для этого её нужно использовать в качестве аргумента в хуке useAppSelector. В компоненте
 // это будет выглядеть примерно так: const currentChain = useAppSelector(selectCurrentChain).
-export const selectCurrentChain = (state: RootState) => state.currentChain.value;
+export const selectCurrentChain = (state: RootState) => state.currentChain.chain;
 // export const selectPrice = (state: RootState) => state.currentChain.price;
 export const selectInflation = (state: RootState) => state.currentChain.inflation;
 export const selectCommunityPool = (state: RootState) => state.currentChain.communityPool;
@@ -92,6 +97,7 @@ export const selectUnbondingTime = (state: RootState) => state.currentChain.unbo
 export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
 export const selectValidators = (state: RootState) => state.currentChain.validators;
 export const selectActiveProposals = (state: RootState) => state.currentChain.activeProposals;
+export const selectAvatarsData = (state: RootState) => state.currentChain.avatarsData;
 
 // Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно
 // назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется

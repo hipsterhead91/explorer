@@ -37,10 +37,17 @@ export function sortByTokens(validators: Array<IValidator>): Array<IValidator> {
 // ДОБАВИТЬ РЕЙТИНГ
 // Примечание: принимаемый массив валидаторов уже должен быть упорядочен по стейку! Хотя по идее, можно просто в 
 // самое начало вставить sortByTokens() и не париться - попробую позже.
+// export function addRanks(validators: Array<IValidator>): Array<IValidator> {
+//   validators.forEach(validator => validator.rank = validators.indexOf(validator) + 1);
+//   return validators;
+// }
 export function addRanks(validators: Array<IValidator>): Array<IValidator> {
-  validators.forEach(validator => validator.rank = validators.indexOf(validator) + 1);
-  return validators;
+  return validators.map((validator) => ({
+    ...validator,
+    rank: validators.indexOf(validator) + 1
+  }));
 }
+
 
 // ДОБАВИТЬ АВАТАРЫ
 // Примечание: аватар является ссылкой, и сейчас проходит простейшую валидацию (ссылка должна содержать валопер

@@ -3,7 +3,7 @@ import IValidator from "./IValidator";
 import IProposal from "./IProposal";
 
 interface ICurrentChainState {
-  value: IChain | null;
+  chain: IChain | null;
   price: string | null,
   inflation: string | null,
   communityPool: string | null,
@@ -12,6 +12,7 @@ interface ICurrentChainState {
   blockHeight: string | null,
   validators: IValidator[] | null,
   activeProposals: IProposal[] | null,
+  avatarsData: any
 }
 
 export default ICurrentChainState;

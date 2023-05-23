@@ -26,9 +26,9 @@ interface ICoin {
   "roi": {
     "times": number,
     "currency": string,
-    "percentage": number
+    "percentage": number,
 },
-  "last_updated": string
+  "last_updated": string,
 }
 
 export default ICoin;

@@ -1,8 +1,12 @@
+/* Octokit - официальный клиент для GitHub API; среди прочего позволяет получить тот или иной репозиторий в виде объекта. Документация: https://octokit.github.io/rest.js/v19 */
+
+// Пакеты
 import { Octokit } from "@octokit/rest";
+
+// Типизация
 import IChain from "../models/IChain";
 
-// Octokit - официальный клиент для GitHub API; среди прочего позволяет "скачать" тот или 
-// иной репозиторий в виде объекта. Документация: https://octokit.github.io/rest.js/v19
+
 
 const octokit = new Octokit();
 

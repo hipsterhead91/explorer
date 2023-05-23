@@ -1,20 +1,24 @@
-import { useContext, useRef } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { chains } from "../chains/chains";
-import INavLink from "../models/INavLink";
+// Пакеты
+import { useRef } from "react";
+import { NavLink } from "react-router-dom";
+
+// Типизация
 import IChain from "../models/IChain";
+import INavLink from "../models/INavLink";
+
+// Redux
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setCurrentChain } from "../store/reducers/currentChainSlice";
-import { selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentChain, setCurrentChain } from "../store/reducers/currentChainSlice";
+
+// Прочее
+import { chains } from "../chains/chains";
+
+
 
 function Chains() {
 
-  // В доках и видосах всегда выносят useAppDispatch() в переменную dispatch. Судя по всему, это делается потому,
-  // что хуки нельзя использовать в коллбэках: то есть, например, его не получится повесить на кнопку в onClick
-  // напрямую, а через такую "прослойку" - можно.
   const dispatch = useAppDispatch();
   const currentChain = useAppSelector(selectCurrentChain);
-
   const list = useRef<HTMLDivElement | null>(null);
   const arrow = useRef<HTMLSpanElement | null>(null);
   const overlay = useRef<HTMLDivElement | null>(null);
@@ -36,9 +40,16 @@ function Chains() {
     hideChainList();
   };
 
-  const currentChainText = (currentChain === null) ? 'Chain is not selected' : `${currentChain.name} ${currentChain.isMainnet ? '' : 'Testnet'}`;
+  const currentChainText =
+    (currentChain)
+      ? `${currentChain.name} ${currentChain.isMainnet ? '' : 'Testnet'}`
+      : "Chain is not selected";
 
-  const chainButtonStyle = ({ isActive }: INavLink) => isActive ? "chains__chain chains__chain_selected" : "chains__chain";
+  const chainButtonStyle = (navLink: INavLink) => {
+    return (navLink.isActive)
+      ? "chains__chain chains__chain_selected"
+      : "chains__chain";
+  }
 
   return (
     <div className="chains">
@@ -52,7 +63,12 @@ function Chains() {
       <div ref={list} className="chains__list chains__list_hidden">
         {chains.map((chain) => {
           return (
-            <NavLink key={chain.chainId} to={`/${chain.chainId}/dashboard`} onClick={() => switchChain(chain)} className={chainButtonStyle}>
+            <NavLink
+              key={chain.chainId}
+              to={`/${chain.chainId}/dashboard`}
+              onClick={() => switchChain(chain)}
+              className={chainButtonStyle}
+            >
               {`${chain.name} ${chain.isMainnet ? "" : "Testnet"}`}
               <span>({chain.chainId})</span>
             </NavLink>

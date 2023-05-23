@@ -11,8 +11,8 @@ interface IAvatarData {
   "_links": {
       "self": string | null,
       "git": string | null,
-      "html": string | null
-  }
+      "html": string | null,
+  },
 }
 
 export default IAvatarData;

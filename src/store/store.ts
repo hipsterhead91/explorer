@@ -1,6 +1,13 @@
+// Пакеты
 import { configureStore } from "@reduxjs/toolkit";
+
+// Redux
 import currentChainReducer from './reducers//currentChainSlice';
+
+// API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";
+
+
 
 const store = configureStore({
   reducer: {

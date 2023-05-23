@@ -11,8 +11,8 @@ interface ICosmostationData {
   "_links": {
       "self": string,
       "git": string,
-      "html": string
-  }
+      "html": string,
+  },
 }
 
 export default ICosmostationData;

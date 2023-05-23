@@ -1,4 +1,3 @@
-import IChain from "../models/IChain";
 import IValidator from "../models/IValidator";
 import ICosmostationData from "../models/ICosmostationData";
 
@@ -35,12 +34,7 @@ export function sortByTokens(validators: Array<IValidator>): Array<IValidator> {
 }
 
 // ДОБАВИТЬ РЕЙТИНГ
-// Примечание: принимаемый массив валидаторов уже должен быть упорядочен по стейку! Хотя по идее, можно просто в 
-// самое начало вставить sortByTokens() и не париться - попробую позже.
-// export function addRanks(validators: Array<IValidator>): Array<IValidator> {
-//   validators.forEach(validator => validator.rank = validators.indexOf(validator) + 1);
-//   return validators;
-// }
+/* Принимаемый массив валидаторов уже должен быть упорядочен по стейку! Хотя по идее, можно просто в самое начало вставить sortByTokens() и не париться - попробую позже, если не забуду. */
 export function addRanks(validators: Array<IValidator>): Array<IValidator> {
   return validators.map((validator) => ({
     ...validator,
@@ -48,10 +42,8 @@ export function addRanks(validators: Array<IValidator>): Array<IValidator> {
   }));
 }
 
-
 // ДОБАВИТЬ АВАТАРЫ
-// Примечание: аватар является ссылкой, и сейчас проходит простейшую валидацию (ссылка должна содержать валопер
-// и иметь формат PNG). В будущем валидацию можно прописать глубже - вероятно, существуют и готовые решения.
+/* Аватар является ссылкой, и сейчас проходит простейшую валидацию (ссылка должна содержать валопер и иметь формат PNG). В будущем валидацию можно прописать глубже - вероятно, существуют и готовые решения.*/
 export function addAvatars(validators: Array<IValidator>, avatarsData: Array<ICosmostationData>): Array<IValidator> {
   validators.forEach(validator => {
     const valoper = validator.operator_address;
@@ -64,27 +56,21 @@ export function addAvatars(validators: Array<IValidator>, avatarsData: Array<ICo
 }
 
 // ДОБАВИТЬ ВЕС ГОЛОСА
-// Примечание: принимает массив валидаторов и сумму всех застейканных монет в сети; возвращает массив валидаторов, 
-// но с новым свойством voting_power () у каждого объекта.
 export function addVotingPower(validators: Array<IValidator>, bondedTotal: string): Array<IValidator> {
   validators.forEach(validator => {
-    const votingPower = (Number(validator.tokens) * 100 / Number(bondedTotal)).toFixed(2); // метод toFixed() возвращает строку
+    const votingPower = (Number(validator.tokens) * 100 / Number(bondedTotal)).toFixed(2);
     validator.voting_power = votingPower;
   });
   return validators;
 }
 
 // ОТФИЛЬТРОВАТЬ АКТИВНЫХ
-// Примечание: принимает массив валидаторов, возвращает его же, но отфильтрованным. На случай, если ничего не найдётся и 
-// массив вернётся пустым, указал в дополнительно [] в качестве возвращаемого значения. По идее логично.
-export function filterActive(validators: Array<IValidator>): Array<IValidator> | [] {
+export function filterActive(validators: Array<IValidator>): Array<IValidator> {
   const active = validators.filter(validator => validator.status === "BOND_STATUS_BONDED");
   return active;
 }
 
 // ОТФИЛЬТРОВАТЬ НЕАКТИВНЫХ
-// Примечание: принимает массив валидаторов, возвращает его же, но отфильтрованным. На случай, если ничего не найдётся и 
-// массив вернётся пустым, указал в дополнительно [] в качестве возвращаемого значения. По идее логично.
 export function filterInactive(validators: Array<IValidator>): Array<IValidator> | [] {
   const inactive = validators.filter(validator => validator.status !== "BOND_STATUS_BONDED");
   return inactive;
@@ -94,7 +80,6 @@ export function filterInactive(validators: Array<IValidator>): Array<IValidator>
 export function tweakCommission(commission: string): string {
   return (Number(commission) * 100).toFixed(2)
 }
-
 
 // ОТФОРМАТИРОВАТЬ ТИП ПРОПОЗАЛА
 export function tweakProposalType(type: string): string {
@@ -128,8 +113,9 @@ export function tweakInflation(inflation: string): string {
 }
 
 // ОТФОРМАТИРОВАТЬ ПУЛ СООБЩЕСТВА
+/* 19 символов это точка и 18 цифр после неё - хардкод, но здесь работает */
 export function tweakCommunityPool(communityPool: string, decimals: number): string {
-  const cutted = cutExtra(communityPool, 19); // хардкод, но здесь работает (19 символов это точка + 18 цифр после неё)
+  const cutted = cutExtra(communityPool, 19);
   const cuttedAgain = cutDecimals(cutted, decimals);
   return cuttedAgain;
 }

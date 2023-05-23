@@ -1,5 +1,5 @@
 interface INavLink {
-  isActive: boolean
+  "isActive": boolean,
 }
 
 export default INavLink;

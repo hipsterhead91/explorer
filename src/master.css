@@ -279,8 +279,9 @@ html {
 }
 
 .homepage {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 100%;
-  max-width: 1200px;
   padding: 24px 24px 24px 24px;
   display: -webkit-box;
   display: -ms-flexbox;

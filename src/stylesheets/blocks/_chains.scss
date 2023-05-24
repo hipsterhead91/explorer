@@ -1,5 +1,7 @@
 .chains {
   position: relative;
+  margin: auto 0 auto 0;
+  grid-column: 7/9;
 }
 
 .chains__overlay {
@@ -20,18 +22,20 @@
 .chains__button {
   position: relative;
   z-index: 20;
-  min-width: 220px;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border: 2px solid $color-second;
   border-radius: 4px;
   background-color: $gray-darker;
+  outline: none;
   cursor: pointer;
 }
 
 .chains__current {
-  width: calc(100% - 26px);
+  width: calc(100% - 28px);
   padding: 0 6px 2px 6px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -44,8 +48,8 @@
 }
 
 .chains__switcher {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,66 +73,121 @@
   }
 }
 
-.chains__list {
+.chains__container {
   z-index: 20;
   position: fixed;
   top: 86px;
   left: 50%;
   transform: translate(-50%);
   box-sizing: border-box;
-  width: 100vw;
-  max-width: calc(1200px - 24px - 24px);
-  padding: 26px 26px 26px 26px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  border-radius: 6px;
-  background-color: $gray-lightest;
+  width: 100%;
+  max-width: 998px;
+  padding: 0 12px 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 
   &_hidden {
     display: none;
   }
 }
 
+.chains__list {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 28px 40px 28px;
+  background-color: $gray-lightest;
+  border-radius: 6px;
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.chains__alignment {
+  position: relative;
+  width: 100%;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.chains__heading {
+  font-weight: 600;
+  font-size: 20px;
+  color: $gray-darker;
+}
+
+.chains__close-button {
+  font-weight: 400;
+  font-size: 32px;
+  color: $gray-darker;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.chains__grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
 .chains__chain {
   box-sizing: border-box;
   width: 100%;
-  height: 28px;
+  padding: 8px 16px 8px 16px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  // border: 2px solid rgba($black, 0.2);
   background-color: rgba($white, 0.5);
-
   border-radius: 4px;
-  font-weight: 500;
-  font-size: 14px;
-  color: $gray-darker;
   text-decoration: none;
+
   cursor: pointer;
   transition: linear 0.2s;
 
   &_selected {
-
-
     background-color: rgba($color-second, 0.7);
-    // border: 2px solid $gray-lighter;
   }
 
   &:hover {
-    // color: $color-accent;
     background-color: $white;
-    // border: 2px solid rgba($color-accent, 0.5);
   }
+}
 
-  span {
-    margin: 2px 0 0 2px;
-    font-size: 12px;
-    font-weight: 400;
-    color: $gray;
-  }
+.chains__chain-logo {
+  width: 28px;
+  height: 28px;
+  margin: 0 8px 0 0;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.chains__chain-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.chains__chain-name {
+  margin: 0 0 2px 0;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: $gray-darker;
+}
+
+.chains__chain-id {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
+  color: $gray-dark;
 }
 
 

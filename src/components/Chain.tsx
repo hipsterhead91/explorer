@@ -180,6 +180,8 @@ function Chain(props: IChainProps) {
             <NavLink to="dashboard" className={linkStyle}>Dashboard</NavLink>
             <div className="chain__nav-divider"></div>
             <NavLink to="validators" className={linkStyle}>Validators</NavLink>
+            <div className="chain__nav-divider"></div>
+            <NavLink to="proposals" className={linkStyle}>Proposals</NavLink>
           </div>
         </nav>
         <div className="chain__content">

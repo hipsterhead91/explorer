@@ -16,7 +16,12 @@ const akashMainnet: IChain = {
     "https://akash.api.ping.pub"
   ],
   description: "The world first decentralized open source cloud, and DeCloud for DeFi, built with the Cosmos SDK.",
-  logo: "/logos/akash.png"
+  logo: "/logos/akash.png",
+  links: {
+    website: 'https://akash.network/',
+    github: 'https://github.com/akash-network',
+    twitter: 'https://twitter.com/akashnet_',
+  },
 }
 
 export default akashMainnet;

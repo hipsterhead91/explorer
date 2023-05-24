@@ -16,7 +16,12 @@ const cosmosMainnet: IChain = {
     "https://cosmos.api.ping.pub"
   ],
   description: "The Cosmos Hub is an Internet of Blockchains, a network of blockchains able to communicate with each other in a decentralized way.",
-  logo: "/logos/cosmos.png"
+  logo: "/logos/cosmos.png",
+  links: {
+    website: 'https://cosmos.network/',
+    github: 'https://github.com/cosmos',
+    twitter: 'https://twitter.com/cosmos',
+  },
 }
 
 export default cosmosMainnet;

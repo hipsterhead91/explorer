@@ -10,6 +10,11 @@ interface IChain {
   "api": Array<string>,
   "description": string,
   "logo": string,
+  "links": {
+    "website": string,
+    "github": string,
+    "twitter": string,
+  },
 }
 
 export default IChain;

@@ -29,7 +29,7 @@
   justify-content: space-between;
   border: 2px solid $color-second;
   border-radius: 4px;
-  background-color: $gray-darker;
+  background-color: $color-main;
   outline: none;
   cursor: pointer;
 }
@@ -38,8 +38,8 @@
   width: calc(100% - 28px);
   padding: 0 6px 2px 6px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 14px;
   font-weight: 400;
+  font-size: 14px;
   color: $white;
   text-align: center;
   white-space: nowrap;
@@ -63,8 +63,8 @@
   left: 1px;
   width: 8px;
   height: 8px;
-  border-top: 3px solid $gray-darker;
-  border-left: 3px solid $gray-darker;
+  border-top: 3px solid $color-main;
+  border-left: 3px solid $color-main;
   transform: rotate(225deg);
 
   &_up {

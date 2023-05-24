@@ -15,7 +15,12 @@ const chihuahuaMainnet: IChain = {
     "https://chihuahua-api.mercury-nodes.net"
   ],
   description: "The first meme coin on Cosmos ecosystem.",
-  logo: "/logos/chihuahua.png"
+  logo: "/logos/chihuahua.png",
+  links: {
+    website: 'https://www.chihuahua.wtf/',
+    github: 'https://github.com/ChihuahuaChain/chihuahua',
+    twitter: 'https://twitter.com/ChihuahuaChain',
+  },
 }
 
 export default chihuahuaMainnet;

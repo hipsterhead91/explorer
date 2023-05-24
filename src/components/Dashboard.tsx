@@ -39,9 +39,142 @@ function Dashboard() {
   const validators = useAppSelector(selectValidators);
   const activeProposals = useAppSelector(selectActiveProposals);
 
+  // РЕНДЕР ОШИБКИ
+  const errorEl = <span className="dashboard__error">no data</span>
+
+  // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ
+  const heading = currentChain?.name;
+  const chainType = (currentChain?.isMainnet) ? 'mainnet' : 'testnet';
+  const subheading = chainType + ' · ' + currentChain?.chainId;
+  const description = currentChain?.description;
+
+  // РЕНДЕР ПУЛА СООБЩЕСТВА
+  const communityPoolEl = (communityPool)
+    ? <p className="dashboard__plate-data">
+      {Number(communityPool).toLocaleString('en')}
+      <span>{currentChain?.symbol}</span></p>
+    : errorEl;
+
+  // РЕНДЕР ЗАСТЕЙКАНЫХ ТОКЕНОВ
+  const bondedTokensEl = (totalBonded)
+    ? <p className="dashboard__plate-data">
+      {Number(totalBonded).toLocaleString('en')}
+      <span>{currentChain?.symbol}</span></p>
+    : errorEl;
+
+
+  // РЕНДЕР ГОЛОСОВАНИЙ
+  const proposalsText = (activeProposals && activeProposals.length > 0)
+    ? activeProposals.length + ' proposals'
+    : 'none';
+
+  const proposalsEl = (activeProposals)
+    ? <Link to={`/${currentChain?.chainId}/proposals`} className="dashboard__link">
+      {proposalsText}
+    </Link>
+    : errorEl;
+
+  // РЕНДЕР ЛОГОТИПА
+  const logo = currentChain?.logo;
+
+  // РЕНДЕР ИНФЛЯЦИИ
+  const inflationEl = (inflation)
+    ? <p className="dashboard__plate-data">{inflation + '%'}</p>
+    : errorEl;
+
+  // РЕНДЕР АНБОНДИНГА
+  const unbondingEl = (unbondingTime)
+    ? <p className="dashboard__plate-data">{unbondingTime + ' days'}</p>
+    : errorEl;
+
+  // РЕНДЕР ЦЕНЫ
+
+  // РЕНДЕР ССЫЛОК
+
+  // РЕНДЕР ВАЛИДАТОРОВ
+  const activeSetLength = (validators) ? filterActive(validators).length : 0;
+  const wholeSetLength = (validators) ? validators.length : 0;
+  const validatorsEl = (validators)
+    ? <Link to={`/${currentChain?.chainId}/validators`} className="dashboard__link">
+      {activeSetLength + '/' + wholeSetLength}
+    </Link>
+    : errorEl;
+
+  // РЕНДЕР ВЫСОТЫ БЛОКА
+  const blockHeightEl = (blockHeight)
+    ? <p className="dashboard__plate-data">
+      {Number(blockHeight).toLocaleString('en')}</p>
+    : errorEl;
+
   return (
     <div className="dashboard">
-      <ChainHeading />
+      <div className="dashboard__plates">
+
+        {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
+        <div id="main-plate" className="dashboard__plate">
+          <h1 className="dashboard__heading">{heading}</h1>
+          <span className="dashboard__subheading">{subheading}</span>
+          <p className="dashboard__description">{description}</p>
+        </div>
+
+        {/* ПУЛ СООБЩЕСТВА */}
+        <div id="community-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Community Pool:</span>
+          {communityPoolEl}
+        </div>
+
+        {/* ЗАСТЕЙКАНО */}
+        <div id="bonded-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Tokens Bonded:</span>
+          {bondedTokensEl}
+        </div>
+
+        {/* ГОЛОСОВАНИЯ */}
+        <div id="proposals-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Active Proposals:</span>
+          {proposalsEl}
+        </div>
+
+        {/* ЛОГО */}
+        <div id="logo-plate" className="dashboard__plate">
+          <div className="dashboard__logo" style={{ backgroundImage: `url(${logo})` }}></div>
+        </div>
+
+        {/* ИНФЛЯЦИЯ */}
+        <div id="inflation-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Inflation:</span>
+          {inflationEl}
+        </div>
+
+        {/* АНБОНДИНГ */}
+        <div id="unbonding-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Unbonding:</span>
+          {unbondingEl}
+        </div>
+
+        {/* ЦЕНА */}
+        <div id="price-plate" className="dashboard__plate">
+
+        </div>
+
+        {/* ССЫЛКИ */}
+        <div id="links-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Links:</span>
+        </div>
+
+        {/* ВАЛИДАТОРЫ */}
+        <div id="validators-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Validators:</span>
+          {validatorsEl}
+        </div>
+
+        {/* ВЫСОТА БЛОКА */}
+        <div id="block-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">Block Height:</span>
+          {blockHeightEl}
+        </div>
+
+      </div>
     </div>
   )
 

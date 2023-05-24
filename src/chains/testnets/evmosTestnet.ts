@@ -15,7 +15,12 @@ const evmosTestnet: IChain = {
     "https://api-t.evmos.nodestake.top",
   ],
   description: "A Cosmos SDK-based IBC & Ethereum Virtual Machine-compatible blockchain.",
-  logo: "/logos/evmos.png"
+  logo: "/logos/evmos.png",
+  links: {
+    website: 'https://evmos.org/',
+    github: 'https://github.com/tharsis/evmos',
+    twitter: 'https://twitter.com/EvmosOrg',
+  },
 }
 
 export default evmosTestnet;

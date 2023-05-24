@@ -20,7 +20,12 @@ const axelarMainnet: IChain = {
     "https://api-1.axelar.nodes.guru:443"
   ],
   description: "A decentralized multi-chain network that enables cross chain communication with a simple pegging mechanism.",
-  logo: "/logos/axelar.png"
+  logo: "/logos/axelar.png",
+  links: {
+    website: 'https://axelar.network/',
+    github: 'https://github.com/axelarnetwork/axelar-core',
+    twitter: 'https://twitter.com/axelarcore',
+  },
 }
 
 export default axelarMainnet;

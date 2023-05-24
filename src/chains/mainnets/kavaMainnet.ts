@@ -13,7 +13,12 @@ const kavaMainnet: IChain = {
     "https://api.data.kava.io"
   ],
   description: "The Kava zone brings major assets like BTC, ETH, and XRP to Cosmos and provides CDP functionality (multi-collateral debt positions) for issuing synthetic assets and leveraging exposure.",
-  logo: "/logos/kava.png"
+  logo: "/logos/kava.png",
+  links: {
+    website: 'https://www.kava.io/',
+    github: 'https://github.com/kava-labs',
+    twitter: 'https://twitter.com/KAVA_CHAIN',
+  },
 }
 
 export default kavaMainnet;

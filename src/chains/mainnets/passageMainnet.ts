@@ -14,7 +14,12 @@ const passageMainnet: IChain = {
     "https://api.passage.nodestake.top"
   ],
   description: "Passage is building a virtual 3D world/metaverse that is mainly powered by Unreal Engine 5, Akash, and IBC.",
-  logo: "/logos/passage.png"
+  logo: "/logos/passage.png",
+  links: {
+    website: 'https://www.passage.io/',
+    github: '',
+    twitter: 'https://twitter.com/passageio',
+  },
 }
 
 export default passageMainnet;

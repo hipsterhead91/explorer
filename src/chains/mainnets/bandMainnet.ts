@@ -13,7 +13,12 @@ const bandMainnet: IChain = {
     "https://laozi1.bandchain.org/api"
   ],
   description: "Cross-chain data oracle platform that aggregates and connects real-world data and APIs to smart contracts.",
-  logo: "/logos/band.png"
+  logo: "/logos/band.png",
+  links: {
+    website: 'https://bandprotocol.com/',
+    github: 'https://github.com/bandprotocol',
+    twitter: 'https://twitter.com/BandProtocol',
+  },
 }
 
 export default bandMainnet;

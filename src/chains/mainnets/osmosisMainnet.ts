@@ -16,7 +16,12 @@ const osmosisMainnet: IChain = {
     "https://lcd-osmosis.blockapsis.com"
   ],
   description: "The interchain AMM powered by the Cosmos Inter-Blockchain Communication protocol.",
-  logo: "/logos/osmosis.png"
+  logo: "/logos/osmosis.png",
+  links: {
+    website: 'https://osmosis.zone/',
+    github: 'https://github.com/osmosis-labs/docs',
+    twitter: 'https://twitter.com/osmosiszone',
+  },
 }
 
 export default osmosisMainnet;

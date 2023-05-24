@@ -15,7 +15,12 @@ const secretMainnet: IChain = {
     "https://secret-4.api.trivium.network:1317"
   ],
   description: "Decentralized, permissionless, public blockchain for privacy-preserving applications.",
-  logo: "/logos/secret.png"
+  logo: "/logos/secret.png",
+  links: {
+    website: 'https://scrt.network/',
+    github: 'https://github.com/SecretFoundation',
+    twitter: 'https://twitter.com/SecretNetwork',
+  },
 }
 
 export default secretMainnet;

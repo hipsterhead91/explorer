@@ -15,7 +15,12 @@ const junoMainnet: IChain = {
     "https://lcd-juno.itastakers.com"
   ],
   description: "Juno is an interoperable smart contract network. Highly scalable, robust, secure and easy to deploy.",
-  logo: "/logos/juno.png"
+  logo: "/logos/juno.png",
+  links: {
+    website: 'https://www.junonetwork.io/',
+    github: 'https://github.com/CosmosContracts',
+    twitter: 'https://twitter.com/JunoNetwork',
+  },
 }
 
 export default junoMainnet;

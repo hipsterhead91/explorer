@@ -1,5 +1,9 @@
+// Типизация
+import IChain from "../models/IChain";
 import IValidator from "../models/IValidator";
 import ICosmostationData from "../models/ICosmostationData";
+
+
 
 // ОБРЕЗАТЬ КОПЕЙКИ
 export function cutDecimals(tokens: string, decimals: number): string {
@@ -11,6 +15,16 @@ export function cutDecimals(tokens: string, decimals: number): string {
 // ОБРЕЗАТЬ ЛИШНИЕ СИМВОЛЫ
 export function cutExtra(tokens: string, extraSymbols: number): string {
   return tokens.slice(0, -extraSymbols);
+}
+
+// ОТФОРМАТИРОВАТЬ СТЕЙК
+export function tweakTokens(tokens: string, chain: IChain): string {
+  return Number(cutDecimals(tokens, chain.decimals)).toLocaleString('en');
+}
+
+// ОТФОРМАТИРОВАТЬ ВЕС ГОЛОСА
+export function tweakVotingPower(votingPower: string, chain: IChain): string {
+  return (Number(cutDecimals(votingPower, chain.decimals + 1)) / 100).toLocaleString('en');
 }
 
 // ОТФОРМАТИРОВАТЬ ЦЕНУ

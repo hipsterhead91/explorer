@@ -1,133 +1,133 @@
+// Пакеты
 import { useState, useEffect, useRef } from "react";
 
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { selectCurrentChain, selectInflation, selectCommunityPool, selectTotalBonded, selectUnbondingTime, selectValidators, selectActiveProposals, selectBlockHeight, selectPrice, } from "../store/reducers/currentChainSlice";
+// Компоненты
+import ChainHeading from "./ChainHeading";
 import ValidatorsTableHeader from "./ValidatorsTableHeader";
 import ValidatorsTableRow from "./ValidatorsTableRow";
-import getAvatarsData from "../services/getAvatarsData";
-import IAvatarData from "../models/IAvatarData";
-import { addAvatars, addRanks, addVotingPower, filterActive, filterInactive, sortByTokens } from "../utils/formatting";
+
+// Типизация
+import IValidator from "../models/IValidator";
+
+// Redux
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
+
+// Прочее
+import { filterActive, filterInactive } from "../utils/formatting";
+
+
 
 function Validators() {
 
+  const dispatch = useAppDispatch();
   const currentChain = useAppSelector(selectCurrentChain);
   const validators = useAppSelector(selectValidators);
+  const [activeValidators, setActiveValidators] = useState<IValidator[] | null>(null);
+  const [inactiveValidators, setInactiveValidators] = useState<IValidator[] | null>(null);
+  const [shownValidators, setShownValidators] = useState<IValidator[] | null>(null);
+  const [shownValidatorsBackup, setShownValidatorsBackup] = useState<IValidator[] | null>(null);
+  const [isCurrentSetActive, setIsCurrentSetActive] = useState<boolean>(true);
+  const filterInput = useRef();
 
+  // ДЕЛИМ ВАЛИДАТОРОВ НА АКТИВНЫХ И НЕАКТИВНЫХ
   useEffect(() => {
-    console.log(validators);
-  }, [validators])
+    if (validators) {
+      setActiveValidators(filterActive(validators));
+      setInactiveValidators(filterInactive(validators));
+    }
+  }, [currentChain, validators])
 
+  // РЕНДЕРИМ АКТИВНЫХ ВАЛИДАТОРОВ КОГДА ОНИ ПОЛУЧЕНЫ
+  useEffect(() => {
+    setShownValidators(activeValidators);
+    setShownValidatorsBackup(activeValidators);
+  }, [activeValidators])
 
-  // const currentChain = useAppSelector(selectCurrentChain);
-  // const totalBonded = useAppSelector(selectTotalBonded);
-  // const validators = useAppSelector(selectValidators);
-  // const avatarsData = useAppSelector(selectAvatarsData);
-  // const dispatch = useAppDispatch();
+  // СБРАСЫВАЕМ НАСТРОЙКИ ПРИ ПЕРЕКЛЮЧЕНИИ СЕТИ
+  useEffect(() => {
+    setIsCurrentSetActive(true);
+  }, [currentChain])
 
-  // const [activeValidators, setActiveValidators] = useState<any>();
-  // const [inactiveValidators, setInactiveValidators] = useState<any>();
-  // const [shownValidators, setShownValidators] = useState<any>();
-  // const [shownValidatorsBackup, setShownValidatorsBackup] = useState<any>(); // нужен для отката после фильтраций
-  // const [isCurrentSetActive, setIsCurrentSetActive] = useState<boolean>(true);
-  // const filterInput = useRef();
+  // СБРАСЫВАЕМ ИНПУТ ФИЛЬТРА ВАЛИДАТОРОВ
+  useEffect(() => {
 
-  // const heading = (currentChain === null) ? '' : currentChain.isMainnet ? currentChain.name : `${currentChain.name} Testnet`;
-  // const subheading = (currentChain === null) ? '' : `${currentChain.isMainnet ? 'mainnet' : 'testnet'} · ${currentChain.chainId}`;
+  }, [currentChain, isCurrentSetActive])
 
-  // useEffect(() => {
-  //   if (currentChain) {
-  //     getAvatarsData(currentChain)
-  //       .then(result => dispatch(setAvatarsData(result)))
-  //   }
-  // }, [currentChain])
+  // ПЕРЕКЛЮЧАЕМСЯ НА АКТИВНЫЙ СЕТ
+  const switchToActive = () => {
+    setShownValidators(activeValidators);
+    setShownValidatorsBackup(activeValidators);
+    setIsCurrentSetActive(true);
+  }
 
-  // // Примечание: почему такие сложные махинации? Потому что у неактивного валидатора может быть больше токенов, чем у активного,
-  // // и если их упорядочивать сразу, не разделяя, то может получиться, что активные и неактивные будут идти вперемешку, а должны 
-  // // быть сначала все активные, и только после них неактивные. Таким образом, сейчас, даже если у некоего неактивного валидатора
-  // // самый огромный стейк в сети, по рейтингу он всё равно будет стоять только после самого "нищего" активного. Короче, всё
-  // // правильно, доверься.
-  // useEffect(() => {
-  //   if (validators && totalBonded && avatarsData) {
-  //     let active = filterActive(validators);
-  //     let inactive = filterInactive(validators);
-  //     active = sortByTokens(active);
-  //     inactive = sortByTokens(inactive);
-  //     let all = active.concat(inactive);
-  //     all = addRanks(all);
-  //     all = addVotingPower(all, totalBonded);
-  //     all = addAvatars(all, avatarsData);
-  //     dispatch(setValidators(all));
-  //     active = filterActive(all);
-  //     inactive = filterInactive(all);
-  //     setActiveValidators(active);
-  //     setInactiveValidators(inactive);
-  //   }
-  // }, [totalBonded, avatarsData])
+  // ПЕРЕКЛЮЧАЕМСЯ НА НЕАКТИВНЫЙ СЕТ
+  const switchToInactive = () => {
+    setShownValidators(inactiveValidators);
+    setShownValidatorsBackup(inactiveValidators);
+    setIsCurrentSetActive(false);
+  }
 
-  // // РЕНДЕРИМ АКТИВНЫХ ВАЛИДАТОРОВ КОГДА ОНИ ПОЛУЧЕНЫ
-  // useEffect(() => {
-  //   setShownValidators(activeValidators);
-  //   setShownValidatorsBackup(activeValidators);
-  // }, [activeValidators])
+  const activeButtonStyle = (isCurrentSetActive)
+    ? "validators__switcher-button validators__switcher-button_selected"
+    : "validators__switcher-button"
 
-  // // СБРАСЫВАЕМ НАСТРОЙКИ ПРИ ПЕРЕКЛЮЧЕНИИ СЕТИ
-  // useEffect(() => {
-  //   setIsCurrentSetActive(true);
-  // }, [currentChain])
-
-  // // СБРАСЫВАЕМ ИНПУТ ФИЛЬТРА ВАЛИДАТОРОВ
-  // useEffect(() => {
-  //   // filterInput.current.value = '';
-  // }, [currentChain, isCurrentSetActive])
-
-  // // ПЕРЕКЛЮЧАЕМСЯ НА АКТИВНЫЙ СЕТ
-  // const switchToActive = () => {
-  //   setShownValidators(activeValidators);
-  //   setShownValidatorsBackup(activeValidators);
-  //   setIsCurrentSetActive(true);
-  //   console.log(shownValidators);
-
-  // }
-
-  // // ПЕРЕКЛЮЧАЕМСЯ НА НЕАКТИВНЫЙ СЕТ
-  // const switchToInactive = () => {
-  //   setShownValidators(inactiveValidators);
-  //   setShownValidatorsBackup(inactiveValidators);
-  //   setIsCurrentSetActive(false);
-  //   console.log(shownValidators);
-  // }
-
-  // const activeButtonStyle = isCurrentSetActive ? "validators__switcher-button validators__switcher-button_selected" : "validators__switcher-button"
-  // const inactiveButtonStyle = isCurrentSetActive ? "validators__switcher-button" : "validators__switcher-button validators__switcher-button_selected"
+  const inactiveButtonStyle = (isCurrentSetActive)
+    ? "validators__switcher-button"
+    : "validators__switcher-button validators__switcher-button_selected"
 
   return (
     <div className="validators">
-      {/* <div className="validators__container">
-        <div className="validators__header">
-          <h1>{heading}</h1>
-          <span>{subheading}</span>
+      <ChainHeading />
+      <div className="validators__navigation">
+        <div className="validators__switcher">
+          <button onClick={switchToActive} className={activeButtonStyle}>Active</button>
+          <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
         </div>
-        <div className="validators__navigation">
-          <div className="validators__switcher">
-            <button onClick={switchToActive} className={activeButtonStyle}>Active</button>
-            <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
-          </div>
-          <div className="validators__find">
-            <input className="validators__find-input" type="text" placeholder="Search by moniker"></input>
-            <button className="validators__find-button">Clear</button>
-          </div>
+        <div className="validators__search">
+          <input className="validators__search-input" type="text" placeholder="Search by moniker"></input>
+          <button className="validators__search-button">Clear</button>
         </div>
-        <div className="validators__table">
-          <ValidatorsTableHeader />
-          <div className="validators__rows">
-            {validators?.map(validator => {
-              return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
-            })}
-          </div>
+      </div>
+      <div className="validators__table">
+        <ValidatorsTableHeader />
+        <div className="validators__table-rows">
+          {shownValidators?.map(validator => {
+            return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
+          })}
         </div>
-      </div> */}
+      </div>
     </div>
   )
+
+  // return (
+  //   <div className="validators">
+  //     <div className="validators__container">
+  //       <div className="validators__header">
+  //         <h1>{heading}</h1>
+  //         <span>{subheading}</span>
+  //       </div>
+  //       <div className="validators__navigation">
+  //         <div className="validators__switcher">
+  //           <button onClick={switchToActive} className={activeButtonStyle}>Active</button>
+  //           <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
+  //         </div>
+  //         <div className="validators__find">
+  //           <input className="validators__find-input" type="text" placeholder="Search by moniker"></input>
+  //           <button className="validators__find-button">Clear</button>
+  //         </div>
+  //       </div>
+  //       <div className="validators__table">
+  //         <ValidatorsTableHeader />
+  //         <div className="validators__rows">
+  //           {shownValidators?.map(validator => {
+  //             return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
+  //           })}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // )
 }
 
 export default Validators;

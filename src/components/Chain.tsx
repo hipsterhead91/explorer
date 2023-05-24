@@ -55,7 +55,7 @@ function Chain(props: IChainProps) {
   const coins = props.coins;
   const [rawValidators, setRawValidators] = useState<IValidator[] | null>(null);
   /* Не понимаю, как типизировать стейт с аватарами. Как только ни пробовал, в том числе по аналогии с другими useState, но тайпскрипт постоянно ругается. Выглядит так, будто я сам интерфейс составил неправильно, но его я тоже переписывал по всякому - не помогает. */
-  const [avatarsData, setAvatarsData] = useState<any>(null); 
+  const [avatarsData, setAvatarsData] = useState<any>(null);
 
   // ИЗВЛЕКАЕМ СЕТЬ ИЗ URL СТРАНИЦЫ
   /* Нужно при обновлении страницы, а также на случай, если переход на страницу осуществлён не пошагово с главной, а копипастом готовой ссылки. */

@@ -1,7 +1,7 @@
 import IChain from "../../models/IChain";
 
 const evmosTestnet: IChain = {
-  name: "Evmos",
+  name: "Evmos Testnet",
   chainId: "evmos_9001-4",
   coinGeckoId: "",
   cosmostationId: "evmos",

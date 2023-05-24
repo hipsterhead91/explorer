@@ -40,10 +40,7 @@ function Chains() {
     hideChainList();
   };
 
-  const currentChainText =
-    (currentChain)
-      ? `${currentChain.name} ${currentChain.isMainnet ? '' : 'Testnet'}`
-      : "Chain is not selected";
+  const currentChainText = (currentChain) ? currentChain.name : "Chain is not selected";
 
   const chainButtonStyle = (navLink: INavLink) => {
     return (navLink.isActive)
@@ -69,7 +66,7 @@ function Chains() {
               onClick={() => switchChain(chain)}
               className={chainButtonStyle}
             >
-              {`${chain.name} ${chain.isMainnet ? "" : "Testnet"}`}
+              {chain.name}
               <span>({chain.chainId})</span>
             </NavLink>
           );

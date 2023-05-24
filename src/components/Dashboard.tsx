@@ -1,10 +1,31 @@
-import { useAppSelector } from "../store/hooks";
-import { selectCurrentChain, selectInflation, selectCommunityPool, selectTotalBonded, selectUnbondingTime, selectValidators, selectActiveProposals, selectBlockHeight, selectPrice, } from "../store/reducers/currentChainSlice";
-import { coinGeckoApi } from "../services/coinGecko";
-import ICoin from "../models/ICoin";
-import { Link } from "react-router-dom";
-import { tweakPrice, filterActive } from "../utils/formatting";
+// Пакеты
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+
+// Компоненты
+import ChainHeading from "./ChainHeading";
+
+// Типизация
+import ICoin from "../models/ICoin";
+
+// Redux
+import { useAppSelector } from "../store/hooks";
+import {
+  selectCurrentChain,
+  selectPrice,
+  selectInflation,
+  selectCommunityPool,
+  selectTotalBonded,
+  selectUnbondingTime,
+  selectValidators,
+  selectActiveProposals,
+  selectBlockHeight
+} from "../store/reducers/currentChainSlice";
+
+// Прочее
+import { tweakPrice, filterActive } from "../utils/formatting";
+
+
 
 function Dashboard() {
 
@@ -18,13 +39,12 @@ function Dashboard() {
   const validators = useAppSelector(selectValidators);
   const activeProposals = useAppSelector(selectActiveProposals);
 
-  useEffect(() => {
-    console.log(blockHeight);
-  }, [blockHeight])
-
   return (
-    <div></div>
+    <div className="dashboard">
+      <ChainHeading />
+    </div>
   )
+
 
   // const { data: coins } = coinGeckoApi.useFetchCoinsQuery(null);
   // const currentChain = useAppSelector(selectCurrentChain);

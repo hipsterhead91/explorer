@@ -1,6 +1,9 @@
+// Типизация
 import IChain from "./IChain";
 import IValidator from "./IValidator";
 import IProposal from "./IProposal";
+
+
 
 interface ICurrentChainState {
   "chain": IChain | null;

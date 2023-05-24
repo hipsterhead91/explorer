@@ -10,7 +10,7 @@ import ValidatorsTableRow from "./ValidatorsTableRow";
 import IValidator from "../models/IValidator";
 
 // Redux
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
 
 // Прочее
@@ -20,7 +20,6 @@ import { filterActive, filterInactive } from "../utils/formatting";
 
 function Validators() {
 
-  const dispatch = useAppDispatch();
   const currentChain = useAppSelector(selectCurrentChain);
   const validators = useAppSelector(selectValidators);
   const [activeValidators, setActiveValidators] = useState<IValidator[] | null>(null);
@@ -28,7 +27,8 @@ function Validators() {
   const [shownValidators, setShownValidators] = useState<IValidator[] | null>(null);
   const [shownValidatorsBackup, setShownValidatorsBackup] = useState<IValidator[] | null>(null);
   const [isCurrentSetActive, setIsCurrentSetActive] = useState<boolean>(true);
-  const filterInput = useRef();
+  /* Если я всё правильно понял, при использовании хука useRef нужно указывать тип элемента, который ему присваивается, и null как "стартовый" тип, поскольку ref инициализируется ДО рендера, т.е. тогда, когда искомого элемента ещё нет. При этом, обращаясь к элементу через element.current, мы будем получать ошибку, мол элемент возможно равен null - чтобы этого избежать, используем оператор состояния ? после каждого current. */
+  const filterInput = useRef<HTMLInputElement | null>(null);
 
   // ДЕЛИМ ВАЛИДАТОРОВ НА АКТИВНЫХ И НЕАКТИВНЫХ
   useEffect(() => {
@@ -68,6 +68,23 @@ function Validators() {
     setIsCurrentSetActive(false);
   }
 
+  // ФИЛЬТРУЕМ ВАЛИДАТОРОВ ПО МОНИКЕРУ
+  const filterByMoniker = (event: { target: { value: string } }) => {
+    const value = event.target.value.toLowerCase();
+    const filtered = shownValidatorsBackup?.filter(validator => {
+      return validator.description.moniker.toLowerCase().includes(value);
+    });
+    if (filtered) setShownValidators(filtered);
+  }
+
+  // СБРАСЫВАЕМ ФИЛЬТР
+  const clearFilter = () => {
+    if (filterInput.current) {
+      setShownValidators(shownValidatorsBackup);
+      filterInput.current.value = '';
+    }
+  }
+
   const activeButtonStyle = (isCurrentSetActive)
     ? "validators__switcher-button validators__switcher-button_selected"
     : "validators__switcher-button"
@@ -85,12 +102,12 @@ function Validators() {
           <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
         </div>
         <div className="validators__search">
-          <input className="validators__search-input" type="text" placeholder="Search by moniker"></input>
-          <button className="validators__search-button">Clear</button>
+          <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="Search by moniker"></input>
+          <button onClick={clearFilter} className="validators__search-button">Clear</button>
         </div>
       </div>
       <div className="validators__table">
-        <ValidatorsTableHeader />
+        <ValidatorsTableHeader shownValidators={shownValidators} setShownValidators={setShownValidators} isCurrentSetActive={isCurrentSetActive} />
         <div className="validators__table-rows">
           {shownValidators?.map(validator => {
             return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
@@ -99,35 +116,6 @@ function Validators() {
       </div>
     </div>
   )
-
-  // return (
-  //   <div className="validators">
-  //     <div className="validators__container">
-  //       <div className="validators__header">
-  //         <h1>{heading}</h1>
-  //         <span>{subheading}</span>
-  //       </div>
-  //       <div className="validators__navigation">
-  //         <div className="validators__switcher">
-  //           <button onClick={switchToActive} className={activeButtonStyle}>Active</button>
-  //           <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
-  //         </div>
-  //         <div className="validators__find">
-  //           <input className="validators__find-input" type="text" placeholder="Search by moniker"></input>
-  //           <button className="validators__find-button">Clear</button>
-  //         </div>
-  //       </div>
-  //       <div className="validators__table">
-  //         <ValidatorsTableHeader />
-  //         <div className="validators__rows">
-  //           {shownValidators?.map(validator => {
-  //             return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
-  //           })}
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default Validators;

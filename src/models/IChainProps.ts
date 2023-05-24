@@ -1,4 +1,7 @@
+// Типизация
 import ICoin from "./ICoin";
+
+
 
 interface IChainProps {
   "coins": ICoin[] | null,

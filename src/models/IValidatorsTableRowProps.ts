@@ -1,4 +1,7 @@
+// Типизация
 import IValidator from "./IValidator";
+
+
 
 interface IValidatorsTableRowProps {
   "validator": IValidator,

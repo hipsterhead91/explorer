@@ -1,5 +1,6 @@
 // Типизация
 import IChain from "./IChain";
+import ICoin from "./ICoin";
 import IValidator from "./IValidator";
 import IProposal from "./IProposal";
 
@@ -7,7 +8,7 @@ import IProposal from "./IProposal";
 
 interface ICurrentChainState {
   "chain": IChain | null;
-  "price": string | null,
+  "price": ICoin | null,
   "inflation": string | null,
   "communityPool": string | null,
   "totalBonded": string | null,

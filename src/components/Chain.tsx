@@ -163,8 +163,9 @@ function Chain(props: IChainProps) {
   useEffect(() => {
     if (coins && currentChain?.coinGeckoId) {
       const currentCoin = coins.find((coin: ICoin) => coin.id === currentChain.coinGeckoId);
-      const price = currentCoin ? currentCoin.current_price.toString() : null;
-      dispatch(setPrice(price));
+      // const price = currentCoin ? currentCoin.current_price.toString() : null;
+      if (currentCoin) dispatch(setPrice(currentCoin))
+      else dispatch(setPrice(null))
     }
   }, [currentChain, coins])
 

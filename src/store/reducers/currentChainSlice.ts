@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Типизация
 import IChain from "../../models/IChain";
+import ICoin from "../../models/ICoin";
 import ICurrentChainState from "../../models/ICurrentChainState";
 import IValidator from "../../models/IValidator";
 import IProposal from "../../models/IProposal";
@@ -34,7 +35,7 @@ export const currentChainSlice = createSlice({
     setCurrentChain: (state, action: PayloadAction<IChain | null>) => {
       state.chain = action.payload;
     },
-    setPrice: (state, action: PayloadAction<string | null>) => {
+    setPrice: (state, action: PayloadAction<ICoin | null>) => {
       state.price = action.payload;
     },
     setInflation: (state, action: PayloadAction<string | null>) => {

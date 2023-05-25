@@ -62,12 +62,10 @@ function Dashboard() {
       <span>{currentChain?.symbol}</span></p>
     : errorEl;
 
-
   // РЕНДЕР ГОЛОСОВАНИЙ
   const proposalsText = (activeProposals && activeProposals.length > 0)
     ? activeProposals.length + ' proposals'
     : 'none';
-
   const proposalsEl = (activeProposals)
     ? <Link to={`/${currentChain?.chainId}/proposals`} className="dashboard__link">
       {proposalsText}
@@ -88,8 +86,51 @@ function Dashboard() {
     : errorEl;
 
   // РЕНДЕР ЦЕНЫ
+  const currentPriceText = (price)
+    ? tweakPrice(price?.current_price) + '$'
+    : '';
+  const highestPriceText = (price)
+    ? tweakPrice(price?.ath) + '$'
+    : '';
+  const lowestPriceText = (price)
+    ? tweakPrice(price?.atl) + '$'
+    : '';
+  const marketCapText = (price)
+    ? price?.market_cap.toLocaleString('en') + '$'
+    : '';
+
+  const percentage = price?.price_change_percentage_24h;
+  const dynamicEl = (!percentage)
+    ? errorEl
+    : (percentage > 0)
+      ? <div className="dashboard__coingecko-dynamic">
+        <div className="dashboard__coingecko-arrow"></div>
+        <span className="dashboard__coingecko-percentage">{percentage.toFixed(1)}%</span>
+      </div>
+      : <div className="dashboard__coingecko-dynamic">
+        <div className="dashboard__coingecko-arrow dashboard__coingecko-arrow_down"></div>
+        <span className="dashboard__coingecko-percentage dashboard__coingecko-percentage_down">{(percentage * -1).toFixed(1)}%</span>
+      </div>
+
+  const currentPriceEl = (price)
+    ? <span className="dashboard__coingecko-value dashboard__coingecko-value_bright">{currentPriceText}</span>
+    : errorEl;
+  const highestPriceEl = (price)
+    ? <span className="dashboard__coingecko-value">{highestPriceText}</span>
+    : errorEl;
+  const lowestPriceEl = (price)
+    ? <span className="dashboard__coingecko-value">{lowestPriceText}</span>
+    : errorEl;
+  const marketCapEl = (price)
+    ? <span className="dashboard__coingecko-value">{marketCapText}</span>
+    : errorEl;
 
   // РЕНДЕР ССЫЛОК
+  const linksEl = <div className="dashboard__links">
+    <a href={currentChain?.links.website} target="_blank">{currentChain?.links.website}</a>
+    <a href={currentChain?.links.twitter} target="_blank">{currentChain?.links.twitter}</a>
+    <a href={currentChain?.links.github} target="_blank">{currentChain?.links.github}</a>
+  </div>
 
   // РЕНДЕР ВАЛИДАТОРОВ
   const activeSetLength = (validators) ? filterActive(validators).length : 0;
@@ -112,7 +153,7 @@ function Dashboard() {
 
         {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
         <div id="main-plate" className="dashboard__plate">
-          <h1 className="dashboard__heading">{heading}</h1>
+          <a href={currentChain?.links.website} target="_blank" className="dashboard__heading">{heading}</a>
           <span className="dashboard__subheading">{subheading}</span>
           <p className="dashboard__description">{description}</p>
         </div>
@@ -154,12 +195,36 @@ function Dashboard() {
 
         {/* ЦЕНА */}
         <div id="price-plate" className="dashboard__plate">
+          <span className="dashboard__coingecko-heading">Prices by <a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
+          <div className="dashboard__coingecko-prices">
+          <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">24h dynamic:</span>
+              {dynamicEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">current:</span>
+              {currentPriceEl}
+            </div>
 
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">ath:</span>
+              {highestPriceEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">atl:</span>
+              {lowestPriceEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">cap:</span>
+              {marketCapEl}
+            </div>
+          </div>
         </div>
 
         {/* ССЫЛКИ */}
         <div id="links-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Links:</span>
+          <span className="dashboard__plate-heading">Media:</span>
+          {linksEl}
         </div>
 
         {/* ВАЛИДАТОРЫ */}

@@ -553,7 +553,7 @@ html {
 .dashboard__plate {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 12px;
+  padding: 12px 12px 12px 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -636,8 +636,7 @@ html {
   -ms-grid-row: 2;
   -ms-grid-row-span: 2;
   grid-row: 2 / 4;
-  background-color: lightblue;
-  border: 2px solid #fafafa;
+  background-color: rgba(13, 101, 115, 0.6);
 }
 
 #links-plate {
@@ -647,6 +646,14 @@ html {
   -ms-grid-row: 3;
   -ms-grid-row-span: 1;
   grid-row: 3 / 4;
+  padding: 10px 10px 10px 10px;
+  background-color: #add8e6;
+  border: 2px solid #fafafa;
+}
+
+#links-plate span {
+  font-weight: 600;
+  color: #646464;
 }
 
 #validators-plate {
@@ -680,7 +687,7 @@ html {
   line-height: 1;
   text-align: end;
   color: #a0a0a0;
-  background-color: rgba(160, 160, 160, 0.2);
+  background-color: rgba(220, 220, 220, 0.8);
   border-radius: 2px;
 }
 
@@ -692,6 +699,13 @@ html {
   font-weight: 600;
   font-size: 24px;
   color: #e8c413;
+  text-decoration: none;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.dashboard__heading:hover {
+  color: #add8e6;
 }
 
 .dashboard__subheading {
@@ -748,6 +762,127 @@ html {
 
 .dashboard__link:hover {
   color: #a34061;
+}
+
+.dashboard__links {
+  margin: auto 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboard__links a {
+  margin: 2px 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  color: #0d6573;
+  text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.dashboard__links a:hover {
+  color: #a34061;
+}
+
+.dashboard__coingecko-heading {
+  font-weight: 400;
+  font-size: 14px;
+  color: #fafafa;
+}
+
+.dashboard__coingecko-heading a {
+  font-weight: 500;
+  color: #e8c413;
+  text-decoration: none;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.dashboard__coingecko-heading a:hover {
+  color: #add8e6;
+}
+
+.dashboard__coingecko-prices {
+  margin: auto 0 0 0;
+}
+
+.dashboard__coingecko-price {
+  padding: 0 0 1px 0;
+  margin: 8px 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #add8e6;
+}
+
+.dashboard__coingecko-subheading {
+  font-weight: 300;
+  font-size: 14px;
+  color: #add8e6;
+}
+
+.dashboard__coingecko-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  color: #add8e6;
+}
+
+.dashboard__coingecko-value_bright {
+  color: #fafafa;
+}
+
+.dashboard__coingecko-dynamic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.dashboard__coingecko-arrow {
+  position: relative;
+  top: 1px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-left: 2px solid #66ff00;
+  border-top: 2px solid #66ff00;
+}
+
+.dashboard__coingecko-arrow_down {
+  top: -2px;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+  border-left: 2px solid #be0000;
+  border-top: 2px solid #be0000;
+}
+
+.dashboard__coingecko-percentage {
+  font-weight: 500;
+  font-size: 14px;
+  color: #66ff00;
+}
+
+.dashboard__coingecko-percentage_down {
+  font-weight: 600;
+  color: #a10000;
 }
 
 .validators {

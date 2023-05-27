@@ -6,7 +6,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: rgba($color-main, 0.5);
+  background-color: rgba($color-second, 0.6);
 }
 
 .chain__nav-container {
@@ -26,19 +26,18 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba($white, 0.7);
+  color: $color-main;
   user-select: none;
 
   &_active {
-    color: $color-second;
-    text-decoration: underline;
+    color: $color-accent;
   }
 }
 
 .chain__nav-divider {
   height: 12px;
   margin: 0 30px 0 30px;
-  border-left: 2px solid rgba($white, 0.5);
+  border-left: 2px solid rgba($color-main, 0.7);
 }
 
 .chain__content {

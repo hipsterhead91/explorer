@@ -76,11 +76,13 @@ function Chains() {
                   onClick={() => switchChain(chain)}
                   className={chainButtonStyle}
                 >
+                  
                   <div className="chains__chain-logo" style={{ backgroundImage: `url(${chain.logo})` }}></div>
                   <div className="chains__chain-info">
-                    <span className="chains__chain-name">{chain.name}</span>
+                    <span className="chains__chain-name">{chain.name}<div className="chain__chain-mark"></div></span>
                     <span className="chains__chain-id">{chain.chainId}</span>
                   </div>
+                  
                 </NavLink>
               );
             })}

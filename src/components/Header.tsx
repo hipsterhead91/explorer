@@ -17,8 +17,12 @@ function Header() {
     <header className="header">
       <div className="header__container">
         <Link to="/" onClick={() => resetChain()} className="header__logo">
-          <div className="header__logo-top"><span>Oops!</span>plorer</div>
-          <div className="header__logo-bottom">humblest explorer ever</div>
+          <div className="header__logo-emoji"></div>
+          <div className="header__logo-text">
+            <div className="header__logo-top"><span>Oops!</span>plorer</div>
+            <div className="header__logo-bottom">humblest explorer ever</div>
+          </div>
+
         </Link>
         <Chains />
       </div>

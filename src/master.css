@@ -903,6 +903,21 @@ html {
           align-items: center;
 }
 
+.validators__wrapper {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.validators__wrapper_hidden {
+  display: none;
+}
+
 .validators__navigation {
   width: 100%;
   margin: 20px 0 20px 0;
@@ -1122,6 +1137,13 @@ html {
   -ms-grid-columns: 4fr 2fr 2fr;
       grid-template-columns: 4fr 2fr 2fr;
   background-color: white;
+  text-decoration: none;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.validators-tr:hover {
+  background-color: #dcdcdc;
 }
 
 .validators-tr:not(:last-child) {
@@ -1166,7 +1188,7 @@ html {
   margin: 0 0 4px 0;
   font-weight: 600;
   font-size: 14px;
-  color: #0d6573;
+  color: #464646;
   text-decoration: none;
 }
 
@@ -1278,6 +1300,17 @@ html {
 
 .validators-tr__commission-value_high {
   color: #a34061;
+}
+
+.validator {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .proposals {

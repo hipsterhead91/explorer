@@ -91,13 +91,13 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
     : 'validators-tr__commission-value';
 
   return (
-    <div className="validators-tr">
+    <Link to={`/${currentChain?.chainId}/validators/${validator.operator_address}`} className="validators-tr">
 
       {/* ВАЛИДАТОР */}
       <div className="validators-tr__validator">
         <div style={{ backgroundImage: `url("${avatarUrl}")` }} className="validators-tr__avatar"></div>
         <div className="validators-tr__info">
-          <Link to={'somewhere'} className="validators-tr__moniker">{moniker}</Link>
+          <span className="validators-tr__moniker">{moniker}</span>
           <div className="validators-tr__statuses">
             <span className={rankStyle}>{rankText}</span>
             <span className={activityStyle}>{activityText}</span>
@@ -120,7 +120,7 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
       <div className="validators-tr__commission">
         <span className={commissionStyle}>{commissionText}</span>
       </div>
-    </div>
+    </Link>
   )
 }
 

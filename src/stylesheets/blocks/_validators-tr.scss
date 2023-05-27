@@ -6,7 +6,13 @@
   display: grid;
   grid-template-columns: 4fr 2fr 2fr;
   background-color: white;
-  
+  text-decoration: none;
+  transition: linear 0.2s;
+
+  &:hover {
+    background-color: $gray-lightest;
+  }
+
   &:not(:last-child) {
     border-bottom: 1px solid $gray-lighter;
   }
@@ -39,7 +45,7 @@
   margin: 0 0 4px 0;
   font-weight: 600;
   font-size: 14px;
-  color: $color-main;
+  color: $gray-darker;
   text-decoration: none;
 }
 

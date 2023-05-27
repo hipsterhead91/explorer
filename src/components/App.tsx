@@ -9,6 +9,7 @@ import NotFound from "./NotFound";
 import Chain from "./Chain";
 import Dashboard from "./Dashboard";
 import Validators from "./Validators";
+import Validator from "./Validator";
 import Proposals from "./Proposals";
 
 // Типизация
@@ -46,7 +47,9 @@ function App() {
           {chains.map(chain => {
             return <Route key={chain.chainId} path={chain.chainId} element={<Chain coins={coins} />}>
               <Route path="dashboard" element={<Dashboard />} />
-              <Route path="validators" element={<Validators />} />
+              <Route path="validators" element={<Validators />} >
+                <Route path=":valoper" element={<Validator />} />
+              </Route>
               <Route path="proposals" element={<Proposals />} />
             </Route>
           })}

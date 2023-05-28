@@ -104,7 +104,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
       resetIconStyles();
       setCommissionOrder('DSC');
       setShownValidators(sorted);
-      commissionSortIcon.current?.classList.add('table-header__sort-icon_asc');
+      commissionSortIcon.current?.classList.add('validators-th__sort-icon_asc');
     }
     else if (commissionOrder === 'DSC' && shownValidators) {
       const sorted = [...shownValidators].sort((a, b) => {
@@ -113,7 +113,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
       resetIconStyles();
       setCommissionOrder('ASC');
       setShownValidators(sorted);
-      commissionSortIcon.current?.classList.add('table-header__sort-icon_dsc');
+      commissionSortIcon.current?.classList.add('validators-th__sort-icon_dsc');
     }
   }
 

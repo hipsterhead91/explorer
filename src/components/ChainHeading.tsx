@@ -15,8 +15,10 @@ function ChainHeading() {
 
   return (
     <div className="chain-heading">
-      <h1 className="chain-heading__heading">{heading}</h1>
-      <span className="chain-heading__subheading">{subheading}</span>
+      <div className="chain-headin__wrapper">
+        <h1 className="chain-heading__heading">{heading}</h1>
+        <span className="chain-heading__subheading">{subheading}</span>
+      </div>
     </div>
   )
 }

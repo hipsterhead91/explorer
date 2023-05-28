@@ -115,7 +115,6 @@ function Validators() {
 
   return (
     <div className="validators">
-      <ChainHeading />
       <Outlet context={setIsValidatorsHidden} />
       <div ref={validatorsWrapper} className="validators__wrapper">
         <div className="validators__navigation">

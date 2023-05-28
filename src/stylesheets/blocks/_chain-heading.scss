@@ -1,19 +1,29 @@
 .chain-heading {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 10px;
+}
+
+.chain-headin__wrapper {
   box-sizing: border-box;
   width: 100%;
-  padding: 12px 0 0 12px;
+  padding: 12px 12px 12px 12px;
+  grid-column: 1/3;
   display: flex;
   flex-direction: column;
+  background-color: rgba($color-second, 0.6);
+  border-radius: 8px;
 }
 
 .chain-heading__heading {
   font-weight: 600;
   font-size: 24px;
-  color: $gray-darker;
+  color: $color-accent;
 }
 
 .chain-heading__subheading {
   font-weight: 300;
   font-size: 14px;
-  color: $gray-darker;
+  color: $gray-lightest;
 }

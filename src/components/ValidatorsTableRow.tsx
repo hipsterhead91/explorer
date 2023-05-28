@@ -23,14 +23,11 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
     ? validator.avatar
     : `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
 
+  // РЕЙТИНГ
+  const rank = '#' + validator.rank?.toString().padStart(3, '0');
+
   // МОНИКЕР
   const moniker = validator.description.moniker;
-
-  // РЕЙТИНГ
-  const rankText = '#' + validator.rank?.toString().padStart(3, '0');
-  const rankStyle = (validator.status === 'BOND_STATUS_BONDED')
-    ? 'validators-tr__status validators-tr__status_good'
-    : 'validators-tr__status validators-tr__status_neutral';
 
   // АКТИВНОСТЬ
   const activityText = (validator.status === 'BOND_STATUS_BONDED')
@@ -97,9 +94,11 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
       <div className="validators-tr__validator">
         <div style={{ backgroundImage: `url("${avatarUrl}")` }} className="validators-tr__avatar"></div>
         <div className="validators-tr__info">
-          <span className="validators-tr__moniker">{moniker}</span>
+          <div className="validators-tr__alignment">
+            <span className="validators-tr__rank">{rank}</span>
+            <span className="validators-tr__moniker">{moniker}</span>
+          </div>
           <div className="validators-tr__statuses">
-            <span className={rankStyle}>{rankText}</span>
             <span className={activityStyle}>{activityText}</span>
             <span className={bondStyle}>{bondText}</span>
             <span className={jailStyle}>{jailText}</span>

@@ -15,6 +15,10 @@ import Proposals from "./Proposals";
 // Типизация
 import ICoin from "../models/ICoin";
 
+// Redux
+import { useAppSelector } from "../store/hooks";
+import { selectCurrentChain } from "../store/reducers/currentChainSlice";
+
 // API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";
 
@@ -25,16 +29,22 @@ import { chains } from "../chains/chains";
 
 function App() {
 
+  const currentChain = useAppSelector(selectCurrentChain);
   /* Можно задать интервал для автоматического обновления - идея хорошая и позже я её обязательно попробую, но сейчас API Coin Gecko почему-то плохо работает и иногда блокирует запросы, поэтому пока предпочёл не дёргать его лишний раз. */
   // const { data: coins } = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 30000 }); 
   const coinsData = coinGeckoApi.useFetchCoinsQuery(null).data;
   const [coins, setCoins] = useState<ICoin[] | null>(null);
 
-  // 
   /* Поскольку coinsData может быть undefined в случае, если API не сработает, его нельзя передавать пропсом в элемент Chain. Точнее, наверно можно, если в интерфейса IChainProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
   useEffect(() => {
     if (coinsData) setCoins(coinsData);
   }, [coinsData])
+
+  // МЕНЯЕМ ИМЯ ВКЛАДКИ
+  useEffect(() => {
+    if (currentChain) document.title = `Oops!plorer | ${currentChain.chainId}`
+    else document.title = "Oops!plorer";
+  }, [currentChain])
 
   return (
     <div className="app">

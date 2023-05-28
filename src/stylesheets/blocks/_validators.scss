@@ -21,39 +21,89 @@
 .validators__navigation {
   width: 100%;
   margin: 20px 0 20px 0;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 10px;
 }
 
 .validators__switcher {
-  width: 200px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 32px;
+  grid-column: 1/3;
   display: flex;
-  border: 1px solid black;
 }
 
 .validators__switcher-button {
   width: 50%;
-  background-color: lightgrey;
+  height: 100%;
   border: none;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: $color-main;
+  background-color: rgba($color-second, 0.4);
+  outline: none;
   cursor: pointer;
-}
 
-.validators__switcher-button_selected {
-  background-color: white;
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+
+  &:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+
+  &_selected {
+    color: $color-main;
+    background-color: rgba($color-second, 0.6);
+  }
 }
 
 .validators__search {
-  width: 400px;
+  width: 100%;
+  grid-column: 5/9;
   display: flex;
 }
 
 .validators__search-input {
+  box-sizing: border-box;
   width: 75%;
+  min-height: 32px;
+  padding: 0 12px 0 12px;
+  border: 2px solid rgba($color-second, 0.6);
+  border-right: none;
+  border-radius: 8px 0 0 8px;
   outline: none;
+  background-color: $white;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  color: $gray-darker;
+  text-align: center;
+
+  &::placeholder {
+    font-weight: 300;
+    color: $gray-light;
+  }
 }
 
 .validators__search-button {
+  box-sizing: border-box;
   width: 25%;
+  min-height: 32px;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  outline: none;
+  background-color: rgba($color-second, 0.6);
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  color: $white;
+  cursor: pointer;
 }
 
 .validators__table {

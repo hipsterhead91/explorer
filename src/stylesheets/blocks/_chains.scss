@@ -150,7 +150,6 @@
   display: flex;
   align-items: center;
   background-color: rgba($white, 0.5);
-  // border: 2px solid $gray-lightest;
   border-radius: 6px;
   text-decoration: none;
 
@@ -158,8 +157,7 @@
   transition: linear 0.2s;
 
   &_selected {
-    background-color: rgba($white, 1);
-    // border: 2px solid rgba($black, 0.3);
+    background-color: $white;
 
     .chain__chain-mark {
       background-color: $color-accent;
@@ -167,7 +165,7 @@
   }
 
   &:hover {
-    background-color: rgba($white, 1);
+    background-color: $white;
   }
 }
 

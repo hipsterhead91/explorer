@@ -1,5 +1,179 @@
 .validator {
+  width: calc(100% - 12px - 12px);
+  padding: 12px 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: 8px;
+}
+
+.validator__return-button {
+  width: max-content;
+  margin: 0 0 12px 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  color: $color-second;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: linear 0.2s;
+
+  &:hover {
+    color: $gray-darker;
+  }
+}
+
+.validator__card {
+  box-sizing: border-box;
   width: 100%;
+  display: grid;
+  grid-template-columns: 60px calc(100% - 60px);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.validator__avatar {
+  width: 60px;
+  height: 60px;
+  background-color: $gray-light;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+}
+
+.validator__heading {
   display: flex;
   flex-direction: column;
 }
+
+.validator__moniker {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  color: $gray-darker;
+}
+
+.validator__valoper {
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  color: $gray-darker;
+}
+
+.validator__statuses {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.validator__status {
+  box-sizing: border-box;
+  padding: 2px 4px 2px 4px;
+  margin: 0 4px 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 2px;
+
+  &_good {
+    color: rgba($color-second, 0.7);
+    background-color: rgba($color-main, 0.5);
+  }
+
+  &_neutral {
+    color: rgba($gray-dark, 0.8);
+    background-color: rgba($gray, 0.2);
+  }
+
+  &_bad {
+    color: rgba($color-nay, 0.6);
+    background-color: rgba($color-nay, 0.1);
+  }
+
+  &_special {
+    color: rgba($gray-darkest, 0.6);
+    background-color: rgba($color-accent, 0.3);
+  }
+
+  &_hidden {
+    display: none;
+  } 
+}
+
+.validator__rank {
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: $gray-light;
+}
+
+.validator__data {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 140px calc(100% - 140px);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.validator__data-heading {
+  font-weight: 600;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.validator__data-text {
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.validator__denom {
+  margin: 0 0 0 4px;
+  font-weight: 400;
+  font-size: 10px;
+  color: $gray-darker;
+}
+
+.validator__commission-value {
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
+
+  &_high {
+    color: $color-nay;
+  }
+}
+
+.validator__data-link {
+  font-weight: 400;
+  font-size: 14px;
+  color: $color-second;
+  transition: linear 0.2s;
+
+  &:hover {
+    color: $gray-darker;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

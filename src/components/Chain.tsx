@@ -1,5 +1,5 @@
 // Пакеты
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 // Типизация
@@ -141,10 +141,6 @@ function Chain(props: IChainProps) {
       const latestBlockTimer = setInterval(setLatestBlock, 5000); // 5 сек.
       return () => { clearTimeout(latestBlockTimer) };
     }
-  }, [currentChain])
-
-  useEffect(() => {
-
   }, [currentChain])
 
   // ФОРМАТИРОВАНИЕ ВАЛИДАТОРОВ

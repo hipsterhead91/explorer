@@ -33,7 +33,8 @@ function Validators() {
   /* Если я всё правильно понял, при использовании хука useRef нужно указывать тип элемента, который ему присваивается, и null как "стартовый" тип, поскольку ref инициализируется ДО рендера, т.е. тогда, когда искомого элемента ещё нет. При этом, обращаясь к элементу через element.current, мы будем получать ошибку, мол элемент возможно равен null - чтобы этого избежать, используем оператор состояния ? после каждого current. */
   const validatorsWrapper = useRef<HTMLDivElement | null>(null);
   const filterInput = useRef<HTMLInputElement | null>(null);
-  const location = useLocation(); 
+  const scrollButtons = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   // ДЕЛИМ ВАЛИДАТОРОВ НА АКТИВНЫХ И НЕАКТИВНЫХ
   useEffect(() => {
@@ -93,9 +94,9 @@ function Validators() {
   // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
   useEffect(() => {
     (isValidatorsHidden)
-    ? validatorsWrapper.current?.classList.add("validators__wrapper_hidden")
-    : validatorsWrapper.current?.classList.remove("validators__wrapper_hidden")
-  }, [isValidatorsHidden])  
+      ? validatorsWrapper.current?.classList.add("validators__wrapper_hidden")
+      : validatorsWrapper.current?.classList.remove("validators__wrapper_hidden")
+  }, [isValidatorsHidden])
 
   // ПОКАЗЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
   /* При рендере компонента Validator таблица в компоненте Validators скрывается; также, в компоненте Validator есть кнопка возврата на предыдущую страницу, которая включает отображение таблицы обратно. Однако, если возврат осуществлён не кнопкой в интерфейсе, а кнопкой возврата в самом браузере, то эта логика перестаёт работать, и таблица остаётся скрытой. По этой причине я решил отслеживать значение location.pathname - если оно меняется на нужное мне, то таблица отображается независимо от того, как был осуществлён переход. Не знаю, есть ли у этого решения неочевидные подводные камни, но пока вроде работает как мне надо. */
@@ -112,6 +113,22 @@ function Validators() {
   const inactiveButtonStyle = (isCurrentSetActive)
     ? "validators__switcher-button"
     : "validators__switcher-button validators__switcher-button_selected"
+
+  // СКРОЛЛИМ СТРАНИЦУ ВВЕРХ
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // СКРОЛЛИМ СТРАНИЦУ ВНИЗ
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: 99999999,
+      behavior: "smooth"
+    });
+  }
 
   return (
     <div className="validators">
@@ -135,6 +152,14 @@ function Validators() {
             })}
           </div>
         </div>
+      </div>
+      <div ref={scrollButtons} className="validators__scroll-buttons">
+        <button onClick={scrollToTop} className="validators__scroll-button validators__scroll-button_top">
+          <div className="validators__scroll-arrow validators__scroll-arrow_top"></div>
+        </button>
+        <button onClick={scrollToBottom} className="validators__scroll-button validators__scroll-button_bottom">
+          <div className="validators__scroll-arrow validators__scroll-arrow_bottom"></div>
+        </button>
       </div>
     </div>
   )

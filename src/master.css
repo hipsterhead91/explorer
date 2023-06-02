@@ -427,6 +427,7 @@ html {
 
 .chain {
   width: 100%;
+  position: relative;
 }
 
 .chain__nav {
@@ -864,6 +865,7 @@ html {
 }
 
 .validators {
+  position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -1039,6 +1041,86 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.validators__scroll-buttons {
+  position: fixed;
+  bottom: 104px;
+  right: calc(((100% - 998px) / 2) - 40px);
+  width: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.validators__scroll-buttons_hidden {
+  display: none;
+}
+
+.validators__scroll-button {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+  outline: none;
+  background-color: rgba(13, 101, 115, 0.5);
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+  cursor: pointer;
+}
+
+.validators__scroll-button_top {
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #add8e6;
+}
+
+.validators__scroll-button_bottom {
+  border-radius: 0 0 8px 8px;
+}
+
+.validators__scroll-button:hover {
+  background-color: rgba(13, 101, 115, 0.6);
+}
+
+.validators__scroll-arrow {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-top: 3px solid #add8e6;
+  border-left: 3px solid #add8e6;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.validators__scroll-arrow_top {
+  top: 2px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.validators__scroll-arrow_bottom {
+  top: -2px;
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
 }
 
 .validators-th {

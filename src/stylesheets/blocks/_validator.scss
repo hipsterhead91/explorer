@@ -9,8 +9,11 @@
 }
 
 .validator__return-button {
+  position: relative;
   width: max-content;
   margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: none;
   outline: none;
@@ -22,6 +25,15 @@
   color: $color-second;
   cursor: pointer;
   transition: linear 0.2s;
+
+  span {
+    position: relative;
+    bottom: 1px;
+    margin: 0 4px 0 0;
+    font-weight: 700;
+    font-size: 18px;
+
+  }
 
   &:hover {
     color: $gray-darker;

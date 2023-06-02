@@ -120,8 +120,8 @@ function Validator() {
     detailsText = (currentValidator.description.details)
       ? currentValidator.description.details
       : "—";
-  } 
-  
+  }
+
   // РЕНДЕР ДЛЯ НЕ СУЩЕСТВУЮЩЕГО ВАЛИДАТОРА
   else {
     avatarUrl = `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
@@ -146,129 +146,15 @@ function Validator() {
     detailsText = "—";
   }
 
-
-  // if (currentValidator) {
-
-  //   if (currentValidator.avatar) {
-  //     avatarUrl = currentValidator.avatar
-  //   } else {
-  //     avatarUrl = `${process.env["PUBLIC_URL"]}/images/no-avatar.png`
-  //   };
-
-  //   monikerText = currentValidator.description.moniker;
-  //   valoperText = currentValidator.operator_address;
-
-  //   if (currentValidator.status === "BOND_STATUS_BONDED") {
-  //     activityText = "Active";
-  //     activityStyle = "validator__status validator__status_good";
-  //   } else {
-  //     activityText = "Inactive";
-  //     activityStyle = "validator__status validator__status_neutral";
-  //   }
-
-  //   if (currentValidator.status === 'BOND_STATUS_BONDED') {
-  //     bondText = "Bonded";
-  //     bondStyle = "validator__status validator__status_good";
-  //   } else if (currentValidator.status === 'BOND_STATUS_UNBONDING') {
-  //     bondText = "Unbonding";
-  //     bondStyle = "validator__status validator__status_special";
-  //   } else {
-  //     bondText = "Unbonded";
-  //     bondStyle = "validator__status validator__status_neutral";
-  //   }
-
-  //   if (currentValidator.jailed) {
-  //     jailText = "Jailed";
-  //     jailStyle = "validator__status validator__status_bad";
-  //   } else {
-  //     jailText = "";
-  //     jailStyle = "validator__status validator__status_hidden";
-  //   }
-
-  //   if (Number(currentValidator.commission.commission_rates.rate) > 0.1) {
-  //     highCommissionText = "High %";
-  //     highCommissionStyle = "validator__status validator__status_bad";
-  //   } else {
-  //     highCommissionText = "";
-  //     highCommissionStyle = "validator__status validator__status_hidden";
-  //   }
-
-  //   if (currentValidator.rank) {
-  //     rankText = "#" + currentValidator.rank.toString().padStart(3, '0');
-  //   } else {
-  //     rankText = "#000";
-  //   }
-
-  //   if (currentChain) {
-  //     tokensText = tweakTokens(currentValidator.tokens, currentChain);
-  //     symbolText = currentChain.symbol;
-  //   } else {
-  //     tokensText = "—";
-  //     symbolText = "";
-  //   }
-
-  //   if (currentValidator.voting_power && currentChain) {
-  //     votingPowerText = tweakVotingPower(currentValidator.voting_power, currentChain) + '%'
-  //   } else {
-  //     votingPowerText = "";
-  //   }
-
-  //   commissionText = tweakCommission(currentValidator.commission.commission_rates.rate) + '%';
-  //   if (Number(currentValidator.commission.commission_rates.rate) > 0.1) {
-  //     commissionStyle = "validator__commission-value validator__commission-value_high";
-  //   } else {
-  //     commissionStyle = "validator__commission-value";
-  //   }
-
-  //   /* В ранней версии вместо websiteText у меня был websiteEl, который в случае отсутствия ссылки превращался в текстовый прочерк, а в случае наличия - в кликабельную ссылку. Однако я обнаружил, что если валидатор указал ссылку не в формате http://site.com, а просто как site.com, то её нельзя передавать в href - ссылка не будет корректно работать. Таких валидаторов меньшинство, но всё же. По этой причине решил пока оставить сайт обычным текстом, но позже возможно напишу для ссылок валидацию, чтобы все варианты работали корректно.  */
-  //   if (currentValidator.description.website) {
-  //     websiteText = currentValidator.description.website;
-  //   } else { 
-  //     websiteText = "—";
-  //   }
-
-  //   if (currentValidator.description.security_contact) {
-  //     securityContactText = currentValidator.description.website;
-  //   } else { 
-  //     securityContactText = "—";
-  //   }
-
-  //   if (currentValidator.description.details) {
-  //     detailsText = currentValidator.description.details;
-  //   } else { 
-  //     detailsText = "—";
-  //   }
-
-  // } else {
-  //   avatarUrl = `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
-  //   monikerText = "Oops! Validator Doesn't Exist";
-  //   valoperText = "Here could be a validator operator address";
-  //   activityText = "No activity";
-  //   activityStyle = "validator__status validator__status_neutral";
-  //   bondText = "";
-  //   bondStyle = "validator__status validator__status_hidden";
-  //   jailText = "";
-  //   jailStyle = "validator__status validator__status_hidden";
-  //   highCommissionText = "";
-  //   highCommissionStyle = "validator__status validator__status_hidden";
-  //   rankText = "#000";
-  //   tokensText = "—";
-  //   symbolText = "";
-  //   votingPowerText = "—";
-  //   commissionText = "—";
-  //   commissionStyle = "validator__commission-value";
-  //   websiteText = "—";
-  //   securityContactText = "—";
-  //   detailsText = "—";
-  // }
-
   return (
     <div className="validator">
-      <button onClick={() => returnToValidators()} className="validator__return-button">&#9664; Return</button>
+      <button onClick={() => returnToValidators()} className="validator__return-button">&#9664; Go Back</button>
       <div className="validator__card">
 
+        {/* СВЕРХУ СЛЕВА */}
         <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
 
+        {/* СВЕРХУ СПРАВА */}
         <div className="validator__heading">
           <h1 className="validator__moniker">{monikerText}</h1>
           <p className="validator__valoper">{valoperText}</p>
@@ -280,8 +166,10 @@ function Validator() {
           </div>
         </div>
 
+        {/* СНИЗУ СЛЕВА */}
         <span className="validator__rank">{rankText}</span>
 
+        {/* СНИЗУ СПРАВА */}
         <div className="validator__data">
           <p className="validator__data-heading">Tokens Bonded:</p>
           <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>

@@ -81,6 +81,7 @@ function Chain(props: IChainProps) {
       const chainApi = new CosmosRestApi(currentChain.api[0]);
 
       // ИНФЛЯЦИЯ
+      dispatch(setInflation(null));
       chainApi.getInflation()
         .then(result => {
           const tweaked = tweakInflation(result.inflation);
@@ -89,6 +90,7 @@ function Chain(props: IChainProps) {
         .catch(() => dispatch(setInflation(null)))
 
       // ПУЛ СООБЩЕСТВА
+      dispatch(setCommunityPool(null));
       chainApi.getCommunityPool()
         .then(result => {
           const pool = result.pool.find((el: IPool) => el.denom === currentChain.denom);
@@ -99,6 +101,7 @@ function Chain(props: IChainProps) {
         .catch(() => dispatch(setCommunityPool(null)))
 
       // ЗАСТЕЙКАННЫЕ МОНЕТЫ
+      dispatch(setTotalBonded(null));
       chainApi.getBondedTokens()
         .then(result => {
           const cutted = cutDecimals(result, currentChain.decimals);
@@ -107,6 +110,7 @@ function Chain(props: IChainProps) {
         .catch(() => dispatch(setTotalBonded(null)))
 
       // СРОК АНБОНДА
+      dispatch(setUnbondingTime(null));
       chainApi.getStakingParams()
         .then(result => {
           const tweaked = tweakUnbondingTime(result.unbonding_time);
@@ -116,11 +120,13 @@ function Chain(props: IChainProps) {
 
       // ВАЛИДАТОРЫ
       /* Примечание: здесь мы получаем сырой массив валидаторов и отправляем его в локальный стейт компонента, не в стор редакса. Позже произведём окончательное форматирование, и тогда уже сохраним его в сторе. */
+      setRawValidators([]);
       chainApi.getAllValidators()
         .then(result => setRawValidators(result))
         .catch(() => setRawValidators([]))
 
       // АКТИВНЫЕ ГОЛОСОВАНИЯ
+      dispatch(setActiveProposals(null));
       chainApi.getProposals()
         .then(result => {
           const active = result.proposals.filter((proposal: IProposal) => {
@@ -132,6 +138,7 @@ function Chain(props: IChainProps) {
 
       // ВЫСОТА БЛОКА
       /* В прошлой реализации эксплорера (без Redux) return нужен был для выполнения кода при размонтировании компонента - в моём случае он сбрасывает таймер. Без этого при переключении между различными сетями рендер данных начинал лагать, показывая информацию то из одной сети, то из другой. Как я понял, это происходило потому, что если таймер не сбросить, то он сохранял используемое им лексическое окружение, и простое переключение сети не помогало. Как в этой реализации - честно, не знаю, не проверял, но на всякий решил оставить как есть. */
+      dispatch(setBlockHeight(null));
       const setLatestBlock = () => {
         chainApi.getLatestBlock()
           .then(result => dispatch(setBlockHeight(result.block.last_commit.height)))
@@ -163,9 +170,11 @@ function Chain(props: IChainProps) {
   useEffect(() => {
     if (coins && currentChain?.coinGeckoId) {
       const currentCoin = coins.find((coin: ICoin) => coin.id === currentChain.coinGeckoId);
-      // const price = currentCoin ? currentCoin.current_price.toString() : null;
-      if (currentCoin) dispatch(setPrice(currentCoin))
-      else dispatch(setPrice(null))
+      (currentCoin)
+        ? dispatch(setPrice(currentCoin))
+        : dispatch(setPrice(null));
+    } else {
+      dispatch(setPrice(null));
     }
   }, [currentChain, coins])
 

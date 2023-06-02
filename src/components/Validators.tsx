@@ -130,6 +130,14 @@ function Validators() {
     });
   }
 
+  useEffect(() => {
+    if (isValidatorsHidden) {
+      scrollButtons.current?.classList.add("validators__scroll-buttons_hidden");
+    } else {
+      scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden");
+    }
+  }, [isValidatorsHidden])
+
   return (
     <div className="validators">
       <Outlet context={setIsValidatorsHidden} />

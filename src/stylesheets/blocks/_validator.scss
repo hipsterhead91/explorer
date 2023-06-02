@@ -1,6 +1,7 @@
 .validator {
-  width: calc(100% - 12px - 12px);
-  padding: 12px 12px 12px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 24px 30% 48px 24px;
   display: flex;
   flex-direction: column;
   background-color: $white;
@@ -9,17 +10,16 @@
 
 .validator__return-button {
   width: max-content;
-  margin: 0 0 12px 0;
+  margin: 0 0 24px 0;
   background-color: transparent;
   border: none;
   outline: none;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  text-transform: uppercase;
   line-height: 1;
   color: $color-second;
-  text-transform: uppercase;
   cursor: pointer;
   transition: linear 0.2s;
 
@@ -32,14 +32,14 @@
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: 60px calc(100% - 60px);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  grid-template-columns: 68px calc(100% - 68px);
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
 }
 
 .validator__avatar {
-  width: 60px;
-  height: 60px;
+  width: 68px;
+  height: 68px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -47,12 +47,13 @@
 }
 
 .validator__heading {
+  margin: auto 0 auto 0;
   display: flex;
   flex-direction: column;
 }
 
 .validator__moniker {
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
   font-weight: 600;
   font-size: 20px;
   line-height: 1;
@@ -60,7 +61,7 @@
 }
 
 .validator__valoper {
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1;

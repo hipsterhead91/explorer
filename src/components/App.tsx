@@ -1,5 +1,5 @@
 // Пакеты
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router";
 
 // Компоненты

@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 // Компоненты
-import ChainHeading from "./ChainHeading";
 import ValidatorsTableHeader from "./ValidatorsTableHeader";
 import ValidatorsTableRow from "./ValidatorsTableRow";
 

@@ -1,13 +1,3 @@
-// Пакеты
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-
-// Компоненты
-import ChainHeading from "./ChainHeading";
-
-// Типизация
-import ICoin from "../models/ICoin";
-
 // Redux
 import { useAppSelector } from "../store/hooks";
 import {

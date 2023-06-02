@@ -1,5 +1,5 @@
 // Пакеты
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 // Типизация

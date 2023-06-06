@@ -15,7 +15,7 @@ interface ICurrentChainState {
   "unbondingTime": string | null,
   "blockHeight": string | null,
   "validators": IValidator[] | null,
-  "activeProposals": IProposal[] | null,
+  "Proposals": IProposal[] | null,
 }
 
 export default ICurrentChainState;

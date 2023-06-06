@@ -7,7 +7,6 @@ import IChainProps from "../models/IChainProps";
 import ICoin from "../models/ICoin";
 import IPool from "../models/IPools";
 import IValidator from "../models/IValidator";
-import IProposal from "../models/IProposal";
 import INavLink from "../models/INavLink";
 
 // Redux
@@ -23,7 +22,7 @@ import {
   setUnbondingTime,
   setBlockHeight,
   setValidators,
-  setActiveProposals
+  setProposals
 } from "../store/reducers/currentChainSlice";
 
 // API, сервисы
@@ -125,16 +124,11 @@ function Chain(props: IChainProps) {
         .then(result => setRawValidators(result))
         .catch(() => setRawValidators([]))
 
-      // АКТИВНЫЕ ГОЛОСОВАНИЯ
-      dispatch(setActiveProposals(null));
+      // ГОЛОСОВАНИЯ
+      dispatch(setProposals(null));
       chainApi.getProposals()
-        .then(result => {
-          const active = result.proposals.filter((proposal: IProposal) => {
-            return proposal.status === 'PROPOSAL_STATUS_VOTING_PERIOD';
-          });
-          dispatch(setActiveProposals(active));
-        })
-        .catch(() => dispatch(setActiveProposals(null)));
+        .then(result => dispatch(setProposals(result.proposals)))
+        .catch(() => dispatch(setProposals(null)));
 
       // ВЫСОТА БЛОКА
       /* В прошлой реализации эксплорера (без Redux) return нужен был для выполнения кода при размонтировании компонента - в моём случае он сбрасывает таймер. Без этого при переключении между различными сетями рендер данных начинал лагать, показывая информацию то из одной сети, то из другой. Как я понял, это происходило потому, что если таймер не сбросить, то он сохранял используемое им лексическое окружение, и простое переключение сети не помогало. Как в этой реализации - честно, не знаю, не проверял, но на всякий решил оставить как есть. */

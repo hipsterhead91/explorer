@@ -24,6 +24,10 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
     ? validator.avatar
     : `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
 
+  if (validator.rank) {
+    rankText = "#" + validator.rank.toString().padStart(3, '0')
+  }
+
   monikerText = validator.description.moniker;
 
   if (validator.status === 'BOND_STATUS_BONDED') {

@@ -23,7 +23,7 @@ const initialState: ICurrentChainState = {
   unbondingTime: null,
   blockHeight: null,
   validators: null,
-  activeProposals: null,
+  Proposals: null,
 };
 
 // СЛАЙС ТЕКУЩЕЙ СЕТИ
@@ -56,8 +56,8 @@ export const currentChainSlice = createSlice({
     setValidators: (state, action: PayloadAction<IValidator[] | null>) => {
       state.validators = action.payload;
     },
-    setActiveProposals: (state, action: PayloadAction<IProposal[] | null>) => {
-      state.activeProposals = action.payload;
+    setProposals: (state, action: PayloadAction<IProposal[] | null>) => {
+      state.Proposals = action.payload;
     },
   },
 });
@@ -72,7 +72,7 @@ export const {
   setUnbondingTime,
   setBlockHeight,
   setValidators,
-  setActiveProposals,
+  setProposals,
 } = currentChainSlice.actions;
 
 /* selectCurrentChain (как и остальные) - это функция, которую называют селектором; она предоставляет доступ к текущему стейту (в нашем случае это текущая сеть) и всем его свойствам. Однако, в голом виде функция-селектор не возвращает нужное нам значение: для этого её нужно использовать в качестве аргумента в хуке useAppSelector. В компоненте это будет выглядеть примерно так: const currentChain = useAppSelector(selectCurrentChain). */
@@ -84,7 +84,7 @@ export const selectTotalBonded = (state: RootState) => state.currentChain.totalB
 export const selectUnbondingTime = (state: RootState) => state.currentChain.unbondingTime;
 export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
 export const selectValidators = (state: RootState) => state.currentChain.validators;
-export const selectActiveProposals = (state: RootState) => state.currentChain.activeProposals;
+export const selectProposals = (state: RootState) => state.currentChain.Proposals;
 
 /* Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется "непонятно откуда взявшийся" currentChainReducer. Также, обрати внимание, что при создании слайса в нём описывалось поле reducers во множественном числе, а из готового слайса оно извлекается уже в единственном. Очередной прикол от Redux Toolkit, но как я понял, RTK просто генерирует из всех редьюсеров один общий. Просто прими это. */
 export default currentChainSlice.reducer;

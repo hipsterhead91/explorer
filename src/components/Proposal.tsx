@@ -6,7 +6,7 @@ import IProposal from "../models/IProposal";
 
 // Redux
 import { useAppSelector } from "../store/hooks";
-import { selectActiveProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 
 

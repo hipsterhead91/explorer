@@ -1,0 +1,59 @@
+.proposal-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 12px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: 8px;
+
+  &:not(:last-child) {
+    margin: 0 0 12px 0;
+  }
+}
+
+.proposal-card__heading {
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.proposal-card__id {
+  margin: 0 4px 0 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray;
+}
+
+.proposal-card__title {
+  font-weight: 600;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.proposal-card__data {
+  margin: 0 0 2px 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.proposal-card__description {
+  width: calc(100% - 40px);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 14px;
+  color: $gray-darker;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  span {
+    font-weight: 600;
+    font-style: normal;
+  }
+}

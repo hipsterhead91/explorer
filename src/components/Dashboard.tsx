@@ -1,4 +1,8 @@
+// Типизация
+import IProposal from "../models/IProposal";
+
 // Redux
+import { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import {
   selectCurrentChain,
@@ -8,7 +12,7 @@ import {
   selectTotalBonded,
   selectUnbondingTime,
   selectValidators,
-  selectActiveProposals,
+  selectProposals,
   selectBlockHeight
 } from "../store/reducers/currentChainSlice";
 
@@ -27,35 +31,45 @@ function Dashboard() {
   const unbondingTime = useAppSelector(selectUnbondingTime);
   const blockHeight = useAppSelector(selectBlockHeight);
   const validators = useAppSelector(selectValidators);
-  const activeProposals = useAppSelector(selectActiveProposals);
+  const proposals = useAppSelector(selectProposals);
+  const [activeProposals, setActiveProposals] = useState<IProposal[] | null>(null);
+
+  // ФИЛЬТРАЦИЯ АКТИВНЫХ ГОЛОСОВАНИЙ
+  useEffect(() => {
+    const active = proposals?.filter(proposal => {
+      return proposal.status === "PROPOSAL_STATUS_VOTING_PERIOD";
+    })
+    active ? setActiveProposals(active) : setActiveProposals(null);
+  }, [currentChain, proposals])
 
   // РЕНДЕР ОШИБКИ
   const errorEl = <span className="dashboard__error">no data</span>
 
   // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ
   const heading = currentChain?.name;
-  const chainType = (currentChain?.isMainnet) ? 'mainnet' : 'testnet';
-  const subheading = chainType + ' · ' + currentChain?.chainId;
+  const chainType = (currentChain?.isMainnet) ? "mainnet" : "testnet";
+  const subheading = chainType + " · " + currentChain?.chainId;
   const description = currentChain?.description;
 
   // РЕНДЕР ПУЛА СООБЩЕСТВА
   const communityPoolEl = (communityPool)
     ? <p className="dashboard__plate-data">
-      {Number(communityPool).toLocaleString('en')}
+      {Number(communityPool).toLocaleString("en")}
       <span>{currentChain?.symbol}</span></p>
     : errorEl;
 
   // РЕНДЕР ЗАСТЕЙКАНЫХ ТОКЕНОВ
   const bondedTokensEl = (totalBonded)
     ? <p className="dashboard__plate-data">
-      {Number(totalBonded).toLocaleString('en')}
+      {Number(totalBonded).toLocaleString("en")}
       <span>{currentChain?.symbol}</span></p>
     : errorEl;
 
   // РЕНДЕР ГОЛОСОВАНИЙ
+
   const proposalsText = (activeProposals && activeProposals.length > 0)
-    ? activeProposals.length + ' prop.'
-    : 'none';
+    ? activeProposals.length + " prop."
+    : "none";
   const proposalsEl = (activeProposals)
     ? <span className="dashboard__plate-data">{proposalsText}</span>
     : errorEl;
@@ -65,27 +79,27 @@ function Dashboard() {
 
   // РЕНДЕР ИНФЛЯЦИИ
   const inflationEl = (inflation)
-    ? <p className="dashboard__plate-data">{inflation + '%'}</p>
+    ? <p className="dashboard__plate-data">{inflation + "%"}</p>
     : errorEl;
 
   // РЕНДЕР АНБОНДИНГА
   const unbondingEl = (unbondingTime)
-    ? <p className="dashboard__plate-data">{unbondingTime + ' days'}</p>
+    ? <p className="dashboard__plate-data">{unbondingTime + " days"}</p>
     : errorEl;
 
   // РЕНДЕР ЦЕНЫ
   const currentPriceText = (price)
-    ? tweakPrice(price?.current_price) + '$'
-    : '';
+    ? tweakPrice(price?.current_price) + "$"
+    : "";
   const highestPriceText = (price)
-    ? tweakPrice(price?.ath) + '$'
-    : '';
+    ? tweakPrice(price?.ath) + "$"
+    : "";
   const lowestPriceText = (price)
-    ? tweakPrice(price?.atl) + '$'
-    : '';
+    ? tweakPrice(price?.atl) + "$"
+    : "";
   const marketCapText = (price)
-    ? price?.market_cap.toLocaleString('en') + '$'
-    : '';
+    ? price?.market_cap.toLocaleString("en") + "$"
+    : "";
 
   const percentage = price?.price_change_percentage_24h;
   const dynamicEl = (!percentage)
@@ -122,13 +136,13 @@ function Dashboard() {
   const activeSetLength = (validators) ? filterActive(validators).length : 0;
   const wholeSetLength = (validators) ? validators.length : 0;
   const validatorsEl = (validators)
-    ? <span className="dashboard__plate-data">{activeSetLength + ' / ' + wholeSetLength}</span>
+    ? <span className="dashboard__plate-data">{activeSetLength + " / " + wholeSetLength}</span>
     : errorEl;
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   const blockHeightEl = (blockHeight)
     ? <p className="dashboard__plate-data">
-      {Number(blockHeight).toLocaleString('en')}</p>
+      {Number(blockHeight).toLocaleString("en")}</p>
     : errorEl;
 
   return (

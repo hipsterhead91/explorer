@@ -19,54 +19,34 @@
   }
 }
 
-.proposals__navigation {
-  width: 100%;
-  margin: 0 0 12px 0;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: 10px;
-}
-
-.proposals__switcher {
+.proposals__heading {
   box-sizing: border-box;
   width: 100%;
-  min-height: 32px;
-  grid-column: 1/3;
+  padding: 0 0 0 12px;
   display: flex;
+  align-items: center;
 }
 
-.proposals__switcher-button {
-  width: 50%;
-  height: 100%;
-  border: none;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+.proposals__chain-name {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 24px;
   line-height: 1;
-  color: $color-main;
-  background-color: rgba($color-second, 0.4);
-  outline: none;
-  cursor: pointer;
+}
 
-  &:first-child {
-    border-radius: 8px 0 0 8px;
-  }
-
-  &:last-child {
-    border-radius: 0 8px 8px 0;
-  }
-
-  &_selected {
-    color: $color-main;
-    background-color: rgba($color-second, 0.6);
-  }
+.proposals__chain-logo {
+  width: 30px;
+  height: 30px;
+  margin: 0 0 0 8px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .proposals__disclaimer {
   box-sizing: border-box;
   width: 100%;
   padding: 8px 12px 8px 12px;
-  margin: 0 0 12px 0;
+  margin: 12px 0 12px 0;
   font-weight: 400;
   font-size: 14px;
   color: $gray-darkest;
@@ -79,21 +59,23 @@
   }
 }
 
-.proposals__list {
+.proposals__table-header {
   box-sizing: border-box;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  min-height: 52px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 4px;
+  background-color: rgba($color-second, 0.6);
+  border-radius: 8px 8px 0 0;
 }
 
-.proposals__no-content {
+.proposals__column-name {
   box-sizing: border-box;
-  width: 100%;
-  padding: 36px 12px 36px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-  color: $gray-darker;
-  background-color: $white;
-  border-radius: 8px;
+  font-size: 14px;
+  color: $color-main;
 }

@@ -3,8 +3,8 @@ import IProposal from "./IProposal";
 
 
 
-interface IProposalCardProps {
+interface IProposalsTableRowProps {
   "proposal": IProposal,
 }
 
-export default IProposalCardProps;
+export default IProposalsTableRowProps;

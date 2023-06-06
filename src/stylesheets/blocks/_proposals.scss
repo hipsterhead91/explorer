@@ -1,4 +1,5 @@
 .proposals {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   max-width: 998px;
@@ -6,4 +7,56 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.proposals__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.proposals__heading {
+  padding: 0 0 0 12px;
+  margin: 12px 0 0 0;
+  font-weight: 600;
+  font-size: 24px;
+  color: $gray-darker;
+}
+
+.proposals__disclaimer {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 12px 8px 12px;
+  margin: 12px 0 12px 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  color: $gray-darkest;
+  background-color: $gray-lightest;
+  border-radius: 8px;
+  border: 1px solid $gray-lighter;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.proposals__list {
+
+}
+
+.proposals__no-content {
+
+}
+
+.proposals__proposal {
+
+}
+
+.proposals__proposal-name {
+  
 }

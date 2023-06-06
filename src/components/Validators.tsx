@@ -1,6 +1,7 @@
 // Пакеты
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 // Компоненты
 import ValidatorsTableHeader from "./ValidatorsTableHeader";
@@ -15,7 +16,6 @@ import { selectCurrentChain, selectValidators } from "../store/reducers/currentC
 
 // Прочее
 import { filterActive, filterInactive } from "../utils/formatting";
-import { Outlet } from "react-router-dom";
 
 
 

@@ -11,6 +11,7 @@ import Dashboard from "./Dashboard";
 import Validators from "./Validators";
 import Validator from "./Validator";
 import Proposals from "./Proposals";
+import Proposal from "./Proposal";
 
 // Типизация
 import ICoin from "../models/ICoin";
@@ -56,7 +57,9 @@ function App() {
               <Route path="validators" element={<Validators />} >
                 <Route path=":valoper" element={<Validator />} />
               </Route>
-              <Route path="proposals" element={<Proposals />} />
+              <Route path="proposals" element={<Proposals />} >
+                <Route path=":id" element={<Proposal />} />
+              </Route>
             </Route>
           })}
         </Route>

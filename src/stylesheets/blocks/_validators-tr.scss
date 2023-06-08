@@ -1,11 +1,11 @@
 .validators-tr {
   box-sizing: border-box;
   width: 100%;
-  min-height: 52px;
-  padding: 6px 24px 6px 24px;
+  min-height: 40px;
+  padding: 4px 24px 4px 12px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: 10px;
+  grid-template-columns: 30px 3fr 1fr 1fr;
+  grid-column-gap: 8px;
   background-color: $white;
   text-decoration: none;
 
@@ -14,7 +14,7 @@
   }
 
   &:last-child {
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 6px 6px;
   }
 
   &:not(:last-child) {
@@ -22,96 +22,63 @@
   }
 }
 
+.validators-tr__number {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.validators-tr__rank {
+  box-sizing: border-box;
+  width: 28px;
+  padding: 2px 2px 2px 2px;
+  font-weight: 400;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 2px;
+
+  &_active {
+    color: $color-second;
+    background-color: rgba($color-main, 0.5);
+  }
+
+  &_inactive {
+    color: $gray-darker;
+    background-color: rgba($gray-lighter, 0.4);
+  }
+}
+
 .validators-tr__validator {
   height: 100%;
-  grid-column: 1/5;
   display: flex;
   align-items: center;
 }
 
 .validators-tr__avatar {
   box-sizing: border-box;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   margin: 0 8px 0 0;
   border-radius: 4px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-}
-
-.validators-tr__info {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.validators-tr__alignment {
-  margin: 0 0 4px 0;
-  display: flex;
-  align-items: baseline;
-}
-
-.validators-tr__rank {
-  margin: 0 4px 0 0;
-  font-weight: 400;
-  font-size: 12px;
-  color: $gray;
+  border: 1px solid $gray-lightest;
 }
 
 .validators-tr__moniker {
+  width: calc(100% - 30px - 8px); // ширина аватара и его марджина
   font-weight: 600;
-  font-size: 14px;
-  color: $color-second;
-  text-decoration: none;
-}
-
-.validators-tr__statuses {
-  margin: 0 0 2px 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-}
-
-.validators-tr__status {
-  box-sizing: border-box;
-  padding: 2px 4px 2px 4px;
-  margin: 0 4px 0 0;
-  font-weight: 400;
   font-size: 12px;
-  line-height: 1;
-  border-radius: 2px;
-
-  &_good {
-    color: rgba($color-second, 0.7);
-    background-color: rgba($color-main, 0.5);
-  }
-
-  &_neutral {
-    color: rgba($gray-dark, 0.8);
-    background-color: rgba($gray, 0.2);
-  }
-
-  &_bad {
-    color: rgba($color-nay, 0.6);
-    background-color: rgba($color-nay, 0.1);
-  }
-
-  &_special {
-    color: rgba($gray-darkest, 0.6);
-    background-color: rgba($color-accent, 0.3);
-  }
-
-  &_hidden {
-    display: none;
-  } 
+  color: $color-second;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .validators-tr__voting-power {
   box-sizing: border-box;
   height: 100%;
-  padding: 0 14px 0 0;
-  grid-column: 5/7;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -119,8 +86,8 @@
 }
 
 .validators-tr__stake {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
   color: $gray-darker;
 }
 
@@ -128,18 +95,17 @@
   margin: 0 0 0 4px;
   font-weight: 400;
   font-size: 10px;
-  color: $gray-dark;
+  color: $gray-light;
 }
 
 .validators-tr__power {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
   color: $gray-darker;
 }
 
 .validators-tr__commission {
   height: 100%;
-  grid-column: 7/9;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -147,8 +113,8 @@
 }
 
 .validators-tr__commission-value {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 12px;
   color: $gray-darker;
 
   &_high {

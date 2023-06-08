@@ -49,11 +49,11 @@
   cursor: pointer;
 
   &:first-child {
-    border-radius: 8px 0 0 8px;
+    border-radius: 6px 0 0 6px;
   }
 
   &:last-child {
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 6px 6px 0;
   }
 
   &_selected {
@@ -64,18 +64,18 @@
 
 .validators__search {
   width: 100%;
-  grid-column: 5/9;
+  grid-column: 7/9;
   display: flex;
 }
 
 .validators__search-input {
   box-sizing: border-box;
-  width: 75%;
+  width: 65%;
   min-height: 32px;
   padding: 0 12px 0 12px;
   border: 2px solid rgba($color-second, 0.6);
   border-right: none;
-  border-radius: 8px 0 0 8px;
+  border-radius: 6px 0 0 6px;
   outline: none;
   background-color: $white;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -93,10 +93,10 @@
 
 .validators__search-button {
   box-sizing: border-box;
-  width: 25%;
+  width: 35%;
   min-height: 32px;
   border: none;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 6px 6px 0;
   outline: none;
   background-color: rgba($color-second, 0.6);
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -124,7 +124,7 @@
 .validators__scroll-buttons {
   position: fixed;
   bottom: 104px;
-  right: calc(((100% - 998px) / 2) - 40px);
+  right: calc(((100% - 998px) / 2) - 36px);
   width: 40px;
   display: flex;
   flex-direction: column;
@@ -136,8 +136,8 @@
 }
 
 .validators__scroll-button {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,12 +149,12 @@
   cursor: pointer;
 
   &_top {
-    border-radius: 8px 8px 0 0;
+    border-radius: 6px 6px 0 0;
     border-bottom: 2px solid $color-main;
   }
 
   &_bottom {
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 6px 6px;
   }
 
   &:hover {
@@ -164,8 +164,8 @@
 
 .validators__scroll-arrow {
   position: relative;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-top: 3px solid $color-main;
   border-left: 3px solid $color-main;
   transform: rotate(45deg);

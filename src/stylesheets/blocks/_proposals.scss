@@ -28,10 +28,10 @@
   font-size: 14px;
   color: $gray-darkest;
   background-color: rgba($color-second, 0.4);
-  border-radius: 8px;
+  border-radius: 6px;
 
   span {
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
@@ -47,13 +47,13 @@
 .proposals__table-header {
   box-sizing: border-box;
   width: 100%;
-  min-height: 52px;
-  padding: 0 24px 0 24px;
+  min-height: 44px;
+  padding: 4px 24px 4px 12px;
   display: grid;
-  grid-template-columns: 5% 55% 15% 15% 10%;
-  grid-column-gap: 0;
+  grid-template-columns: 32px 4fr 1fr 1fr 1fr;
+  grid-column-gap: 8px;
   background-color: rgba($color-second, 0.6);
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .proposals__column-name {
@@ -75,7 +75,7 @@
 }
 
 #column-type {
-  align-items: flex-end;
+  align-items: center;
 }
 
 #column-status {
@@ -86,9 +86,67 @@
   align-items: flex-end;
 }
 
-
-
 .proposals__table-rows {
   display: flex;
   flex-direction: column;
+}
+
+.proposals__scroll-buttons {
+  position: fixed;
+  bottom: 104px;
+  right: calc(((100% - 998px) / 2) - 36px);
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_hidden {
+    display: none;
+  }
+}
+
+.proposals__scroll-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background-color: rgba($color-second, 0.5);
+  transition: linear 0.2s;
+  cursor: pointer;
+
+  &_top {
+    border-radius: 6px 6px 0 0;
+    border-bottom: 2px solid $color-main;
+  }
+
+  &_bottom {
+    border-radius: 0 0 6px 6px;
+  }
+
+  &:hover {
+    background-color: rgba($color-second, 0.6);
+  }
+}
+
+.proposals__scroll-arrow {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-top: 3px solid $color-main;
+  border-left: 3px solid $color-main;
+  transform: rotate(45deg);
+
+  &_top {
+    top: 2px;
+    transform: rotate(45deg);
+  }
+
+  &_bottom {
+    top: -2px;
+    transform: rotate(225deg);
+  }
 }

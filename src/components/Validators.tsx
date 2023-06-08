@@ -90,13 +90,6 @@ function Validators() {
     }
   }
 
-  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
-  useEffect(() => {
-    (isValidatorsHidden)
-      ? validatorsWrapper.current?.classList.add("validators__wrapper_hidden")
-      : validatorsWrapper.current?.classList.remove("validators__wrapper_hidden")
-  }, [isValidatorsHidden])
-
   // ПОКАЗЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
   /* При рендере компонента Validator таблица в компоненте Validators скрывается; также, в компоненте Validator есть кнопка возврата на предыдущую страницу, которая включает отображение таблицы обратно. Однако, если возврат осуществлён не кнопкой в интерфейсе, а кнопкой возврата в самом браузере, то эта логика перестаёт работать, и таблица остаётся скрытой. По этой причине я решил отслеживать значение location.pathname - если оно меняется на нужное мне, то таблица отображается независимо от того, как был осуществлён переход. Не знаю, есть ли у этого решения неочевидные подводные камни, но пока вроде работает как мне надо. */
   useEffect(() => {
@@ -105,6 +98,7 @@ function Validators() {
     }
   }, [location])
 
+  // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ
   const activeButtonStyle = (isCurrentSetActive)
     ? "validators__switcher-button validators__switcher-button_selected"
     : "validators__switcher-button"
@@ -128,11 +122,14 @@ function Validators() {
       behavior: "smooth"
     });
   }
-
+    
+  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ И КНОПКИ СКРОЛЛА
   useEffect(() => {
     if (isValidatorsHidden) {
+      validatorsWrapper.current?.classList.add("validators__wrapper_hidden");
       scrollButtons.current?.classList.add("validators__scroll-buttons_hidden");
     } else {
+      validatorsWrapper.current?.classList.remove("validators__wrapper_hidden");
       scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden");
     }
   }, [isValidatorsHidden])
@@ -147,7 +144,7 @@ function Validators() {
             <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
           </div>
           <div className="validators__search">
-            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="Search by moniker"></input>
+            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="Filter by name"></input>
             <button onClick={clearFilter} className="validators__search-button">Clear</button>
           </div>
         </div>

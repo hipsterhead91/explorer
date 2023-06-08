@@ -120,36 +120,39 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   return (
     <div className="validators-th">
 
+      {/* RANK */}
+      <div></div>
+
       {/* VALIDATOR */}
       <div id="th-validator" className="validators-th__cell">
         <div onClick={() => sortByMoniker()} id="srt-validator" className="validators-th__sort-button">
+          <span className="validators-th__column-name">Validator</span>
           <div ref={validatorSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>
           </div>
-          <span className="validators-th__column-name">Validator</span>
         </div>
       </div>
 
       {/* VOTING POWER */}
       <div id="th-power" className="validators-th__cell">
         <div onClick={() => sortByTokens()} id="srt-power" className="validators-th__sort-button">
+          <span className="validators-th__column-name">Voting Power</span>
           <div ref={votingPowerSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>
           </div>
-          <span className="validators-th__column-name">Voting Power</span>
         </div>
       </div>
 
       {/* COMMISSION */}
       <div id="th-commission" className="validators-th__cell">
         <div onClick={() => sortByCommission()} id="srt-commission" className="validators-th__sort-button">
+          <span className="validators-th__column-name">Commission</span>
           <div ref={commissionSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>
           </div>
-          <span className="validators-th__column-name">Commission</span>
         </div>
       </div>
 

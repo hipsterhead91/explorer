@@ -1,12 +1,13 @@
 .validators-th {
   box-sizing: border-box;
   width: 100%;
-  min-height: 52px;
+  min-height: 44px;
+  padding: 4px 24px 4px 12px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: 10px;
+  grid-template-columns: 30px 3fr 1fr 1fr;
+  grid-column-gap: 8px;
   background-color: rgba($color-second, 0.6);
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .validators-th__cell {
@@ -17,16 +18,14 @@
 }
 
 #th-validator {
-  grid-column: 1/5;
+  justify-content: start;
 }
 
 #th-power {
-  grid-column: 5/7;
   justify-content: end;
 }
 
 #th-commission {
-  grid-column: 7/9;
   justify-content: end;
 }
 
@@ -37,22 +36,22 @@
 }
 
 #srt-validator {
-  margin: 0 0 0 28px;
+  margin: 0 0 0 0;
 }
 
-#srt-power {
-  margin: 0 28px 0 0px;
-}
+// #srt-power {
+//   margin: 0 28px 0 0px;
+// }
 
-#srt-commission {
-  margin: 0 28px 0 0;
-}
+// #srt-commission {
+//   margin: 0 28px 0 0;
+// }
 
 .validators-th__sort-icon {
   position: relative;
   width: 7px;
   height: 7px;
-  margin: 0 4px 0 0;
+  margin: 0 0 0 6px;
   display: flex;
   flex-direction: column;
     
@@ -83,8 +82,8 @@
         border-top: 2px solid $color-main;
       }
       &:last-child {
-        border-right: 2px solid $color-accent;
-        border-bottom: 2px solid $color-accent;
+        border-right: 2px solid $white;
+        border-bottom: 2px solid $white;
       }
     }
   }
@@ -92,8 +91,8 @@
   &_dsc {
     span {
       &:first-child {
-        border-left: 2px solid $color-accent;
-        border-top: 2px solid $color-accent;
+        border-left: 2px solid $white;
+        border-top: 2px solid $white;
       }
       &:last-child {
         border-right: 2px solid $color-main;

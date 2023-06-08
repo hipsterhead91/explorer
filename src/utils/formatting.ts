@@ -97,11 +97,14 @@ export function tweakCommission(commission: string): string {
 
 // ОТФОРМАТИРОВАТЬ ТИП ПРОПОЗАЛА
 export function tweakProposalType(type: string): string {
-  const arr = type.split(".");
-  const i = arr.length - 1;
-  type = arr[i];
+  const arr1 = type.split(".");
+  const i = arr1.length - 1;
+  type = arr1[i];
   type = type.replace(/([a-z])([A-Z])/g, "$1 $2");
-  return type;
+  const arr2 = type.split(" ");
+  const arr3 = arr2.slice(0, arr2.length - 1);
+  const result = arr3.join(" ");
+  return result;
 }
 
 // ОТФОРМАТИРОВАТЬ СТАТУС ПРОПОЗАЛА

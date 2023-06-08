@@ -36,7 +36,7 @@
   padding: 12px 12px 12px 12px;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: $white;
 }
 
@@ -112,10 +112,6 @@
   color: $gray-light;
   background-color: rgba($gray-lightest, 0.8);
   border-radius: 2px;
-
-  span {
-    font-weight: 600;
-  }
 }
 
 .dashboard__heading {
@@ -154,7 +150,7 @@
 
 .dashboard__plate-data {
   margin: auto 0 0 auto;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 14px;
   color: $gray-darker;
 
@@ -162,7 +158,7 @@
     margin: 0 0 0 4px;
     font-weight: 400;
     font-size: 10px;
-    color: $gray-dark;
+    color: $gray;
   }
 }
 
@@ -189,7 +185,7 @@
 
 .dashboard__coingecko-heading {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   color: $color-main;
 
   a {
@@ -224,7 +220,7 @@
 
 .dashboard__coingecko-value {
   display: flex;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
   color: $white;
 
@@ -236,12 +232,12 @@
 .dashboard__coingecko-dynamic {
   display: flex;
   align-items: baseline;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 14px;
   color: $color-yay;
 
   &_down {
-    font-weight: 600;
+    font-weight: 400;
     color: rgba($color-nay, 0.8);
   }
 }

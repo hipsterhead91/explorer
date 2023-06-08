@@ -1,5 +1,12 @@
+// Пакеты
+import { Link } from "react-router-dom";
+
 // Типизация
 import IProposalsTableRowProps from "../models/IProposalsTableRowProps";
+
+// Redux
+import { useAppSelector } from "../store/hooks";
+import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 // Мой код
 import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod } from "../utils/formatting";
@@ -8,6 +15,7 @@ import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod } from "../
 
 function ProposalsTableRow(props: IProposalsTableRowProps) {
 
+  const currentChain = useAppSelector(selectCurrentChain);
   const proposal = props.proposal;
   const idText = "#" + proposal.proposal_id;
   const titleText = proposal.content.title;
@@ -32,9 +40,8 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
     statusStyle = "proposals-tr__status proposals-tr__status_bad"
   }
 
-
   return (
-    <div className="proposals-tr">
+    <Link  to={`/${currentChain?.chainId}/proposals/${proposal.proposal_id}`} className="proposals-tr">
 
       {/* ID */}
       <div className="proposals-tr__cell">
@@ -63,7 +70,7 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
           <span className="proposals-tr__end-date">{dateText}</span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

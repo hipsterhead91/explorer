@@ -4,8 +4,8 @@
   min-height: 36px;
   padding: 6px 24px 6px 24px;
   display: grid;
-  grid-template-columns: 5% 60% 15% 10% 10%;
-  grid-column-gap: 4px;
+  grid-template-columns: 5% 55% 15% 15% 10%;
+  grid-column-gap: 0;
   background-color: $white;
   text-decoration: none;
   cursor: pointer;
@@ -40,9 +40,9 @@
 
 .proposals-tr__title {
   width: 100%;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 12px;
-  color: $gray-darker;
+  color: $color-second;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -52,6 +52,7 @@
   font-weight: 400;
   font-size: 12px;
   text-align: end;
+  color: $gray-darker;
 }
 
 .proposals-tr__status {

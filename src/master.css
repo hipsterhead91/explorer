@@ -2093,7 +2093,7 @@ html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 24px 30% 48px 24px;
+  padding: 24px 24px 48px 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2147,4 +2147,112 @@ html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.proposal__heading {
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.proposal__id {
+  margin: 0 8px 0 0;
+  font-weight: 400;
+  font-size: 20px;
+  color: #a0a0a0;
+}
+
+.proposal__title {
+  font-weight: 600;
+  font-size: 24px;
+  color: #464646;
+}
+
+.proposal__data {
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: #464646;
+}
+
+.proposal__data span {
+  font-weight: 600;
+}
+
+.proposal__status {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #464646;
+}
+
+.proposal__votes {
+  margin: 0 0 4px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.proposal__votes-heading {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #464646;
+}
+
+.proposal__votes-list {
+  list-style: none;
+}
+
+.proposal__vote {
+  padding: 0 0 0 8px;
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: #464646;
+  text-transform: lowercase;
+}
+
+.proposal__vote span {
+  font-weight: 400;
+}
+
+.proposal__description {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.proposal__description-heading {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #464646;
+}
+
+.proposal__description-text {
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  color: #464646;
 }

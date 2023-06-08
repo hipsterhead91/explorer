@@ -1,7 +1,7 @@
 .proposal {
   box-sizing: border-box;
   width: 100%;
-  padding: 24px 30% 48px 24px;
+  padding: 24px 24px 48px 24px;
   display: flex;
   flex-direction: column;
   background-color: $white;
@@ -43,4 +43,93 @@
 .proposal__card {
   box-sizing: border-box;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal__heading {
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: baseline;
+}
+
+.proposal__id {
+  margin: 0 8px 0 0;
+  font-weight: 400;
+  font-size: 20px;
+  color: $gray-light;
+}
+
+.proposal__title {
+  font-weight: 600;
+  font-size: 24px;
+  color: $gray-darker;
+}
+
+.proposal__data {
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.proposal__status {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.proposal__votes {
+  margin: 0 0 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal__votes-heading {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.proposal__votes-list {
+  list-style: none;
+}
+
+.proposal__vote {
+  padding: 0 0 0 8px;
+  margin: 0 0 4px 0;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
+  text-transform: lowercase;
+
+  span {
+    font-weight: 400;
+  }
+}
+
+.proposal__description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.proposal__description-heading {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: $gray-darker;
+}
+
+.proposal__description-text {
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  color: $gray-darker;
 }

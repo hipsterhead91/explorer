@@ -148,7 +148,7 @@ function Validator() {
 
   return (
     <div className="validator">
-      <button onClick={() => returnToValidators()} className="validator__return-button"><span>&#8249;</span> Go Back</button>
+      <button onClick={() => returnToValidators()} className="validator__return-button"><span>&#8249;</span> Validators</button>
       <div className="validator__card">
 
         {/* СВЕРХУ СЛЕВА */}

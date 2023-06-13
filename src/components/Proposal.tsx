@@ -2,6 +2,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 
+// Компоненты
+import VotesChart from "./VotesChart";
+
 // Типизация
 import IProposal from "../models/IProposal";
 
@@ -93,28 +96,28 @@ function Proposal() {
 
   return (
     <div className="proposal">
-      <button onClick={() => returnToProposals()} className="proposal__return-button"><span>&#8249;</span> Proposals</button>
+      <button onClick={() => returnToProposals()} className="proposal__return-button"><span>&#8249;</span> Return</button>
       <div className="proposal__card">
         <div className="proposal__heading">
-          <span className="proposal__id">{idText}</span>
           <h1 className="proposal__title">{titleText}</h1>
+          <span className="proposal__id">({idText})</span>
         </div>
-        <p className="proposal__data"><span>Type: </span>{typeText}</p>
-        <p className="proposal__status">Status: <span>{statusText}</span></p>
-        <p className="proposal__data"><span>Submit time: </span>{submitTimeText}</p>
-        <p className="proposal__data"><span>Deposit end time: </span>{depositEndText}</p>
-        <p className="proposal__data"><span>Deposit: </span>{`${depositText} ${symbolText}`}</p>
-        <p className="proposal__data"><span>Voting start time: </span>{votingStartText}</p>
-        <p className="proposal__data"><span>Voting end time: </span>{votingEndText}</p>
-        <div className="proposal__votes">
-          <span className="proposal__votes-heading">Final Votes:</span>
-          <ul className="proposal__votes-list">
-            <li className="proposal__vote">Abstain: <span>{abstainText}</span></li>
-            <li className="proposal__vote">No: <span>{noText}</span></li>
-            <li className="proposal__vote">No with veto: <span>{noWithVetoText}</span></li>
-            <li className="proposal__vote">Yes: <span>{yesText}</span></li>
-          </ul>
+        <div className="proposal__alignment">
+          <div className="proposal__text__info">
+            <p className="proposal__data"><span>Type: </span>{typeText}</p>
+            <p className="proposal__status">Status: <span>{statusText}</span></p>
+            <p className="proposal__data"><span>Submit time: </span>{submitTimeText}</p>
+            <p className="proposal__data"><span>Deposit end time: </span>{depositEndText}</p>
+            <p className="proposal__data"><span>Deposit: </span>{`${depositText} ${symbolText}`}</p>
+            <p className="proposal__data"><span>Voting start time: </span>{votingStartText}</p>
+            <p className="proposal__data"><span>Voting end time: </span>{votingEndText}</p>
+          </div>
+          <div className="proposal__votes">
+            {currentProposal && <VotesChart votes={currentProposal.final_tally_result} />}
+          </div>
         </div>
+
+
         <div className="proposal__description">
           <span className="proposal__description-heading">Description:</span>
           <p className="proposal__description-text">{descriptionText}</p>

@@ -10,19 +10,23 @@
 
 .proposal__return-button {
   position: relative;
+  box-sizing: border-box;
   width: max-content;
+  min-width: 80px;
+  padding: 2px 8px 2px 8px;
   margin: 0 0 24px 0;
   display: flex;
   align-items: center;
-  background-color: transparent;
-  border: none;
-  outline: none;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   line-height: 1;
-  color: $color-second;
+  color: $gray-dark;
+  background-color: rgba($gray-lightest, 0.8);
+  border: none;
+  border-radius: 4px;
+  outline: none;
   cursor: pointer;
   transition: linear 0.2s;
 
@@ -37,6 +41,7 @@
 
   &:hover {
     color: $gray-darker;
+    background-color: rgba($gray-lightest, 1);
   }
 }
 
@@ -54,16 +59,42 @@
 }
 
 .proposal__id {
-  margin: 0 8px 0 0;
+  margin: 0 0 0 4px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   color: $gray-light;
 }
 
 .proposal__title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 18px;
   color: $gray-darker;
+}
+
+.proposal__alignment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 12px;
+}
+
+.proposal__votes {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.votes-chart {
+  box-sizing: border-box;
+  padding: 10px 0 10px 0;
+  background-color: rgba($gray, 0.2);
+  border-radius: 6px;
+}
+
+.proposal__text__info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .proposal__data {
@@ -84,35 +115,7 @@
   color: $gray-darker;
 }
 
-.proposal__votes {
-  margin: 0 0 4px 0;
-  display: flex;
-  flex-direction: column;
-}
 
-.proposal__votes-heading {
-  margin: 0 0 4px 0;
-  font-weight: 600;
-  font-size: 14px;
-  color: $gray-darker;
-}
-
-.proposal__votes-list {
-  list-style: none;
-}
-
-.proposal__vote {
-  padding: 0 0 0 8px;
-  margin: 0 0 4px 0;
-  font-weight: 400;
-  font-size: 14px;
-  color: $gray-darker;
-  text-transform: lowercase;
-
-  span {
-    font-weight: 400;
-  }
-}
 
 .proposal__description {
   width: 100%;

@@ -1,4 +1,5 @@
 .homepage {
+  position: relative;
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -6,11 +7,16 @@
   align-items: center;
 }
 
+.homepage__subheader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+// Миксуется с section-limiter, который ограничивает ширину секций
 .homepage__container {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  padding: 24px 12px 0 12px;
+  margin-top: calc(24px + 12px); // высота сабхердера + отступ от него
+  margin-bottom: 52px;
   display: flex;
   flex-direction: column;
   align-items: center;

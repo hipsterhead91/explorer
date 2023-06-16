@@ -2,7 +2,11 @@ function Homepage() {
 
   return (
     <section className="homepage">
-      <div className="homepage__container">
+
+      {/* САБХЕДЕР */}
+      <div className="homepage__subheader subheader"></div>
+
+      <div className="homepage__container section-limiter">
 
         <div className="homepage__block">
           <h1 className="homepage__heading">Hello,</h1>

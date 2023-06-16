@@ -178,9 +178,10 @@ function Chain(props: IChainProps) {
 
   return (
     <section className="chain">
-      <div className="chain__container">
-        <nav className="chain__nav">
-          <div className="chain__nav-container">
+
+      {/* САБХЕДЕР (НАВИГАЦИЯ) */}
+        <nav className="chain__nav subheader">
+          <div className="chain__nav-container section-limiter">
             <NavLink to="dashboard" className={linkStyle}>Dashboard</NavLink>
             <div className="chain__nav-divider"></div>
             <NavLink to="validators" className={linkStyle}>Validators</NavLink>
@@ -188,9 +189,10 @@ function Chain(props: IChainProps) {
             <NavLink to="proposals" className={linkStyle}>Proposals</NavLink>
           </div>
         </nav>
-        <div className="chain__content">
+
+      {/* НЕПОСРЕДСТВЕННО КОНТЕНТ */}
+      <div className="chain__container section-limiter">
           <Outlet />
-        </div>
       </div>
     </section>
   );

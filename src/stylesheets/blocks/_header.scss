@@ -1,7 +1,6 @@
 .header {
   position: fixed;
   top: 0;
-  left: 0;
   z-index: 10;
   width: 100%;
   display: flex;
@@ -10,12 +9,9 @@
   background-color: $color-second;
 }
 
+// Миксуется с section-limiter, который ограничивает ширину секций
 .header__container {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  height: 52px;
-  padding: 0 12px 0 12px;
+  min-height: 52px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-gap: 10px;

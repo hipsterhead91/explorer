@@ -1,0 +1,15 @@
+.layout {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-main;
+}
+
+.layout__app-content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 52px 0 52px 0; // верхний и нижний паддинги равны высоте шапки и подвала
+}

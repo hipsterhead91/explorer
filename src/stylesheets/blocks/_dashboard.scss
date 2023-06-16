@@ -1,14 +1,6 @@
-.dashboard {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  padding: 0 12px 0 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
 
-.dashboard__plates {
+.dashboard {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -18,7 +10,7 @@
 
 /* Следующие две конструкции нужны для того, чтобы стандартная ячейка имела равное соотношение сторон, без использования aspect-ratio: 1/1 и padding-trick'а, ибо они имеют нюансы. Приём взят отсюда: https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3 */
 
-.dashboard__plates::before {
+.dashboard::before {
   content: '';
   width: 0;
   padding-bottom: 100%;
@@ -26,7 +18,7 @@
   grid-row: 1 / 1;
 }
 
-.dashboard__plates > *:first-child {
+.dashboard > *:first-child {
   grid-column: 1 / 1;
   grid-row: 1 / 1;
 }

@@ -25,7 +25,7 @@ function Validator() {
 
   // ПРИ ОТКРЫТИИ КОМПОНЕНТА СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
   useEffect(() => {
-    setIsValidatorsHidden(true);
+    // setIsValidatorsHidden(true);
   }, [])
 
   // ВОЗВРАТ К ТАБЛИЦЕ ВАЛИДАТОРОВ
@@ -148,43 +148,47 @@ function Validator() {
 
   return (
     <div className="validator">
-      <button onClick={() => returnToValidators()} className="validator__return-button"><span>&#8249;</span> Return</button>
       <div className="validator__card">
 
-        {/* СВЕРХУ СЛЕВА */}
-        <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
+        <button onClick={() => returnToValidators()} className="validator__return-button">Close</button>
 
-        {/* СВЕРХУ СПРАВА */}
-        <div className="validator__heading">
-          <h1 className="validator__moniker">{monikerText}</h1>
-          <p className="validator__valoper">{valoperText}</p>
-          <div className="validator__statuses">
-            <span className={activityStyle}>{activityText}</span>
-            <span className={bondStyle}>{bondText}</span>
-            <span className={jailStyle}>{jailText}</span>
-            <span className={highCommissionStyle}>{highCommissionText}</span>
+        <div className="validator__grid">
+
+          {/* СВЕРХУ СЛЕВА */}
+          <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
+
+          {/* СВЕРХУ СПРАВА */}
+          <div className="validator__heading">
+            <h1 className="validator__moniker">{monikerText}</h1>
+            <p className="validator__valoper">{valoperText}</p>
+            <div className="validator__statuses">
+              <span className={activityStyle}>{activityText}</span>
+              <span className={bondStyle}>{bondText}</span>
+              <span className={jailStyle}>{jailText}</span>
+              <span className={highCommissionStyle}>{highCommissionText}</span>
+            </div>
+          </div>
+
+          {/* СНИЗУ СЛЕВА */}
+          <span className="validator__rank">{rankText}</span>
+
+          {/* СНИЗУ СПРАВА */}
+          <div className="validator__data">
+            <p className="validator__data-heading">Tokens Bonded:</p>
+            <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>
+            <p className="validator__data-heading">Voting Power:</p>
+            <span className="validator__data-text">{votingPowerText}</span>
+            <p className="validator__data-heading">Commission:</p>
+            <span className={commissionStyle}>{commissionText}</span>
+            <p className="validator__data-heading">Website:</p>
+            <span className="validator__data-text">{websiteText}</span>
+            <p className="validator__data-heading">Security Contact:</p>
+            <span className="validator__data-text">{securityContactText}</span>
+            <p className="validator__data-heading">Details:</p>
+            <span className="validator__data-text">{detailsText}</span>
           </div>
         </div>
 
-        {/* СНИЗУ СЛЕВА */}
-        <span className="validator__rank">{rankText}</span>
-
-        {/* СНИЗУ СПРАВА */}
-        <div className="validator__data">
-          <p className="validator__data-heading">Tokens Bonded:</p>
-          <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>
-          <p className="validator__data-heading">Voting Power:</p>
-          <span className="validator__data-text">{votingPowerText}</span>
-          <p className="validator__data-heading">Commission:</p>
-          <span className={commissionStyle}>{commissionText}</span>
-          <p className="validator__data-heading">Website:</p>
-          <span className="validator__data-text">{websiteText}</span>
-          <p className="validator__data-heading">Security Contact:</p>
-          <span className="validator__data-text">{securityContactText}</span>
-          <p className="validator__data-heading">Details:</p>
-          <span className="validator__data-text">{detailsText}</span>
-
-        </div>
       </div>
     </div>
   )

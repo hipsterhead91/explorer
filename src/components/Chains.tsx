@@ -25,16 +25,17 @@ function Chains() {
   const overlay = useRef<HTMLDivElement | null>(null);
 
   const toggleChainList = () => {
-    container.current?.classList.toggle("chains__container_hidden");
-    list.current?.classList.toggle("chains__list_hidden");
-    arrow.current?.classList.toggle("chains__switcher-arrow_up");
+    container.current?.classList.toggle("chains__popup-container_hidden");
+    // list.current?.classList.toggle("chains__list_hidden");
+    arrow.current?.classList.toggle("chains__indicator-arrow_up");
     overlay.current?.classList.toggle("chains__overlay_hidden");
   };
 
   const hideChainList = () => {
-    container.current?.classList.add("chains__container_hidden");
-    list.current?.classList.add("chains__list_hidden");
-    arrow.current?.classList.remove("chains__switcher-arrow_up");
+
+    container.current?.classList.add("chains__popup-container_hidden");
+    // list.current?.classList.add("chains__list_hidden");
+    arrow.current?.classList.remove("chains__indicator-arrow_up");
     overlay.current?.classList.add("chains__overlay_hidden");
   };
 
@@ -53,21 +54,26 @@ function Chains() {
 
   return (
     <div className="chains">
-      <div ref={overlay} onClick={hideChainList} className="chains__overlay chains__overlay_hidden"></div>
-      <button onClick={toggleChainList} className="chains__button">
-        <span className="chains__current">{currentChainText}</span>
-        <div className="chains__switcher">
-          <span ref={arrow} className="chains__switcher-arrow" />
+
+      {/* ПЕРЕКЛЮЧАТЕЛЬ В ШАПКЕ */}
+      <button onClick={toggleChainList} className="chains__switcher">
+        <span className="chains__current-chain">{currentChainText}</span>
+        <div className="chains__indicator">
+          <span ref={arrow} className="chains__indicator-arrow" />
         </div>
       </button>
-      <div ref={container} className="chains__container chains__container_hidden">
 
-        <div ref={list} className="chains__list chains__list_hidden">
-          <div className="chains__alignment">
-            <span className="chains__heading">Select a chain</span>
+      {/* ОВЕРЛЕЙ */}
+      <div ref={overlay} onClick={hideChainList} className="chains__overlay chains__overlay_hidden"></div>
+
+      {/* МОДАЛЬНОЕ ОКНО */}
+      <div ref={container} className="chains__popup-container chains__popup-container_hidden">
+        <div className="chains__popup">
+          <div className="chains__popup-head">
+            <span className="chains__popup-heading">Select a chain</span>
             <button onClick={hideChainList} className="chains__close-button">&#10006;</button>
           </div>
-          <div className="chains__grid">
+          <div className="chains__list">
             {chains.map((chain) => {
               return (
                 <NavLink
@@ -76,22 +82,60 @@ function Chains() {
                   onClick={() => switchChain(chain)}
                   className={chainButtonStyle}
                 >
-                  
                   <div className="chains__chain-logo" style={{ backgroundImage: `url(${chain.logo})` }}></div>
                   <div className="chains__chain-info">
                     <span className="chains__chain-name">{chain.name}<div className="chain__chain-mark"></div></span>
                     <span className="chains__chain-id">{chain.chainId}</span>
                   </div>
-                  
                 </NavLink>
               );
             })}
           </div>
-
         </div>
       </div>
+
+
     </div>
   );
+
+  // return (
+  //   <div className="chains">
+
+  //     <div ref={overlay} onClick={hideChainList} className="chains__overlay chains__overlay_hidden"></div>
+
+  //     <button onClick={toggleChainList} className="chains__button">
+  //       <span className="chains__current">{currentChainText}</span>
+  //       <div className="chains__switcher">
+  //         <span ref={arrow} className="chains__switcher-arrow" />
+  //       </div>
+  //     </button>
+
+  //     <div ref={container} className="chains__container chains__container_hidden">
+  //       <div ref={list} className="chains__list chains__list_hidden">
+  //         <span className="chains__heading">Select a chain</span>
+  //         <button onClick={hideChainList} className="chains__close-button">&#10006;</button>
+  //         <div className="chains__grid">
+  //           {chains.map((chain) => {
+  //             return (
+  //               <NavLink
+  //                 key={chain.chainId}
+  //                 to={`/${chain.chainId}/dashboard`}
+  //                 onClick={() => switchChain(chain)}
+  //                 className={chainButtonStyle}
+  //               >
+  //                 <div className="chains__chain-logo" style={{ backgroundImage: `url(${chain.logo})` }}></div>
+  //                 <div className="chains__chain-info">
+  //                   <span className="chains__chain-name">{chain.name}<div className="chain__chain-mark"></div></span>
+  //                   <span className="chains__chain-id">{chain.chainId}</span>
+  //                 </div>
+  //               </NavLink>
+  //             );
+  //           })}
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 }
 
 export default Chains;

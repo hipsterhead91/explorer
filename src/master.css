@@ -12,11 +12,29 @@ html {
   overflow-y: scroll;
 }
 
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #dcdcdc;
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  border: 3px solid #dcdcdc;
+  background-color: #a0a0a0;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #828282;
+}
+
 .app {
   width: 100%;
 }
 
-.app__container {
+.layout {
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -33,11 +51,30 @@ html {
   background-color: #add8e6;
 }
 
-.app__main {
+.layout__app-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
   padding: 52px 0 52px 0;
+}
+
+.section-limiter {
+  position: relative;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  max-width: calc(998px - 12px);
+  padding: 0 12px 0 12px;
+}
+
+.subheader {
+  position: fixed;
+  z-index: 5;
+  width: 100%;
+  min-height: 24px;
+  background-color: rgba(13, 101, 115, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 .not-found {
@@ -125,7 +162,6 @@ html {
 .header {
   position: fixed;
   top: 0;
-  left: 0;
   z-index: 10;
   width: 100%;
   display: -webkit-box;
@@ -142,12 +178,7 @@ html {
 }
 
 .header__container {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  height: 52px;
-  padding: 0 12px 0 12px;
+  min-height: 52px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[8];
@@ -225,22 +256,7 @@ html {
   grid-column: 7/9;
 }
 
-.chains__overlay {
-  position: fixed;
-  z-index: 15;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(15, 15, 15, 0.5);
-}
-
-.chains__overlay_hidden {
-  display: none;
-  visibility: none;
-}
-
-.chains__button {
+.chains__switcher {
   position: relative;
   z-index: 20;
   -webkit-box-sizing: border-box;
@@ -264,7 +280,7 @@ html {
   transition: linear 0.2s;
 }
 
-.chains__current {
+.chains__current-chain {
   width: calc(100% - 28px);
   padding: 0 6px 2px 6px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -277,7 +293,7 @@ html {
   overflow: hidden;
 }
 
-.chains__switcher {
+.chains__indicator {
   width: 28px;
   height: 28px;
   display: -webkit-box;
@@ -298,7 +314,7 @@ html {
   transition: linear 0.2s;
 }
 
-.chains__switcher-arrow {
+.chains__indicator-arrow {
   position: relative;
   top: -2px;
   left: 1px;
@@ -310,24 +326,20 @@ html {
           transform: rotate(225deg);
 }
 
-.chains__switcher-arrow_up {
+.chains__indicator-arrow_up {
   top: 3px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.chains__container {
-  z-index: 20;
+.chains__overlay {
   position: fixed;
-  top: 76px;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  padding: 0 12px 0 12px;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 15, 15, 0.7);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -341,64 +353,112 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
 }
 
-.chains__container_hidden {
+.chains__overlay_hidden {
   display: none;
+  visibility: none;
 }
 
-.chains__list {
+.chains__popup-container {
+  position: fixed;
+  z-index: 20;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 12px 28px 60px 28px;
-  background-color: #dcdcdc;
-  border-radius: 6px;
-}
-
-.chains__list_hidden {
-  display: none;
-}
-
-.chains__alignment {
-  position: relative;
-  width: 100%;
-  margin: 0 0 12px 0;
+  max-width: calc(998px - 12px);
+  padding: 0 12px 0 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chains__popup-container_hidden {
+  display: none;
+}
+
+.chains__popup {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  max-width: calc(100% - 12px - 12px);
+  padding: 24px 24px 48px 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 6px;
+  background-color: #dcdcdc;
+}
+
+.chains__popup-head {
+  width: 100%;
+  margin: 0 0 16px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.chains__heading {
+.chains__popup-heading {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   color: #464646;
 }
 
 .chains__close-button {
   font-weight: 400;
-  font-size: 32px;
+  font-size: 28px;
+  line-height: 1;
   color: #464646;
-  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   border: none;
+  background-color: transparent;
   outline: none;
   cursor: pointer;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
 }
 
-.chains__grid {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.chains__close-button:hover {
+  color: #282828;
+}
+
+.chains__list {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   border-radius: 6px;
@@ -408,14 +468,14 @@ html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: rgba(250, 250, 250, 0.5);
+  background-color: rgba(130, 130, 130, 0.2);
   border-radius: 6px;
   text-decoration: none;
   cursor: pointer;
@@ -424,15 +484,16 @@ html {
 }
 
 .chains__chain_selected {
-  background-color: #fafafa;
+  background-color: rgba(130, 130, 130, 0.4);
 }
 
 .chains__chain_selected .chain__chain-mark {
   background-color: #ffc83d;
+  border: 1px solid #a0a0a0;
 }
 
 .chains__chain:hover {
-  background-color: #fafafa;
+  background-color: rgba(130, 130, 130, 0.3);
 }
 
 .chains__chain-logo {
@@ -445,6 +506,7 @@ html {
 }
 
 .chains__chain-info {
+  width: calc(100% - 28px - 8px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -455,26 +517,32 @@ html {
 }
 
 .chains__chain-name {
+  width: 100%;
   margin: 0 0 2px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-weight: 600;
   font-size: 14px;
   line-height: 1;
-  color: #464646;
+  color: #282828;
 }
 
 .chains__chain-id {
   font-weight: 400;
   font-size: 12px;
   line-height: 1;
-  color: #646464;
+  color: #464646;
 }
 
 .chain__chain-mark {
-  width: 7px;
-  height: 7px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 8px;
+  height: 8px;
   margin: 0 0 auto 4px;
   border-radius: 50%;
   background-color: transparent;
@@ -497,12 +565,7 @@ html {
 }
 
 .footer__container {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
   min-height: 52px;
-  padding: 0 12px 0 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -533,6 +596,7 @@ html {
 }
 
 .homepage {
+  position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -548,12 +612,22 @@ html {
           align-items: center;
 }
 
+.homepage__subheader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .homepage__container {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  padding: 24px 12px 0 12px;
+  margin-top: calc(24px + 12px);
+  margin-bottom: 52px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -627,26 +701,33 @@ html {
 .chain {
   width: 100%;
   position: relative;
-}
-
-.chain__nav {
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chain__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: rgba(13, 101, 115, 0.6);
 }
 
 .chain__nav-container {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  height: 24px;
-  padding: 0 12px 0 12px;
+  min-height: 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -681,23 +762,10 @@ html {
   border-left: 2px solid rgba(173, 216, 230, 0.7);
 }
 
-.chain__content {
-  width: 100%;
-  padding: 12px 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.dashboard {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 100%;
-  max-width: 998px;
-  padding: 0 12px 0 12px;
+.chain__container {
+  position: relative;
+  margin-top: calc(24px + 12px);
+  margin-bottom: 52px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -710,7 +778,8 @@ html {
           align-items: center;
 }
 
-.dashboard__plates {
+/* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
+.dashboard {
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -721,7 +790,7 @@ html {
 }
 
 /* Следующие две конструкции нужны для того, чтобы стандартная ячейка имела равное соотношение сторон, без использования aspect-ratio: 1/1 и padding-trick'а, ибо они имеют нюансы. Приём взят отсюда: https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3 */
-.dashboard__plates::before {
+.dashboard::before {
   content: '';
   width: 0;
   padding-bottom: 100%;
@@ -731,7 +800,7 @@ html {
   grid-row: 1 / 1;
 }
 
-.dashboard__plates > *:first-child {
+.dashboard > *:first-child {
   -ms-grid-column: 1;
   grid-column: 1 / 1;
   -ms-grid-row: 1;
@@ -1019,13 +1088,12 @@ html {
   color: rgba(230, 0, 50, 0.8);
 }
 
+/* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
 .validators {
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  max-width: 998px;
-  padding: 0 12px 0 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1555,10 +1623,34 @@ html {
 }
 
 .validator {
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(173, 216, 230, 0.6);
+}
+
+.validator__card {
+  position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  padding: 24px 30% 48px 24px;
+  max-width: 800px;
+  padding: 24px 24px 24px 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1567,56 +1659,29 @@ html {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #fafafa;
-  border-radius: 6px;
+  border-radius: 6px 0 6px 6px;
 }
 
 .validator__return-button {
-  position: relative;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  min-width: 80px;
-  padding: 2px 8px 2px 8px;
-  margin: 0 0 24px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  line-height: 1;
-  color: #646464;
-  background-color: rgba(220, 220, 220, 0.8);
+  position: absolute;
+  top: -28px;
+  right: 0;
+  width: 100px;
+  height: 28px;
+  background-color: #464646;
   border: none;
-  border-radius: 4px;
-  outline: none;
+  border-radius: 12px 12px 0 0;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.5px;
+  color: #fafafa;
   cursor: pointer;
   -webkit-transition: linear 0.2s;
   transition: linear 0.2s;
 }
 
-.validator__return-button span {
-  position: relative;
-  bottom: 1px;
-  margin: 0 4px 0 0;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.validator__return-button:hover {
-  color: #464646;
-  background-color: gainsboro;
-}
-
-.validator__card {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.validator__grid {
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -1767,13 +1832,12 @@ html {
   color: #464646;
 }
 
+/* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
 .proposals {
   position: relative;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  max-width: 998px;
-  padding: 0 12px 0 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

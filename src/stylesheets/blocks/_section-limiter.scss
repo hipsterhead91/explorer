@@ -1,0 +1,7 @@
+.section-limiter {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(998px - 12px); // вычитаем ширину кастомного скроллбара
+  padding: 0 12px 0 12px;
+}

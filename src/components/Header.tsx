@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="header__container">
+      <div className="header__container section-limiter">
         <Link to="/" onClick={() => resetChain()} className="header__logo">
           <div className="header__logo-emoji"></div>
           <div className="header__logo-text">

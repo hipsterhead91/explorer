@@ -5,14 +5,22 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
+
+
 function Layout() {
 
   return (
-    <div className="app__container">
+    <div className="layout">
+
+      {/* ШАПКА */}
       <Header />
-      <main className="app__main">
+
+      {/* НЕПОСРЕДСТВЕННО КОНТЕНТ ПРИЛОЖЕНИЯ */}
+      <main className="layout__app-content">
         <Outlet />
       </main>
+
+      {/* ПОДВАЛ */}
       <Footer />
     </div>
   );

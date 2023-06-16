@@ -147,96 +147,93 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div className="dashboard__plates">
 
-        {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
-        <div id="main-plate" className="dashboard__plate">
-          <h1 className="dashboard__heading">{heading}</h1>
-          <span className="dashboard__subheading">{subheading}</span>
-          <p className="dashboard__description">{description}</p>
-        </div>
+      {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
+      <div id="main-plate" className="dashboard__plate">
+        <h1 className="dashboard__heading">{heading}</h1>
+        <span className="dashboard__subheading">{subheading}</span>
+        <p className="dashboard__description">{description}</p>
+      </div>
 
-        {/* ПУЛ СООБЩЕСТВА */}
-        <div id="community-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Community Pool:</span>
-          {communityPoolEl}
-        </div>
+      {/* ПУЛ СООБЩЕСТВА */}
+      <div id="community-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Community Pool:</span>
+        {communityPoolEl}
+      </div>
 
-        {/* ЗАСТЕЙКАНО */}
-        <div id="bonded-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Tokens Bonded:</span>
-          {bondedTokensEl}
-        </div>
+      {/* ЗАСТЕЙКАНО */}
+      <div id="bonded-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Tokens Bonded:</span>
+        {bondedTokensEl}
+      </div>
 
-        {/* ГОЛОСОВАНИЯ */}
-        <div id="proposals-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Active Proposals:</span>
-          {proposalsEl}
-        </div>
+      {/* ГОЛОСОВАНИЯ */}
+      <div id="proposals-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Active Proposals:</span>
+        {proposalsEl}
+      </div>
 
-        {/* ЛОГО */}
-        <div id="logo-plate" className="dashboard__plate">
-          <div className="dashboard__logo" style={{ backgroundImage: `url(${logo})` }}></div>
-        </div>
+      {/* ЛОГО */}
+      <div id="logo-plate" className="dashboard__plate">
+        <div className="dashboard__logo" style={{ backgroundImage: `url(${logo})` }}></div>
+      </div>
 
-        {/* ИНФЛЯЦИЯ */}
-        <div id="inflation-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Inflation:</span>
-          {inflationEl}
-        </div>
+      {/* ИНФЛЯЦИЯ */}
+      <div id="inflation-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Inflation:</span>
+        {inflationEl}
+      </div>
 
-        {/* АНБОНДИНГ */}
-        <div id="unbonding-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Unbonding:</span>
-          {unbondingEl}
-        </div>
+      {/* АНБОНДИНГ */}
+      <div id="unbonding-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Unbonding:</span>
+        {unbondingEl}
+      </div>
 
-        {/* ЦЕНА */}
-        <div id="price-plate" className="dashboard__plate">
-          <span className="dashboard__coingecko-heading">Prices by <a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
-          <div className="dashboard__coingecko-prices">
-            <div className="dashboard__coingecko-price">
-              <span className="dashboard__coingecko-subheading">24h dynamic:</span>
-              {dynamicEl}
-            </div>
-            <div className="dashboard__coingecko-price">
-              <span className="dashboard__coingecko-subheading">current:</span>
-              {currentPriceEl}
-            </div>
-
-            <div className="dashboard__coingecko-price">
-              <span className="dashboard__coingecko-subheading">ath:</span>
-              {highestPriceEl}
-            </div>
-            <div className="dashboard__coingecko-price">
-              <span className="dashboard__coingecko-subheading">atl:</span>
-              {lowestPriceEl}
-            </div>
-            <div className="dashboard__coingecko-price">
-              <span className="dashboard__coingecko-subheading">cap:</span>
-              {marketCapEl}
-            </div>
+      {/* ЦЕНА */}
+      <div id="price-plate" className="dashboard__plate">
+        <span className="dashboard__coingecko-heading">Prices by <a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
+        <div className="dashboard__coingecko-prices">
+          <div className="dashboard__coingecko-price">
+            <span className="dashboard__coingecko-subheading">24h dynamic:</span>
+            {dynamicEl}
+          </div>
+          <div className="dashboard__coingecko-price">
+            <span className="dashboard__coingecko-subheading">current:</span>
+            {currentPriceEl}
+          </div>
+          <div className="dashboard__coingecko-price">
+            <span className="dashboard__coingecko-subheading">ath:</span>
+            {highestPriceEl}
+          </div>
+          <div className="dashboard__coingecko-price">
+            <span className="dashboard__coingecko-subheading">atl:</span>
+            {lowestPriceEl}
+          </div>
+          <div className="dashboard__coingecko-price">
+            <span className="dashboard__coingecko-subheading">cap:</span>
+            {marketCapEl}
           </div>
         </div>
-
-        {/* ССЫЛКИ */}
-        <div id="links-plate" className="dashboard__plate">
-          {linksEl}
-        </div>
-
-        {/* ВАЛИДАТОРЫ */}
-        <div id="validators-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Validators:</span>
-          {validatorsEl}
-        </div>
-
-        {/* ВЫСОТА БЛОКА */}
-        <div id="block-plate" className="dashboard__plate">
-          <span className="dashboard__plate-heading">Block Height:</span>
-          {blockHeightEl}
-        </div>
-
       </div>
+
+      {/* ССЫЛКИ */}
+      <div id="links-plate" className="dashboard__plate">
+        {linksEl}
+      </div>
+
+      {/* ВАЛИДАТОРЫ */}
+      <div id="validators-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Validators:</span>
+        {validatorsEl}
+      </div>
+
+      {/* ВЫСОТА БЛОКА */}
+      <div id="block-plate" className="dashboard__plate">
+        <span className="dashboard__plate-heading">Block Height:</span>
+        {blockHeightEl}
+      </div>
+
     </div>
   )
 }

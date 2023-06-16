@@ -119,6 +119,7 @@
 }
 
 .chains__popup-head {
+  position: relative;
   width: 100%;
   margin: 0 0 16px 0;
   display: flex;
@@ -134,16 +135,14 @@
 }
 
 .chains__close-button {
-  font-weight: 400;
+  position: relative;
+  top: -4px;
   font-size: 28px;
   line-height: 1;
   color: $gray-darker;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   border: none;
   background-color: transparent;
   outline: none;
-
   cursor: pointer;
   transition: linear 0.2s;
 

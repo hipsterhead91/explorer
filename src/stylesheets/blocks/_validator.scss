@@ -2,71 +2,78 @@
   position: fixed;
   top: 0;
   z-index: 5;
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.validator__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: rgba($color-main, 0.6);
-
-
+  backdrop-filter: blur(1px);
 }
 
 .validator__card {
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  max-width: 800px;
-  padding: 24px 24px 24px 24px;
+  max-width: 720px;
+  padding: 60px 36px 60px 36px;
   display: flex;
   flex-direction: column;
   background-color: $white;
-  border-radius: 6px 0 6px 6px;
+  border-radius: 6px;
 }
   
-.validator__return-button {
+.validator__close-button {
   position: absolute;
-  top: -28px;
-  right: 0;
-  width: 100px;
-  height: 28px;
-  background-color: $gray-darker;
+  top: 24px;
+  right: 24px;
+  margin: 0 0 0 auto;
+  font-size: 28px;
+  line-height: 1;
+  color: $gray-darker;
   border: none;
-  border-radius: 12px 12px 0 0;
-  font-weight: 500;
-  font-size: 14px;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.5px;
-  color: $white;
-
+  background-color: transparent;
+  outline: none;
   cursor: pointer;
   transition: linear 0.2s;
 
-
+  &:hover {
+    color: $gray-darkest;
+  }
 }
 
 .validator__grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 68px calc(100% - 68px);
+  grid-template-columns: 68px calc(100% - 68px - 24px);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
 }
 
 .validator__avatar {
+  box-sizing: border-box;
   width: 68px;
   height: 68px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 6px;
+  border: 1px solid $gray-lightest;
 }
 
 .validator__heading {
+  width: 100%;
   margin: auto 0 auto 0;
   display: flex;
   flex-direction: column;
+  border-radius: 6px;
 }
 
 .validator__moniker {
@@ -136,9 +143,10 @@
 .validator__data {
   width: 100%;
   display: grid;
-  grid-template-columns: 140px calc(100% - 140px);
+  grid-template-columns: 140px calc(100% - 140px - 12px);
   grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  grid-row-gap: 6px;
+  border-radius: 6px;
 }
 
 .validator__data-heading {

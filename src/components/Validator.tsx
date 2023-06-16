@@ -91,8 +91,8 @@ function Validator() {
     }
 
     rankText = (currentValidator.rank)
-      ? "#" + currentValidator.rank.toString().padStart(3, '0')
-      : "#000";
+      ? currentValidator.rank.toString().padStart(3, '0')
+      : "000";
 
     if (currentChain) {
       tokensText = tweakTokens(currentValidator.tokens, currentChain);
@@ -135,7 +135,7 @@ function Validator() {
     jailStyle = "validator__status validator__status_hidden";
     highCommissionText = "";
     highCommissionStyle = "validator__status validator__status_hidden";
-    rankText = "#000";
+    rankText = "000";
     tokensText = "—";
     symbolText = "";
     votingPowerText = "—";
@@ -148,16 +148,18 @@ function Validator() {
 
   return (
     <div className="validator">
-      <div className="validator__card">
 
-        <button onClick={() => returnToValidators()} className="validator__return-button">Close</button>
+      <div onClick={() => returnToValidators()} className="validator__overlay"></div>
+
+      <div className="validator__card">
+        <button onClick={() => returnToValidators()} className="validator__close-button">&#10006;</button>
 
         <div className="validator__grid">
 
-          {/* СВЕРХУ СЛЕВА */}
+
           <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
 
-          {/* СВЕРХУ СПРАВА */}
+
           <div className="validator__heading">
             <h1 className="validator__moniker">{monikerText}</h1>
             <p className="validator__valoper">{valoperText}</p>
@@ -169,10 +171,10 @@ function Validator() {
             </div>
           </div>
 
-          {/* СНИЗУ СЛЕВА */}
+
           <span className="validator__rank">{rankText}</span>
 
-          {/* СНИЗУ СПРАВА */}
+
           <div className="validator__data">
             <p className="validator__data-heading">Tokens Bonded:</p>
             <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>
@@ -188,7 +190,6 @@ function Validator() {
             <span className="validator__data-text">{detailsText}</span>
           </div>
         </div>
-
       </div>
     </div>
   )

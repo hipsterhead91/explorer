@@ -411,6 +411,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .chains__popup-head {
+  position: relative;
   width: 100%;
   margin: 0 0 16px 0;
   display: -webkit-box;
@@ -435,12 +436,11 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .chains__close-button {
-  font-weight: 400;
+  position: relative;
+  top: -4px;
   font-size: 28px;
   line-height: 1;
   color: #464646;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   border: none;
   background-color: transparent;
   outline: none;
@@ -1626,7 +1626,7 @@ html::-webkit-scrollbar-thumb:hover {
   position: fixed;
   top: 0;
   z-index: 5;
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1641,7 +1641,15 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.validator__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: rgba(173, 216, 230, 0.6);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
 }
 
 .validator__card {
@@ -1649,8 +1657,8 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
-  max-width: 800px;
-  padding: 24px 24px 24px 24px;
+  max-width: 720px;
+  padding: 60px 36px 60px 36px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1659,48 +1667,53 @@ html::-webkit-scrollbar-thumb:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #fafafa;
-  border-radius: 6px 0 6px 6px;
+  border-radius: 6px;
 }
 
-.validator__return-button {
+.validator__close-button {
   position: absolute;
-  top: -28px;
-  right: 0;
-  width: 100px;
-  height: 28px;
-  background-color: #464646;
+  top: 24px;
+  right: 24px;
+  margin: 0 0 0 auto;
+  font-size: 28px;
+  line-height: 1;
+  color: #464646;
   border: none;
-  border-radius: 12px 12px 0 0;
-  font-weight: 500;
-  font-size: 14px;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  letter-spacing: 0.5px;
-  color: #fafafa;
+  background-color: transparent;
+  outline: none;
   cursor: pointer;
   -webkit-transition: linear 0.2s;
   transition: linear 0.2s;
+}
+
+.validator__close-button:hover {
+  color: #282828;
 }
 
 .validator__grid {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 68px calc(100% - 68px);
-      grid-template-columns: 68px calc(100% - 68px);
+  -ms-grid-columns: 68px calc(100% - 68px - 24px);
+      grid-template-columns: 68px calc(100% - 68px - 24px);
   grid-column-gap: 24px;
   grid-row-gap: 24px;
 }
 
 .validator__avatar {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 68px;
   height: 68px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   border-radius: 6px;
+  border: 1px solid #dcdcdc;
 }
 
 .validator__heading {
+  width: 100%;
   margin: auto 0 auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1709,6 +1722,7 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  border-radius: 6px;
 }
 
 .validator__moniker {
@@ -1785,10 +1799,11 @@ html::-webkit-scrollbar-thumb:hover {
   width: 100%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 140px calc(100% - 140px);
-      grid-template-columns: 140px calc(100% - 140px);
+  -ms-grid-columns: 140px calc(100% - 140px - 12px);
+      grid-template-columns: 140px calc(100% - 140px - 12px);
   grid-column-gap: 12px;
-  grid-row-gap: 12px;
+  grid-row-gap: 6px;
+  border-radius: 6px;
 }
 
 .validator__data-heading {

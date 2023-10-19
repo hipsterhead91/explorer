@@ -142,10 +142,12 @@
 }
 
 .dashboard__refresh-icon {
-  width: 14px;
-  height: 14px;
-  margin: 2px 1px 0 5px;
-  background-image: url("/public/images/refresh-static-gray.svg");
+  width: 13px;
+  height: 13px;
+  margin: -2px 0 0 4px;
+  // background-image: url("/public/images/refresh-static-gray.svg");
+  background-image: url("/public/images/refresh-animated-black.gif");
+
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -156,6 +158,10 @@
   font-weight: 600;
   font-size: 16px;
   color: $gray-darker;
+
+  &_refreshing {
+    display: flex;
+  }
 
   span {
     margin: 0 0 0 4px;

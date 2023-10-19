@@ -140,7 +140,10 @@ function Dashboard() {
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   const blockHeightEl = (blockHeight)
-    ? <p className="dashboard__plate-data">{Number(blockHeight).toLocaleString("en")}</p>
+    ? <p className="dashboard__plate-data dashboard__plate-data_refreshing">
+      {Number(blockHeight).toLocaleString("en")}
+      <div className="dashboard__refresh-icon"></div>
+      </p>
     : errorEl;
 
   return (
@@ -228,7 +231,7 @@ function Dashboard() {
 
       {/* ВЫСОТА БЛОКА */}
       <div id="block-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Block Height<div className="dashboard__refresh-icon"></div>:</span>
+        <span className="dashboard__plate-heading">Block Height:</span>
         {blockHeightEl}
       </div>
 

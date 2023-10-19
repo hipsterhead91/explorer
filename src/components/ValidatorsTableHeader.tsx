@@ -121,13 +121,10 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   return (
     <div className="validators-th">
 
-      {/* RANK */}
-      <div></div>
-
       {/* VALIDATOR */}
       <div id="th-validator" className="validators-th__cell">
         <div onClick={() => sortByMoniker()} id="srt-validator" className="validators-th__sort-button">
-          <span className="validators-th__column-name">Validator</span>
+          <span className="validators-th__column-name">Moniker</span>
           <div ref={validatorSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>

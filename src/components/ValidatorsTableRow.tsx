@@ -51,7 +51,7 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
   }
 
   votingPowerText = (validator.voting_power && currentChain)
-    ? tweakVotingPower(validator.voting_power, currentChain) + "%"
+    ? "[" + tweakVotingPower(validator.voting_power, currentChain) + "%" + "]"
     : "";
 
   commissionText = tweakCommission(validator.commission.commission_rates.rate) + "%";
@@ -59,14 +59,11 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
   return (
     <Link to={`/${currentChain?.chainId}/validators/${validator.operator_address}`} className="validators-tr">
 
-      {/* РАНГ */}
-      <div className="validators-tr__number">
-        <span className={rankStyle}>{rankText}</span>
-      </div>
-
       {/* ВАЛИДАТОР */}
       <div className="validators-tr__validator">
-        <div style={{ backgroundImage: `url("${avatarUrl}")` }} className="validators-tr__avatar"></div>
+        <div style={{ backgroundImage: `url("${avatarUrl}")` }} className="validators-tr__avatar">
+          <div className={rankStyle}>{rankText}</div>
+        </div>
         <span className="validators-tr__moniker">{monikerText}</span>
       </div>
 

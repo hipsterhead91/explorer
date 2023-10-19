@@ -38,6 +38,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   }
 
   // СБРОС СОРТИРОВКИ ПРИ СМЕНЕ СЕТИ
+  /* По какой-то причине я создал два юзэффекта с разными условиями для одного и того же действия. Надо попробовать объединить их в один. */
   useEffect(() => {
     resetIconStyles();
   }, [currentChain])

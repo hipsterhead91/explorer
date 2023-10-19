@@ -8,7 +8,6 @@ import ProposalsTableRow from "./ProposalsTableRow";
 // Типизация
 import IProposal from "../models/IProposal";
 
-
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
@@ -62,8 +61,8 @@ function Proposals() {
       behavior: "smooth"
     });
   }
-    
-  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ И КНОПКИ СКРОЛЛА
+
+  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ И КНОПКИ СКРОЛЛА
   useEffect(() => {
     if (isProposalsHidden) {
       proposalsTable.current?.classList.add("proposals__table_hidden");
@@ -76,9 +75,9 @@ function Proposals() {
 
   return (
     <div className="proposals">
+      <Outlet context={setIsProposalsHidden} />
       <div className="proposals__wrapper">
         <div className="proposals__disclaimer"><span>This section is work in progress.</span> Proposal descriptions are in markdown format, and unfortunately, each author styles it to his taste, without unified rules, which means that I not only need random library to convert it from markdown to HTML, but also have to write some complicated logic to handle every author's scenario. This is why now proposals are presented with pretty ugly unformatted descriptions - sorry for it.</div>
-        <Outlet context={setIsProposalsHidden} />
         <div ref={proposalsTable} className="proposals__table">
           <div className="proposals__table-header">
             <span id="column-id" className="proposals__column-name"></span>
@@ -103,8 +102,7 @@ function Proposals() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default Proposals;
-

@@ -4,7 +4,7 @@ function Homepage() {
     <section className="homepage">
 
       {/* САБХЕДЕР */}
-      <div className="homepage__subheader subheader"></div>
+      {/* <div className="homepage__subheader subheader"></div> */}
 
       <div className="homepage__container section-limiter">
 

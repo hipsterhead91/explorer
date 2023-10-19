@@ -71,7 +71,7 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
         </div>
       </div>
     </Link>
-  )
+  );
 }
 
 export default ProposalsTableRow;

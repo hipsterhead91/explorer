@@ -2,7 +2,7 @@
 .chains {
   position: relative;
   margin: auto 0 auto 0;
-  grid-column: 7/9;
+  grid-column: 5/7;
 }
 
 .chains__switcher {
@@ -13,8 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid $color-accent;
-  border-radius: 6px;
+  border: 3px solid $color-accent;
+  border-radius: 8px;
   background-color: $color-second;
   outline: none;
   cursor: pointer;
@@ -26,7 +26,7 @@
   padding: 0 6px 2px 6px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $white;
   text-align: center;
   white-space: nowrap;
@@ -35,8 +35,8 @@
 }
 
 .chains__indicator {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;

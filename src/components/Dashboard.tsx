@@ -66,7 +66,6 @@ function Dashboard() {
     : errorEl;
 
   // РЕНДЕР ГОЛОСОВАНИЙ
-
   const proposalsText = (activeProposals && activeProposals.length > 0)
     ? activeProposals.length + " prop."
     : "none";
@@ -136,13 +135,12 @@ function Dashboard() {
   const activeSetLength = (validators) ? filterActive(validators).length : 0;
   const wholeSetLength = (validators) ? validators.length : 0;
   const validatorsEl = (validators)
-    ? <span className="dashboard__plate-data">{activeSetLength + " / " + wholeSetLength}</span>
+    ? <p className="dashboard__plate-data">{activeSetLength}<span>{"/ " + wholeSetLength}</span></p>
     : errorEl;
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   const blockHeightEl = (blockHeight)
-    ? <p className="dashboard__plate-data">
-      {Number(blockHeight).toLocaleString("en")}</p>
+    ? <p className="dashboard__plate-data">{Number(blockHeight).toLocaleString("en")}</p>
     : errorEl;
 
   return (
@@ -230,12 +228,12 @@ function Dashboard() {
 
       {/* ВЫСОТА БЛОКА */}
       <div id="block-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Block Height:</span>
+        <span className="dashboard__plate-heading">Block Height<div className="dashboard__refresh-icon"></div>:</span>
         {blockHeightEl}
       </div>
 
     </div>
-  )
+  );
 }
 
 export default Dashboard;

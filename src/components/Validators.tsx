@@ -122,7 +122,7 @@ function Validators() {
       behavior: "smooth"
     });
   }
-    
+
   // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ И КНОПКИ СКРОЛЛА
   useEffect(() => {
     if (isValidatorsHidden) {
@@ -166,9 +166,7 @@ function Validators() {
         </button>
       </div>
     </div>
-  )
+  );
 }
-
-
 
 export default Validators;

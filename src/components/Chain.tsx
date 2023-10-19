@@ -145,7 +145,7 @@ function Chain(props: IChainProps) {
   }, [currentChain])
 
   // ФОРМАТИРОВАНИЕ ВАЛИДАТОРОВ
-  /* Почему такие сложные махинации? Потому, что у неактивного валидатора стейк может быть больше, чем у активного, и если сортировать их по стейку сразу, всех вместе, то может получиться так, что активы и неактивы будут чередоваться, а такого быть не должно - сначала обязательно должны идти активы, и только потом неактивы, даже с большими стейками. */
+  /* Почему такие сложные махинации? Потому, что у неактивного валидатора стейк может быть больше, чем у активного, и если сортировать их по стейку сразу, всех вместе, то может получиться так, что активы и неактивы будут чередоваться, а такого быть не должно - сначала обязательно должны идти активы, и только потом неактивы, даже если у них стейк больше. */
   useEffect(() => {
     if (rawValidators && totalBonded && avatarsData) {
       let active = filterActive(rawValidators);
@@ -180,19 +180,19 @@ function Chain(props: IChainProps) {
     <section className="chain">
 
       {/* САБХЕДЕР (НАВИГАЦИЯ) */}
-        <nav className="chain__nav subheader">
-          <div className="chain__nav-container section-limiter">
-            <NavLink to="dashboard" className={linkStyle}>Dashboard</NavLink>
-            <div className="chain__nav-divider"></div>
-            <NavLink to="validators" className={linkStyle}>Validators</NavLink>
-            <div className="chain__nav-divider"></div>
-            <NavLink to="proposals" className={linkStyle}>Proposals</NavLink>
-          </div>
-        </nav>
+      <nav className="chain__nav subheader">
+        <div className="chain__nav-container section-limiter">
+          <NavLink to="dashboard" className={linkStyle}>Dashboard</NavLink>
+          <div className="chain__nav-divider"></div>
+          <NavLink to="validators" className={linkStyle}>Validators</NavLink>
+          <div className="chain__nav-divider"></div>
+          <NavLink to="proposals" className={linkStyle}>Proposals</NavLink>
+        </div>
+      </nav>
 
       {/* НЕПОСРЕДСТВЕННО КОНТЕНТ */}
       <div className="chain__container section-limiter">
-          <Outlet />
+        <Outlet />
       </div>
     </section>
   );

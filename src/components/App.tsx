@@ -34,7 +34,7 @@ function App() {
   const coinsData = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 60000 }).data;
   const [coins, setCoins] = useState<ICoin[] | null>(null);
 
-  /* Поскольку coinsData может быть undefined в случае, если API не сработает, его нельзя напрямую передавать пропсом в элемент Chain. Точнее, наверно можно, если в интерфейса IChainProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
+  /* Поскольку coinsData может быть undefined в случае, если API не сработает, его нельзя напрямую передавать пропсом в элемент Chain. Точнее, наверно можно, если в интерфейсе IChainProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
   useEffect(() => {
     if (coinsData) setCoins(coinsData);
   }, [coinsData])

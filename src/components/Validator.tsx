@@ -156,9 +156,7 @@ function Validator() {
 
         <div className="validator__grid">
 
-
           <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
-
 
           <div className="validator__heading">
             <h1 className="validator__moniker">{monikerText}</h1>
@@ -171,9 +169,7 @@ function Validator() {
             </div>
           </div>
 
-
           <span className="validator__rank">{rankText}</span>
-
 
           <div className="validator__data">
             <p className="validator__data-heading">Tokens Bonded:</p>
@@ -192,7 +188,7 @@ function Validator() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Validator;

@@ -15,7 +15,7 @@
 
 // Миксуется с section-limiter, который ограничивает ширину секций
 .homepage__container {
-  margin-top: calc(24px + 12px); // высота сабхердера + отступ от него
+  margin-top: calc(28px + 24px); // высота сабхердера + отступ от него
   margin-bottom: 52px;
   display: flex;
   flex-direction: column;
@@ -37,13 +37,13 @@
 .homepage__heading {
   margin: 0 0 10px 0;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 28px;
   color: $gray-darker;
 }
 
 .homepage__paragraph {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darker;
 
   &:not(:last-child) {
@@ -73,6 +73,6 @@
   box-sizing: border-box;
   margin: 0 0 10px 18px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darker;
 }

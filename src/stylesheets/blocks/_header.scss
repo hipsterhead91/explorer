@@ -11,10 +11,10 @@
 
 // Миксуется с section-limiter, который ограничивает ширину секций
 .header__container {
-  min-height: 52px;
+  min-height: 58px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 12px;
 }
 
 .header__logo {
@@ -27,9 +27,9 @@
 }
 
 .header__logo-emoji {
-  width: 38px;
-  height: 38px;
-  margin: 0 4px 0 0;
+  width: 40px;
+  height: 40px;
+  margin: 2px 4px 0 0;
   background-image: url("/public/images/emoji.png");
   background-size: contain;
   background-position: center;
@@ -42,9 +42,9 @@
 }
 
 .header__logo-top {
-  margin: 0 0 3px 0;
+  margin: 0 0 2px 0;
   font-weight: 900;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 100%;
   color: $white;
 
@@ -57,7 +57,7 @@
 .header__logo-bottom {
   margin: 0 0 0 1px;
   font-weight: 200;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 100%;
   letter-spacing: 0.2px;
   color: $gray-lightest;

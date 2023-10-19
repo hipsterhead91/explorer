@@ -8,6 +8,8 @@ import Chains from "./Chains";
 import { useAppDispatch } from "../store/hooks";
 import { setCurrentChain } from "../store/reducers/currentChainSlice";
 
+
+
 function Header() {
 
   const dispatch = useAppDispatch();

@@ -12,12 +12,12 @@
   min-height: 52px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .footer__info {
   font-weight: 200;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 140%;
   color: $gray-light;
 

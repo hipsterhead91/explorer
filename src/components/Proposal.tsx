@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 
 // Компоненты
-import VotesChart from "./VotesChart";
+// import VotesChart from "./VotesChart";
 
 // Типизация
 import IProposal from "../models/IProposal";
@@ -28,7 +28,7 @@ function Proposal() {
 
   // ПРИ ОТКРЫТИИ КОМПОНЕНТА СКРЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ
   useEffect(() => {
-    setIsProposalsHidden(true);
+    // setIsProposalsHidden(true);
   }, [])
 
   useEffect(() => {
@@ -53,23 +53,23 @@ function Proposal() {
 
   if (currentProposal) {
 
-    idText = "#" + currentProposal.proposal_id;
-    titleText = currentProposal.content.title;
+    idText = "[" + "#" + currentProposal.proposal_id + "]";
+    titleText = idText + " " + currentProposal.content.title;
     typeText = tweakProposalType(currentProposal.content['@type']);
     statusText = tweakProposalStatus(currentProposal.status);
 
     if (currentProposal.status === "PROPOSAL_STATUS_DEPOSIT_PERIOD") {
-      statusStyle = "proposal-tr__status proposal-tr__status_neutral"
+      statusStyle = "proposal__status proposal__status_neutral"
     } else if (currentProposal.status === "PROPOSAL_STATUS_VOTING_PERIOD") {
-      statusStyle = "proposal-tr__status proposal-tr__status_neutral"
+      statusStyle = "proposal__status proposal__status_neutral"
     } else if (currentProposal.status === "PROPOSAL_STATUS_PASSED") {
-      statusStyle = "proposal-tr__status proposal-tr__status_good"
+      statusStyle = "proposal__status proposal__status_good"
     } else if (currentProposal.status === "PROPOSAL_STATUS_REJECTED") {
-      statusStyle = "proposal-tr__status proposal-tr__status_bad"
+      statusStyle = "proposal__status proposal__status_bad"
     } else if (currentProposal.status === "PROPOSAL_STATUS_FAILED") {
-      statusStyle = "proposal-tr__status proposal-tr__status_bad"
+      statusStyle = "proposal__status proposal__status_bad"
     } else {
-      statusStyle = "proposal-tr__status proposal-tr__status_bad"
+      statusStyle = "proposal__status proposal__status_bad"
     }
 
     submitTimeText = tweakProposalPeriod(currentProposal.submit_time);
@@ -96,35 +96,37 @@ function Proposal() {
 
   return (
     <div className="proposal">
-      <button onClick={() => returnToProposals()} className="proposal__return-button"><span>&#8249;</span> Return</button>
+
+      <div onClick={() => returnToProposals()} className="proposal__overlay"></div>
+
       <div className="proposal__card">
-        <div className="proposal__heading">
-          <h1 className="proposal__title">{titleText}</h1>
-          <span className="proposal__id">({idText})</span>
-        </div>
-        <div className="proposal__alignment">
-          <div className="proposal__text__info">
-            <p className="proposal__data"><span>Type: </span>{typeText}</p>
-            <p className="proposal__status">Status: <span>{statusText}</span></p>
-            <p className="proposal__data"><span>Submit time: </span>{submitTimeText}</p>
-            <p className="proposal__data"><span>Deposit end time: </span>{depositEndText}</p>
-            <p className="proposal__data"><span>Deposit: </span>{`${depositText} ${symbolText}`}</p>
-            <p className="proposal__data"><span>Voting start time: </span>{votingStartText}</p>
-            <p className="proposal__data"><span>Voting end time: </span>{votingEndText}</p>
-          </div>
-          <div className="proposal__votes">
-            {currentProposal && <VotesChart votes={currentProposal.final_tally_result} />}
-          </div>
-        </div>
+        <button onClick={() => returnToProposals()} className="proposal__close-button">&#10006;</button>
+        <h1 className="proposal__title">{titleText}</h1>
+        <div className="proposal__info">
 
+          {/* <div className="proposal__alignment">
+            <div className="proposal__main-info">
+              <p className="proposal__data-heading">Type: <span className="proposal__data">{typeText}</span></p>
+              <p className="proposal__data-heading">Status: <span className={statusStyle}>{statusText}</span></p>
+              <p className="proposal__data-heading">Submit time: <span className="proposal__data">{submitTimeText}</span></p>
+              <p className="proposal__data-heading">Deposit end time: <span className="proposal__data">{depositEndText}</span></p>
+              <p className="proposal__data-heading">Deposit: <span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
+              <p className="proposal__data-heading">Voting start time: <span className="proposal__data">{votingStartText}</span></p>
+              <p className="proposal__data-heading">Voting end time: <span className="proposal__data">{votingEndText}</span></p>
+            </div>
+            <div className="proposal__votes">
+              {currentProposal && <VotesChart votes={currentProposal.final_tally_result} />}
+            </div>
+          </div>
 
-        <div className="proposal__description">
-          <span className="proposal__description-heading">Description:</span>
-          <p className="proposal__description-text">{descriptionText}</p>
+          <div className="proposal__description">
+            <span className="proposal__description-heading">Description:</span>
+            <p className="proposal__description-text">{descriptionText}</p>
+          </div> */}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Proposal;

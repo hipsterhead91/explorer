@@ -10,11 +10,11 @@ const evmosMainnet: IChain = {
   denom: "aevmos",
   decimals: 18,
   api: [
-    "https://evmos-lcd.stakely.io",
     "https://api.evmos.nodestake.top",
     "https://api.evmos.silknodes.io",
     "https://evmos-rest.publicnode.com",
     "https://rest.bd.evmos.org:1317",
+    "https://evmos-lcd.stakely.io",
   ],
   description: "A Cosmos SDK-based IBC & Ethereum Virtual Machine-compatible blockchain.",
   logo: "/logos/evmos.png",

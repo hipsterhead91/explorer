@@ -77,11 +77,10 @@ function Proposals() {
     <div className="proposals">
       <Outlet context={setIsProposalsHidden} />
       <div className="proposals__wrapper">
-        <div className="proposals__disclaimer"><span>This section is work in progress.</span> Proposal descriptions are in markdown format, and unfortunately, each author styles it to his taste, without unified rules, which means that I not only need random library to convert it from markdown to HTML, but also have to write some complicated logic to handle every author's scenario. This is why now proposals are presented with pretty ugly unformatted descriptions - sorry for it.</div>
+        <div className="proposals__disclaimer"><span>This section is work in progress.</span> Some elements may not be displayed correctly.</div>
         <div ref={proposalsTable} className="proposals__table">
           <div className="proposals__table-header">
-            <span id="column-id" className="proposals__column-name"></span>
-            <span id="column-title" className="proposals__column-name">Title</span>
+            <span id="column-title" className="proposals__column-name">Proposal</span>
             <span id="column-status" className="proposals__column-name">Status</span>
             <span id="column-type" className="proposals__column-name">Type</span>
             <span id="column-voting-end" className="proposals__column-name">Voting End</span>

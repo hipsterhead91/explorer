@@ -7,8 +7,8 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-column-gap: 8px;
-  background-color: rgba($color-second, 0.6);
-  border-radius: 12px 12px 4px 4px;
+  background-color: rgba($color-second, 0.7);
+  border-radius: 8px 8px 4px 4px;
 }
 
 .validators-th__cell {
@@ -76,8 +76,8 @@
         border-top: 2px solid $color-main;
       }
       &:last-child {
-        border-right: 2px solid $color-accent;
-        border-bottom: 2px solid $color-accent;
+        border-right: 2px solid $white;
+        border-bottom: 2px solid $white;
       }
     }
   }
@@ -85,8 +85,8 @@
   &_dsc {
     span {
       &:first-child {
-        border-left: 2px solid $color-accent;
-        border-top: 2px solid $color-accent;
+        border-left: 2px solid $white;
+        border-top: 2px solid $white;
       }
       &:last-child {
         border-right: 2px solid $color-main;

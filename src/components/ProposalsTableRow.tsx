@@ -44,13 +44,13 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
     <Link to={`/${currentChain?.chainId}/proposals/${proposal.proposal_id}`} className="proposals-tr">
 
       {/* ID */}
-      <div className="proposals-tr__cell">
+      {/* <div className="proposals-tr__cell">
         <span className="proposals-tr__id">{idText}</span>
-      </div>
+      </div> */}
 
       {/* TITLE */}
       <div className="proposals-tr__cell">
-        <span className="proposals-tr__title">{titleText}</span>
+        <span className="proposals-tr__title"><span className="proposals-tr__id">{idText}</span>{titleText}</span>
       </div>
 
       {/* STATUS */}

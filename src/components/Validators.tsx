@@ -144,7 +144,7 @@ function Validators() {
             <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
           </div>
           <div className="validators__search">
-            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="Filter by name"></input>
+            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="search by moniker"></input>
             <button onClick={clearFilter} className="validators__search-button">Clear</button>
           </div>
         </div>

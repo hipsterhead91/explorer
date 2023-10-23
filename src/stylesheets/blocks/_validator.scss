@@ -23,19 +23,19 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 720px;
-  padding: 60px 36px 60px 36px;
+  padding: 60px 40px 60px 40px;
   display: flex;
   flex-direction: column;
   background-color: $white;
-  border-radius: 6px;
+  border-radius: 16px;
 }
   
 .validator__close-button {
   position: absolute;
   top: 24px;
   right: 24px;
-  margin: 0 0 0 auto;
-  font-size: 28px;
+  margin: 0 12px 0 auto;
+  font-size: 36px;
   line-height: 1;
   color: $gray-darker;
   border: none;
@@ -52,20 +52,35 @@
 .validator__grid {
   width: 100%;
   display: grid;
-  grid-template-columns: 68px calc(100% - 68px - 24px);
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
+  grid-template-columns: 74px calc(100% - 74px - 30px);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }
 
 .validator__avatar {
   box-sizing: border-box;
-  width: 68px;
-  height: 68px;
+  width: 74px;
+  height: 74px;
+  margin: 2px 0 0 0;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  border-radius: 6px;
-  border: 1px solid $gray-lightest;
+  border-radius: 8px;
+}
+
+.validator__main-info {
+  display: flex;
+}
+
+.validator__rank {
+  box-sizing: border-box;
+  width: min-content;
+  margin: 0 4px 0 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  color: $gray-dark;
 }
 
 .validator__heading {
@@ -77,17 +92,17 @@
 }
 
 .validator__moniker {
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1;
   color: $gray-darker;
 }
 
 .validator__valoper {
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
   color: $gray-darker;
 }
@@ -100,12 +115,12 @@
 
 .validator__status {
   box-sizing: border-box;
-  padding: 2px 4px 2px 4px;
+  padding: 3px 6px 3px 6px;
   margin: 0 4px 0 0;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1;
-  border-radius: 2px;
+  border-radius: 4px;
 
   &_good {
     color: rgba($color-second, 0.7);
@@ -132,45 +147,39 @@
   } 
 }
 
-.validator__rank {
-  width: 100%;
-  font-weight: 400;
-  font-size: 14px;
-  text-align: center;
-  color: $gray-light;
-}
-
 .validator__data {
   width: 100%;
   display: grid;
   grid-template-columns: 140px calc(100% - 140px - 12px);
   grid-column-gap: 12px;
-  grid-row-gap: 6px;
+  grid-row-gap: 10px;
   border-radius: 6px;
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
 
 .validator__data-heading {
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darker;
 }
 
 .validator__data-text {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darker;
 }
 
 .validator__denom {
   margin: 0 0 0 4px;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 12px;
   color: $gray-darker;
 }
 
 .validator__commission-value {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darker;
 
   &_high {
@@ -180,7 +189,7 @@
 
 .validator__data-link {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $color-second;
   transition: linear 0.2s;
 

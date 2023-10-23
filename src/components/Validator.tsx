@@ -91,7 +91,7 @@ function Validator() {
     }
 
     rankText = (currentValidator.rank)
-      ? currentValidator.rank.toString().padStart(3, '0')
+      ? "#" + currentValidator.rank.toString().padStart(3, '0')
       : "000";
 
     if (currentChain) {
@@ -135,7 +135,7 @@ function Validator() {
     jailStyle = "validator__status validator__status_hidden";
     highCommissionText = "";
     highCommissionStyle = "validator__status validator__status_hidden";
-    rankText = "000";
+    rankText = "#000";
     tokensText = "—";
     symbolText = "";
     votingPowerText = "—";
@@ -159,7 +159,10 @@ function Validator() {
           <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
 
           <div className="validator__heading">
-            <h1 className="validator__moniker">{monikerText}</h1>
+            <div className="validator__main-info">
+              <span className="validator__rank">{rankText}</span>
+              <h1 className="validator__moniker">{monikerText}</h1>
+            </div>
             <p className="validator__valoper">{valoperText}</p>
             <div className="validator__statuses">
               <span className={activityStyle}>{activityText}</span>
@@ -168,8 +171,6 @@ function Validator() {
               <span className={highCommissionStyle}>{highCommissionText}</span>
             </div>
           </div>
-
-          <span className="validator__rank">{rankText}</span>
 
           <div className="validator__data">
             <p className="validator__data-heading">Tokens Bonded:</p>

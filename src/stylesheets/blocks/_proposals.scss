@@ -25,7 +25,7 @@
   padding: 8px 12px 8px 12px;
   margin: 0 0 12px 0;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: $gray-darkest;
   background-color: rgba($color-second, 0.4);
   border-radius: 6px;
@@ -47,13 +47,14 @@
 .proposals__table-header {
   box-sizing: border-box;
   width: 100%;
-  min-height: 44px;
-  padding: 4px 24px 4px 12px;
+  min-height: 60px;
+  padding: 8px 40px 8px 40px;
+  margin: 0 0 2px 0;
   display: grid;
-  grid-template-columns: 32px 4fr 1fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr 1fr;
   grid-column-gap: 8px;
   background-color: rgba($color-second, 0.6);
-  border-radius: 6px 6px 0 0;
+  border-radius: 8px 8px 4px 4px;
 }
 
 .proposals__column-name {
@@ -62,7 +63,7 @@
   flex-direction: column;
   justify-content: center;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   color: $color-main;
 }
 
@@ -93,8 +94,8 @@
 
 .proposals__scroll-buttons {
   position: fixed;
-  bottom: 104px;
-  right: calc(((100% - 998px) / 2) - 36px);
+  top: 69%;
+  right: calc(((100% - 998px) / 2) - 28px);
   width: 40px;
   display: flex;
   flex-direction: column;
@@ -106,8 +107,8 @@
 }
 
 .proposals__scroll-button {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,12 +120,12 @@
   cursor: pointer;
 
   &_top {
-    border-radius: 6px 6px 0 0;
-    border-bottom: 2px solid $color-main;
+    border-radius: 8px 8px 0 0;
+    margin: 0 0 3px 0;
   }
 
   &_bottom {
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 8px 8px;
   }
 
   &:hover {
@@ -134,10 +135,10 @@
 
 .proposals__scroll-arrow {
   position: relative;
-  width: 6px;
-  height: 6px;
-  border-top: 3px solid $color-main;
-  border-left: 3px solid $color-main;
+  width: 8px;
+  height: 8px;
+  border-top: 4px solid $color-main;
+  border-left: 4px solid $color-main;
   transform: rotate(45deg);
 
   &_top {

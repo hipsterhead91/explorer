@@ -90,13 +90,12 @@
 .chains__popup-container {
   position: fixed;
   z-index: 20;
-  top: 50%;
+  top: 112px;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, 0);
   box-sizing: border-box;
   width: 100%;
   max-width: calc(998px - 12px); // вычитаем ширину кастомного скроллбара
-  padding: 0 12px 0 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,18 +109,18 @@
   box-sizing: border-box;
   width: 100%;
   max-width: calc(100% - 12px - 12px); 
-  padding: 24px 24px 48px 24px;
+  padding: 24px 40px 60px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 6px;
-  background-color: $gray-lightest;
+  border-radius: 16px;
+  background-color: $white;
 }
 
 .chains__popup-head {
   position: relative;
   width: 100%;
-  margin: 0 0 16px 0;
+  margin: 0 0 24px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -130,14 +129,13 @@
 
 .chains__popup-heading {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 24px;
   color: $gray-darker;
 }
 
 .chains__close-button {
   position: relative;
-  top: -4px;
-  font-size: 28px;
+  font-size: 36px;
   line-height: 1;
   color: $gray-darker;
   border: none;
@@ -154,9 +152,8 @@
 .chains__list {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12px;
   border-radius: 6px;
 }
 
@@ -166,37 +163,35 @@
   padding: 10px 10px 10px 16px;
   display: flex;
   align-items: center;
-  background-color: rgba($gray, 0.2);
-  border-radius: 6px;
+  background-color: rgba($gray-light, 0.2);
+  border-radius: 8px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   text-decoration: none;
   cursor: pointer;
   transition: linear 0.2s;
 
   &_selected {
-    background-color: rgba($gray, 0.4);
-
-    .chain__chain-mark {
-      background-color: $color-accent;
-      border: 1px solid $gray-light;
-    }
+    background-color: rgba($gray-light, 0.4);
+    border-left: 4px solid $color-yay;
+    border-right: 4px solid $color-yay;
   }
 
   &:hover {
-    background-color: rgba($gray, 0.3);
+    background-color: rgba($gray-light, 0.4);
   }
 }
 
 .chains__chain-logo {
-  width: 28px;
-  height: 28px;
-  margin: 0 8px 0 0;
+  width: 40px;
+  height: 40px;
+  margin: 0 12px 0 0;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .chains__chain-info {
-  width: calc(100% - 28px - 8px);
   display: flex;
   flex-direction: column;
 }
@@ -206,160 +201,15 @@
   margin: 0 0 2px 0;
   display: flex;
   justify-content: space-between;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 1;
   color: $gray-darkest;
 }
 
 .chains__chain-id {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1;
   color: $gray-darker;
 }
-
-.chain__chain-mark {
-  box-sizing: border-box;
-  width: 8px;
-  height: 8px;
-  margin: 0 0 auto 4px;
-  border-radius: 50%;
-  background-color: transparent;
-}
-
-
-
-// .chains__container {
-//   z-index: 20;
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -70%);
-//   box-sizing: border-box;
-//   width: 100%;
-//   max-width: 940px;
-//   padding: 0 12px 0 12px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-
-//   &_hidden {
-//     display: none;
-//   }
-// }
-
-// .chains__heading {
-//   font-weight: 600;
-//   font-size: 20px;
-//   color: $gray-darker;
-// }
-
-// .chains__close-button {
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   font-weight: 400;
-//   font-size: 32px;
-//   color: $gray-darker;
-//   background-color: transparent;
-//   border: none;
-//   outline: none;
-//   cursor: pointer;
-// }
-
-// .chains__list {
-//   box-sizing: border-box;
-//   width: 100%;
-//   padding: 12px 28px 60px 28px;
-//   background-color: $gray-lightest;
-//   border-radius: 6px;
-
-//   &_hidden {
-//     display: none;
-//   }
-// }
-
-// .chains__alignment {
-//   position: relative;
-//   width: 100%;
-//   margin: 0 0 12px 0;
-//   display: flex;
-//   align-items: baseline;
-//   justify-content: space-between;
-// }
-
-// .chains__grid {
-//   box-sizing: border-box;
-//   width: 100%;
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-column-gap: 10px;
-//   grid-row-gap: 10px;
-//   border-radius: 6px;
-// }
-
-// .chains__chain {
-//   box-sizing: border-box;
-//   width: 100%;
-//   padding: 10px 20px 10px 20px;
-//   display: flex;
-//   align-items: center;
-//   background-color: rgba($white, 0.5);
-//   border-radius: 6px;
-//   text-decoration: none;
-
-//   cursor: pointer;
-//   transition: linear 0.2s;
-
-//   &_selected {
-//     background-color: $white;
-
-//     .chain__chain-mark {
-//       background-color: $color-accent;
-//     }
-//   }
-
-//   &:hover {
-//     background-color: $white;
-//   }
-// }
-
-// .chains__chain-logo {
-//   width: 28px;
-//   height: 28px;
-//   margin: 0 8px 0 0;
-//   background-position: center;
-//   background-size: contain;
-//   background-repeat: no-repeat;
-// }
-
-// .chains__chain-info {
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .chains__chain-name {
-//   margin: 0 0 2px 0;
-//   display: flex;
-//   font-weight: 600;
-//   font-size: 14px;
-//   line-height: 1;
-//   color: $gray-darker;
-// }
-
-// .chains__chain-id {
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 1;
-//   color: $gray-dark;
-// }
-
-// .chain__chain-mark {
-//   width: 7px;
-//   height: 7px;
-//   margin: 0 0 auto 4px;
-//   border-radius: 50%;
-//   background-color: transparent;
-// }

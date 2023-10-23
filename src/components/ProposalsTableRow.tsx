@@ -18,7 +18,7 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
   const currentChain = useAppSelector(selectCurrentChain);
   const proposal = props.proposal;
   const idText = "#" + proposal.proposal_id;
-  const titleText = proposal.content.title;
+  const titleText = (proposal.content.title) ? proposal.content.title : "[Oops!plorer: this proposal has no title]";
   const typeText = tweakProposalType(proposal.content['@type']);
   const statusText = tweakProposalStatus(proposal.status);
   const votingEndText = tweakProposalPeriod(proposal.voting_end_time);

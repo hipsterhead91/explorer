@@ -2,9 +2,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useOutletContext, useNavigate } from "react-router-dom";
 
-// Компоненты
-// import VotesChart from "./VotesChart";
-
 // Типизация
 import IProposal from "../models/IProposal";
 
@@ -13,7 +10,7 @@ import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 // Мой код
-import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod } from "../utils/formatting";
+import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod, tweakTokens } from "../utils/formatting";
 
 
 
@@ -31,11 +28,6 @@ function Proposal() {
     // setIsProposalsHidden(true);
   }, [])
 
-  useEffect(() => {
-    console.log(currentProposal);
-
-  }, [currentProposal])
-
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ПРОПОЗАЛА
   useEffect(() => {
     const proposal = proposals?.find((prop: { proposal_id: string }) => prop.proposal_id === currentId);
@@ -49,12 +41,12 @@ function Proposal() {
     setIsProposalsHidden(false);
   }
 
-  let idText, titleText, typeText, statusText, statusStyle, submitTimeText, depositEndText, depositText, symbolText, votingStartText, votingEndText, abstainText, noText, noWithVetoText, yesText, descriptionText;
+  let idText, titleText, typeText, statusText, statusStyle, submitTimeText, depositEndText, depositText, symbolText, votingStartText, votingEndText, abstainPercent, noPercent, vetoPercent, yesPercent, abstainTokens, noTokens, yesTokens, vetoTokens, descriptionText;
 
   if (currentProposal) {
 
-    idText = "[" + "#" + currentProposal.proposal_id + "]";
-    titleText = idText + " " + currentProposal.content.title;
+    idText = "#" + currentProposal.proposal_id;
+    titleText = (currentProposal.content.title) ? currentProposal.content.title : "[Oops!plorer: this proposal has no title]";
     typeText = tweakProposalType(currentProposal.content['@type']);
     statusText = tweakProposalStatus(currentProposal.status);
 
@@ -78,20 +70,25 @@ function Proposal() {
     symbolText = currentProposal.total_deposit[0].denom;
     votingStartText = tweakProposalPeriod(currentProposal.voting_start_time);
     votingEndText = tweakProposalPeriod(currentProposal.voting_end_time);
-    const abstain = Number(currentProposal.final_tally_result.abstain);
-    const no = Number(currentProposal.final_tally_result.no);
-    const noWithVeto = Number(currentProposal.final_tally_result.no_with_veto);
-    const yes = Number(currentProposal.final_tally_result.yes);
-    const votesSum = abstain + no + noWithVeto + yes;
-    abstainText = abstain / (votesSum / 100);
-    noText = no / (votesSum / 100);
-    noWithVetoText = noWithVeto / (votesSum / 100);
-    yesText = yes / (votesSum / 100);
-    (isNaN(abstainText)) ? abstainText = 0 : abstainText = abstainText.toFixed(4) + "%";
-    (isNaN(noText)) ? noText = 0 : noText = noText.toFixed(4) + "%";
-    (isNaN(noWithVetoText)) ? noWithVetoText = 0 : noWithVetoText = noWithVetoText.toFixed(4) + "%";
-    (isNaN(yesText)) ? yesText = 0 : yesText = yesText.toFixed(4) + "%";
-    descriptionText = currentProposal.content.description;
+    const abstain = currentProposal.final_tally_result.abstain;
+    const no = currentProposal.final_tally_result.no;
+    const veto = currentProposal.final_tally_result.no_with_veto;
+    const yes = currentProposal.final_tally_result.yes;
+    const votesSum = Number(abstain) + Number(no) + Number(veto) + Number(yes);
+    abstainTokens = (currentChain) ? tweakTokens(abstain, currentChain) : 0;
+    yesTokens = (currentChain) ? tweakTokens(yes, currentChain) : 0;
+    noTokens = (currentChain) ? tweakTokens(no, currentChain) : 0;
+    vetoTokens = (currentChain) ? tweakTokens(veto, currentChain) : 0;
+    abstainPercent = Number(abstain) / (Number(votesSum) / 100);
+    noPercent = Number(no) / (votesSum / 100);
+    vetoPercent = Number(veto) / (votesSum / 100);
+    yesPercent = Number(yes) / (votesSum / 100);
+    (isNaN(abstainPercent)) ? abstainPercent = 0 : abstainPercent = abstainPercent.toFixed(1) + "%";
+    (isNaN(noPercent)) ? noPercent = 0 : noPercent = noPercent.toFixed(1) + "%";
+    (isNaN(vetoPercent)) ? vetoPercent = 0 : vetoPercent = vetoPercent.toFixed(1) + "%";
+    (isNaN(yesPercent)) ? yesPercent = 0 : yesPercent = yesPercent.toFixed(1) + "%";
+    const description = currentProposal.content.description;
+    descriptionText = (description) ? description : "Oops!plorer: for some reason, the author did not add a description for this proposal.";
   }
 
   return (
@@ -104,25 +101,64 @@ function Proposal() {
         <h1 className="proposal__title">{titleText}</h1>
         <div className="proposal__info">
 
-          {/* <div className="proposal__alignment">
-            <div className="proposal__main-info">
-              <p className="proposal__data-heading">Type: <span className="proposal__data">{typeText}</span></p>
-              <p className="proposal__data-heading">Status: <span className={statusStyle}>{statusText}</span></p>
-              <p className="proposal__data-heading">Submit time: <span className="proposal__data">{submitTimeText}</span></p>
-              <p className="proposal__data-heading">Deposit end time: <span className="proposal__data">{depositEndText}</span></p>
-              <p className="proposal__data-heading">Deposit: <span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
-              <p className="proposal__data-heading">Voting start time: <span className="proposal__data">{votingStartText}</span></p>
-              <p className="proposal__data-heading">Voting end time: <span className="proposal__data">{votingEndText}</span></p>
+          <div className="proposal__main-info">
+            <p className="proposal__data-heading">Id: <span className="proposal__data">{idText}</span></p>
+            <p className="proposal__data-heading">Type: <span className="proposal__data">{typeText}</span></p>
+            <p className="proposal__data-heading">Status: <span className={statusStyle}>{statusText}</span></p>
+            <p className="proposal__data-heading">Submit time: <span className="proposal__data">{submitTimeText}</span></p>
+            <p className="proposal__data-heading">Deposit end time: <span className="proposal__data">{depositEndText}</span></p>
+            <p className="proposal__data-heading">Deposit: <span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
+            <p className="proposal__data-heading">Voting start time: <span className="proposal__data">{votingStartText}</span></p>
+            <p className="proposal__data-heading">Voting end time: <span className="proposal__data">{votingEndText}</span></p>
+          </div>
+
+          <div className="proposal__votes">
+            <div className="proposal__vote proposal__vote_yes">
+              <div className="proposal__vote-top">
+                <span className="proposal__vote-name">Yes</span>
+                <span className="proposal__vote-percent">{yesPercent}</span>
+              </div>
+              <div className="proposal__vote-bottom">
+                <span className="proposal__vote-tokens">{yesTokens}</span>
+                <span className="proposal__vote-symbol">Evmos</span>
+              </div>
             </div>
-            <div className="proposal__votes">
-              {currentProposal && <VotesChart votes={currentProposal.final_tally_result} />}
+            <div className="proposal__vote proposal__vote_no">
+              <div className="proposal__vote-top">
+                <span className="proposal__vote-name">No</span>
+                <span className="proposal__vote-percent">{noPercent}</span>
+              </div>
+              <div className="proposal__vote-bottom">
+                <span className="proposal__vote-tokens">{noTokens}</span>
+                <span className="proposal__vote-symbol">Evmos</span>
+              </div>
+            </div>
+            <div className="proposal__vote proposal__vote_veto">
+              <div className="proposal__vote-top">
+                <span className="proposal__vote-name">Veto</span>
+                <span className="proposal__vote-percent">{vetoPercent}</span>
+              </div>
+              <div className="proposal__vote-bottom">
+                <span className="proposal__vote-tokens">{vetoTokens}</span>
+                <span className="proposal__vote-symbol">Evmos</span>
+              </div>
+            </div>
+            <div className="proposal__vote proposal__vote_abstain">
+              <div className="proposal__vote-top">
+                <span className="proposal__vote-name">Abstain</span>
+                <span className="proposal__vote-percent">{abstainPercent}</span>
+              </div>
+              <div className="proposal__vote-bottom">
+                <span className="proposal__vote-tokens">{abstainTokens}</span>
+                <span className="proposal__vote-symbol">Evmos</span>
+              </div>
             </div>
           </div>
 
           <div className="proposal__description">
-            <span className="proposal__description-heading">Description:</span>
+            <span className="proposal__description-heading">Description (work in progress):</span>
             <p className="proposal__description-text">{descriptionText}</p>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

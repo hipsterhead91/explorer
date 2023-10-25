@@ -23,7 +23,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 800px;
-  padding: 80px 40px 100px 40px;
+  padding: 60px 100px 60px 40px;
   display: flex;
   flex-direction: column;
   background-color: $white;
@@ -54,7 +54,7 @@
   display: grid;
   grid-template-columns: 74px calc(100% - 74px - 30px);
   grid-column-gap: 30px;
-  grid-row-gap: 30px;
+  grid-row-gap: 20px;
 }
 
 .validator__avatar {
@@ -161,7 +161,7 @@
 }
 
 .validator__data-text {
-  padding: 0 40px 0 0;
+  padding: 0 0 0 0;
   font-weight: 400;
   font-size: 16px;
   color: $gray-darker;

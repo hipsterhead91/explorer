@@ -98,11 +98,14 @@ function Proposal() {
 
       <div className="proposal__card">
         <button onClick={() => returnToProposals()} className="proposal__close-button">&#10006;</button>
+        <span className="proposal__id">{idText}</span>
         <h1 className="proposal__title">{titleText}</h1>
+
         <div className="proposal__info">
 
+          <div className="proposal__divider"></div>
+
           <div className="proposal__main-info">
-            <p className="proposal__data-heading">Id: <span className="proposal__data">{idText}</span></p>
             <p className="proposal__data-heading">Type: <span className="proposal__data">{typeText}</span></p>
             <p className="proposal__data-heading">Status: <span className={statusStyle}>{statusText}</span></p>
             <p className="proposal__data-heading">Submit time: <span className="proposal__data">{submitTimeText}</span></p>
@@ -154,6 +157,8 @@ function Proposal() {
               </div>
             </div>
           </div>
+
+          <div className="proposal__divider"></div>
 
           <div className="proposal__description">
             <span className="proposal__description-heading">Description (work in progress):</span>

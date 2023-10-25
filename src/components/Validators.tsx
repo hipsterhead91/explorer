@@ -134,6 +134,27 @@ function Validators() {
     }
   }, [isValidatorsHidden])
 
+  // ЗАГЛУШКА
+  const noValidatorsPlaceholder = <div className="validators__placeholder">
+    <p className="validators__placeholder-text-top">Validators are loading or unavailable now.</p>
+    <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
+  </div>
+
+  // ЗАГЛУШКА ЕСЛИ ПО ЗАПРОСУ В ИНПУТЕ НИЧЕГО НЕ НАЙДЕНО
+  const currentSet = (isCurrentSetActive) ? "active" : "inactive";
+  const nothingFoundPlaceholder = <div className="validators__placeholder">
+    <p className="validators__placeholder-text-top"><span>Oops!</span> Nothing found.</p>
+    <p className="validators__placeholder-text-bottom">There is no <span>{currentSet}</span> validator containing <span>"{filterInput.current?.value}"</span> in its moniker.</p>
+  </div>
+
+  // РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
+  let tableContent;
+  if (!validators) tableContent = noValidatorsPlaceholder;
+  if (validators) tableContent = shownValidators?.map(validator => {
+    return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
+  })
+  if (validators && !shownValidators?.length && filterInput.current?.value) tableContent = nothingFoundPlaceholder;
+
   return (
     <div className="validators">
       <Outlet context={setIsValidatorsHidden} />
@@ -150,11 +171,7 @@ function Validators() {
         </div>
         <div className="validators__table">
           <ValidatorsTableHeader shownValidators={shownValidators} setShownValidators={setShownValidators} isCurrentSetActive={isCurrentSetActive} />
-          <div className="validators__table-rows">
-            {shownValidators?.map(validator => {
-              return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
-            })}
-          </div>
+          <div className="validators__table-rows">{tableContent}</div>
         </div>
       </div>
       <div ref={scrollButtons} className="validators__scroll-buttons">

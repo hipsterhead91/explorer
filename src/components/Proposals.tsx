@@ -73,6 +73,20 @@ function Proposals() {
     }
   }, [isProposalsHidden])
 
+  // ЗАГЛУШКА
+  const noProposalsPlaceholder = <div className="proposals__placeholder">
+    <p className="proposals__placeholder-text-top">Proposals are loading or unavailable now.</p>
+    <p className="proposals__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
+  </div>
+
+  // РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
+  let tableContent;
+  if (!proposals) tableContent = noProposalsPlaceholder
+  else tableContent = reversedProposals?.map(proposal => {
+    return <ProposalsTableRow key={proposal.proposal_id} proposal={proposal} />
+  })
+  
+
   return (
     <div className="proposals">
       <Outlet context={setIsProposalsHidden} />
@@ -85,11 +99,7 @@ function Proposals() {
             <span id="column-type" className="proposals__column-name">Type</span>
             <span id="column-voting-end" className="proposals__column-name">Voting End</span>
           </div>
-          <div className="proposals__table-rows">
-            {reversedProposals?.map(proposal => {
-              return <ProposalsTableRow key={proposal.proposal_id} proposal={proposal} />
-            })}
-          </div>
+          <div className="proposals__table-rows">{tableContent}</div>
         </div>
       </div>
       <div ref={scrollButtons} className="proposals__scroll-buttons">

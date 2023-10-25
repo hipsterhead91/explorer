@@ -24,7 +24,7 @@
   width: 100%;
   max-width: 800px;
   max-height: 80vh;
-  padding: 80px 40px 100px 40px;
+  padding: 60px 40px 60px 40px;
   display: flex;
   flex-direction: column;
   background-color: $white;
@@ -52,6 +52,7 @@
 
 .proposal__info {
   box-sizing: border-box;
+  padding: 0 60px 0 0;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -61,18 +62,26 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: rgba($gray-lightest, 0.5);
+    background-color: rgba($gray-lightest, 0.4);
     border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 20px;
-    background-color: $gray-lighter;
+    background-color: $gray-lightest;
 
     &:hover {
       background-color: $gray-light;
     }
   }
+}
+
+.proposal__id {
+  margin: 0 0 4px 0;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1;
+  color: $gray-dark;
 }
 
 .proposal__title {
@@ -82,6 +91,12 @@
   font-size: 22px;
   line-height: 1;
   color: $gray-darker;
+}
+
+.proposal__divider {
+  width: 100%;
+  margin: 6px 0 20px 0;
+  border-bottom: 1px solid $gray-lightest;
 }
 
 .proposal__main-info {
@@ -131,7 +146,6 @@
 .proposal__votes {
   box-sizing: border-box;
   width: 100%;
-  padding: 0 20px 0 0;
   margin: 0 0 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -211,6 +225,7 @@
 }
 
 .proposal__description {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -226,4 +241,5 @@
   font-size: 16px;
   font-weight: 400;
   color: $gray-darker;
+  word-wrap: break-word;
 }

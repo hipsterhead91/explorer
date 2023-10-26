@@ -14,7 +14,8 @@ const kichainMainnet: IChain = {
     "https://ki.api.ping.pub",
     "https://api.ki.nodestake.top"
   ],
-  description: "Open-source, public blockchain designed to enable decentralized finance, built with the Cosmos SDK.",
+  descriptionEng: "Open-source, public blockchain designed to enable decentralized finance, built with the Cosmos SDK.",
+  descriptionRus: "Публичный блокчейн с открытым исходным кодом, построенный на Cosmos SDK, поддерживающий децентрализованные финансы.",
   logo: "/logos/kichain.png",
   links: {
     website: 'https://foundation.ki/',

@@ -8,6 +8,7 @@ import IValidator from "../models/IValidator";
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Прочее
 import { tweakTokens, tweakVotingPower, tweakCommission } from "../utils/formatting";
@@ -16,6 +17,7 @@ import { tweakTokens, tweakVotingPower, tweakCommission } from "../utils/formatt
 
 function Validator() {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentValoper = useParams()["valoper"]; // из ссылки в браузерной строке получаем адрес текущего валидатора
   const currentChain = useAppSelector(selectCurrentChain);
   const validators = useAppSelector(selectValidators);
@@ -146,6 +148,44 @@ function Validator() {
     detailsText = "—";
   }
 
+
+  // useEffect(() => {
+
+  //   const keyDownHandler = (event: any) => {
+
+  //     if (event.key === 'Escape') {
+  //       event.preventDefault();
+  //       returnToValidators();
+  //     }
+  //   };
+
+  //   document.addEventListener('keydown', keyDownHandler);
+
+  //   return () => {
+  //     document.removeEventListener('keydown', keyDownHandler);
+  //   };
+  // }, []);
+
+
+
+  let tokensHeading, votingPowerHeading, commissionHeading, websiteHeading, contactHeading, detailsHeading;
+
+  if (currentLanguage == "eng") {
+    tokensHeading = "Tokens Bonded:";
+    votingPowerHeading = "Voting Power:";
+    commissionHeading = "Commission:";
+    websiteHeading = "Website:";
+    contactHeading = "Security Contact:";
+    detailsHeading = "Details:";
+  } else if (currentLanguage == "rus") {
+    tokensHeading = "Стейк:";
+    votingPowerHeading = "Вес голоса:";
+    commissionHeading = "Комиссия:";
+    websiteHeading = "Сайт:";
+    contactHeading = "Контакты:";
+    detailsHeading = "Детали:";
+  }
+
   return (
     <div className="validator">
 
@@ -173,17 +213,17 @@ function Validator() {
           </div>
 
           <div className="validator__data">
-            <p className="validator__data-heading">Tokens Bonded:</p>
+            <p className="validator__data-heading">{tokensHeading}</p>
             <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>
-            <p className="validator__data-heading">Voting Power:</p>
+            <p className="validator__data-heading">{votingPowerHeading}</p>
             <span className="validator__data-text">{votingPowerText}</span>
-            <p className="validator__data-heading">Commission:</p>
+            <p className="validator__data-heading">{commissionHeading}</p>
             <span className={commissionStyle}>{commissionText}</span>
-            <p className="validator__data-heading">Website:</p>
+            <p className="validator__data-heading">{websiteHeading}</p>
             <span className="validator__data-text">{websiteText}</span>
-            <p className="validator__data-heading">Security Contact:</p>
+            <p className="validator__data-heading">{contactHeading}</p>
             <span className="validator__data-text">{securityContactText}</span>
-            <p className="validator__data-heading">Details:</p>
+            <p className="validator__data-heading">{detailsHeading}</p>
             <span className="validator__data-text">{detailsText}</span>
           </div>
         </div>

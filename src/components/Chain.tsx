@@ -24,6 +24,7 @@ import {
   setValidators,
   setProposals
 } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
 import CosmosRestApi from "../services/CosmosRestApi";
@@ -49,6 +50,7 @@ import {
 function Chain(props: IChainProps) {
 
   const dispatch = useAppDispatch();
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const totalBonded = useAppSelector(selectTotalBonded);
   const coins = props.coins;
@@ -176,17 +178,29 @@ function Chain(props: IChainProps) {
     return (isActive) ? "chain__nav-link chain__nav-link_active" : "chain__nav-link";
   }
 
+  let dashboardText, validatorsText, proposalsText;
+
+  if (currentLanguage == "eng") {
+    dashboardText = "Dashboard";
+    validatorsText = "Validators";
+    proposalsText = "Proposals";
+  } else if (currentLanguage == "rus") {
+    dashboardText = "Информация";
+    validatorsText = "Валидаторы";
+    proposalsText = "Предложения";
+  }
+
   return (
     <section className="chain">
 
       {/* САБХЕДЕР (НАВИГАЦИЯ) */}
       <nav className="chain__nav subheader">
         <div className="chain__nav-container section-limiter">
-          <NavLink to="dashboard" className={linkStyle}>Dashboard</NavLink>
+          <NavLink to="dashboard" className={linkStyle}>{dashboardText}</NavLink>
           <div className="chain__nav-divider"></div>
-          <NavLink to="validators" className={linkStyle}>Validators</NavLink>
+          <NavLink to="validators" className={linkStyle}>{validatorsText}</NavLink>
           <div className="chain__nav-divider"></div>
-          <NavLink to="proposals" className={linkStyle}>Proposals</NavLink>
+          <NavLink to="proposals" className={linkStyle}>{proposalsText}</NavLink>
         </div>
       </nav>
 

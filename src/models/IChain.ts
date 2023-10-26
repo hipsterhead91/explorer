@@ -8,7 +8,8 @@ interface IChain {
   "denom": string,
   "decimals": number,
   "api": Array<string>,
-  "description": string,
+  "descriptionEng": string,
+  "descriptionRus": string,
   "logo": string,
   "links": {
     "website": string,

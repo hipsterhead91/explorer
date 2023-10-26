@@ -14,7 +14,8 @@ const crescentMainnet: IChain = {
     "https://mainnet.crescent.network:1317",
     "https://api.crescent.pupmos.network"
   ],
-  description: "Crescent Network is a Cosmos SDK-based DeFi hub powered by $CRE token and Inter-blockchain Communication protocol.",
+  descriptionEng: "Crescent Network is a Cosmos SDK-based DeFi hub powered by $CRE token and Inter-blockchain Communication protocol.",
+  descriptionRus: "Crescent Network - это DeFi, основанное на Cosmos SDK, обеспеченное токеном $CRE и протоколом межсетевой коммуникации.",
   logo: "/logos/crescent.png",
   links: {
     website: 'https://crescent.network/',

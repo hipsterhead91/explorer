@@ -13,7 +13,8 @@ const omniflixMainnet: IChain = {
     "https://api.omniflix.nodestake.top",
     "https://omniflixhub-api.skynetvalidators.com"
   ],
-  description: "A network specifically designed for creators and communities, powered by NFTs.",
+  descriptionEng: "A network specifically designed for creators and communities, powered by NFTs.",
+  descriptionRus: "Сеть, основанная на NFT и специально разработанная для создателей и сообществ.",
   logo: "/logos/omniflix.png",
   links: {
     website: 'https://www.omniflix.network/',

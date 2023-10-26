@@ -15,6 +15,7 @@ import {
   selectProposals,
   selectBlockHeight
 } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Прочее
 import { tweakPrice, filterActive } from "../utils/formatting";
@@ -23,6 +24,7 @@ import { tweakPrice, filterActive } from "../utils/formatting";
 
 function Dashboard() {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const price = useAppSelector(selectPrice);
   const inflation = useAppSelector(selectInflation);
@@ -43,13 +45,16 @@ function Dashboard() {
   }, [currentChain, proposals])
 
   // РЕНДЕР ОШИБКИ
-  const errorEl = <span className="dashboard__error">no data</span>
+  let noDataText;
+  if (currentLanguage == "eng") noDataText = "no data";
+  if (currentLanguage == "rus") noDataText = "нет данных";
+
+  const errorEl = <span className="dashboard__error">{noDataText}</span>
 
   // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ
   const heading = currentChain?.name;
   const chainType = (currentChain?.isMainnet) ? "mainnet" : "testnet";
   const subheading = chainType + " · " + currentChain?.chainId;
-  const description = currentChain?.description;
 
   // РЕНДЕР ПУЛА СООБЩЕСТВА
   const communityPoolEl = (communityPool)
@@ -143,8 +148,42 @@ function Dashboard() {
     ? <p className="dashboard__plate-data dashboard__plate-data_refreshing">
       {Number(blockHeight).toLocaleString("en")}
       <div className="dashboard__refresh-icon"></div>
-      </p>
+    </p>
     : errorEl;
+
+  let descriptionText, communityPoolText, activeProposalsText, tokensBondedText, validatorsText, inflationText, unbondingText, blockHeightText, pricesByText, dynamicText, currentText, athText, atlText, capText;
+
+  if (currentLanguage == "eng") {
+    descriptionText = currentChain?.descriptionEng;
+    communityPoolText = "Community Pool:";
+    activeProposalsText = "Active Proposals:";
+    tokensBondedText = "Tokens Bonded:";
+    validatorsText = "Validators:";
+    inflationText = "Inflation";
+    unbondingText = "Unbonding:";
+    blockHeightText = "Block Height:";
+    pricesByText = "Prices by ";
+    dynamicText = "24h dynamic:";
+    currentText = "current:";
+    athText = "ath:";
+    atlText = "atl:";
+    capText = "cap:";
+  } else if (currentLanguage == "rus") {
+    descriptionText = currentChain?.descriptionRus;
+    communityPoolText = "Пул сообщества:";
+    activeProposalsText = "Активные предложения:";
+    tokensBondedText = "Монет застейкано:";
+    validatorsText = "Валидаторы:";
+    inflationText = "Инфляция:";
+    unbondingText = "Сроки анбонда:";
+    blockHeightText = "Высота блока:";
+    pricesByText = "Цены от ";
+    dynamicText = "24ч. динамика:";
+    currentText = "текущая:";
+    athText = "высшая:";
+    atlText = "низшая:";
+    capText = "всего:";
+  }
 
   return (
     <div className="dashboard">
@@ -153,24 +192,24 @@ function Dashboard() {
       <div id="main-plate" className="dashboard__plate">
         <h1 className="dashboard__heading">{heading}</h1>
         <span className="dashboard__subheading">{subheading}</span>
-        <p className="dashboard__description">{description}</p>
+        <p className="dashboard__description">{descriptionText}</p>
       </div>
 
       {/* ПУЛ СООБЩЕСТВА */}
       <div id="community-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Community Pool:</span>
+        <span className="dashboard__plate-heading">{communityPoolText}</span>
         {communityPoolEl}
       </div>
 
       {/* ЗАСТЕЙКАНО */}
       <div id="bonded-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Tokens Bonded:</span>
+        <span className="dashboard__plate-heading">{tokensBondedText}</span>
         {bondedTokensEl}
       </div>
 
       {/* ГОЛОСОВАНИЯ */}
       <div id="proposals-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Active Proposals:</span>
+        <span className="dashboard__plate-heading">{activeProposalsText}</span>
         {proposalsEl}
       </div>
 
@@ -181,38 +220,38 @@ function Dashboard() {
 
       {/* ИНФЛЯЦИЯ */}
       <div id="inflation-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Inflation:</span>
+        <span className="dashboard__plate-heading">{inflationText}</span>
         {inflationEl}
       </div>
 
       {/* АНБОНДИНГ */}
       <div id="unbonding-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Unbonding:</span>
+        <span className="dashboard__plate-heading">{unbondingText}</span>
         {unbondingEl}
       </div>
 
       {/* ЦЕНА */}
       <div id="price-plate" className="dashboard__plate">
-        <span className="dashboard__coingecko-heading">Prices by <a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
+        <span className="dashboard__coingecko-heading">{pricesByText}<a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
         <div className="dashboard__coingecko-prices">
           <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">24h dynamic:</span>
+            <span className="dashboard__coingecko-subheading">{dynamicText}</span>
             {dynamicEl}
           </div>
           <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">current:</span>
+            <span className="dashboard__coingecko-subheading">{currentText}</span>
             {currentPriceEl}
           </div>
           <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">ath:</span>
+            <span className="dashboard__coingecko-subheading">{athText}</span>
             {highestPriceEl}
           </div>
           <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">atl:</span>
+            <span className="dashboard__coingecko-subheading">{atlText}</span>
             {lowestPriceEl}
           </div>
           <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">cap:</span>
+            <span className="dashboard__coingecko-subheading">{capText}</span>
             {marketCapEl}
           </div>
         </div>
@@ -225,13 +264,13 @@ function Dashboard() {
 
       {/* ВАЛИДАТОРЫ */}
       <div id="validators-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Validators:</span>
+        <span className="dashboard__plate-heading">{validatorsText}</span>
         {validatorsEl}
       </div>
 
       {/* ВЫСОТА БЛОКА */}
       <div id="block-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">Block Height:</span>
+        <span className="dashboard__plate-heading">{blockHeightText}</span>
         {blockHeightEl}
       </div>
 

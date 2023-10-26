@@ -14,7 +14,7 @@ import { RootState } from "../store";
 
 
 // ИСХОДНОЕ СОСТОЯНИЕ ТЕКУЩЕЙ СЕТИ
-const initialState: ICurrentChainState = {
+const initialChainState: ICurrentChainState = {
   chain: null,
   price: null,
   inflation: null,
@@ -30,7 +30,7 @@ const initialState: ICurrentChainState = {
 /* Не знаю, один ли я офигеваю от неинтуитивности и непоследовательности Redax Toolkit, но тут есть приколы следующего характера: в поле reducers мы описываем редьюсеры setCurrentChain и resetCurrentChain, однако позже под этими же самыми именами мы будем извлекать из уже готового слайса не редьюсеры, а экшн криэйтеры. Причём извлекать мы их будем не из свойства actionCreators (что, казалось бы, логично), а из свойства actions. В первый раз, пока всё это раскурил, у меня чуть башка не взорвалась. */
 export const currentChainSlice = createSlice({
   name: "currentChain",
-  initialState,
+  initialState: initialChainState,
   reducers: {
     setCurrentChain: (state, action: PayloadAction<IChain | null>) => {
       state.chain = action.payload;

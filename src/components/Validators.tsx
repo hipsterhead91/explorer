@@ -13,6 +13,7 @@ import IValidator from "../models/IValidator";
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Прочее
 import { filterActive, filterInactive } from "../utils/formatting";
@@ -21,6 +22,7 @@ import { filterActive, filterInactive } from "../utils/formatting";
 
 function Validators() {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const validators = useAppSelector(selectValidators);
   const [activeValidators, setActiveValidators] = useState<IValidator[] | null>(null);
@@ -155,18 +157,32 @@ function Validators() {
   })
   if (validators && !shownValidators?.length && filterInput.current?.value) tableContent = nothingFoundPlaceholder;
 
+  let activeText, inactiveText, clearText, inputPlaceholderText;
+
+  if (currentLanguage == "eng") {
+    activeText = "Active";
+    inactiveText = "Inactive";
+    clearText = "Clear";
+    inputPlaceholderText = "search by moniker";
+  } else if (currentLanguage == "rus") {
+    activeText = "Активные";
+    inactiveText = "Неактивные";
+    clearText = "Сброс";
+    inputPlaceholderText = "искать по моникеру";
+  }
+
   return (
     <div className="validators">
       <Outlet context={setIsValidatorsHidden} />
       <div ref={validatorsWrapper} className="validators__wrapper">
         <div className="validators__navigation">
           <div className="validators__switcher">
-            <button onClick={switchToActive} className={activeButtonStyle}>Active</button>
-            <button onClick={switchToInactive} className={inactiveButtonStyle}>Inactive</button>
+            <button onClick={switchToActive} className={activeButtonStyle}>{activeText}</button>
+            <button onClick={switchToInactive} className={inactiveButtonStyle}>{inactiveText}</button>
           </div>
           <div className="validators__search">
-            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder="search by moniker"></input>
-            <button onClick={clearFilter} className="validators__search-button">Clear</button>
+            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder={inputPlaceholderText}></input>
+            <button onClick={clearFilter} className="validators__search-button">{clearText}</button>
           </div>
         </div>
         <div className="validators__table">

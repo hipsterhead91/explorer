@@ -9,6 +9,7 @@ import INavLink from "../models/INavLink";
 // Redux
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain, setCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Прочее
 import { chains } from "../chains/chains";
@@ -18,6 +19,7 @@ import { chains } from "../chains/chains";
 function Chains() {
 
   const dispatch = useAppDispatch();
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const container = useRef<HTMLDivElement | null>(null);
   const arrow = useRef<HTMLSpanElement | null>(null);
@@ -40,13 +42,25 @@ function Chains() {
     hideChainList();
   };
 
-  const currentChainText = (currentChain) ? currentChain.name : "Chain is not selected";
+
 
   const chainButtonStyle = (navLink: INavLink) => {
     return (navLink.isActive)
       ? "chains__chain chains__chain_selected"
       : "chains__chain";
   }
+
+  let popupHeadingText, noChainText;
+
+  if (currentLanguage == "eng") {
+    popupHeadingText = "Select a chain";
+    noChainText = "Chain is not selected";
+  } else if (currentLanguage == "rus") {
+    popupHeadingText = "Выберите сеть";
+    noChainText = "Сеть не выбрана";
+  }
+
+  const currentChainText = (currentChain) ? currentChain.name : noChainText;
 
   return (
     <div className="chains">
@@ -66,7 +80,7 @@ function Chains() {
       <div ref={container} className="chains__popup-container chains__popup-container_hidden">
         <div className="chains__popup">
           <div className="chains__popup-head">
-            <span className="chains__popup-heading">Select a chain</span>
+            <span className="chains__popup-heading">{popupHeadingText}</span>
             <button onClick={hideChainList} className="chains__close-button">&#10006;</button>
           </div>
           <div className="chains__list">

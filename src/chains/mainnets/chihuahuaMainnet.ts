@@ -14,7 +14,8 @@ const chihuahuaMainnet: IChain = {
     "https://api.chihuahua.wtf",
     "https://chihuahua-api.mercury-nodes.net"
   ],
-  description: "The first meme coin on Cosmos ecosystem.",
+  descriptionEng: "The first meme coin on Cosmos ecosystem.",
+  descriptionRus: "Первый мем-койн в экосистеме Cosmos.",
   logo: "/logos/chihuahua.png",
   links: {
     website: 'https://www.chihuahua.wtf/',

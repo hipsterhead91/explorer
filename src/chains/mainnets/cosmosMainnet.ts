@@ -15,7 +15,8 @@ const cosmosMainnet: IChain = {
     "https://lcd-cosmoshub.blockapsis.com:443",
     "https://cosmos.api.ping.pub"
   ],
-  description: "The Cosmos Hub is an Internet of Blockchains, a network of blockchains able to communicate with each other in a decentralized way.",
+  descriptionEng: "The Cosmos Hub is an Internet of Blockchains, a network of blockchains able to communicate with each other in a decentralized way.",
+  descriptionRus: "Cosmos Hub - это так называемый Интернет Блокчейнов; сеть, позволяющая им коммуницировать между собой децентрализованным образом.",
   logo: "/logos/cosmos.png",
   links: {
     website: 'https://cosmos.network/',

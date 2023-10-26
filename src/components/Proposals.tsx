@@ -11,11 +11,13 @@ import IProposal from "../models/IProposal";
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 
 
 function Proposals() {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const proposals = useAppSelector(selectProposals);
   const [reversedProposals, setReversedProposals] = useState<IProposal[] | null>(null);
@@ -85,19 +87,36 @@ function Proposals() {
   else tableContent = reversedProposals?.map(proposal => {
     return <ProposalsTableRow key={proposal.proposal_id} proposal={proposal} />
   })
-  
+
+  let disclaimerSpanText, disclaimerText, proposalText, statusText, typeText, votingEndText;
+
+  if (currentLanguage == "eng") {
+    disclaimerSpanText = "This section is work in progress.";
+    disclaimerText = " Some elements may not be displayed correctly.";
+    proposalText = "Proposal";
+    statusText = "Status";
+    typeText = "Type";
+    votingEndText = "Voting End";
+  } else if (currentLanguage == "rus") {
+    disclaimerSpanText = "Эта секция в процессе разработки.";
+    disclaimerText = " Некоторые элементы могут отображаться некорректно.";
+    proposalText = "Предложение";
+    statusText = "Статус";
+    typeText = "Тип";
+    votingEndText = "Истекает";
+  }
 
   return (
     <div className="proposals">
       <Outlet context={setIsProposalsHidden} />
       <div className="proposals__wrapper">
-        <div className="proposals__disclaimer"><span>This section is work in progress.</span> Some elements may not be displayed correctly.</div>
+        <div className="proposals__disclaimer"><span>{disclaimerSpanText}</span>{disclaimerText}</div>
         <div ref={proposalsTable} className="proposals__table">
           <div className="proposals__table-header">
-            <span id="column-title" className="proposals__column-name">Proposal</span>
-            <span id="column-status" className="proposals__column-name">Status</span>
-            <span id="column-type" className="proposals__column-name">Type</span>
-            <span id="column-voting-end" className="proposals__column-name">Voting End</span>
+            <span id="column-title" className="proposals__column-name">{proposalText}</span>
+            <span id="column-status" className="proposals__column-name">{statusText}</span>
+            <span id="column-type" className="proposals__column-name">{typeText}</span>
+            <span id="column-voting-end" className="proposals__column-name">{votingEndText}</span>
           </div>
           <div className="proposals__table-rows">{tableContent}</div>
         </div>

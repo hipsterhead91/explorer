@@ -8,6 +8,7 @@ import IProposal from "../models/IProposal";
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Мой код
 import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod, tweakTokens } from "../utils/formatting";
@@ -16,6 +17,7 @@ import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod, tweakToken
 
 function Proposal() {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentId = useParams()["id"]; // из ссылки в браузерной строке получаем id текущего пропозала
   const currentChain = useAppSelector(selectCurrentChain);
   const proposals = useAppSelector(selectProposals);
@@ -91,6 +93,36 @@ function Proposal() {
     descriptionText = (description) ? description : "Oops!plorer: for some reason, the author did not add a description for this proposal.";
   }
 
+  let typeHeading, statusHeading, submitHeading, depositEndHeading, depositHeading, votingStartheading, votingEndHeading, yesHeading, noHeading, vetoHeading, abstainHeading, descriptionHeading;
+
+  if (currentLanguage == "eng") {
+    typeHeading = "Type: ";
+    statusHeading = "Status: ";
+    submitHeading = "Submit time: ";
+    depositEndHeading = "Deposit end time: ";
+    depositHeading = "Deposit: ";
+    votingStartheading = "Voting start time: ";
+    votingEndHeading = "Voting end time: ";
+    yesHeading = "Yes";
+    noHeading = "No";
+    vetoHeading = "Veto";
+    abstainHeading = "Abstain";
+    descriptionHeading = "Description (work in progress):";
+  } else if (currentLanguage == "rus") {
+    typeHeading = "Тип: ";
+    statusHeading = "Статус: ";
+    submitHeading = "Дата подачи: ";
+    depositEndHeading = "Внос депозита до: ";
+    depositHeading = "Депозит: ";
+    votingStartheading = "Голосование начато: ";
+    votingEndHeading = "Голосование истекает: ";
+    yesHeading = "За";
+    noHeading = "Против";
+    vetoHeading = "Вето";
+    abstainHeading = "Воздержались";
+    descriptionHeading = "Описание (раздел в разработке):";
+  }
+
   return (
     <div className="proposal">
 
@@ -106,54 +138,54 @@ function Proposal() {
           <div className="proposal__divider"></div>
 
           <div className="proposal__main-info">
-            <p className="proposal__data-heading">Type: <span className="proposal__data">{typeText}</span></p>
-            <p className="proposal__data-heading">Status: <span className={statusStyle}>{statusText}</span></p>
-            <p className="proposal__data-heading">Submit time: <span className="proposal__data">{submitTimeText}</span></p>
-            <p className="proposal__data-heading">Deposit end time: <span className="proposal__data">{depositEndText}</span></p>
-            <p className="proposal__data-heading">Deposit: <span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
-            <p className="proposal__data-heading">Voting start time: <span className="proposal__data">{votingStartText}</span></p>
-            <p className="proposal__data-heading">Voting end time: <span className="proposal__data">{votingEndText}</span></p>
+            <p className="proposal__data-heading">{typeHeading}<span className="proposal__data">{typeText}</span></p>
+            <p className="proposal__data-heading">{statusHeading}<span className={statusStyle}>{statusText}</span></p>
+            <p className="proposal__data-heading">{submitHeading}<span className="proposal__data">{submitTimeText}</span></p>
+            <p className="proposal__data-heading">{depositEndHeading}<span className="proposal__data">{depositEndText}</span></p>
+            <p className="proposal__data-heading">{depositHeading}<span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
+            <p className="proposal__data-heading">{votingStartheading}<span className="proposal__data">{votingStartText}</span></p>
+            <p className="proposal__data-heading">{votingEndHeading}<span className="proposal__data">{votingEndText}</span></p>
           </div>
 
           <div className="proposal__votes">
             <div className="proposal__vote proposal__vote_yes">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">Yes</span>
+                <span className="proposal__vote-name">{yesHeading}</span>
                 <span className="proposal__vote-percent">{yesPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
                 <span className="proposal__vote-tokens">{yesTokens}</span>
-                <span className="proposal__vote-symbol">Evmos</span>
+                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
               </div>
             </div>
             <div className="proposal__vote proposal__vote_no">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">No</span>
+                <span className="proposal__vote-name">{noHeading}</span>
                 <span className="proposal__vote-percent">{noPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
                 <span className="proposal__vote-tokens">{noTokens}</span>
-                <span className="proposal__vote-symbol">Evmos</span>
+                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
               </div>
             </div>
             <div className="proposal__vote proposal__vote_veto">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">Veto</span>
+                <span className="proposal__vote-name">{vetoHeading}</span>
                 <span className="proposal__vote-percent">{vetoPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
                 <span className="proposal__vote-tokens">{vetoTokens}</span>
-                <span className="proposal__vote-symbol">Evmos</span>
+                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
               </div>
             </div>
             <div className="proposal__vote proposal__vote_abstain">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">Abstain</span>
+                <span className="proposal__vote-name">{abstainHeading}</span>
                 <span className="proposal__vote-percent">{abstainPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
                 <span className="proposal__vote-tokens">{abstainTokens}</span>
-                <span className="proposal__vote-symbol">Evmos</span>
+                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
               </div>
             </div>
           </div>
@@ -161,7 +193,7 @@ function Proposal() {
           <div className="proposal__divider"></div>
 
           <div className="proposal__description">
-            <span className="proposal__description-heading">Description (work in progress):</span>
+            <span className="proposal__description-heading">{descriptionHeading}</span>
             <p className="proposal__description-text">{descriptionText}</p>
           </div>
         </div>

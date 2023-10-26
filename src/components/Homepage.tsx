@@ -1,15 +1,34 @@
+// Redux
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { selectCurrentLanguage, setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
+
+
+
 function Homepage() {
+
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
+  const dispatch = useAppDispatch();
+
+  const switchLanguage = (language: "eng" | "rus") => {
+    dispatch(setCurrentLanguage(language));
+  };
+
+  let greatingText;
+  if (currentLanguage == "eng") greatingText = "Hello,"
+  if (currentLanguage == "rus") greatingText = "Привет,"
 
   return (
     <section className="homepage">
 
-      {/* САБХЕДЕР */}
-      {/* <div className="homepage__subheader subheader"></div> */}
+      <div>
+        <button onClick={() => { switchLanguage("eng") }}>English</button>
+        <button onClick={() => { switchLanguage("rus") }}>Russian</button>
+      </div>
 
       <div className="homepage__container section-limiter">
 
         <div className="homepage__block">
-          <h1 className="homepage__heading">Hello,</h1>
+          <h1 className="homepage__heading">{greatingText}</h1>
           <p className="homepage__paragraph">And welcome to <span className="homepage__bold">Oops!plorer</span> &#128522;</p>
           <p className="homepage__paragraph">This humble app is designed to browse blockchains built on <a className="homepage__link" href="https://v1.cosmos.network/sdk" target="_blank">Cosmos SDK</a>; also, it's a pet project where I'm training to JavaScript, TypeScript, React (with it's Router), Redux ToolKit and some other technologies, so please don't be too hard on it.</p>
           <p className="homepage__paragraph">To start exploring, just <span className="homepage__bold">select a chain in the top right corner of your screen</span>.</p>

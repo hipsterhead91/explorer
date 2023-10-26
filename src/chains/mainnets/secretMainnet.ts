@@ -14,7 +14,8 @@ const secretMainnet: IChain = {
     "https://secretnetwork-lcd.stakely.io",
     "https://secret.api.consensus.one",
   ],
-  description: "Decentralized, permissionless, public blockchain for privacy-preserving applications.",
+  descriptionEng: "Decentralized, permissionless, public blockchain for privacy-preserving applications.",
+  descriptionRus: "Децентрализованный, не имеющий разрешений, общедоступный блокчейн для приложений, сохраняющих конфиденциальность.",
   logo: "/logos/secret.png",
   links: {
     website: 'https://scrt.network/',

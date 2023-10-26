@@ -12,7 +12,8 @@ const bandMainnet: IChain = {
   api: [
     "https://laozi1.bandchain.org/api"
   ],
-  description: "Cross-chain data oracle platform that aggregates and connects real-world data and APIs to smart contracts.",
+  descriptionEng: "Cross-chain data oracle platform that aggregates and connects real-world data and APIs to smart contracts.",
+  descriptionRus: "Кроссчейн оракул, который собирает и соединяет информацию из реального мира со смарт-контрактами.",
   logo: "/logos/band.png",
   links: {
     website: 'https://bandprotocol.com/',

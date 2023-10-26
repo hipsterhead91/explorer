@@ -16,7 +16,8 @@ const evmosMainnet: IChain = {
     "https://rest.bd.evmos.org:1317",
     "https://evmos-lcd.stakely.io",
   ],
-  description: "A Cosmos SDK-based IBC & Ethereum Virtual Machine-compatible blockchain.",
+  descriptionEng: "A Cosmos SDK-based IBC & Ethereum Virtual Machine-compatible blockchain.",
+  descriptionRus: "Блокчейн, основанный на Cosmos SDK и совместимый с виртуальными машинами Ethereum.",
   logo: "/logos/evmos.png",
   links: {
     website: 'https://evmos.org/',

@@ -15,7 +15,8 @@ const osmosisMainnet: IChain = {
     "https://osmo.api.ping.pub",
     "https://lcd-osmosis.blockapsis.com"
   ],
-  description: "The interchain AMM powered by the Cosmos Inter-Blockchain Communication protocol.",
+  descriptionEng: "The interchain AMM powered by the Cosmos Inter-Blockchain Communication protocol.",
+  descriptionRus: "Межсетевой АММ, работающий на протоколе общения Cosmos Inter-Blockchain.",
   logo: "/logos/osmosis.png",
   links: {
     website: 'https://osmosis.zone/',

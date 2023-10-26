@@ -7,27 +7,87 @@
   align-items: center;
 }
 
-.homepage__subheader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 // Миксуется с section-limiter, который ограничивает ширину секций
 .homepage__container {
-  margin-top: calc(28px + 24px); // высота сабхердера + отступ от него
-  margin-bottom: 52px;
+  margin: 36px 0 52px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.homepage__language-switcher {
+  box-sizing: border-box;
+  min-width: 200px;
+  margin: 0 0 12px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.homepage__language-button {
+  box-sizing: border-box;
+  width: 50%;
+  min-height: 38px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color-second, 0.5);
+  outline: none;
+  cursor: pointer;
+  border: none;
+
+  &:first-child {
+    padding: 0 36px 0 32px;
+    border-radius: 8px 0 0 8px;
+  }
+
+  &:last-child {
+    padding: 0 32px 0 36px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  &_selected {
+    background-color: rgba($color-second, 0.7);
+
+    .homepage__language {
+      color: $white;
+    }
+  }
+}
+
+.homepage__language {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  color: $color-main;
+  text-transform: uppercase;
+}
+
+.homepage__flag {
+  width: 26px;
+  height: 16px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &_uk {
+    margin: 0 6px 0 0;
+    background-image: url("/public/images/flag-uk.png");
+  }
+
+  &_rus {
+    margin: 0 0 0 8px;
+    background-image: url("/public/images/flag-russia.png");
+  }
+}
+
 .homepage__block {
   box-sizing: border-box;
   width: 100%;
-  padding: 24px 28px 24px 28px;
+  padding: 40px 40px 40px 40px;
   background-color: $white;
-  border-radius: 6px;
+  border-radius: 16px;
 
   &:not(:last-child) {
     margin: 0 0 12px 0;

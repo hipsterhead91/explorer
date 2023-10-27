@@ -48,7 +48,6 @@ function Dashboard() {
   let noDataText;
   if (currentLanguage == "eng") noDataText = "no data";
   if (currentLanguage == "rus") noDataText = "нет данных";
-
   const errorEl = <span className="dashboard__error">{noDataText}</span>
 
   // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ
@@ -104,7 +103,6 @@ function Dashboard() {
   const marketCapText = (price)
     ? price?.market_cap.toLocaleString("en") + "$"
     : "";
-
   const percentage = price?.price_change_percentage_24h;
   const dynamicEl = (!percentage)
     ? errorEl
@@ -115,7 +113,6 @@ function Dashboard() {
       : <div className="dashboard__coingecko-dynamic dashboard__coingecko-dynamic_down">
         &#9662;{(percentage * -1).toFixed(1)}%
       </div>
-
   const currentPriceEl = (price)
     ? <span className="dashboard__coingecko-value dashboard__coingecko-value_bright">{currentPriceText}</span>
     : errorEl;
@@ -151,8 +148,8 @@ function Dashboard() {
     </p>
     : errorEl;
 
+  // ЛОКАЛИЗАЦИЯ
   let descriptionText, communityPoolText, activeProposalsText, tokensBondedText, validatorsText, inflationText, unbondingText, blockHeightText, pricesByText, dynamicText, currentText, athText, atlText, capText;
-
   if (currentLanguage == "eng") {
     descriptionText = currentChain?.descriptionEng;
     communityPoolText = "Community Pool:";

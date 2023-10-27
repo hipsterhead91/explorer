@@ -25,33 +25,35 @@ function Chains() {
   const arrow = useRef<HTMLSpanElement | null>(null);
   const overlay = useRef<HTMLDivElement | null>(null);
 
+  // ОТКРЫТИЕ/ЗАКРЫТИЕ СПИСКА СЕТЕЙ
   const toggleChainList = () => {
     container.current?.classList.toggle("chains__popup-container_hidden");
     arrow.current?.classList.toggle("chains__indicator-arrow_up");
     overlay.current?.classList.toggle("chains__overlay_hidden");
   };
 
+  // ЗАКРЫТИЕ СПИСКА СЕТЕЙ
   const hideChainList = () => {
     container.current?.classList.add("chains__popup-container_hidden");
     arrow.current?.classList.remove("chains__indicator-arrow_up");
     overlay.current?.classList.add("chains__overlay_hidden");
   };
 
+  // ПЕРЕКЛЮЧЕНИЕ СЕТИ
   const switchChain = (chain: IChain) => {
     dispatch(setCurrentChain(chain));
     hideChainList();
   };
 
-
-
+  // СТИЛИ ДЛЯ КНОПОК СЕТЕЙ
   const chainButtonStyle = (navLink: INavLink) => {
     return (navLink.isActive)
       ? "chains__chain chains__chain_selected"
       : "chains__chain";
   }
 
+  // ЛОКАЛИЗАЦИЯ
   let popupHeadingText, noChainText;
-
   if (currentLanguage == "eng") {
     popupHeadingText = "Select a chain";
     noChainText = "Chain is not selected";
@@ -59,7 +61,6 @@ function Chains() {
     popupHeadingText = "Выберите сеть";
     noChainText = "Сеть не выбрана";
   }
-
   const currentChainText = (currentChain) ? currentChain.name : noChainText;
 
   return (
@@ -103,7 +104,7 @@ function Chains() {
           </div>
         </div>
       </div>
-
+      
     </div>
   )
 }

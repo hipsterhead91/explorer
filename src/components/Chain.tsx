@@ -174,12 +174,13 @@ function Chain(props: IChainProps) {
     }
   }, [currentChain, coins])
 
+  // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ СЕТОВ
   const linkStyle = ({ isActive }: INavLink) => {
     return (isActive) ? "chain__nav-link chain__nav-link_active" : "chain__nav-link";
   }
 
+  // ЛОКАЛИЗАЦИЯ
   let dashboardText, validatorsText, proposalsText;
-
   if (currentLanguage == "eng") {
     dashboardText = "Dashboard";
     validatorsText = "Validators";
@@ -208,6 +209,7 @@ function Chain(props: IChainProps) {
       <div className="chain__container section-limiter">
         <Outlet />
       </div>
+      
     </section>
   );
 }

@@ -30,12 +30,10 @@ function Validators() {
   const [shownValidators, setShownValidators] = useState<IValidator[] | null>(null);
   const [shownValidatorsBackup, setShownValidatorsBackup] = useState<IValidator[] | null>(null);
   const [isCurrentSetActive, setIsCurrentSetActive] = useState<boolean>(true);
-  const [isValidatorsHidden, setIsValidatorsHidden] = useState<boolean>(false);
   /* Если я всё правильно понял, при использовании хука useRef нужно указывать тип элемента, который ему присваивается, и null как "стартовый" тип, поскольку ref инициализируется ДО рендера, т.е. тогда, когда искомого элемента ещё нет. При этом, обращаясь к элементу через element.current, мы будем получать ошибку, мол элемент возможно равен null - чтобы этого избежать, используем оператор состояния ? после каждого current. */
   const validatorsWrapper = useRef<HTMLDivElement | null>(null);
   const filterInput = useRef<HTMLInputElement | null>(null);
   const scrollButtons = useRef<HTMLDivElement>(null);
-  const location = useLocation();
 
   // ДЕЛИМ ВАЛИДАТОРОВ НА АКТИВНЫХ И НЕАКТИВНЫХ
   useEffect(() => {
@@ -92,14 +90,6 @@ function Validators() {
     }
   }
 
-  // ПОКАЗЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
-  /* При рендере компонента Validator таблица в компоненте Validators скрывается; также, в компоненте Validator есть кнопка возврата на предыдущую страницу, которая включает отображение таблицы обратно. Однако, если возврат осуществлён не кнопкой в интерфейсе, а кнопкой возврата в самом браузере, то эта логика перестаёт работать, и таблица остаётся скрытой. По этой причине я решил отслеживать значение location.pathname - если оно меняется на нужное мне, то таблица отображается независимо от того, как был осуществлён переход. Не знаю, есть ли у этого решения неочевидные подводные камни, но пока вроде работает как мне надо. */
-  useEffect(() => {
-    if (location.pathname === `/${currentChain?.chainId}/validators`) {
-      setIsValidatorsHidden(false);
-    }
-  }, [location])
-
   // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ
   const activeButtonStyle = (isCurrentSetActive)
     ? "validators__switcher-button validators__switcher-button_selected"
@@ -125,29 +115,38 @@ function Validators() {
     });
   }
 
-  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ И КНОПКИ СКРОЛЛА
-  useEffect(() => {
-    if (isValidatorsHidden) {
-      validatorsWrapper.current?.classList.add("validators__wrapper_hidden");
-      scrollButtons.current?.classList.add("validators__scroll-buttons_hidden");
-    } else {
-      validatorsWrapper.current?.classList.remove("validators__wrapper_hidden");
-      scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden");
-    }
-  }, [isValidatorsHidden])
-
-  // ЗАГЛУШКА
-  const noValidatorsPlaceholder = <div className="validators__placeholder">
-    <p className="validators__placeholder-text-top">Validators are loading or unavailable now.</p>
-    <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
-  </div>
+  // ЗАГЛУШКА, ЕСЛИ ВАЛИДАТОРЫ НЕ ПОЛУЧЕНЫ
+  let noValidatorsPlaceholder;
+  if (currentLanguage == "eng") {
+    noValidatorsPlaceholder = <div className="validators__placeholder">
+      <p className="validators__placeholder-text-top">Validators are loading or unavailable now.</p>
+      <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
+    </div>
+  } else if (currentLanguage == "rus") {
+    noValidatorsPlaceholder = <div className="validators__placeholder">
+      <p className="validators__placeholder-text-top">Валидаторы грузятся, либо недоступны в данный момент.</p>
+      <p className="validators__placeholder-text-bottom">Если это длится слишком долго, попробуйте обновить страницу (<span>нажмите F5</span>).</p>
+    </div>
+  }
 
   // ЗАГЛУШКА ЕСЛИ ПО ЗАПРОСУ В ИНПУТЕ НИЧЕГО НЕ НАЙДЕНО
-  const currentSet = (isCurrentSetActive) ? "active" : "inactive";
-  const nothingFoundPlaceholder = <div className="validators__placeholder">
-    <p className="validators__placeholder-text-top"><span>Oops!</span> Nothing found.</p>
-    <p className="validators__placeholder-text-bottom">There is no <span>{currentSet}</span> validator containing <span>"{filterInput.current?.value}"</span> in its moniker.</p>
-  </div>
+  let currentSet, nothingFoundPlaceholder;
+  if (isCurrentSetActive && currentLanguage == "eng") currentSet = "active";
+  if (!isCurrentSetActive && currentLanguage == "eng") currentSet = "inactive";
+  if (isCurrentSetActive && currentLanguage == "rus") currentSet = "активный";
+  if (!isCurrentSetActive && currentLanguage == "rus") currentSet = "неактивный";
+
+  if (currentLanguage == "eng") {
+    nothingFoundPlaceholder = <div className="validators__placeholder">
+      <p className="validators__placeholder-text-top"><span>Oops!</span> Nothing found.</p>
+      <p className="validators__placeholder-text-bottom">There is no <span>{currentSet}</span> validator containing <span>"{filterInput.current?.value}"</span> in its moniker.</p>
+    </div>
+  } else if (currentLanguage == "rus") {
+    nothingFoundPlaceholder = <div className="validators__placeholder">
+      <p className="validators__placeholder-text-top"><span>Упс!</span> Ничего не нашлось.</p>
+      <p className="validators__placeholder-text-bottom">Ни один <span>{currentSet}</span> валидатор не содержит <span>"{filterInput.current?.value}"</span> в своём моникере.</p>
+    </div>
+  }
 
   // РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
   let tableContent;
@@ -173,7 +172,7 @@ function Validators() {
 
   return (
     <div className="validators">
-      <Outlet context={setIsValidatorsHidden} />
+      <Outlet />
       <div ref={validatorsWrapper} className="validators__wrapper">
         <div className="validators__navigation">
           <div className="validators__switcher">

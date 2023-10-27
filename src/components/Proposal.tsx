@@ -21,14 +21,8 @@ function Proposal() {
   const currentId = useParams()["id"]; // из ссылки в браузерной строке получаем id текущего пропозала
   const currentChain = useAppSelector(selectCurrentChain);
   const proposals = useAppSelector(selectProposals);
-  const setIsProposalsHidden = useOutletContext<React.Dispatch<React.SetStateAction<boolean>>>();
   const [currentProposal, setCurrentProposal] = useState<IProposal | null>();
   const navigate = useNavigate();
-
-  // ПРИ ОТКРЫТИИ КОМПОНЕНТА СКРЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ
-  useEffect(() => {
-    // setIsProposalsHidden(true);
-  }, [])
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ПРОПОЗАЛА
   useEffect(() => {
@@ -40,11 +34,10 @@ function Proposal() {
   // ВОЗВРАТ К ТАБЛИЦЕ ПРОПОЗАЛОВ
   const returnToProposals = () => {
     navigate(`/${currentChain?.chainId}/proposals`);
-    setIsProposalsHidden(false);
   }
 
+  // ФОРМАТИРОВАНИЕ ДАННЫХ
   let idText, titleText, typeText, statusText, statusStyle, submitTimeText, depositEndText, depositText, symbolText, votingStartText, votingEndText, abstainPercent, noPercent, vetoPercent, yesPercent, abstainTokens, noTokens, yesTokens, vetoTokens, descriptionText;
-
   if (currentProposal) {
 
     idText = "#" + currentProposal.proposal_id;
@@ -93,8 +86,8 @@ function Proposal() {
     descriptionText = (description) ? description : "Oops!plorer: for some reason, the author did not add a description for this proposal.";
   }
 
+  // ЛОКАЛИЗАЦИЯ
   let typeHeading, statusHeading, submitHeading, depositEndHeading, depositHeading, votingStartheading, votingEndHeading, yesHeading, noHeading, vetoHeading, abstainHeading, descriptionHeading;
-
   if (currentLanguage == "eng") {
     typeHeading = "Type: ";
     statusHeading = "Status: ";

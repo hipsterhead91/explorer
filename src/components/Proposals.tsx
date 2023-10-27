@@ -21,7 +21,6 @@ function Proposals() {
   const currentChain = useAppSelector(selectCurrentChain);
   const proposals = useAppSelector(selectProposals);
   const [reversedProposals, setReversedProposals] = useState<IProposal[] | null>(null);
-  const [isProposalsHidden, setIsProposalsHidden] = useState<boolean>(false);
   const proposalsTable = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const scrollButtons = useRef<HTMLDivElement>(null);
@@ -37,16 +36,8 @@ function Proposals() {
   // ПОКАЗЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ
   useEffect(() => {
     if (location.pathname === `/${currentChain?.chainId}/proposals`) {
-      setIsProposalsHidden(false);
     }
   }, [location])
-
-  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ
-  useEffect(() => {
-    (isProposalsHidden)
-      ? proposalsTable.current?.classList.add("proposals__table_hidden")
-      : proposalsTable.current?.classList.remove("proposals__table_hidden")
-  }, [isProposalsHidden])
 
   // СКРОЛЛИМ СТРАНИЦУ ВВЕРХ
   const scrollToTop = () => {
@@ -64,22 +55,19 @@ function Proposals() {
     });
   }
 
-  // ПОКАЗЫВАЕМ/СКРЫВАЕМ ТАБЛИЦУ ПРОПОЗАЛОВ И КНОПКИ СКРОЛЛА
-  useEffect(() => {
-    if (isProposalsHidden) {
-      proposalsTable.current?.classList.add("proposals__table_hidden");
-      scrollButtons.current?.classList.add("proposals__scroll-buttons_hidden");
-    } else {
-      proposalsTable.current?.classList.remove("proposals__table_hidden");
-      scrollButtons.current?.classList.remove("proposals__scroll-buttons_hidden");
-    }
-  }, [isProposalsHidden])
-
-  // ЗАГЛУШКА
-  const noProposalsPlaceholder = <div className="proposals__placeholder">
-    <p className="proposals__placeholder-text-top">Proposals are loading or unavailable now.</p>
-    <p className="proposals__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
-  </div>
+  // ЗАГЛУШКА, ЕСЛИ ВАЛИДАТОРЫ НЕ ПОЛУЧЕНЫ
+  let noProposalsPlaceholder;
+  if (currentLanguage == "eng") {
+    noProposalsPlaceholder = <div className="proposals__placeholder">
+      <p className="proposals__placeholder-text-top">Proposals are loading or unavailable now.</p>
+      <p className="proposals__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
+    </div>
+  } else if (currentLanguage == "rus") {
+    noProposalsPlaceholder = <div className="proposals__placeholder">
+      <p className="proposals__placeholder-text-top">Предложения грузятся, либо недоступны в данный момент.</p>
+      <p className="proposals__placeholder-text-bottom">Если это длится слишком долго, попробуйте обновить страницу (<span>нажмите F5</span>).</p>
+    </div>
+  }
 
   // РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
   let tableContent;
@@ -88,8 +76,8 @@ function Proposals() {
     return <ProposalsTableRow key={proposal.proposal_id} proposal={proposal} />
   })
 
+  // ЛОКАЛИЗАЦИЯ
   let disclaimerSpanText, disclaimerText, proposalText, statusText, typeText, votingEndText;
-
   if (currentLanguage == "eng") {
     disclaimerSpanText = "This section is work in progress.";
     disclaimerText = " Some elements may not be displayed correctly.";
@@ -108,7 +96,7 @@ function Proposals() {
 
   return (
     <div className="proposals">
-      <Outlet context={setIsProposalsHidden} />
+      <Outlet />
       <div className="proposals__wrapper">
         <div className="proposals__disclaimer"><span>{disclaimerSpanText}</span>{disclaimerText}</div>
         <div ref={proposalsTable} className="proposals__table">

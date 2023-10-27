@@ -120,8 +120,8 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
     }
   }
 
+  // ЛОКАЛИЗАЦИЯ
   let monikerText, votingPowerText, commissionText;
-
   if (currentLanguage == "eng") {
     monikerText = "Moniker";
     votingPowerText = "Voting Power";

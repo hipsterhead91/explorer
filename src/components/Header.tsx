@@ -24,7 +24,6 @@ function Header() {
             <div className="header__logo-top"><span>Oops!</span>plorer</div>
             <div className="header__logo-bottom">humblest explorer ever</div>
           </div>
-
         </Link>
         <Chains />
       </div>

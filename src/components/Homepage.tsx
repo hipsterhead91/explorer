@@ -9,6 +9,7 @@ function Homepage() {
   const currentLanguage = useAppSelector(selectCurrentLanguage);
   const dispatch = useAppDispatch();
 
+  // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
   const switchLanguage = (language: "eng" | "rus") => {
     dispatch(setCurrentLanguage(language));
   };
@@ -21,6 +22,7 @@ function Homepage() {
     ? "homepage__language-button"
     : "homepage__language-button homepage__language-button_selected"
 
+  // ЛОКАЛИЗАЦИЯ
   let helloBlock, mainBlock, byeBlock;
   if (currentLanguage == "eng") {
 
@@ -79,11 +81,9 @@ function Homepage() {
     </div>
   }
 
-
   return (
     <section className="homepage">
       <div className="homepage__container section-limiter">
-
         <div className="homepage__language-switcher">
           <button className={activeButtonStyle} onClick={() => { switchLanguage("eng") }}>
             <div className="homepage__flag homepage__flag_uk"></div>
@@ -94,11 +94,9 @@ function Homepage() {
             <div className="homepage__flag homepage__flag_rus"></div>
           </button>
         </div>
-
         {helloBlock}
         {mainBlock}
         {byeBlock}
-
       </div>
     </section>
   );

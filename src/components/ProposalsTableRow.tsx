@@ -25,6 +25,7 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
   const dateText = votingEndText.split(",")[0];
   const timeText = votingEndText.split(",")[1];
 
+  // СТИЛИ СТАТУСОВ
   let statusStyle;
   if (proposal.status === "PROPOSAL_STATUS_DEPOSIT_PERIOD") {
     statusStyle = "proposals-tr__status proposals-tr__status_neutral"
@@ -42,11 +43,6 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
 
   return (
     <Link to={`/${currentChain?.chainId}/proposals/${proposal.proposal_id}`} className="proposals-tr">
-
-      {/* ID */}
-      {/* <div className="proposals-tr__cell">
-        <span className="proposals-tr__id">{idText}</span>
-      </div> */}
 
       {/* TITLE */}
       <div className="proposals-tr__cell">

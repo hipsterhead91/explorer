@@ -23,17 +23,10 @@ function Validator() {
   const validators = useAppSelector(selectValidators);
   const [currentValidator, setCurrentValidator] = useState<IValidator | null>();
   const navigate = useNavigate();
-  const setIsValidatorsHidden = useOutletContext<React.Dispatch<React.SetStateAction<boolean>>>();
-
-  // ПРИ ОТКРЫТИИ КОМПОНЕНТА СКРЫВАЕМ ТАБЛИЦУ ВАЛИДАТОРОВ
-  useEffect(() => {
-    // setIsValidatorsHidden(true);
-  }, [])
 
   // ВОЗВРАТ К ТАБЛИЦЕ ВАЛИДАТОРОВ
   const returnToValidators = () => {
     navigate(`/${currentChain?.chainId}/validators`);
-    setIsValidatorsHidden(false);
   }
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ВАЛИДАТОРА
@@ -148,7 +141,6 @@ function Validator() {
     detailsText = "—";
   }
 
-
   // useEffect(() => {
 
   //   const keyDownHandler = (event: any) => {
@@ -166,10 +158,8 @@ function Validator() {
   //   };
   // }, []);
 
-
-
+  // ЛОКАЛИЗАЦИЯ
   let tokensHeading, votingPowerHeading, commissionHeading, websiteHeading, contactHeading, detailsHeading;
-
   if (currentLanguage == "eng") {
     tokensHeading = "Tokens Bonded:";
     votingPowerHeading = "Voting Power:";

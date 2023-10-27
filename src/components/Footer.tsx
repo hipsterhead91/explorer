@@ -8,8 +8,8 @@ function Footer() {
 
   const currentLanguage = useAppSelector(selectCurrentLanguage);
 
+  // ЛОКАЛИЗАЦИЯ
   let avatarsText, oopsplorerText, pricesText;
-
   if (currentLanguage == "eng") {
     avatarsText = "avatars provided by ";
     oopsplorerText = "Oops!plorer made by ";

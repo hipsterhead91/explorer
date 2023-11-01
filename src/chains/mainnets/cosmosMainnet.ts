@@ -10,13 +10,13 @@ const cosmosMainnet: IChain = {
   denom: "uatom",
   decimals: 6,
   api: [
-    { provider: "notional", address: "https://api-cosmoshub-ia.cosmosia.notional.ventures" },
-    { provider: "blockapsis", address: "https://lcd-cosmoshub.blockapsis.com:443" },
+    { provider: "Notional", address: "https://api-cosmoshub-ia.cosmosia.notional.ventures" },
+    { provider: "Blockapsis", address: "https://lcd-cosmoshub.blockapsis.com:443" },
     { provider: "WhisperNode🤐", address: "https://lcd-cosmoshub.whispernode.com:443" },
-    { provider: "pupmos", address: "https://api-cosmoshub.pupmos.network" },
+    { provider: "Pupmos", address: "https://api-cosmoshub.pupmos.network" },
     { provider: "Allnodes", address: "https://cosmos-rest.publicnode.com" },
-    { provider: "staketab", address: "https://cosmos-rest.staketab.org" },
-    { provider: "nodestake", address: "https://api.cosmos.nodestake.top" },
+    { provider: "Staketab", address: "https://cosmos-rest.staketab.org" },
+    { provider: "NodeStake", address: "https://api.cosmos.nodestake.top" },
     { provider: "Golden Ratio Staking", address: "https://rest-cosmoshub.goldenratiostaking.net" }
   ],
   descriptionEng: "The Cosmos Hub is an Internet of Blockchains, a network of blockchains able to communicate with each other in a decentralized way.",

@@ -1,4 +1,8 @@
 const dashboardRus = {
+  noteStart: "Если данные недоступны, вы можете",
+  noteEnd: "",
+  providerButton: "попробовать следующего провайдера ",
+  provider: "провайдер: ",
   communityPool: "Пул сообщества:",
   activeProposals: "Активные предложения:",
   tokensBonded: "Монет застейкано:",

@@ -193,15 +193,18 @@ function Dashboard() {
     <div className="dashboard">
 
       <div className="dashboard__providers">
-        <div className="dashboard__providers-info">
+        <div className="dashboard__provider-switcher">
+          <p className="dashboard__provider-note">{translatedContent.noteStart}</p>
+          <p className="dashboard__provider-note">{translatedContent.noteEnd}<span onClick={switchToNextApi} className="dashboard__provider-button">{translatedContent.providerButton}&#129034;</span></p>
+        </div>
+        <div className="dashboard__provider-info">
           <p className="dashboard__provider">
-            Provider:
+            {translatedContent.provider}
             <span className="dashboard__provider-name">{providerName}</span>
             <span className="dashboard__provider-number">{providerNumber}</span>
           </p>
-          <p className="dashboard__address">{providerAddress}</p>
+          <p className="dashboard__provider-address">{providerAddress}</p>
         </div>
-        <button onClick={switchToNextApi} className="dashboard__providers-button">Switch to the next provider &#129034;</button>
       </div>
 
       <div className="dashboard__grid">

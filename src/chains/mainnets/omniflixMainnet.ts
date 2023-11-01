@@ -10,8 +10,8 @@ const omniflixMainnet: IChain = {
   denom: "uflix",
   decimals: 6,
   api: [
-    { provider: "Nodestake", address: "https://api.omniflix.nodestake.top" },
-    { provider: "Skynet", address: "https://omniflixhub-api.skynetvalidators.com" },
+    { provider: "NodeStake", address: "https://api.omniflix.nodestake.top" },
+    { provider: "Skynet Validators", address: "https://omniflixhub-api.skynetvalidators.com" },
   ],
   descriptionEng: "A network specifically designed for creators and communities, powered by NFTs.",
   descriptionRus: "Сеть, основанная на NFT и специально разработанная для создателей и сообществ.",

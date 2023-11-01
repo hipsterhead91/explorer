@@ -1,4 +1,8 @@
 const dashboardEng = {
+  noteStart: "Sometimes providers are unavailable,",
+  noteEnd: "so you can ",
+  providerButton: "switch to the next provider ",
+  provider: "provider: ",
   communityPool: "Community Pool:",
   activeProposals: "Active Proposals:",
   tokensBonded: "Tokens Bonded:",

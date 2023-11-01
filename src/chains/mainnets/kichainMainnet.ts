@@ -12,7 +12,7 @@ const kichainMainnet: IChain = {
   api: [
     { provider: "KiChain", address: "https://api-mainnet.blockchain.ki" },
     { provider: "Ping Pub", address: "https://ki.api.ping.pub" },
-    { provider: "", address: "https://api.ki.nodestake.top" },
+    { provider: "NodeStake", address: "https://api.ki.nodestake.top" },
   ],
   descriptionEng: "Open-source, public blockchain designed to enable decentralized finance, built with the Cosmos SDK.",
   descriptionRus: "Публичный блокчейн с открытым исходным кодом, построенный на Cosmos SDK, поддерживающий децентрализованные финансы.",

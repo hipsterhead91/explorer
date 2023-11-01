@@ -21,7 +21,6 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   const [validatorOrder, setValidatorOrder] = useState<'ASC' | 'DSC'>('ASC');
   const [votingPowerOrder, setVotingPowerOrder] = useState<'ASC' | 'DSC'>('ASC');
   const [commissionOrder, setCommissionOrder] = useState<'ASC' | 'DSC'>('ASC');
-  /* Если я всё правильно понял, при использовании хука useRef нужно указывать тип элемента, который ему присваивается, и null как "стартовый" тип, поскольку ref инициализируется ДО рендера, т.е. тогда, когда искомого элемента ещё нет. При этом, обращаясь к элементу через element.current, мы будем получать ошибку, мол элемент возможно равен null - чтобы этого избежать, используем оператор состояния ? после каждого current. */
   const validatorSortIcon = useRef<HTMLDivElement | null>(null);
   const votingPowerSortIcon = useRef<HTMLDivElement | null>(null);
   const commissionSortIcon = useRef<HTMLDivElement | null>(null);

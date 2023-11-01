@@ -10,10 +10,10 @@ const akashMainnet: IChain = {
   denom: "uakt",
   decimals: 6,
   api: [
-    "https://api-akash-ia.cosmosia.notional.ventures/",
-    "https://akash-api.polkachu.com",
-    "https://akash.c29r3.xyz:443/api",
-    "https://akash.api.ping.pub"
+    { provider: "Notional", address: "https://api-akash-ia.cosmosia.notional.ventures" },
+    { provider: "Polkachu", address: "https://akash-api.polkachu.com" },
+    { provider: "c29r3", address: "https://akash.c29r3.xyz:443/api" },
+    { provider: "Allnodes", address: "https://akash-rest.publicnode.com" },
   ],
   descriptionEng: "The world first decentralized open source cloud, and DeCloud for DeFi, built with the Cosmos SDK.",
   descriptionRus: "Первое в мире децентрализованное облако с открытым исходным кодом; DeCloud для DeFi, построенный на Cosmos SDK.",

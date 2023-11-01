@@ -10,9 +10,12 @@ const junoMainnet: IChain = {
   denom: "ujuno",
   decimals: 6,
   api: [
-    "https://api-juno-ia.cosmosia.notional.ventures",
-    "https://juno-api.polkachu.com",
-    "https://lcd-juno.itastakers.com"
+    { provider: "Notional", address: "https://api-juno-ia.cosmosia.notional.ventures" },
+    { provider: "Polkachu", address: "https://juno-api.polkachu.com" },
+    { provider: "Itastakers", address: "https://lcd-juno.itastakers.com" },
+    { provider: "Golden Ratio Staking", address: "https://rest-juno.goldenratiostaking.net" },
+    { provider: "Reece", address: "https://juno-api.reece.sh" },
+    { provider: "Allnodes", address: "https://juno-rest.publicnode.com" },
   ],
   descriptionEng: "Juno is an interoperable smart contract network. Highly scalable, robust, secure and easy to deploy.",
   descriptionRus: "Juno - это быстрая в развёртывании, легко масштабируемая, безопасная сесть со смарт-контрактами.",

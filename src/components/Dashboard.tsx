@@ -3,7 +3,7 @@ import IProposal from "../models/IProposal";
 
 // Redux
 import { useEffect, useState } from "react";
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 import {
   selectCurrentChain,
   selectPrice,
@@ -13,7 +13,9 @@ import {
   selectUnbondingTime,
   selectValidators,
   selectProposals,
-  selectBlockHeight
+  selectBlockHeight,
+  selectApi,
+  setApi,
 } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
@@ -28,8 +30,10 @@ import { tweakPrice, filterActive } from "../utils/formatting";
 
 function Dashboard() {
 
+  const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
+  const currentApi = useAppSelector(selectApi);
   const price = useAppSelector(selectPrice);
   const inflation = useAppSelector(selectInflation);
   const communityPool = useAppSelector(selectCommunityPool);
@@ -163,95 +167,130 @@ function Dashboard() {
     translatedContent = dashboardRus;
   }
 
+  // ПЕРЕКЛЮЧАЕМСЯ НА СЛЕДУЮЩУЮ АПИШКУ ПО СПИСКУ
+  const switchToNextApi = () => {
+    if (currentChain && currentApi) {
+      const indexOfCurrentApi = currentChain.api.indexOf(currentApi);
+      const arrLength = currentChain.api.length;
+      (indexOfCurrentApi === arrLength - 1)
+        ? dispatch(setApi(currentChain.api[0]))
+        : dispatch(setApi(currentChain.api[indexOfCurrentApi + 1]))
+    }
+  }
+
+  let providerName = " nothing";
+  let providerNumber = " [0/0]";
+  let providerAddress = "no address";
+  if (currentChain && currentApi) {
+    const indexOfCurrentApi = currentChain.api.indexOf(currentApi);
+    const arrLength = currentChain.api.length;
+    providerName = " " + currentApi.provider;
+    providerNumber = " [" + (indexOfCurrentApi + 1) + "/" + arrLength + "]";
+    providerAddress = currentApi.address;
+  }
+
   return (
     <div className="dashboard">
 
-      {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
-      <div id="main-plate" className="dashboard__plate">
-        <h1 className="dashboard__heading">{heading}</h1>
-        <span className="dashboard__subheading">{subheading}</span>
-        <p className="dashboard__description">{descriptionText}</p>
+      <div className="dashboard__providers">
+        <div className="dashboard__providers-info">
+          <p className="dashboard__provider">
+            Provider:
+            <span className="dashboard__provider-name">{providerName}</span>
+            <span className="dashboard__provider-number">{providerNumber}</span>
+          </p>
+          <p className="dashboard__address">{providerAddress}</p>
+        </div>
+        <button onClick={switchToNextApi} className="dashboard__providers-button">Switch to the next provider &#129034;</button>
       </div>
 
-      {/* ПУЛ СООБЩЕСТВА */}
-      <div id="community-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.communityPool}</span>
-        {communityPoolEl}
-      </div>
+      <div className="dashboard__grid">
+        {/* ОСНОВНАЯ ИНФОРМАЦИЯ */}
+        <div id="main-plate" className="dashboard__plate">
+          <h1 className="dashboard__heading">{heading}</h1>
+          <span className="dashboard__subheading">{subheading}</span>
+          <p className="dashboard__description">{descriptionText}</p>
+        </div>
 
-      {/* ЗАСТЕЙКАНО */}
-      <div id="bonded-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.tokensBonded}</span>
-        {bondedTokensEl}
-      </div>
+        {/* ПУЛ СООБЩЕСТВА */}
+        <div id="community-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.communityPool}</span>
+          {communityPoolEl}
+        </div>
 
-      {/* ГОЛОСОВАНИЯ */}
-      <div id="proposals-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.activeProposals}</span>
-        {proposalsEl}
-      </div>
+        {/* ЗАСТЕЙКАНО */}
+        <div id="bonded-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.tokensBonded}</span>
+          {bondedTokensEl}
+        </div>
 
-      {/* ЛОГО */}
-      <div id="logo-plate" className="dashboard__plate">
-        <div className="dashboard__logo" style={{ backgroundImage: `url(${logo})` }}></div>
-      </div>
+        {/* ГОЛОСОВАНИЯ */}
+        <div id="proposals-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.activeProposals}</span>
+          {proposalsEl}
+        </div>
 
-      {/* ИНФЛЯЦИЯ */}
-      <div id="inflation-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.inflation}</span>
-        {inflationEl}
-      </div>
+        {/* ЛОГО */}
+        <div id="logo-plate" className="dashboard__plate">
+          <div className="dashboard__logo" style={{ backgroundImage: `url(${logo})` }}></div>
+        </div>
 
-      {/* АНБОНДИНГ */}
-      <div id="unbonding-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.unbonding}</span>
-        {unbondingEl}
-      </div>
+        {/* ИНФЛЯЦИЯ */}
+        <div id="inflation-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.inflation}</span>
+          {inflationEl}
+        </div>
 
-      {/* ЦЕНА */}
-      <div id="price-plate" className="dashboard__plate">
-        <span className="dashboard__coingecko-heading">{translatedContent.pricesBy}<a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
-        <div className="dashboard__coingecko-prices">
-          <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">{translatedContent.dynamic}</span>
-            {dynamicEl}
-          </div>
-          <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">{translatedContent.current}</span>
-            {currentPriceEl}
-          </div>
-          <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">{translatedContent.ath}</span>
-            {highestPriceEl}
-          </div>
-          <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">{translatedContent.atl}</span>
-            {lowestPriceEl}
-          </div>
-          <div className="dashboard__coingecko-price">
-            <span className="dashboard__coingecko-subheading">{translatedContent.cap}</span>
-            {marketCapEl}
+        {/* АНБОНДИНГ */}
+        <div id="unbonding-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.unbonding}</span>
+          {unbondingEl}
+        </div>
+
+        {/* ЦЕНА */}
+        <div id="price-plate" className="dashboard__plate">
+          <span className="dashboard__coingecko-heading">{translatedContent.pricesBy}<a href={`https://www.coingecko.com/en/coins/${currentChain?.coinGeckoId}`} target="_blank">CoinGecko</a>:</span>
+          <div className="dashboard__coingecko-prices">
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">{translatedContent.dynamic}</span>
+              {dynamicEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">{translatedContent.current}</span>
+              {currentPriceEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">{translatedContent.ath}</span>
+              {highestPriceEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">{translatedContent.atl}</span>
+              {lowestPriceEl}
+            </div>
+            <div className="dashboard__coingecko-price">
+              <span className="dashboard__coingecko-subheading">{translatedContent.cap}</span>
+              {marketCapEl}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* ССЫЛКИ */}
-      <div id="links-plate" className="dashboard__plate">
-        {linksEl}
-      </div>
+        {/* ССЫЛКИ */}
+        <div id="links-plate" className="dashboard__plate">
+          {linksEl}
+        </div>
 
-      {/* ВАЛИДАТОРЫ */}
-      <div id="validators-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.validators}</span>
-        {validatorsEl}
-      </div>
+        {/* ВАЛИДАТОРЫ */}
+        <div id="validators-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.validators}</span>
+          {validatorsEl}
+        </div>
 
-      {/* ВЫСОТА БЛОКА */}
-      <div id="block-plate" className="dashboard__plate">
-        <span className="dashboard__plate-heading">{translatedContent.blockHeight}</span>
-        {blockHeightEl}
+        {/* ВЫСОТА БЛОКА */}
+        <div id="block-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.blockHeight}</span>
+          {blockHeightEl}
+        </div>
       </div>
-
     </div>
   );
 }

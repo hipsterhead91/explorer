@@ -7,6 +7,7 @@ import ICoin from "../../models/ICoin";
 import ICurrentChainState from "../../models/ICurrentChainState";
 import IValidator from "../../models/IValidator";
 import IProposal from "../../models/IProposal";
+import IChainApi from "../../models/IChainApi";
 
 // Redux
 import { RootState } from "../store";
@@ -23,11 +24,12 @@ const initialChainState: ICurrentChainState = {
   unbondingTime: null,
   blockHeight: null,
   validators: null,
-  Proposals: null,
+  proposals: null,
+  api: null,
 };
 
 // СЛАЙС ТЕКУЩЕЙ СЕТИ
-/* Не знаю, один ли я офигеваю от неинтуитивности и непоследовательности Redax Toolkit, но тут есть приколы следующего характера: в поле reducers мы описываем редьюсеры setCurrentChain и resetCurrentChain, однако позже под этими же самыми именами мы будем извлекать из уже готового слайса не редьюсеры, а экшн криэйтеры. Причём извлекать мы их будем не из свойства actionCreators (что, казалось бы, логично), а из свойства actions. В первый раз, пока всё это раскурил, у меня чуть башка не взорвалась. */
+/* Не знаю, один ли я офигеваю от неинтуитивности и непоследовательности Redux Toolkit, но тут есть приколы следующего характера: в поле reducers мы описываем редьюсеры setCurrentChain и resetCurrentChain, однако позже под этими же самыми именами мы будем извлекать из уже готового слайса не редьюсеры, а экшн криэйтеры. Причём извлекать мы их будем не из свойства actionCreators (что, казалось бы, логично), а из свойства actions. В первый раз, пока всё это раскурил, у меня чуть башка не взорвалась. */
 export const currentChainSlice = createSlice({
   name: "currentChain",
   initialState: initialChainState,
@@ -57,8 +59,11 @@ export const currentChainSlice = createSlice({
       state.validators = action.payload;
     },
     setProposals: (state, action: PayloadAction<IProposal[] | null>) => {
-      state.Proposals = action.payload;
+      state.proposals = action.payload;
     },
+    setApi: (state, action: PayloadAction<IChainApi | null>) => {
+      state.api = action.payload;
+    }
   },
 });
 
@@ -73,6 +78,7 @@ export const {
   setBlockHeight,
   setValidators,
   setProposals,
+  setApi,
 } = currentChainSlice.actions;
 
 /* selectCurrentChain (как и остальные) - это функция, которую называют селектором; она предоставляет доступ к текущему стейту (в нашем случае это текущая сеть) и всем его свойствам. Однако, в голом виде функция-селектор не возвращает нужное нам значение: для этого её нужно использовать в качестве аргумента в хуке useAppSelector. В компоненте это будет выглядеть примерно так: const currentChain = useAppSelector(selectCurrentChain). */
@@ -84,7 +90,8 @@ export const selectTotalBonded = (state: RootState) => state.currentChain.totalB
 export const selectUnbondingTime = (state: RootState) => state.currentChain.unbondingTime;
 export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
 export const selectValidators = (state: RootState) => state.currentChain.validators;
-export const selectProposals = (state: RootState) => state.currentChain.Proposals;
+export const selectProposals = (state: RootState) => state.currentChain.proposals;
+export const selectApi = (state: RootState) => state.currentChain.api;
 
 /* Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется "непонятно откуда взявшийся" currentChainReducer. Также, обрати внимание, что при создании слайса в нём описывалось поле reducers во множественном числе, а из готового слайса оно извлекается уже в единственном. Очередной прикол от Redux Toolkit, но как я понял, RTK просто генерирует из всех редьюсеров один общий. Просто прими это. */
 export default currentChainSlice.reducer;

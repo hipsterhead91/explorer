@@ -10,10 +10,11 @@ const osmosisMainnet: IChain = {
   denom: "uosmo",
   decimals: 6,
   api: [
-    "https://api-osmosis-ia.cosmosia.notional.ventures",
-    "https://osmosis-api.polkachu.com",
-    "https://osmo.api.ping.pub",
-    "https://lcd-osmosis.blockapsis.com"
+    { provider: "Osmosis", address: "https://lcd.osmosis.zone" },
+    { provider: "Notional", address: "https://api-osmosis-ia.cosmosia.notional.ventures" },
+    { provider: "Polkachu", address: "https://osmosis-api.polkachu.com" },
+    { provider: "Blockapsis", address: "https://lcd-osmosis.blockapsis.com" },
+    { provider: "Allnodes", address: "https://osmosis-rest.publicnode.com" },
   ],
   descriptionEng: "The interchain AMM powered by the Cosmos Inter-Blockchain Communication protocol.",
   descriptionRus: "Межсетевой АММ, работающий на протоколе общения Cosmos Inter-Blockchain.",

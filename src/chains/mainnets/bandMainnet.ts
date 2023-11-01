@@ -10,7 +10,7 @@ const bandMainnet: IChain = {
   denom: "uband",
   decimals: 6,
   api: [
-    "https://laozi1.bandchain.org/api"
+    { provider: "Band Protocol", address: "https://laozi1.bandchain.org/api" },
   ],
   descriptionEng: "Cross-chain data oracle platform that aggregates and connects real-world data and APIs to smart contracts.",
   descriptionRus: "Кроссчейн оракул, который собирает и соединяет информацию из реального мира со смарт-контрактами.",

@@ -835,6 +835,102 @@ html::-webkit-scrollbar-thumb:hover {
 /* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
 .dashboard {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dashboard__providers {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px 12px 16px;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 16px;
+  background-color: #464646;
+  border: 4px solid rgba(40, 40, 40, 0.6);
+}
+
+.dashboard__providers-info {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboard__provider {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #828282;
+}
+
+.dashboard__provider-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  color: #a0a0a0;
+}
+
+.dashboard__provider-number {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  color: #a0a0a0;
+}
+
+.dashboard__address {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: #828282;
+}
+
+.dashboard__providers-button {
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  color: #ffc83d;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.dashboard__providers-button:hover {
+  color: #dcdcdc;
+}
+
+.dashboard__grid {
+  width: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[6];
@@ -844,7 +940,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 /* Следующие две конструкции нужны для того, чтобы стандартная ячейка имела равное соотношение сторон, без использования aspect-ratio: 1/1 и padding-trick'а, ибо они имеют нюансы. Приём взят отсюда: https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3 */
-.dashboard::before {
+.dashboard__grid::before {
   content: '';
   width: 0;
   padding-bottom: 100%;
@@ -854,7 +950,7 @@ html::-webkit-scrollbar-thumb:hover {
   grid-row: 1 / 1;
 }
 
-.dashboard > *:first-child {
+.dashboard__grid > *:first-child {
   -ms-grid-column: 1;
   grid-column: 1 / 1;
   -ms-grid-row: 1;

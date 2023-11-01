@@ -10,9 +10,9 @@ const kichainMainnet: IChain = {
   denom: "uxki",
   decimals: 6,
   api: [
-    "https://api-mainnet.blockchain.ki",
-    "https://ki.api.ping.pub",
-    "https://api.ki.nodestake.top"
+    { provider: "KiChain", address: "https://api-mainnet.blockchain.ki" },
+    { provider: "Ping Pub", address: "https://ki.api.ping.pub" },
+    { provider: "", address: "https://api.ki.nodestake.top" },
   ],
   descriptionEng: "Open-source, public blockchain designed to enable decentralized finance, built with the Cosmos SDK.",
   descriptionRus: "Публичный блокчейн с открытым исходным кодом, построенный на Cosmos SDK, поддерживающий децентрализованные финансы.",

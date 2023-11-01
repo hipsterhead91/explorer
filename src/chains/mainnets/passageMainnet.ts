@@ -10,8 +10,8 @@ const passageMainnet: IChain = {
   denom: "upasg",
   decimals: 6,
   api: [
-    "https://passage-api.polkachu.com",
-    "https://api.passage.nodestake.top"
+    { provider: "Nodestake", address: "https://passage-api.polkachu.com" },
+    { provider: "Polkachu", address: "https://api.passage.nodestake.top" },
   ],
   descriptionEng: "Passage is building a virtual 3D world/metaverse that is mainly powered by Unreal Engine 5, Akash, and IBC.",
   descriptionRus: "Passage создает виртуальный 3D-мир/метавселенную, которая в основном работает на Unreal Engine 5, Akash и IBC.",

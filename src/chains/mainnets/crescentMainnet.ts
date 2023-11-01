@@ -10,9 +10,9 @@ const crescentMainnet: IChain = {
   denom: "ucre",
   decimals: 6,
   api: [
-    "https://crescent-api.polkachu.com",
-    "https://mainnet.crescent.network:1317",
-    "https://api.crescent.pupmos.network"
+    { provider: "Polkachu", address: "https://crescent-api.polkachu.com" },
+    { provider: "Crescent Network", address: "https://mainnet.crescent.network:1317" },
+    { provider: "Pumpos", address: "https://api.crescent.pupmos.network" },
   ],
   descriptionEng: "Crescent Network is a Cosmos SDK-based DeFi hub powered by $CRE token and Inter-blockchain Communication protocol.",
   descriptionRus: "Crescent Network - это DeFi, основанное на Cosmos SDK, обеспеченное токеном $CRE и протоколом межсетевой коммуникации.",

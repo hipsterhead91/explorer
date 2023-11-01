@@ -14,6 +14,7 @@ import { useAppSelector, useAppDispatch } from "../store/hooks";
 import {
   selectCurrentChain,
   selectTotalBonded,
+  selectApi,
   setCurrentChain,
   setPrice,
   setInflation,
@@ -22,7 +23,8 @@ import {
   setUnbondingTime,
   setBlockHeight,
   setValidators,
-  setProposals
+  setProposals,
+  setApi,
 } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
@@ -56,6 +58,7 @@ function Chain(props: IChainProps) {
   const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
+  const currentApi = useAppSelector(selectApi);
   const totalBonded = useAppSelector(selectTotalBonded);
   const coins = props.coins;
   const [rawValidators, setRawValidators] = useState<IValidator[] | null>(null);
@@ -79,11 +82,18 @@ function Chain(props: IChainProps) {
     }
   }, [currentChain])
 
-  // ПОЛУЧАЕМ ОСНОВНЫЕ ДАННЫЕ О СЕТИ
+  // ПРИ ОБНОВЛЕНИИ СЕТИ ДИСПАТЧИМ В СТОР ПЕРВУЮ АПИШКУ ИЗ СПИСКА
   useEffect(() => {
     if (currentChain) {
+      dispatch(setApi(currentChain.api[0]))
+    }
+  }, [currentChain])
 
-      const chainApi = new CosmosRestApi(currentChain.api[0]);
+  // ПОЛУЧАЕМ ОСНОВНЫЕ ДАННЫЕ О СЕТИ
+  useEffect(() => {
+    if (currentChain && currentApi) {
+
+      const chainApi = new CosmosRestApi(currentApi.address);
 
       // ИНФЛЯЦИЯ
       dispatch(setInflation(null));
@@ -148,7 +158,7 @@ function Chain(props: IChainProps) {
       const latestBlockTimer = setInterval(setLatestBlock, 5000); // 5 сек.
       return () => { clearTimeout(latestBlockTimer) };
     }
-  }, [currentChain])
+  }, [currentChain, currentApi])
 
   // ФОРМАТИРОВАНИЕ ВАЛИДАТОРОВ
   /* Почему такие сложные махинации? Потому, что у неактивного валидатора стейк может быть больше, чем у активного, и если сортировать их по стейку сразу, всех вместе, то может получиться так, что активы и неактивы будут чередоваться, а такого быть не должно - сначала обязательно должны идти активы, и только потом неактивы, даже если у них стейк больше. */
@@ -206,7 +216,7 @@ function Chain(props: IChainProps) {
       <div className="chain__container section-limiter">
         <Outlet />
       </div>
-      
+
     </section>
   );
 }

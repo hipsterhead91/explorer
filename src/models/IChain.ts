@@ -1,3 +1,8 @@
+// Типизация
+import IChainApi from "./IChainApi";
+
+
+
 interface IChain {
   "name": string,
   "chainId": string,
@@ -7,7 +12,7 @@ interface IChain {
   "symbol": string,
   "denom": string,
   "decimals": number,
-  "api": Array<string>,
+  "api": Array<IChainApi>,
   "descriptionEng": string,
   "descriptionRus": string,
   "logo": string,

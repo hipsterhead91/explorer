@@ -1,6 +1,6 @@
 const homepageEng = {
 
-  "helloBlock":
+  helloBlock:
     <div className="homepage__block">
       <h1 className="homepage__heading">Hello,</h1>
       <p className="homepage__paragraph">And welcome to <span className="homepage__bold">Oops!plorer</span> &#128522;</p>
@@ -8,7 +8,7 @@ const homepageEng = {
       <p className="homepage__paragraph">To start exploring, just <span className="homepage__bold">select a chain in the top right corner of your screen</span>.</p>
     </div>,
 
-  "mainBlock":
+  mainBlock:
     <div className="homepage__block">
       <p className="homepage__paragraph">Now, a bit of information about this app:</p>
       <ul className="homepage__list">
@@ -23,7 +23,7 @@ const homepageEng = {
       </ul>
     </div>,
 
-  "byeBlock":
+  byeBlock:
     <div className="homepage__block">
       <p className="homepage__paragraph">If you find some issues, feel free to send me an email: <a className="homepage__link" href="mailto: virtualxself@gmail.com">virtualxself@gmail.com</a>.</p>
       <p className="homepage__paragraph"><span className="homepage__bold">Thank you for reading this and have a good day!</span></p>

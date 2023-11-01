@@ -40,12 +40,17 @@ function Proposal() {
     navigate(`/${currentChain?.chainId}/proposals`);
   }
 
+  // ЛОКАЛИЗАЦИЯ
+  let translatedContent = proposalEng;
+  if (currentLanguage == "eng") translatedContent = proposalEng;
+  if (currentLanguage == "rus") translatedContent = proposalRus;
+
   // ФОРМАТИРОВАНИЕ ДАННЫХ
   let idText, titleText, typeText, statusText, statusStyle, submitTimeText, depositEndText, depositText, symbolText, votingStartText, votingEndText, abstainPercent, noPercent, vetoPercent, yesPercent, abstainTokens, noTokens, yesTokens, vetoTokens, descriptionText;
   if (currentProposal) {
 
     idText = "#" + currentProposal.proposal_id;
-    titleText = (currentProposal.content.title) ? currentProposal.content.title : "[Oops!plorer: this proposal has no title]";
+    titleText = (currentProposal.content.title) ? currentProposal.content.title : translatedContent.noTitle;
     typeText = tweakProposalType(currentProposal.content['@type']);
     statusText = tweakProposalStatus(currentProposal.status);
 
@@ -87,13 +92,8 @@ function Proposal() {
     (isNaN(vetoPercent)) ? vetoPercent = 0 : vetoPercent = vetoPercent.toFixed(1) + "%";
     (isNaN(yesPercent)) ? yesPercent = 0 : yesPercent = yesPercent.toFixed(1) + "%";
     const description = currentProposal.content.description;
-    descriptionText = (description) ? description : "Oops!plorer: for some reason, the author did not add a description for this proposal.";
+    descriptionText = (description) ? description : translatedContent.noDescription;
   }
-
-  // ЛОКАЛИЗАЦИЯ
-  let translatedContent = proposalEng;
-  if (currentLanguage == "eng") translatedContent = proposalEng;
-  if (currentLanguage == "rus") translatedContent = proposalRus;
 
   return (
     <div className="proposal">

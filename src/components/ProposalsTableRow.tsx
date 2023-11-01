@@ -7,18 +7,23 @@ import IProposalsTableRowProps from "../models/IProposalsTableRowProps";
 // Redux
 import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
-// Мой код
+// Локализации
+import proposalsTableRowEng from "../translations/eng/proposalsTableRowEng";
+import proposalsTableRowRus from "../translations/rus/proposalsTableRowRus";
+
+// Прочее
 import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod } from "../utils/formatting";
 
 
 
 function ProposalsTableRow(props: IProposalsTableRowProps) {
 
+  const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
   const proposal = props.proposal;
   const idText = "#" + proposal.proposal_id;
-  const titleText = (proposal.content.title) ? proposal.content.title : "[Oops!plorer: this proposal has no title]";
   const typeText = tweakProposalType(proposal.content['@type']);
   const statusText = tweakProposalStatus(proposal.status);
   const votingEndText = tweakProposalPeriod(proposal.voting_end_time);
@@ -40,6 +45,12 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
   } else {
     statusStyle = "proposals-tr__status proposals-tr__status_bad"
   }
+
+  // ЛОКАЛИЗАЦИЯ
+  let translatedContent = proposalsTableRowEng;
+  if (currentLanguage == "eng") translatedContent = proposalsTableRowEng;
+  if (currentLanguage == "rus") translatedContent = proposalsTableRowRus;
+  const titleText = (proposal.content.title) ? proposal.content.title : translatedContent.noTitle;
 
   return (
     <Link to={`/${currentChain?.chainId}/proposals/${proposal.proposal_id}`} className="proposals-tr">

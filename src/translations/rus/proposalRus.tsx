@@ -1,4 +1,5 @@
 const proposalRus = {
+  noTitle: "Oops!plorer: у этого предложения нет заголовка",
   type: "Тип: ",
   status: "Статус: ",
   submit: "Дата подачи: ",
@@ -11,6 +12,7 @@ const proposalRus = {
   veto: "Вето",
   abstain: "Воздержались",
   description: "Описание (раздел в разработке):",
+  noDescription: "Oops!plorer: по какой-то причине автор не добавил описание для своего предложения.",
 };
 
 export default proposalRus;

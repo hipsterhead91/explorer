@@ -1,6 +1,5 @@
 // Пакеты
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 // Компоненты
@@ -14,6 +13,10 @@ import IValidator from "../models/IValidator";
 import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
+
+// Локализации
+import validatorsEng from "../translations/eng/validatorsEng";
+import validatorsRus from "../translations/rus/validatorsRus";
 
 // Прочее
 import { filterActive, filterInactive } from "../utils/formatting";
@@ -115,60 +118,25 @@ function Validators() {
     });
   }
 
-  // ЗАГЛУШКА, ЕСЛИ ВАЛИДАТОРЫ НЕ ПОЛУЧЕНЫ
-  let noValidatorsPlaceholder;
-  if (currentLanguage == "eng") {
-    noValidatorsPlaceholder = <div className="validators__placeholder">
-      <p className="validators__placeholder-text-top">Validators are loading or unavailable now.</p>
-      <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
-    </div>
-  } else if (currentLanguage == "rus") {
-    noValidatorsPlaceholder = <div className="validators__placeholder">
-      <p className="validators__placeholder-text-top">Валидаторы грузятся, либо недоступны в данный момент.</p>
-      <p className="validators__placeholder-text-bottom">Если это длится слишком долго, попробуйте обновить страницу (<span>нажмите F5</span>).</p>
-    </div>
-  }
+  // СКРЫВАЕМ КНОПКИ СКРОЛЛА В ЗАВИСИМОСТИ ОТ ВЫСОТЫ СТРАНИЦЫ
+  useEffect(() => {
+    if (document.body.clientHeight > window.innerHeight) {
+      scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden");
+    } else {
+      scrollButtons.current?.classList.add("validators__scroll-buttons_hidden");
+    }
+  }, [shownValidators])
 
-  // ЗАГЛУШКА ЕСЛИ ПО ЗАПРОСУ В ИНПУТЕ НИЧЕГО НЕ НАЙДЕНО
-  let currentSet, nothingFoundPlaceholder;
-  if (isCurrentSetActive && currentLanguage == "eng") currentSet = "active";
-  if (!isCurrentSetActive && currentLanguage == "eng") currentSet = "inactive";
-  if (isCurrentSetActive && currentLanguage == "rus") currentSet = "активный";
-  if (!isCurrentSetActive && currentLanguage == "rus") currentSet = "неактивный";
-
-  if (currentLanguage == "eng") {
-    nothingFoundPlaceholder = <div className="validators__placeholder">
-      <p className="validators__placeholder-text-top"><span>Oops!</span> Nothing found.</p>
-      <p className="validators__placeholder-text-bottom">There is no <span>{currentSet}</span> validator containing <span>"{filterInput.current?.value}"</span> in its moniker.</p>
-    </div>
-  } else if (currentLanguage == "rus") {
-    nothingFoundPlaceholder = <div className="validators__placeholder">
-      <p className="validators__placeholder-text-top"><span>Упс!</span> Ничего не нашлось.</p>
-      <p className="validators__placeholder-text-bottom">Ни один <span>{currentSet}</span> валидатор не содержит <span>"{filterInput.current?.value}"</span> в своём моникере.</p>
-    </div>
-  }
-
-  // РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
+  // ЛОКАЛИЗАЦИЯ И РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
   let tableContent;
-  if (!validators) tableContent = noValidatorsPlaceholder;
+  let translatedContent = validatorsEng;
+  if (currentLanguage == "eng") translatedContent = validatorsEng;
+  if (currentLanguage == "rus") translatedContent = validatorsRus;
+  if (!validators) tableContent = translatedContent.noValidatorsPlaceholder;
   if (validators) tableContent = shownValidators?.map(validator => {
     return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
   })
-  if (validators && !shownValidators?.length && filterInput.current?.value) tableContent = nothingFoundPlaceholder;
-
-  let activeText, inactiveText, clearText, inputPlaceholderText;
-
-  if (currentLanguage == "eng") {
-    activeText = "Active";
-    inactiveText = "Inactive";
-    clearText = "Clear";
-    inputPlaceholderText = "search by moniker";
-  } else if (currentLanguage == "rus") {
-    activeText = "Активные";
-    inactiveText = "Неактивные";
-    clearText = "Сброс";
-    inputPlaceholderText = "искать по моникеру";
-  }
+  if (validators && !shownValidators?.length && filterInput.current?.value) tableContent = translatedContent.nothingFoundPlaceholder;
 
   return (
     <div className="validators">
@@ -176,12 +144,12 @@ function Validators() {
       <div ref={validatorsWrapper} className="validators__wrapper">
         <div className="validators__navigation">
           <div className="validators__switcher">
-            <button onClick={switchToActive} className={activeButtonStyle}>{activeText}</button>
-            <button onClick={switchToInactive} className={inactiveButtonStyle}>{inactiveText}</button>
+            <button onClick={switchToActive} className={activeButtonStyle}>{translatedContent.active}</button>
+            <button onClick={switchToInactive} className={inactiveButtonStyle}>{translatedContent.inactive}</button>
           </div>
           <div className="validators__search">
-            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder={inputPlaceholderText}></input>
-            <button onClick={clearFilter} className="validators__search-button">{clearText}</button>
+            <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder={translatedContent.inputPlaceholder}></input>
+            <button onClick={clearFilter} className="validators__search-button">{translatedContent.clear}</button>
           </div>
         </div>
         <div className="validators__table">

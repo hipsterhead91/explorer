@@ -1,6 +1,6 @@
 const homepageRus = {
 
-  "helloBlock":
+  helloBlock:
     <div className="homepage__block">
       <h1 className="homepage__heading">Привет,</h1>
       <p className="homepage__paragraph">И добро пожаловать в <span className="homepage__bold">Oops!plorer</span> &#128522;</p>
@@ -8,7 +8,7 @@ const homepageRus = {
       <p className="homepage__paragraph">Чтобы начать, просто <span className="homepage__bold">выберите сеть в правом верхнем углу экрана</span>.</p>
     </div>,
 
-  "mainBlock":
+  mainBlock:
     <div className="homepage__block">
       <p className="homepage__paragraph">Теперь немного информации об этом приложении:</p>
       <ul className="homepage__list">
@@ -23,7 +23,7 @@ const homepageRus = {
       </ul>
     </div>,
 
-  "byeBlock":
+  byeBlock:
     <div className="homepage__block">
       <p className="homepage__paragraph">Если найдёте какие-то проблемы, не стесняйтесь писать мне на почту: <a className="homepage__link" href="mailto: virtualxself@gmail.com">virtualxself@gmail.com</a>.</p>
       <p className="homepage__paragraph"><span className="homepage__bold">Спасибо за чтение такой большой простыни, и хорошего дня!</span></p>

@@ -1,5 +1,5 @@
 // Пакеты
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 // Типизация
@@ -42,6 +42,20 @@ function Chains() {
     arrow.current?.classList.remove("chains__indicator-arrow_up");
     overlay.current?.classList.add("chains__overlay_hidden");
   };
+
+  // ЗАКРЫТИЕ ПО КЛАВИШЕ ESCAPE
+  const closeByEscapeButton = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      hideChainList();
+    }
+  };
+
+  // СЛУШАЕМ ESCAPE
+  useEffect(() => {
+    document.addEventListener('keydown', closeByEscapeButton);
+    return () => document.removeEventListener('keydown', closeByEscapeButton);
+  }, []);
 
   // ПЕРЕКЛЮЧЕНИЕ СЕТИ
   const switchChain = (chain: IChain) => {

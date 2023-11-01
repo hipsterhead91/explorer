@@ -19,7 +19,7 @@ import ICoin from "../models/ICoin";
 // Redux
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
-import { selectCurrentLanguage, setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
+import { setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";

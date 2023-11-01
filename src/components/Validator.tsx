@@ -1,6 +1,6 @@
 // Пакеты
-import { useState, useEffect } from "react";
-import { useParams, useOutletContext, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 // Типизация
 import IValidator from "../models/IValidator";
@@ -28,6 +28,20 @@ function Validator() {
   const returnToValidators = () => {
     navigate(`/${currentChain?.chainId}/validators`);
   }
+
+  // ЗАКРЫТИЕ ПО КЛАВИШЕ ESCAPE
+  const closeByEscapeButton = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      returnToValidators();
+    }
+  };
+  
+  // СЛУШАЕМ ESCAPE
+  useEffect(() => {
+    document.addEventListener('keydown', closeByEscapeButton);
+    return () => document.removeEventListener('keydown', closeByEscapeButton);
+  }, []);
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ВАЛИДАТОРА
   useEffect(() => {
@@ -140,23 +154,6 @@ function Validator() {
     securityContactText = "—";
     detailsText = "—";
   }
-
-  // useEffect(() => {
-
-  //   const keyDownHandler = (event: any) => {
-
-  //     if (event.key === 'Escape') {
-  //       event.preventDefault();
-  //       returnToValidators();
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', keyDownHandler);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', keyDownHandler);
-  //   };
-  // }, []);
 
   // ЛОКАЛИЗАЦИЯ
   let tokensHeading, votingPowerHeading, commissionHeading, websiteHeading, contactHeading, detailsHeading;

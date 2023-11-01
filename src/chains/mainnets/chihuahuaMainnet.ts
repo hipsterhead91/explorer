@@ -12,7 +12,9 @@ const chihuahuaMainnet: IChain = {
   api: [
     "https://chihuahua-api.polkachu.com",
     "https://api.chihuahua.wtf",
-    "https://chihuahua-api.mercury-nodes.net"
+    "https://chihuahua-api.mercury-nodes.net",
+    "https://rest-chihuahua.goldenratiostaking.net",
+    "https://chihuahua-rest.publicnode.com",
   ],
   descriptionEng: "The first meme coin on Cosmos ecosystem.",
   descriptionRus: "Первый мем-койн в экосистеме Cosmos.",

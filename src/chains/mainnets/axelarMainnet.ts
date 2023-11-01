@@ -17,7 +17,7 @@ const axelarMainnet: IChain = {
     "https://axelar-lcd.qubelabs.io",
     "https://axelar-rest.chainode.tech",
     "https://axelar-lcd.quantnode.tech",
-    "https://api-1.axelar.nodes.guru:443"
+    "https://api-1.axelar.nodes.guru:443",
   ],
   descriptionEng: "A decentralized multi-chain network that enables cross chain communication with a simple pegging mechanism.",
   descriptionRus: "Децентрализованная мультичейн сеть, позволяющая взаимодействовать между различными блокчейнами посредством простого механизма фиксации.",

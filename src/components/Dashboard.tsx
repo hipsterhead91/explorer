@@ -179,7 +179,7 @@ function Dashboard() {
     currentText = "текущая:";
     athText = "высшая:";
     atlText = "низшая:";
-    capText = "всего:";
+    capText = "общая:";
   }
 
   return (

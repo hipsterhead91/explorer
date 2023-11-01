@@ -11,6 +11,10 @@ import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain, setCurrentChain } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
+// Локализации
+import chainsEng from "../translations/eng/chainsEng";
+import chainsRus from "../translations/rus/chainsRus";
+
 // Прочее
 import { chains } from "../chains/chains";
 
@@ -53,15 +57,10 @@ function Chains() {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let popupHeadingText, noChainText;
-  if (currentLanguage == "eng") {
-    popupHeadingText = "Select a chain";
-    noChainText = "Chain is not selected";
-  } else if (currentLanguage == "rus") {
-    popupHeadingText = "Выберите сеть";
-    noChainText = "Сеть не выбрана";
-  }
-  const currentChainText = (currentChain) ? currentChain.name : noChainText;
+  let translatedContent = chainsEng;
+  if (currentLanguage == "eng") translatedContent = chainsEng;
+  if (currentLanguage == "rus") translatedContent = chainsRus;
+  const currentChainText = (currentChain) ? currentChain.name : translatedContent.noChain;
 
   return (
     <div className="chains">
@@ -81,7 +80,7 @@ function Chains() {
       <div ref={container} className="chains__popup-container chains__popup-container_hidden">
         <div className="chains__popup">
           <div className="chains__popup-head">
-            <span className="chains__popup-heading">{popupHeadingText}</span>
+            <span className="chains__popup-heading">{translatedContent.popupHeading}</span>
             <button onClick={hideChainList} className="chains__close-button">&#10006;</button>
           </div>
           <div className="chains__list">

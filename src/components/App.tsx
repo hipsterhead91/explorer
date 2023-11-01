@@ -17,8 +17,9 @@ import Proposal from "./Proposal";
 import ICoin from "../models/ICoin";
 
 // Redux
-import { useAppSelector } from "../store/hooks";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentLanguage, setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";
@@ -33,6 +34,17 @@ function App() {
   const currentChain = useAppSelector(selectCurrentChain);
   const coinsData = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 60000 }).data;
   const [coins, setCoins] = useState<ICoin[] | null>(null);
+  const dispatch = useAppDispatch();
+  const locStorLanguage = localStorage.getItem("lang");
+
+  // СИНХРОНИЗИРУЕМ ЯЗЫК ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
+  useEffect(() => {
+    if (!locStorLanguage || locStorLanguage == "eng") {
+      dispatch(setCurrentLanguage("eng"));
+    } else if (locStorLanguage == "rus") {
+      dispatch(setCurrentLanguage("rus"));
+    }
+  }, [])
 
   /* Поскольку coinsData может быть undefined в случае, если API не сработает, его нельзя напрямую передавать пропсом в элемент Chain. Точнее, наверно можно, если в интерфейсе IChainProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
   useEffect(() => {

@@ -10,7 +10,11 @@ import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
-// Мой код
+// Локализации
+import proposalEng from "../translations/eng/proposalEng";
+import proposalRus from "../translations/rus/proposalRus";
+
+// Прочее
 import { tweakProposalType, tweakProposalStatus, tweakProposalPeriod, tweakTokens } from "../utils/formatting";
 
 
@@ -87,34 +91,9 @@ function Proposal() {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let typeHeading, statusHeading, submitHeading, depositEndHeading, depositHeading, votingStartheading, votingEndHeading, yesHeading, noHeading, vetoHeading, abstainHeading, descriptionHeading;
-  if (currentLanguage == "eng") {
-    typeHeading = "Type: ";
-    statusHeading = "Status: ";
-    submitHeading = "Submit time: ";
-    depositEndHeading = "Deposit end time: ";
-    depositHeading = "Deposit: ";
-    votingStartheading = "Voting start time: ";
-    votingEndHeading = "Voting end time: ";
-    yesHeading = "Yes";
-    noHeading = "No";
-    vetoHeading = "Veto";
-    abstainHeading = "Abstain";
-    descriptionHeading = "Description (work in progress):";
-  } else if (currentLanguage == "rus") {
-    typeHeading = "Тип: ";
-    statusHeading = "Статус: ";
-    submitHeading = "Дата подачи: ";
-    depositEndHeading = "Внос депозита до: ";
-    depositHeading = "Депозит: ";
-    votingStartheading = "Голосование начато: ";
-    votingEndHeading = "Голосование истекает: ";
-    yesHeading = "За";
-    noHeading = "Против";
-    vetoHeading = "Вето";
-    abstainHeading = "Воздержались";
-    descriptionHeading = "Описание (раздел в разработке):";
-  }
+  let translatedContent = proposalEng;
+  if (currentLanguage == "eng") translatedContent = proposalEng;
+  if (currentLanguage == "rus") translatedContent = proposalRus;
 
   return (
     <div className="proposal">
@@ -131,19 +110,19 @@ function Proposal() {
           <div className="proposal__divider"></div>
 
           <div className="proposal__main-info">
-            <p className="proposal__data-heading">{typeHeading}<span className="proposal__data">{typeText}</span></p>
-            <p className="proposal__data-heading">{statusHeading}<span className={statusStyle}>{statusText}</span></p>
-            <p className="proposal__data-heading">{submitHeading}<span className="proposal__data">{submitTimeText}</span></p>
-            <p className="proposal__data-heading">{depositEndHeading}<span className="proposal__data">{depositEndText}</span></p>
-            <p className="proposal__data-heading">{depositHeading}<span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
-            <p className="proposal__data-heading">{votingStartheading}<span className="proposal__data">{votingStartText}</span></p>
-            <p className="proposal__data-heading">{votingEndHeading}<span className="proposal__data">{votingEndText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.type}<span className="proposal__data">{typeText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.status}<span className={statusStyle}>{statusText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.submit}<span className="proposal__data">{submitTimeText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.depositEnd}<span className="proposal__data">{depositEndText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.deposit}<span className="proposal__data">{`${depositText} ${symbolText}`}</span></p>
+            <p className="proposal__data-heading">{translatedContent.votingStart}<span className="proposal__data">{votingStartText}</span></p>
+            <p className="proposal__data-heading">{translatedContent.votingEnd}<span className="proposal__data">{votingEndText}</span></p>
           </div>
 
           <div className="proposal__votes">
             <div className="proposal__vote proposal__vote_yes">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{yesHeading}</span>
+                <span className="proposal__vote-name">{translatedContent.yes}</span>
                 <span className="proposal__vote-percent">{yesPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
@@ -153,7 +132,7 @@ function Proposal() {
             </div>
             <div className="proposal__vote proposal__vote_no">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{noHeading}</span>
+                <span className="proposal__vote-name">{translatedContent.no}</span>
                 <span className="proposal__vote-percent">{noPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
@@ -163,7 +142,7 @@ function Proposal() {
             </div>
             <div className="proposal__vote proposal__vote_veto">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{vetoHeading}</span>
+                <span className="proposal__vote-name">{translatedContent.veto}</span>
                 <span className="proposal__vote-percent">{vetoPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
@@ -173,7 +152,7 @@ function Proposal() {
             </div>
             <div className="proposal__vote proposal__vote_abstain">
               <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{abstainHeading}</span>
+                <span className="proposal__vote-name">{translatedContent.abstain}</span>
                 <span className="proposal__vote-percent">{abstainPercent}</span>
               </div>
               <div className="proposal__vote-bottom">
@@ -186,7 +165,7 @@ function Proposal() {
           <div className="proposal__divider"></div>
 
           <div className="proposal__description">
-            <span className="proposal__description-heading">{descriptionHeading}</span>
+            <span className="proposal__description-heading">{translatedContent.description}</span>
             <p className="proposal__description-text">{descriptionText}</p>
           </div>
         </div>

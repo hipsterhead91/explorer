@@ -30,6 +30,10 @@ import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 import CosmosRestApi from "../services/CosmosRestApi";
 import getAvatarsData from "../services/getAvatarsData";
 
+// Локализации
+import chainEng from "../translations/eng/chainEng";
+import chainRus from "../translations/rus/chainRus";
+
 // Прочее
 import { chains } from "../chains/chains";
 import {
@@ -180,16 +184,9 @@ function Chain(props: IChainProps) {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let dashboardText, validatorsText, proposalsText;
-  if (currentLanguage == "eng") {
-    dashboardText = "Dashboard";
-    validatorsText = "Validators";
-    proposalsText = "Proposals";
-  } else if (currentLanguage == "rus") {
-    dashboardText = "Информация";
-    validatorsText = "Валидаторы";
-    proposalsText = "Предложения";
-  }
+  let translatedContent = chainEng;
+  if (currentLanguage == "eng") translatedContent = chainEng;
+  if (currentLanguage == "rus") translatedContent = chainRus;
 
   return (
     <section className="chain">
@@ -197,11 +194,11 @@ function Chain(props: IChainProps) {
       {/* САБХЕДЕР (НАВИГАЦИЯ) */}
       <nav className="chain__nav subheader">
         <div className="chain__nav-container section-limiter">
-          <NavLink to="dashboard" className={linkStyle}>{dashboardText}</NavLink>
+          <NavLink to="dashboard" className={linkStyle}>{translatedContent.dashboard}</NavLink>
           <div className="chain__nav-divider"></div>
-          <NavLink to="validators" className={linkStyle}>{validatorsText}</NavLink>
+          <NavLink to="validators" className={linkStyle}>{translatedContent.validators}</NavLink>
           <div className="chain__nav-divider"></div>
-          <NavLink to="proposals" className={linkStyle}>{proposalsText}</NavLink>
+          <NavLink to="proposals" className={linkStyle}>{translatedContent.proposals}</NavLink>
         </div>
       </nav>
 

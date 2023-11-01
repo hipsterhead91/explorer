@@ -9,6 +9,10 @@ import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
+// Локализации
+import validatorsTableHeaderEng from "../translations/eng/validatorsTableHeaderEng";
+import validatorsTableHeaderRus from "../translations/rus/validatorsTableHeaderRus";
+
 
 
 function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
@@ -120,16 +124,9 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let monikerText, votingPowerText, commissionText;
-  if (currentLanguage == "eng") {
-    monikerText = "Moniker";
-    votingPowerText = "Voting Power";
-    commissionText = "Commission";
-  } else if (currentLanguage == "rus") {
-    monikerText = "Моникер";
-    votingPowerText = "Вес голоса";
-    commissionText = "Комиссия";
-  }
+  let translatedContent = validatorsTableHeaderEng;
+  if (currentLanguage == "eng") translatedContent = validatorsTableHeaderEng;
+  if (currentLanguage == "rus") translatedContent = validatorsTableHeaderRus;
 
   return (
     <div className="validators-th">
@@ -137,7 +134,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
       {/* VALIDATOR */}
       <div id="th-validator" className="validators-th__cell">
         <div onClick={() => sortByMoniker()} id="srt-validator" className="validators-th__sort-button">
-          <span className="validators-th__column-name">{monikerText}</span>
+          <span className="validators-th__column-name">{translatedContent.moniker}</span>
           <div ref={validatorSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>
@@ -148,7 +145,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
       {/* VOTING POWER */}
       <div id="th-power" className="validators-th__cell">
         <div onClick={() => sortByTokens()} id="srt-power" className="validators-th__sort-button">
-          <span className="validators-th__column-name">{votingPowerText}</span>
+          <span className="validators-th__column-name">{translatedContent.votingPower}</span>
           <div ref={votingPowerSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>
@@ -159,7 +156,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
       {/* COMMISSION */}
       <div id="th-commission" className="validators-th__cell">
         <div onClick={() => sortByCommission()} id="srt-commission" className="validators-th__sort-button">
-          <span className="validators-th__column-name">{commissionText}</span>
+          <span className="validators-th__column-name">{translatedContent.commission}</span>
           <div ref={commissionSortIcon} className="validators-th__sort-icon">
             <span className="validators-th__sort-icon-asc"></span>
             <span className="validators-th__sort-icon-dsc"></span>

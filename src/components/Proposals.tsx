@@ -13,6 +13,10 @@ import { useAppSelector } from "../store/hooks";
 import { selectProposals, selectCurrentChain } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
+// Локализации
+import proposalsEng from "../translations/eng/proposalsEng";
+import proposalsRus from "../translations/rus/proposalsRus";
+
 
 
 function Proposals() {
@@ -77,34 +81,21 @@ function Proposals() {
   })
 
   // ЛОКАЛИЗАЦИЯ
-  let disclaimerSpanText, disclaimerText, proposalText, statusText, typeText, votingEndText;
-  if (currentLanguage == "eng") {
-    disclaimerSpanText = "This section is work in progress.";
-    disclaimerText = " Some elements may not be displayed correctly.";
-    proposalText = "Proposal";
-    statusText = "Status";
-    typeText = "Type";
-    votingEndText = "Voting End";
-  } else if (currentLanguage == "rus") {
-    disclaimerSpanText = "Эта секция в процессе разработки.";
-    disclaimerText = " Некоторые элементы могут отображаться некорректно.";
-    proposalText = "Предложение";
-    statusText = "Статус";
-    typeText = "Тип";
-    votingEndText = "Истекает";
-  }
+  let translatedContent = proposalsEng;
+  if (currentLanguage == "eng") translatedContent = proposalsEng;
+  if (currentLanguage == "rus") translatedContent = proposalsRus;
 
   return (
     <div className="proposals">
       <Outlet />
       <div className="proposals__wrapper">
-        <div className="proposals__disclaimer"><span>{disclaimerSpanText}</span>{disclaimerText}</div>
+        <div className="proposals__disclaimer"><span>{translatedContent.disclaimerSpan}</span>{translatedContent.disclaimer}</div>
         <div ref={proposalsTable} className="proposals__table">
           <div className="proposals__table-header">
-            <span id="column-title" className="proposals__column-name">{proposalText}</span>
-            <span id="column-status" className="proposals__column-name">{statusText}</span>
-            <span id="column-type" className="proposals__column-name">{typeText}</span>
-            <span id="column-voting-end" className="proposals__column-name">{votingEndText}</span>
+            <span id="column-title" className="proposals__column-name">{translatedContent.proposal}</span>
+            <span id="column-status" className="proposals__column-name">{translatedContent.status}</span>
+            <span id="column-type" className="proposals__column-name">{translatedContent.type}</span>
+            <span id="column-voting-end" className="proposals__column-name">{translatedContent.votingEnd}</span>
           </div>
           <div className="proposals__table-rows">{tableContent}</div>
         </div>

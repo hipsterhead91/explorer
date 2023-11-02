@@ -7,7 +7,7 @@ const validatorsEng = {
   noValidatorsPlaceholder:
     <div className="validators__placeholder">
       <p className="validators__placeholder-text-top">Validators are loading or unavailable now.</p>
-      <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
+      <p className="validators__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>) or return to Dashboard and switch to another provider.</p>
     </div>,
 
   nothingFoundPlaceholder: <div className="validators__placeholder">

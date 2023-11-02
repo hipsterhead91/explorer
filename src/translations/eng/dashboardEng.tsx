@@ -1,6 +1,6 @@
 const dashboardEng = {
-  noteStart: "Sometimes providers are unavailable,",
-  noteEnd: "so you can ",
+  noteStart: "If some data is not displayed now,",
+  noteEnd: "you can ",
   providerButton: "switch to the next provider ",
   provider: "provider: ",
   communityPool: "Community Pool:",

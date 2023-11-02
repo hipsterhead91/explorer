@@ -1,5 +1,5 @@
 const chainRus = {
-  dashboard: "Информация",
+  dashboard: "Статистика",
   validators: "Валидаторы",
   proposals: "Предложения",
 };

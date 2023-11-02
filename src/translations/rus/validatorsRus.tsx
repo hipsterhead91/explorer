@@ -7,7 +7,7 @@ const validatorsRus = {
   noValidatorsPlaceholder:
     <div className="validators__placeholder">
       <p className="validators__placeholder-text-top">Валидаторы грузятся, либо недоступны в данный момент.</p>
-      <p className="validators__placeholder-text-bottom">Если это длится слишком долго, попробуйте обновить страницу (<span>нажмите F5</span>).</p>
+      <p className="validators__placeholder-text-bottom">Если это длится слишком долго, вы можете обновить страницу (<span>нажмите F5</span>) или вернуться во вкладку статистики, чтобы сменить провайдера.</p>
     </div>,
 
   nothingFoundPlaceholder: <div className="validators__placeholder">

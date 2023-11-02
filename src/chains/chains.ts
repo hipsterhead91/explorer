@@ -11,6 +11,9 @@ import chihuahuaMainnet from "./mainnets/chihuahuaMainnet";
 import axelarMainnet from "./mainnets/axelarMainnet";
 import kichainMainnet from "./mainnets/kichainMainnet";
 import secretMainnet from "./mainnets/secretMainnet";
+import quicksilverMainnet from "./mainnets/quickSilver";
+import strideMainnet from "./mainnets/strideMainnet";
+import kujiraMainnet from "./mainnets/kujiraMainnet";
 
 export const chains: Array<IChain> = [
   akashMainnet,
@@ -23,8 +26,11 @@ export const chains: Array<IChain> = [
   junoMainnet,
   kavaMainnet,
   kichainMainnet,
+  kujiraMainnet,
   osmosisMainnet,
+  quicksilverMainnet,
   secretMainnet,
+  strideMainnet,
 ];
 
 const getCoinGeckoIds = (): string => {

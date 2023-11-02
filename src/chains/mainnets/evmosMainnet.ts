@@ -12,11 +12,11 @@ const evmosMainnet: IChain = {
   api: [
     { provider: "Polkachu", address: "https://evmos-api.polkachu.com" },
     { provider: "Notional", address: "https://api-evmos-ia.cosmosia.notional.ventures" },
+    { provider: "Allnodes", address: "https://evmos-rest.publicnode.com" },
+    { provider: "NodeStake", address: "https://api.evmos.nodestake.top" },
     { provider: "Evmos", address: "https://rest.bd.evmos.org:1317" },
     { provider: "Skynet Validators", address: "https://evmos-api.skynetvalidators.com" },
-    { provider: "NodeStake", address: "https://api.evmos.nodestake.top" },
     { provider: "Golden Ratio Staking", address: "https://rest-evmos.goldenratiostaking.net" },
-    { provider: "Allnodes", address: "https://evmos-rest.publicnode.com" },
   ],
   descriptionEng: "A Cosmos SDK-based IBC & Ethereum Virtual Machine-compatible blockchain.",
   descriptionRus: "Блокчейн, основанный на Cosmos SDK и совместимый с виртуальными машинами Ethereum.",

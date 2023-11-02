@@ -12,9 +12,9 @@ const chihuahuaMainnet: IChain = {
   api: [
     { provider: "Polkachu", address: "https://chihuahua-api.polkachu.com" },
     { provider: "Chihuahua", address: "https://api.chihuahua.wtf" },
+    { provider: "Allnodes", address: "https://chihuahua-rest.publicnode.com" },
     { provider: "Mercury Nodes", address: "https://chihuahua-api.mercury-nodes.net" },
     { provider: "Golden Ratio Staking", address: "https://rest-chihuahua.goldenratiostaking.net" },
-    { provider: "Allnodes", address: "https://chihuahua-rest.publicnode.com" },
   ],
   descriptionEng: "The first meme coin on Cosmos ecosystem.",
   descriptionRus: "Первый мем-койн в экосистеме Cosmos.",

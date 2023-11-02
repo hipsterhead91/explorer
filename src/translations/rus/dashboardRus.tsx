@@ -1,5 +1,5 @@
 const dashboardRus = {
-  noteStart: "Если данные недоступны, вы можете",
+  noteStart: "Если данные не отображаются, можно",
   noteEnd: "",
   providerButton: "попробовать следующего провайдера ",
   provider: "провайдер: ",

@@ -15,70 +15,92 @@
   align-items: center;
 }
 
-.homepage__language-switcher {
+.homepage__switchers-alignment {
   box-sizing: border-box;
-  min-width: 200px;
-  margin: 0 0 12px 0;
-  display: flex;
-  flex-direction: row;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 12px;
 }
 
-.homepage__language-button {
+.homepage__switchers {
   box-sizing: border-box;
-  width: 50%;
-  min-height: 38px;
+  width: 100%;
+  grid-column: 5/7;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.homepage__switcher {
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: rgba($color-second, 0.5);
-  outline: none;
-  cursor: pointer;
-  border: none;
 
   &:first-child {
-    padding: 0 36px 0 32px;
-    border-radius: 8px 0 0 8px;
+    margin: 0 6px 0 0;
+  }
+}
+
+.homepage__switcher-button {
+  box-sizing: border-box;
+  width: 50%;
+  min-height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: $gray-lightest;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  
+  &:first-child {
+    border-radius: 8px 0 0 0;
   }
 
   &:last-child {
-    padding: 0 32px 0 36px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 8px 0 0;
   }
 
   &_selected {
-    background-color: rgba($color-second, 0.7);
-
-    .homepage__language {
-      color: $white;
-    }
+    background-color: $white;
   }
 }
 
 .homepage__language {
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 1;
-  color: $color-main;
-  text-transform: uppercase;
-}
-
-.homepage__flag {
-  width: 26px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
-  &_uk {
-    margin: 0 6px 0 0;
+  &_eng {
     background-image: url("/public/images/flag-uk.png");
   }
 
   &_rus {
-    margin: 0 0 0 8px;
     background-image: url("/public/images/flag-russia.png");
+  }
+}
+
+.homepage__theme {
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &_light {
+    background-image: url("/public/images/sun.png");
+  }
+
+  &_dark {
+    background-image: url("/public/images/moon.png");
   }
 }
 
@@ -88,6 +110,10 @@
   padding: 40px 40px 40px 40px;
   background-color: $white;
   border-radius: 16px;
+
+  &_first {
+    border-radius: 16px 0 16px 16px;
+  }
 
   &:not(:last-child) {
     margin: 0 0 12px 0;

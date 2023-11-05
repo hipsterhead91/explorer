@@ -20,6 +20,7 @@ import ICoin from "../models/ICoin";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 import { setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
+import { setCurrentTheme } from "../store/reducers/currentThemeSlice";
 
 // API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";
@@ -36,6 +37,7 @@ function App() {
   const [coins, setCoins] = useState<ICoin[] | null>(null);
   const dispatch = useAppDispatch();
   const locStorLanguage = localStorage.getItem("lang");
+  const locStorTheme = localStorage.getItem("theme");
 
   // СИНХРОНИЗИРУЕМ ЯЗЫК ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
   useEffect(() => {
@@ -43,6 +45,15 @@ function App() {
       dispatch(setCurrentLanguage("eng"));
     } else if (locStorLanguage == "rus") {
       dispatch(setCurrentLanguage("rus"));
+    }
+  }, [])
+
+  // СИНХРОНИЗИРУЕМ ТЕМУ ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
+  useEffect(() => {
+    if (!locStorTheme || locStorTheme == "light") {
+      dispatch(setCurrentTheme("light"));
+    } else if (locStorTheme == "dark") {
+      dispatch(setCurrentTheme("dark"));
     }
   }, [])
 

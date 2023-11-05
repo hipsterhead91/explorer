@@ -1,7 +1,7 @@
 const homepageEng = {
 
   helloBlock:
-    <div className="homepage__block">
+    <div className="homepage__block homepage__block_first">
       <h1 className="homepage__heading">Hello,</h1>
       <p className="homepage__paragraph">And welcome to <span className="homepage__bold">Oops!plorer</span> &#128522;</p>
       <p className="homepage__paragraph">This humble app is designed to browse blockchains built on <a className="homepage__link" href="https://v1.cosmos.network/sdk" target="_blank">Cosmos SDK</a>; also, it's a pet project where I'm training to JavaScript, TypeScript, React (with it's Router), Redux ToolKit and some other technologies, so please don't be too hard on it.</p>

@@ -1,7 +1,7 @@
 const homepageRus = {
 
   helloBlock:
-    <div className="homepage__block">
+    <div className="homepage__block homepage__block_first">
       <h1 className="homepage__heading">Привет,</h1>
       <p className="homepage__paragraph">И добро пожаловать в <span className="homepage__bold">Oops!plorer</span> &#128522;</p>
       <p className="homepage__paragraph">Это скромное приложение создано для того, чтобы мониторить блокчейны, построенные на <a className="homepage__link" href="https://v1.cosmos.network/sdk" target="_blank">Cosmos SDK</a>; кроме того, это пет-проект, на котором я тренирую свой JavaScript, TypeScript, React (с его роутером), Redux ToolKit и некоторые другие технологии, так что, пожалуйста, не будьте к нему слишком строги.</p>

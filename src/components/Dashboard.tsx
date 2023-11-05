@@ -150,10 +150,7 @@ function Dashboard() {
 
   // РЕНДЕР ВЫСОТЫ БЛОКА
   const blockHeightEl = (blockHeight)
-    ? <p className="dashboard__plate-data dashboard__plate-data_refreshing">
-      {Number(blockHeight).toLocaleString("en")}
-      <div className="dashboard__refresh-icon"></div>
-    </p>
+    ? <p className="dashboard__plate-data">{Number(blockHeight).toLocaleString("en")}</p>
     : errorEl;
 
   // ЛОКАЛИЗАЦИЯ

@@ -11,7 +11,7 @@ import { RootState } from "../store";
 
 // ИСХОДНОЕ СОСТОЯНИЕ ТЕКУЩЕГО ЯЗЫКА
 const initialThemeState: ICurrentThemeState = {
-  theme: "light",
+  theme: "light-theme",
 }
 
 // СЛАЙС ТЕКУЩЕГО ЯЗЫКА
@@ -19,7 +19,7 @@ export const currentThemeSlice = createSlice({
   name: "currentTheme",
   initialState: initialThemeState,
   reducers: {
-    setCurrentTheme: (state, action: PayloadAction<"light" | "dark">) => {
+    setCurrentTheme: (state, action: PayloadAction<"light-theme" | "dark-theme">) => {
       state.theme = action.payload;
     },
   }

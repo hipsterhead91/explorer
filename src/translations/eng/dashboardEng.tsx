@@ -7,7 +7,7 @@ const dashboardEng = {
   activeProposals: "Active Proposals:",
   tokensBonded: "Tokens Bonded:",
   validators: "Validators:",
-  inflation: "Inflation",
+  inflation: "Inflation:",
   unbonding: "Unbonding:",
   blockHeight: "Block Height:",
   pricesBy: "Prices by ",

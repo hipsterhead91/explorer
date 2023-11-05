@@ -7,7 +7,7 @@ const dashboardRus = {
   activeProposals: "Активные предложения:",
   tokensBonded: "Монет застейкано:",
   validators: "Валидаторы:",
-  inflation: "Инфляция",
+  inflation: "Инфляция:",
   unbonding: "Сроки анбонда:",
   blockHeight: "Высота блока:",
   pricesBy: "Цены от ",

@@ -8,8 +8,14 @@
   background-color: $color-main;
 }
 
+.app.dark-theme
+.layout {
+  background-color: $dark-theme-main;
+}
+
 .layout__app-content {
   box-sizing: border-box;
   width: 100%;
   padding: 58px 0 52px 0; // верхний и нижний паддинги равны высоте шапки и подвала
 }
+

@@ -51,6 +51,11 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #add8e6;
 }
 
+.app.dark-theme
+.layout {
+  background-color: #191919;
+}
+
 .layout__app-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -73,6 +78,13 @@ html::-webkit-scrollbar-thumb:hover {
   width: 100%;
   min-height: 28px;
   background-color: rgba(13, 101, 115, 0.6);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.app.dark-theme
+.subheader {
+  background-color: rgba(0, 51, 37, 0.5);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
@@ -177,6 +189,11 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #0d6573;
 }
 
+.app.dark-theme
+.header {
+  background-color: #003325;
+}
+
 .header__container {
   min-height: 58px;
   display: -ms-grid;
@@ -273,7 +290,7 @@ html::-webkit-scrollbar-thumb:hover {
           justify-content: space-between;
   border: 3px solid #ffc83d;
   border-radius: 8px;
-  background-color: #0d6573;
+  background-color: transparent;
   outline: none;
   cursor: pointer;
   -webkit-transition: linear 0.2s;
@@ -330,6 +347,12 @@ html::-webkit-scrollbar-thumb:hover {
   top: 3px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+}
+
+.app.dark-theme
+.chains__indicator-arrow {
+  border-top: 3px solid #003325;
+  border-left: 3px solid #003325;
 }
 
 .chains__overlay {
@@ -684,22 +707,32 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #dcdcdc;
+  background-color: rgba(250, 250, 250, 0.6);
   border: none;
   outline: none;
   cursor: pointer;
 }
 
 .homepage__switcher-button:first-child {
-  border-radius: 8px 0 0 0;
+  border-radius: 12px 0 0 0;
 }
 
 .homepage__switcher-button:last-child {
-  border-radius: 0 8px 0 0;
+  border-radius: 0 12px 0 0;
 }
 
 .homepage__switcher-button_selected {
   background-color: #fafafa;
+}
+
+.app.dark-theme
+.homepage__switcher-button {
+  background-color: rgba(40, 40, 40, 0.6);
+}
+
+.app.dark-theme
+.homepage__switcher-button_selected {
+  background-color: #282828;
 }
 
 .homepage__language {
@@ -751,11 +784,22 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 0 0 12px 0;
 }
 
+.app.dark-theme
+.homepage__block {
+  background-color: #282828;
+}
+
 .homepage__heading {
   margin: 0 0 10px 0;
   font-weight: 600;
   font-size: 28px;
   color: #464646;
+}
+
+.app.dark-theme
+.homepage__heading {
+  font-weight: 500;
+  color: #bebebe;
 }
 
 .homepage__paragraph {
@@ -768,8 +812,19 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 0 0 12px 0;
 }
 
+.app.dark-theme
+.homepage__paragraph {
+  font-weight: 300;
+  color: #bebebe;
+}
+
 .homepage__bold {
   font-weight: 600;
+}
+
+.app.dark-theme
+.homepage__bold {
+  font-weight: 500;
 }
 
 .homepage__link {
@@ -783,6 +838,19 @@ html::-webkit-scrollbar-thumb:hover {
   color: #464646;
 }
 
+.app.dark-theme
+.homepage__link {
+  font-weight: 500;
+  color: #0d6573;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+}
+
+.app.dark-theme
+.homepage__link:hover {
+  color: #dcdcdc;
+}
+
 .homepage__list {
   margin: 14px 0 0 0;
 }
@@ -794,6 +862,12 @@ html::-webkit-scrollbar-thumb:hover {
   font-weight: 400;
   font-size: 16px;
   color: #464646;
+}
+
+.app.dark-theme
+.homepage__list-element {
+  font-weight: 300;
+  color: #bebebe;
 }
 
 .chain {
@@ -855,10 +929,27 @@ html::-webkit-scrollbar-thumb:hover {
   text-decoration: underline;
 }
 
+.app.dark-theme
+.chain__nav-link {
+  font-weight: 400;
+  color: #fafafa;
+}
+
+.app.dark-theme
+.chain__nav-link_active {
+  color: #ffc83d;
+  text-decoration: underline;
+}
+
 .chain__nav-divider {
   height: 12px;
   margin: 0 36px 0 36px;
   border-left: 2px solid rgba(173, 216, 230, 0.7);
+}
+
+.app.dark-theme
+.chain__nav-divider {
+  border-left: 2px solid rgba(220, 220, 220, 0.3);
 }
 
 .chain__container {
@@ -1034,6 +1125,11 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
 }
 
+.app.dark-theme
+.dashboard__plate {
+  background-color: #282828;
+}
+
 #main-plate {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -1042,6 +1138,11 @@ html::-webkit-scrollbar-thumb:hover {
   -ms-grid-row-span: 2;
   grid-row: 1 / 3;
   background-color: rgba(13, 101, 115, 0.6);
+}
+
+.app.dark-theme
+#main-plate {
+  background-color: rgba(0, 51, 37, 0.6);
 }
 
 #community-plate {
@@ -1108,6 +1209,11 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: rgba(13, 101, 115, 0.6);
 }
 
+.app.dark-theme
+#price-plate {
+  background-color: rgba(0, 51, 37, 0.6);
+}
+
 #links-plate {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -1118,6 +1224,11 @@ html::-webkit-scrollbar-thumb:hover {
   padding: 20px 16px 20px 16px;
   background-color: transparent;
   border: 4px solid #fafafa;
+}
+
+.app.dark-theme
+#links-plate {
+  border: 4px solid #282828;
 }
 
 #validators-plate {
@@ -1155,9 +1266,21 @@ html::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
 }
 
+.app.dark-theme
+.dashboard__error {
+  color: #828282;
+  background-color: rgba(220, 220, 220, 0.1);
+}
+
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
+  color: #fafafa;
+}
+
+.app.dark-theme
+.dashboard__heading {
+  font-weight: 500;
   color: #fafafa;
 }
 
@@ -1167,10 +1290,22 @@ html::-webkit-scrollbar-thumb:hover {
   color: #add8e6;
 }
 
+.app.dark-theme
+.dashboard__subheading {
+  font-weight: 200;
+  color: #a0a0a0;
+}
+
 .dashboard__description {
   margin: auto 0 0 0;
   font-weight: 300;
   font-size: 16px;
+  color: #fafafa;
+}
+
+.app.dark-theme
+.dashboard__description {
+  font-weight: 200;
   color: #fafafa;
 }
 
@@ -1192,14 +1327,10 @@ html::-webkit-scrollbar-thumb:hover {
   color: #646464;
 }
 
-.dashboard__refresh-icon {
-  width: 13px;
-  height: 13px;
-  margin: -2px 0 0 4px;
-  background-image: url("/public/images/refresh-animated-black.gif");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+.app.dark-theme
+.dashboard__plate-heading {
+  font-weight: 300;
+  color: #828282;
 }
 
 .dashboard__plate-data {
@@ -1209,16 +1340,22 @@ html::-webkit-scrollbar-thumb:hover {
   color: #464646;
 }
 
-.dashboard__plate-data_refreshing {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .dashboard__plate-data span {
   margin: 0 0 0 4px;
   font-weight: 400;
   font-size: 12px;
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__plate-data {
+  font-weight: 500;
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__plate-data span {
+  font-weight: 300;
   color: #828282;
 }
 
@@ -1268,6 +1405,23 @@ html::-webkit-scrollbar-thumb:hover {
   color: #fafafa;
 }
 
+.app.dark-theme
+.dashboard__coingecko-heading {
+  font-weight: 300;
+  color: #dcdcdc;
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading a {
+  font-weight: 500;
+  color: rgba(250, 250, 250, 0.8);
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading a:hover {
+  color: #fafafa;
+}
+
 .dashboard__coingecko-prices {
   margin: auto 0 0 0;
 }
@@ -1284,10 +1438,21 @@ html::-webkit-scrollbar-thumb:hover {
   border-bottom: 1px solid #add8e6;
 }
 
+.app.dark-theme
+.dashboard__coingecko-price {
+  border-bottom: 1px solid #bebebe;
+}
+
 .dashboard__coingecko-subheading {
   font-weight: 300;
   font-size: 14px;
   color: #add8e6;
+}
+
+.app.dark-theme
+.dashboard__coingecko-subheading {
+  font-weight: 300;
+  color: #dcdcdc;
 }
 
 .dashboard__coingecko-value {

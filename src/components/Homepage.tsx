@@ -21,7 +21,7 @@ function Homepage() {
   };
 
   // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
-  const switchTheme = (theme: "light" | "dark") => {
+  const switchTheme = (theme: "light-theme" | "dark-theme") => {
     dispatch(setCurrentTheme(theme));
     localStorage.setItem("theme", theme);
   };
@@ -34,11 +34,11 @@ function Homepage() {
     ? "homepage__switcher-button homepage__switcher-button_selected"
     : "homepage__switcher-button"
 
-  const lightButtonStyle = (currentTheme == "light")
+  const lightButtonStyle = (currentTheme == "light-theme")
     ? "homepage__switcher-button homepage__switcher-button_selected"
     : "homepage__switcher-button"
 
-  const darkButtonStyle = (currentTheme == "dark")
+  const darkButtonStyle = (currentTheme == "dark-theme")
     ? "homepage__switcher-button homepage__switcher-button_selected"
     : "homepage__switcher-button"
 
@@ -61,27 +61,15 @@ function Homepage() {
               </button>
             </div>
             <div className="homepage__switcher">
-              <button className={lightButtonStyle} onClick={() => { switchTheme("light") }}>
+              <button className={lightButtonStyle} onClick={() => { switchTheme("light-theme") }}>
                 <div className="homepage__theme homepage__theme_light"></div>
               </button>
-              <button className={darkButtonStyle} onClick={() => { switchTheme("dark") }}>
+              <button className={darkButtonStyle} onClick={() => { switchTheme("dark-theme") }}>
                 <div className="homepage__theme homepage__theme_dark"></div>
               </button>
             </div>
           </div>
         </div>
-
-
-        {/* <div className="homepage__language-switcher">
-          <button className={activeButtonStyle} onClick={() => { switchLanguage("eng") }}>
-            <div className="homepage__flag homepage__flag_uk"></div>
-            <span className="homepage__language">English</span>
-          </button>
-          <button className={inactiveButtonStyle} onClick={() => { switchLanguage("rus") }}>
-            <span className="homepage__language">Русский</span>
-            <div className="homepage__flag homepage__flag_rus"></div>
-          </button>
-        </div> */}
         {translatedContent.helloBlock}
         {translatedContent.mainBlock}
         {translatedContent.byeBlock}

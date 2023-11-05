@@ -15,7 +15,7 @@
   justify-content: space-between;
   border: 3px solid $color-accent;
   border-radius: 8px;
-  background-color: $color-second;
+  background-color: transparent;
   outline: none;
   cursor: pointer;
   transition: linear 0.2s;
@@ -59,6 +59,12 @@
     top: 3px;
     transform: rotate(45deg);
   }
+}
+
+.app.dark-theme
+.chains__indicator-arrow {
+  border-top: 3px solid $dark-theme-second;
+  border-left: 3px solid $dark-theme-second;
 }
 
 

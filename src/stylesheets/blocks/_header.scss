@@ -9,6 +9,11 @@
   background-color: $color-second;
 }
 
+.app.dark-theme
+.header {
+  background-color: $dark-theme-second;
+}
+
 // Миксуется с section-limiter, который ограничивает ширину секций
 .header__container {
   min-height: 58px;

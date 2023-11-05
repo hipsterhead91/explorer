@@ -1,5 +1,5 @@
 interface ICurrentThemeState {
-  theme: "light" | "dark",
+  theme: "light-theme" | "dark-theme",
 }
 
 export default ICurrentThemeState;

@@ -20,7 +20,7 @@ import ICoin from "../models/ICoin";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 import { setCurrentLanguage } from "../store/reducers/currentLanguageSlice";
-import { setCurrentTheme } from "../store/reducers/currentThemeSlice";
+import { selectCurrentTheme, setCurrentTheme } from "../store/reducers/currentThemeSlice";
 
 // API, сервисы
 import { coinGeckoApi } from "../services/coinGecko";
@@ -33,6 +33,7 @@ import { chains } from "../chains/chains";
 function App() {
 
   const currentChain = useAppSelector(selectCurrentChain);
+  const currentTheme = useAppSelector(selectCurrentTheme);
   const coinsData = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 60000 }).data;
   const [coins, setCoins] = useState<ICoin[] | null>(null);
   const dispatch = useAppDispatch();
@@ -50,10 +51,10 @@ function App() {
 
   // СИНХРОНИЗИРУЕМ ТЕМУ ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
   useEffect(() => {
-    if (!locStorTheme || locStorTheme == "light") {
-      dispatch(setCurrentTheme("light"));
-    } else if (locStorTheme == "dark") {
-      dispatch(setCurrentTheme("dark"));
+    if (!locStorTheme || locStorTheme == "light-theme") {
+      dispatch(setCurrentTheme("light-theme"));
+    } else if (locStorTheme == "dark-theme") {
+      dispatch(setCurrentTheme("dark-theme"));
     }
   }, [])
 
@@ -69,7 +70,7 @@ function App() {
   }, [currentChain])
 
   return (
-    <div className="app">
+    <div className={`app ${currentTheme}`}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Homepage />} />

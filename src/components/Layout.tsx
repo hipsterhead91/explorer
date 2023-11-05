@@ -5,12 +5,18 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
+// Redux
+import { useAppSelector } from "../store/hooks";
+import { selectCurrentTheme } from "../store/reducers/currentThemeSlice";
+
 
 
 function Layout() {
 
+  const currentTheme = useAppSelector(selectCurrentTheme);
+
   return (
-    <div className="layout">
+    <div className={`layout ${currentTheme}`}>
 
       {/* ШАПКА */}
       <Header />

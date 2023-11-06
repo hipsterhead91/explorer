@@ -5,12 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $color-main;
-}
-
-.app.dark-theme
-.layout {
-  background-color: $dark-theme-main;
+  background-color: $lt-background;
 }
 
 .layout__app-content {
@@ -19,3 +14,13 @@
   padding: 58px 0 52px 0; // верхний и нижний паддинги равны высоте шапки и подвала
 }
 
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.layout {
+  background-color: $dt-background;
+}

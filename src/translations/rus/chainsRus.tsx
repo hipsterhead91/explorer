@@ -1,5 +1,5 @@
 const chainsRus = {
-  popupHeading: "Выберите сеть",
+  popupHeading: "Выберите сеть:",
   noChain: "Сеть не выбрана",
 }
 

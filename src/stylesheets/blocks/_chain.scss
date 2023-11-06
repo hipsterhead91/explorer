@@ -35,26 +35,10 @@
   }
 }
 
-.app.dark-theme
-.chain__nav-link {
-  font-weight: 400;
-  color: $white;
-
-  &_active {
-    color: $color-accent;
-    text-decoration: underline;
-  }
-}
-
 .chain__nav-divider {
   height: 12px;
   margin: 0 36px 0 36px;
   border-left: 2px solid rgba($color-main, 0.7);
-}
-
-.app.dark-theme
-.chain__nav-divider {
-  border-left: 2px solid rgba($gray-lightest, 0.3);
 }
 
 // Миксуется с section-limiter, который ограничивает ширину секций
@@ -65,4 +49,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.chain__nav-link {
+  color: rgba($dt-accent, 0.75);
+
+  &_active {
+    color: $brand-color;
+  }
+}
+
+.app.dark-theme
+.chain__nav-divider {
+  border-left: 2px solid rgba($dt-accent, 0.4);
 }

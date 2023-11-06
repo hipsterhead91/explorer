@@ -24,10 +24,32 @@
   a {
     color: $color-accent;
     text-decoration: none;
-    transition: linear 0.2s;
 
     &:hover {
       color: $white;
+    }
+  }
+}
+
+
+
+// NIGHT MODE
+
+
+.app.dark-theme
+.footer {
+  background-color: $black;
+}
+
+.app.dark-theme
+.footer__info {
+  color: $dt-text-comfort;
+
+  a {
+    color: $brand-color;
+
+    &:hover {
+      color: $dt-text-light;
     }
   }
 }

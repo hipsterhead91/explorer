@@ -51,16 +51,16 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #add8e6;
 }
 
-.app.dark-theme
-.layout {
-  background-color: #191919;
-}
-
 .layout__app-content {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
   padding: 58px 0 52px 0;
+}
+
+.app.dark-theme
+.layout {
+  background-color: #111c19;
 }
 
 .section-limiter {
@@ -84,7 +84,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .subheader {
-  background-color: rgba(0, 51, 37, 0.5);
+  background-color: rgba(13, 51, 40, 0.4);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
@@ -189,11 +189,6 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #0d6573;
 }
 
-.app.dark-theme
-.header {
-  background-color: #003325;
-}
-
 .header__container {
   min-height: 58px;
   display: -ms-grid;
@@ -261,8 +256,13 @@ html::-webkit-scrollbar-thumb:hover {
   font-size: 13px;
   line-height: 100%;
   letter-spacing: 0.2px;
-  color: #dcdcdc;
+  color: #bebebe;
   text-transform: lowercase;
+}
+
+.app.dark-theme
+.header {
+  background-color: #0d3328;
 }
 
 .chains {
@@ -290,11 +290,9 @@ html::-webkit-scrollbar-thumb:hover {
           justify-content: space-between;
   border: 3px solid #ffc83d;
   border-radius: 8px;
-  background-color: transparent;
+  background-color: #0d6573;
   outline: none;
   cursor: pointer;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .chains__current-chain {
@@ -347,12 +345,6 @@ html::-webkit-scrollbar-thumb:hover {
   top: 3px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-}
-
-.app.dark-theme
-.chains__indicator-arrow {
-  border-top: 3px solid #003325;
-  border-left: 3px solid #003325;
 }
 
 .chains__overlay {
@@ -466,8 +458,6 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .chains__close-button:hover {
@@ -501,8 +491,6 @@ html::-webkit-scrollbar-thumb:hover {
   border-right: 4px solid transparent;
   text-decoration: none;
   cursor: pointer;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .chains__chain_selected {
@@ -556,6 +544,74 @@ html::-webkit-scrollbar-thumb:hover {
   color: #464646;
 }
 
+.app.dark-theme
+.chains__switcher {
+  background-color: #0d3328;
+}
+
+.app.dark-theme
+.chains__current-chain {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.chains__indicator-arrow {
+  border-top: 3px solid #0d3328;
+  border-left: 3px solid #0d3328;
+}
+
+.app.dark-theme
+.chains__overlay {
+  background-color: rgba(15, 15, 15, 0.7);
+}
+
+.app.dark-theme
+.chains__popup {
+  background-color: #152420;
+}
+
+.app.dark-theme
+.chains__popup-heading {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.chains__close-button {
+  color: rgba(190, 190, 190, 0.85);
+}
+
+.app.dark-theme
+.chains__close-button:hover {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.chains__chain {
+  background-color: rgba(250, 250, 250, 0.05);
+}
+
+.app.dark-theme
+.chains__chain_selected {
+  background-color: rgba(197, 201, 113, 0.15);
+  border-left: 4px solid #c5c971;
+  border-right: 4px solid #c5c971;
+}
+
+.app.dark-theme
+.chains__chain:hover:not(.chains__chain_selected) {
+  background-color: rgba(250, 250, 250, 0.1);
+}
+
+.app.dark-theme
+.chains__chain-name {
+  color: #c5c971;
+}
+
+.app.dark-theme
+.chains__chain-id {
+  color: #bebebe;
+}
+
 .footer {
   width: 100%;
   margin: auto 0 0 0;
@@ -594,10 +650,28 @@ html::-webkit-scrollbar-thumb:hover {
 .footer__info a {
   color: #ffc83d;
   text-decoration: none;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
+.footer__info a:hover {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.footer {
+  background-color: #0f0f0f;
+}
+
+.app.dark-theme
+.footer__info {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.footer__info a {
+  color: #ffc83d;
+}
+
+.app.dark-theme
 .footer__info a:hover {
   color: #fafafa;
 }
@@ -725,16 +799,6 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
 }
 
-.app.dark-theme
-.homepage__switcher-button {
-  background-color: rgba(40, 40, 40, 0.6);
-}
-
-.app.dark-theme
-.homepage__switcher-button_selected {
-  background-color: #282828;
-}
-
 .homepage__language {
   width: 24px;
   height: 24px;
@@ -784,22 +848,11 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 0 0 12px 0;
 }
 
-.app.dark-theme
-.homepage__block {
-  background-color: #282828;
-}
-
 .homepage__heading {
   margin: 0 0 10px 0;
   font-weight: 600;
   font-size: 28px;
   color: #464646;
-}
-
-.app.dark-theme
-.homepage__heading {
-  font-weight: 500;
-  color: #bebebe;
 }
 
 .homepage__paragraph {
@@ -812,43 +865,17 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 0 0 12px 0;
 }
 
-.app.dark-theme
-.homepage__paragraph {
-  font-weight: 300;
-  color: #bebebe;
-}
-
 .homepage__bold {
   font-weight: 600;
 }
 
-.app.dark-theme
-.homepage__bold {
-  font-weight: 500;
-}
-
-.homepage__link {
-  font-weight: 600;
-  color: #0d6573;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
-}
-
-.homepage__link:hover {
-  color: #464646;
-}
-
-.app.dark-theme
 .homepage__link {
   font-weight: 500;
   color: #0d6573;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
-.app.dark-theme
 .homepage__link:hover {
-  color: #dcdcdc;
+  color: #3D8E99;
 }
 
 .homepage__list {
@@ -865,8 +892,42 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .app.dark-theme
+.homepage__switcher-button {
+  background-color: rgba(21, 36, 32, 0.6);
+}
+
+.app.dark-theme
+.homepage__switcher-button_selected {
+  background-color: #152420;
+}
+
+.app.dark-theme
+.homepage__block {
+  background-color: #152420;
+}
+
+.app.dark-theme
+.homepage__heading {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.homepage__paragraph {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.homepage__link {
+  color: rgba(197, 201, 113, 0.85);
+}
+
+.app.dark-theme
+.homepage__link:hover {
+  color: #c5c971;
+}
+
+.app.dark-theme
 .homepage__list-element {
-  font-weight: 300;
   color: #bebebe;
 }
 
@@ -929,27 +990,10 @@ html::-webkit-scrollbar-thumb:hover {
   text-decoration: underline;
 }
 
-.app.dark-theme
-.chain__nav-link {
-  font-weight: 400;
-  color: #fafafa;
-}
-
-.app.dark-theme
-.chain__nav-link_active {
-  color: #ffc83d;
-  text-decoration: underline;
-}
-
 .chain__nav-divider {
   height: 12px;
   margin: 0 36px 0 36px;
   border-left: 2px solid rgba(173, 216, 230, 0.7);
-}
-
-.app.dark-theme
-.chain__nav-divider {
-  border-left: 2px solid rgba(220, 220, 220, 0.3);
 }
 
 .chain__container {
@@ -966,6 +1010,21 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.app.dark-theme
+.chain__nav-link {
+  color: rgba(197, 201, 113, 0.75);
+}
+
+.app.dark-theme
+.chain__nav-link_active {
+  color: #ffc83d;
+}
+
+.app.dark-theme
+.chain__nav-divider {
+  border-left: 2px solid rgba(197, 201, 113, 0.4);
 }
 
 /* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */
@@ -1035,8 +1094,6 @@ html::-webkit-scrollbar-thumb:hover {
   line-height: 1;
   color: #ffc83d;
   cursor: pointer;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .dashboard__provider-button:hover {
@@ -1125,11 +1182,6 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: #fafafa;
 }
 
-.app.dark-theme
-.dashboard__plate {
-  background-color: #282828;
-}
-
 #main-plate {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -1138,11 +1190,6 @@ html::-webkit-scrollbar-thumb:hover {
   -ms-grid-row-span: 2;
   grid-row: 1 / 3;
   background-color: rgba(13, 101, 115, 0.6);
-}
-
-.app.dark-theme
-#main-plate {
-  background-color: rgba(0, 51, 37, 0.6);
 }
 
 #community-plate {
@@ -1209,11 +1256,6 @@ html::-webkit-scrollbar-thumb:hover {
   background-color: rgba(13, 101, 115, 0.6);
 }
 
-.app.dark-theme
-#price-plate {
-  background-color: rgba(0, 51, 37, 0.6);
-}
-
 #links-plate {
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
@@ -1224,11 +1266,6 @@ html::-webkit-scrollbar-thumb:hover {
   padding: 20px 16px 20px 16px;
   background-color: transparent;
   border: 4px solid #fafafa;
-}
-
-.app.dark-theme
-#links-plate {
-  border: 4px solid #282828;
 }
 
 #validators-plate {
@@ -1266,21 +1303,9 @@ html::-webkit-scrollbar-thumb:hover {
   border-radius: 4px;
 }
 
-.app.dark-theme
-.dashboard__error {
-  color: #828282;
-  background-color: rgba(220, 220, 220, 0.1);
-}
-
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
-  color: #fafafa;
-}
-
-.app.dark-theme
-.dashboard__heading {
-  font-weight: 500;
   color: #fafafa;
 }
 
@@ -1290,22 +1315,10 @@ html::-webkit-scrollbar-thumb:hover {
   color: #add8e6;
 }
 
-.app.dark-theme
-.dashboard__subheading {
-  font-weight: 200;
-  color: #a0a0a0;
-}
-
 .dashboard__description {
   margin: auto 0 0 0;
   font-weight: 300;
   font-size: 16px;
-  color: #fafafa;
-}
-
-.app.dark-theme
-.dashboard__description {
-  font-weight: 200;
   color: #fafafa;
 }
 
@@ -1327,12 +1340,6 @@ html::-webkit-scrollbar-thumb:hover {
   color: #646464;
 }
 
-.app.dark-theme
-.dashboard__plate-heading {
-  font-weight: 300;
-  color: #828282;
-}
-
 .dashboard__plate-data {
   margin: auto 0 0 auto;
   font-weight: 600;
@@ -1344,18 +1351,6 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 0 0 0 4px;
   font-weight: 400;
   font-size: 12px;
-  color: #828282;
-}
-
-.app.dark-theme
-.dashboard__plate-data {
-  font-weight: 500;
-  color: #bebebe;
-}
-
-.app.dark-theme
-.dashboard__plate-data span {
-  font-weight: 300;
   color: #828282;
 }
 
@@ -1374,13 +1369,10 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 4px 0 0;
   font-weight: 400;
   font-size: 14px;
-  color: #0d6573;
   color: rgba(13, 101, 115, 0.8);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .dashboard__links a:hover {
@@ -1397,27 +1389,8 @@ html::-webkit-scrollbar-thumb:hover {
   font-weight: 500;
   color: rgba(250, 250, 250, 0.8);
   text-decoration: underline;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
-.dashboard__coingecko-heading a:hover {
-  color: #fafafa;
-}
-
-.app.dark-theme
-.dashboard__coingecko-heading {
-  font-weight: 300;
-  color: #dcdcdc;
-}
-
-.app.dark-theme
-.dashboard__coingecko-heading a {
-  font-weight: 500;
-  color: rgba(250, 250, 250, 0.8);
-}
-
-.app.dark-theme
 .dashboard__coingecko-heading a:hover {
   color: #fafafa;
 }
@@ -1438,21 +1411,10 @@ html::-webkit-scrollbar-thumb:hover {
   border-bottom: 1px solid #add8e6;
 }
 
-.app.dark-theme
-.dashboard__coingecko-price {
-  border-bottom: 1px solid #bebebe;
-}
-
 .dashboard__coingecko-subheading {
   font-weight: 300;
   font-size: 14px;
   color: #add8e6;
-}
-
-.app.dark-theme
-.dashboard__coingecko-subheading {
-  font-weight: 300;
-  color: #dcdcdc;
 }
 
 .dashboard__coingecko-value {
@@ -1465,11 +1427,8 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .dashboard__coingecko-value_bright {
-  color: #ffc83d;
-}
-
-.dashboard__coingecko-value_bright {
   font-weight: 500;
+  color: #ffc83d;
 }
 
 .dashboard__coingecko-dynamic {
@@ -1487,6 +1446,158 @@ html::-webkit-scrollbar-thumb:hover {
 .dashboard__coingecko-dynamic_down {
   font-weight: 600;
   color: #e60032;
+}
+
+.app.dark-theme
+.dashboard__providers {
+  background-color: transparent;
+  border: 4px solid #152420;
+}
+
+.app.dark-theme
+.dashboard__provider-note {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__provider-button {
+  color: #ffc83d;
+}
+
+.app.dark-theme
+.dashboard__provider-button:hover {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.dashboard__provider {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__provider-name {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__provider-number {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__provider-address {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__plate {
+  background-color: #152420;
+}
+
+.app.dark-theme
+#main-plate {
+  background-color: #0d3328;
+}
+
+.app.dark-theme
+#links-plate {
+  border: 4px solid #152420;
+}
+
+.app.dark-theme
+#price-plate {
+  background-color: #0d3328;
+}
+
+.app.dark-theme
+.dashboard__error {
+  color: #828282;
+  background-color: rgba(130, 130, 130, 0.2);
+}
+
+.app.dark-theme
+.dashboard__heading {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.dashboard__subheading {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__description {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.dashboard__plate-heading {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__plate-data {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__plate-data span {
+  color: #828282;
+}
+
+.app.dark-theme
+.dashboard__links a {
+  color: rgba(197, 201, 113, 0.7);
+}
+
+.app.dark-theme
+.dashboard__links a:hover {
+  color: rgba(197, 201, 113, 0.85);
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading a {
+  color: rgba(197, 201, 113, 0.85);
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading a:hover {
+  color: #c5c971;
+}
+
+.app.dark-theme
+.dashboard__coingecko-price {
+  border-bottom: 1px solid #bebebe;
+}
+
+.app.dark-theme
+.dashboard__coingecko-subheading {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__coingecko-value {
+  color: #bebebe;
+}
+
+.app.dark-theme
+.dashboard__coingecko-value_bright {
+  color: #ffc83d;
+}
+
+.app.dark-theme
+.dashboard__coingecko-dynamic {
+  color: #71c97d;
+}
+
+.app.dark-theme
+.dashboard__coingecko-dynamic_down {
+  color: #c97180;
 }
 
 /* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */

@@ -72,15 +72,6 @@
   }
 }
 
-.app.dark-theme
-.homepage__switcher-button {
-  background-color: rgba($gray-darkest, 0.6);
-
-  &_selected {
-    background-color: $gray-darkest;
-  }
-}
-
 .homepage__language {
   width: 24px;
   height: 24px;
@@ -129,22 +120,11 @@
   }
 }
 
-.app.dark-theme
-.homepage__block {
-  background-color: $gray-darkest;
-}
-
 .homepage__heading {
   margin: 0 0 10px 0;
   font-weight: 600;
   font-size: 28px;
   color: $gray-darker;
-}
-
-.app.dark-theme
-.homepage__heading {
-  font-weight: 500;
-  color: $gray-lighter;
 }
 
 .homepage__paragraph {
@@ -157,39 +137,17 @@
   }
 }
 
-.app.dark-theme
-.homepage__paragraph {
-  font-weight: 300;
-  color: $gray-lighter;
-}
-
 .homepage__bold {
   font-weight: 600;
 }
 
-.app.dark-theme
-.homepage__bold {
-  font-weight: 500;
-}
-
-.homepage__link {
-  font-weight: 600;
-  color: $color-second;
-  transition: linear 0.2s;
-
-  &:hover {
-    color: $gray-darker;
-  }
-}
-
-.app.dark-theme
 .homepage__link {
   font-weight: 500;
-  color: $color-second;
-  transition: linear 0.2s;
+  color: $lt-intense;
+
 
   &:hover {
-    color: $gray-lightest;
+    color: $lt-pale;
   }
 }
 
@@ -205,8 +163,46 @@
   color: $gray-darker;
 }
 
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.homepage__switcher-button {
+  background-color: rgba($dt-pale, 0.6);
+
+  &_selected {
+    background-color: $dt-pale;
+  }
+}
+
+.app.dark-theme
+.homepage__block {
+  background-color: $dt-pale;
+}
+
+.app.dark-theme
+.homepage__heading {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.homepage__paragraph {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.homepage__link {
+  color: rgba($dt-accent, 0.85);
+
+  &:hover {
+    color: rgba($dt-accent, 1);
+  }
+}
+
 .app.dark-theme
 .homepage__list-element {
-  font-weight: 300;
-  color: $gray-lighter;
+  color: $dt-text-comfort;
 }

@@ -1,5 +1,5 @@
 const chainsEng = {
-  popupHeading: "Select a chain",
+  popupHeading: "Select a chain:",
   noChain: "Chain is not selected",
 }
 

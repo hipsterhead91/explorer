@@ -40,7 +40,6 @@
   line-height: 1;
   color: $color-accent;
   cursor: pointer;
-  transition: linear 0.2s;
 
   &:hover {
     color: $gray-lightest;
@@ -110,20 +109,10 @@
   background-color: $white;
 }
 
-.app.dark-theme
-.dashboard__plate {
-  background-color: $gray-darkest;
-}
-
 #main-plate {
   grid-column: 1 / 3;
   grid-row: 1 / 3;
   background-color: rgba($color-second, 0.6);
-}
-
-.app.dark-theme
-#main-plate {
-  background-color: rgba($dark-theme-second, 0.6);
 }
 
 #community-plate {
@@ -162,22 +151,12 @@
   background-color: rgba($color-second, 0.6);
 }
 
-.app.dark-theme
-#price-plate {
-  background-color: rgba($dark-theme-second, 0.6);
-}
-
 #links-plate {
   grid-column: 1 / 3;
   grid-row: 3 / 4;
   padding: 20px 16px 20px 16px;
   background-color: transparent;
   border: 4px solid $white;
-}
-
-.app.dark-theme
-#links-plate {
-  border: 4px solid $gray-darkest;
 }
 
 #validators-plate {
@@ -204,21 +183,9 @@
   border-radius: 4px;
 }
 
-.app.dark-theme
-.dashboard__error {
-  color: $gray;
-  background-color: rgba($gray-lightest, 0.1);
-}
-
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
-  color: $white;
-}
-
-.app.dark-theme
-.dashboard__heading {
-  font-weight: 500;
   color: $white;
 }
 
@@ -228,22 +195,10 @@
   color: $color-main;
 }
 
-.app.dark-theme
-.dashboard__subheading {
-  font-weight: 200;
-  color: $gray-light;
-}
-
 .dashboard__description {
   margin: auto 0 0 0;
   font-weight: 300;
   font-size: 16px;
-  color: $white;
-}
-
-.app.dark-theme
-.dashboard__description {
-  font-weight: 200;
   color: $white;
 }
 
@@ -263,12 +218,6 @@
   color: $gray-dark;
 }
 
-.app.dark-theme
-.dashboard__plate-heading {
-  font-weight: 300;
-  color: $gray;
-}
-
 .dashboard__plate-data {
   margin: auto 0 0 auto;
   font-weight: 600;
@@ -283,17 +232,6 @@
   }
 }
 
-.app.dark-theme
-.dashboard__plate-data {
-  font-weight: 500;
-  color: $gray-lighter;
-
-  span {
-    font-weight: 300;
-    color: $gray;
-  }
-}
-
 .dashboard__links {
   margin: auto 0 0 0;
   display: flex;
@@ -303,12 +241,10 @@
     margin: 4px 0 0;
     font-weight: 400;
     font-size: 14px;
-    color: $color-second;
     color: rgba($color-second, 0.8);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    transition: linear 0.2s;
 
     &:hover {
       color: rgba($color-second, 1);
@@ -325,22 +261,6 @@
     font-weight: 500;
     color: rgba($white, 0.8);
     text-decoration: underline;
-    transition: linear 0.2s;
-
-    &:hover {
-      color: $white;
-    }
-  }
-}
-
-.app.dark-theme
-.dashboard__coingecko-heading {
-  font-weight: 300;
-  color: $gray-lightest;
-
-  a {
-    font-weight: 500;
-    color: rgba($white, 0.8);
 
     &:hover {
       color: $white;
@@ -360,21 +280,10 @@
   border-bottom: 1px solid $color-main;
 }
 
-.app.dark-theme
-.dashboard__coingecko-price {
-  border-bottom: 1px solid $gray-lighter;
-}
-
 .dashboard__coingecko-subheading {
   font-weight: 300;
   font-size: 14px;
   color: $color-main;
-}
-
-.app.dark-theme
-.dashboard__coingecko-subheading {
-  font-weight: 300;
-  color: $gray-lightest;
 }
 
 .dashboard__coingecko-value {
@@ -384,12 +293,9 @@
   color: $color-main;
 
   &_bright {
+    font-weight: 500;
     color: $color-accent;
   }
-}
-
-.dashboard__coingecko-value_bright {
-  font-weight: 500;
 }
 
 .dashboard__coingecko-dynamic {
@@ -402,5 +308,157 @@
   &_down {
     font-weight: 600;
     color: $color-nay;
+  }
+}
+
+
+
+// NIGHT MODE
+
+
+.app.dark-theme
+.dashboard__providers {
+  background-color: transparent;
+  border: 4px solid $dt-pale;
+}
+
+.app.dark-theme
+.dashboard__provider-note {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.dashboard__provider-button {
+  color: $brand-color;
+
+  &:hover {
+    color: $dt-text-light;
+  }
+}
+
+.app.dark-theme
+.dashboard__provider {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.dashboard__provider-name {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.dashboard__provider-number {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.dashboard__provider-address {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.dashboard__plate {
+  background-color: $dt-pale;
+}
+
+.app.dark-theme
+#main-plate {
+  background-color: $dt-intense;
+}
+
+.app.dark-theme
+#links-plate {
+  border: 4px solid $dt-pale;
+}
+
+.app.dark-theme
+#price-plate {
+  background-color: $dt-intense;
+}
+
+.app.dark-theme
+.dashboard__error {
+  color: $dt-text-dark;
+  background-color: rgba($dt-text-dark, 0.2);
+}
+
+.app.dark-theme
+.dashboard__heading {
+  color: $dt-text-light;
+}
+
+.app.dark-theme
+.dashboard__subheading {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.dashboard__description {
+  color: $dt-text-light;
+}
+
+.app.dark-theme
+.dashboard__plate-heading {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.dashboard__plate-data {
+  color: $dt-text-comfort;
+
+  span {
+    color: $dt-text-dark;
+  }
+}
+
+.app.dark-theme
+.dashboard__links {
+  a {
+    color: rgba($dt-accent, 0.7);
+
+    &:hover {
+      color: rgba($dt-accent, 0.85);
+    }
+  }
+}
+
+.app.dark-theme
+.dashboard__coingecko-heading {
+  color: $dt-text-comfort;
+
+  a {
+    color: rgba($dt-accent, 0.85);
+
+    &:hover {
+      color: rgba($dt-accent, 1);
+    }
+  }
+}
+
+.app.dark-theme
+.dashboard__coingecko-price {
+  border-bottom: 1px solid $dt-text-comfort;
+}
+
+.app.dark-theme
+.dashboard__coingecko-subheading {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.dashboard__coingecko-value {
+  color: $dt-text-comfort;
+
+  &_bright {
+    color: $brand-color;
+  }
+}
+
+.app.dark-theme
+.dashboard__coingecko-dynamic {
+  color: $dt-good;
+
+  &_down {
+    color: $dt-bad;
   }
 }

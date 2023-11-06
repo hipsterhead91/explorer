@@ -48,11 +48,11 @@
   cursor: pointer;
 
   &:first-child {
-    border-radius: 8px 0 0 8px;
+    border-radius: 12px 0 0 12px;
   }
 
   &:last-child {
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 12px 12px 0;
   }
 
   &_selected {
@@ -73,7 +73,7 @@
   padding: 0 12px 0 12px;
   border: 3px solid rgba($color-second, 0.77);
   border-right: none;
-  border-radius: 8px 0 0 8px;
+  border-radius: 12px 0 0 12px;
   outline: none;
   background-color: $white;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -95,7 +95,7 @@
   width: 35%;
   min-height: 32px;
   border: none;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 12px 12px 0;
   outline: none;
   background-color: rgba($color-second, 0.7);
   font-family: 'Inter', Helvetica, Arial, sans-serif;
@@ -147,12 +147,12 @@
   cursor: pointer;
 
   &_top {
-    border-radius: 8px 8px 0 0;
+    border-radius: 12px 12px 0 0;
     margin: 0 0 4px 0;
   }
 
   &_bottom {
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 12px 12px;
   }
 
   &:hover {
@@ -184,12 +184,12 @@
   width: 100%;
   min-height: 200px;
   padding: 8px 40px 8px 40px;
-  margin: 4px 0 0 0;
+  margin: 6px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 4px 4px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
   background-color: $white;
 }
 
@@ -268,16 +268,15 @@
 
 .app.dark-theme
 .validators__placeholder {
-  background-color: $white;
+  background-color: $dt-pale;
 }
 
 .app.dark-theme
 .validators__placeholder-text-top {
-  color: $gray-darker;
+  color: $dt-text-comfort;
 }
 
 .app.dark-theme
 .validators__placeholder-text-bottom {
-  color: $gray-darker;
-  text-align: center;
+  color: $dt-text-comfort;
 }

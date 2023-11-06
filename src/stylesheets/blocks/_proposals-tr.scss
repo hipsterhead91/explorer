@@ -3,14 +3,14 @@
   width: 100%;
   min-height: 56px;
   padding: 8px 40px 8px 40px;
-  margin: 4px 0 0 0;
+  margin: 6px 0 0 0;
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr;
   grid-column-gap: 8px;
   background-color: $white;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
 
   &:hover {
     background-color: $whitest;
@@ -100,4 +100,63 @@
   font-weight: 400;
   font-size: 14px;
   color: $gray-darker;
+}
+
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.proposals-tr {
+  background-color: rgba($dt-pale, 0.75);
+
+  &:hover {
+    background-color: rgba($dt-pale, 1);
+  }
+}
+
+.app.dark-theme
+.proposals-tr__id {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.proposals-tr__title {
+  // color: rgba($dt-good, 0.9);
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.proposals-tr__status {
+  &_neutral {
+    color: rgba($dt-text-comfort, 0.8);
+    background-color: rgba($dt-text-comfort, 0.3);
+  }
+
+  &_good {
+    color: rgba($dt-good, 0.7);
+    background-color: rgba($dt-good, 0.3);
+  }
+
+  &_bad {
+    color: rgba($dt-bad, 0.8);
+    background-color: rgba($dt-bad, 0.4);
+  }
+}
+
+.app.dark-theme
+.proposals-tr__type {
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.proposals-tr__end-time {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.proposals-tr__end-date {
+  color: $dt-text-comfort;
 }

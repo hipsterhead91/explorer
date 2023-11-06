@@ -3,7 +3,6 @@
   width: 100%;
   min-height: 60px;
   padding: 8px 40px 8px 40px;
-  margin: 0 0 2px 0;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-column-gap: 8px;
@@ -110,7 +109,7 @@
 
 .app.dark-theme
 .validators-th {
-  background-color: rgba($dt-text-dark, 0.2);
+  background-color: $dt-light;
 }
 
 .app.dark-theme

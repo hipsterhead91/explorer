@@ -148,7 +148,7 @@
 
   &_top {
     border-radius: 8px 8px 0 0;
-    margin: 0 0 3px 0;
+    margin: 0 0 4px 0;
   }
 
   &_bottom {
@@ -226,17 +226,17 @@
 .app.dark-theme
 .validators__switcher-button {
   color: $dt-text-dark;
-  background-color: rgba($dt-text-dark, 0.1);
+  background-color: rgba($dt-light, 0.5);
 
   &_selected {
     color: $dt-text-comfort;
-    background-color: rgba($dt-text-dark, 0.2);
+    background-color: $dt-light;
   }
 }
 
 .app.dark-theme
 .validators__search-input {
-  border: 3px solid rgba($dt-text-dark, 0.2);
+  border: 3px solid $dt-light;
   background-color: transparent;
   color: $dt-text-comfort;
 
@@ -247,16 +247,16 @@
 
 .app.dark-theme
 .validators__clear-button {
-  background-color: rgba($dt-text-dark, 0.2);
+  background-color: $dt-light;
   color: $dt-text-comfort;
 }
 
 .app.dark-theme
 .validators__scroll-button {
-  background-color: rgba($dt-text-dark, 0.2);
+  background-color: rgba($dt-light, 0.8);
 
   &:hover {
-    background-color: rgba($dt-text-dark, 0.3);
+    background-color: rgba($dt-light, 1);
   }
 }
 

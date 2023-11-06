@@ -163,7 +163,7 @@ function Validators() {
           </div>
           <div className="validators__search">
             <input ref={filterInput} onChange={event => filterByMoniker(event)} className="validators__search-input" type="text" placeholder={translatedContent.inputPlaceholder}></input>
-            <button onClick={clearFilter} className="validators__search-button">{translatedContent.clear}</button>
+            <button onClick={clearFilter} className="validators__clear-button">{translatedContent.clear}</button>
           </div>
         </div>
         <div className="validators__table">

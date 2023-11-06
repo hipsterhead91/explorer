@@ -101,3 +101,60 @@
   font-size: 16px;
   color: $color-main;
 }
+
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.validators-th {
+  background-color: rgba($dt-text-dark, 0.2);
+}
+
+.app.dark-theme
+.validators-th__sort-icon {
+  span {
+    &:first-child {
+      border-left: 2px solid $dt-text-dark;
+      border-top: 2px solid $dt-text-dark;
+    }
+
+    &:last-child {
+      border-right: 2px solid $dt-text-dark;
+      border-bottom: 2px solid $dt-text-dark;
+    }
+  }
+
+  &_asc {
+    span {
+      &:first-child {
+        border-left: 2px solid $dt-text-dark;
+        border-top: 2px solid $dt-text-dark;
+      }
+      &:last-child {
+        border-right: 2px solid $dt-text-light;
+        border-bottom: 2px solid $dt-text-light;
+      }
+    }
+  }
+
+  &_dsc {
+    span {
+      &:first-child {
+        border-left: 2px solid $dt-text-light;
+        border-top: 2px solid $dt-text-light;
+      }
+      &:last-child {
+        border-right: 2px solid $dt-text-dark;
+        border-bottom: 2px solid $dt-text-dark;
+      }
+    }
+  }
+}
+
+.app.dark-theme
+.validators-th__column-name {
+  color: $dt-text-comfort;
+}

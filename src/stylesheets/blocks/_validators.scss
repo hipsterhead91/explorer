@@ -90,7 +90,7 @@
   }
 }
 
-.validators__search-button {
+.validators__clear-button {
   box-sizing: border-box;
   width: 35%;
   min-height: 32px;
@@ -144,7 +144,6 @@
   border: none;
   outline: none;
   background-color: rgba($color-second, 0.5);
-  transition: linear 0.2s;
   cursor: pointer;
 
   &_top {
@@ -216,4 +215,69 @@
   span {
     font-weight: 600;
   }
+}
+
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.validators__switcher-button {
+  color: $dt-text-dark;
+  background-color: rgba($dt-text-dark, 0.1);
+
+  &_selected {
+    color: $dt-text-comfort;
+    background-color: rgba($dt-text-dark, 0.2);
+  }
+}
+
+.app.dark-theme
+.validators__search-input {
+  border: 3px solid rgba($dt-text-dark, 0.2);
+  background-color: transparent;
+  color: $dt-text-comfort;
+
+  &::placeholder {
+    color: $dt-text-comfort;
+  }
+}
+
+.app.dark-theme
+.validators__clear-button {
+  background-color: rgba($dt-text-dark, 0.2);
+  color: $dt-text-comfort;
+}
+
+.app.dark-theme
+.validators__scroll-button {
+  background-color: rgba($dt-text-dark, 0.2);
+
+  &:hover {
+    background-color: rgba($dt-text-dark, 0.3);
+  }
+}
+
+.app.dark-theme
+.validators__scroll-arrow {
+  border-top: 4px solid $dt-background;
+  border-left: 4px solid $dt-background;
+}
+
+.app.dark-theme
+.validators__placeholder {
+  background-color: $white;
+}
+
+.app.dark-theme
+.validators__placeholder-text-top {
+  color: $gray-darker;
+}
+
+.app.dark-theme
+.validators__placeholder-text-bottom {
+  color: $gray-darker;
+  text-align: center;
 }

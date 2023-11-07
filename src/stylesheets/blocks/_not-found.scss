@@ -29,21 +29,21 @@
   font-weight: 700;
   font-size: 200px;
   line-height: 1;
-  color: $gray-darkest;
+  color: $lt-darkest;
 }
 
 .not-found__description {
   margin: 4px 0 0 0;
   font-weight: 600;
   font-size: 14px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .not-found__link {
   margin: 20px 24px 0 auto;
   font-weight: 600;
   font-size: 14px;
-  color: $color-second;
+  color: $lt-intense;
   text-decoration: none;
 
   span {
@@ -54,7 +54,7 @@
   }
 
   &:hover {
-    color: $gray-darker;
+    color: $lt-darker;
   }
 }
 

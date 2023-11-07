@@ -236,6 +236,7 @@
 
 .app.dark-theme
 .chains__popup-heading {
+  font-weight: 500;
   color: $dt-text-comfort;
 }
 
@@ -265,10 +266,12 @@
 
 .app.dark-theme
 .chains__chain-name {
+  font-weight: 400;
   color: $dt-accent;
 }
 
 .app.dark-theme
 .chains__chain-id {
+  font-weight: 300;
   color: $dt-text-comfort;
 }

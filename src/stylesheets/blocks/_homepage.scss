@@ -184,11 +184,13 @@
 
 .app.dark-theme
 .homepage__heading {
+  font-weight: 500;
   color: $dt-text-comfort;
 }
 
 .app.dark-theme
 .homepage__paragraph {
+  font-weight: 300;
   color: $dt-text-comfort;
 }
 
@@ -203,5 +205,6 @@
 
 .app.dark-theme
 .homepage__list-element {
+  font-weight: 300;
   color: $dt-text-comfort;
 }

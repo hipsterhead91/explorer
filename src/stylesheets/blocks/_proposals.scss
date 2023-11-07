@@ -230,15 +230,16 @@
 
 .app.dark-theme
 .proposals__placeholder {
-  background-color: $lt-white;
+  background-color: $dt-pale;
 }
 
 .app.dark-theme
 .proposals__placeholder-text-top {
-  color: $lt-darker;
+  color: $dt-text-comfort;
 }
 
 .app.dark-theme
 .proposals__placeholder-text-bottom {
-  color: $lt-darker;
+  font-weight: 300;
+  color: $dt-text-comfort;
 }

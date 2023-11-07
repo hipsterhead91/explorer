@@ -599,6 +599,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .chains__popup-heading {
+  font-weight: 500;
   color: #bebebe;
 }
 
@@ -631,11 +632,13 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .chains__chain-name {
+  font-weight: 400;
   color: #c5c971;
 }
 
 .app.dark-theme
 .chains__chain-id {
+  font-weight: 300;
   color: #bebebe;
 }
 
@@ -930,11 +933,13 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .homepage__heading {
+  font-weight: 500;
   color: #bebebe;
 }
 
 .app.dark-theme
 .homepage__paragraph {
+  font-weight: 300;
   color: #bebebe;
 }
 
@@ -950,6 +955,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .homepage__list-element {
+  font-weight: 300;
   color: #bebebe;
 }
 
@@ -1483,6 +1489,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .dashboard__provider-button {
+  font-weight: 400;
   color: #ffc83d;
 }
 
@@ -1539,16 +1546,19 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .dashboard__heading {
+  font-weight: 500;
   color: #fafafa;
 }
 
 .app.dark-theme
 .dashboard__subheading {
+  font-weight: 300;
   color: #828282;
 }
 
 .app.dark-theme
 .dashboard__description {
+  font-weight: 200;
   color: #fafafa;
 }
 
@@ -2002,6 +2012,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .validators__placeholder-text-bottom {
+  font-weight: 300;
   color: #bebebe;
 }
 
@@ -2999,17 +3010,18 @@ html::-webkit-scrollbar-thumb:hover {
 
 .app.dark-theme
 .proposals__placeholder {
-  background-color: #fafafa;
+  background-color: #152437;
 }
 
 .app.dark-theme
 .proposals__placeholder-text-top {
-  color: #464646;
+  color: #bebebe;
 }
 
 .app.dark-theme
 .proposals__placeholder-text-bottom {
-  color: #464646;
+  font-weight: 300;
+  color: #bebebe;
 }
 
 .proposals-tr {

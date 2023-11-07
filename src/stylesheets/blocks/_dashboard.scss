@@ -330,6 +330,7 @@
 
 .app.dark-theme
 .dashboard__provider-button {
+  font-weight: 400;
   color: $brand-color;
 
   &:hover {
@@ -385,16 +386,19 @@
 
 .app.dark-theme
 .dashboard__heading {
+  font-weight: 500;
   color: $dt-text-light;
 }
 
 .app.dark-theme
 .dashboard__subheading {
+  font-weight: 300;
   color: $dt-text-dark;
 }
 
 .app.dark-theme
 .dashboard__description {
+  font-weight: 200;
   color: $dt-text-light;
 }
 

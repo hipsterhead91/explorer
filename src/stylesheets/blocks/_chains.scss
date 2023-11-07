@@ -66,7 +66,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba($black, 0.7);
+  background-color: rgba($lt-black, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,7 +106,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 16px;
-  background-color: $white;
+  background-color: $lt-white;
 }
 
 .chains__popup-head {
@@ -122,22 +122,21 @@
 .chains__popup-heading {
   font-weight: 600;
   font-size: 24px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .chains__close-button {
   position: relative;
   font-size: 36px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
   border: none;
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  // transition: linear 0.2s;
 
   &:hover {
-    color: $gray-darkest;
+    color: $lt-darkest;
   }
 }
 
@@ -155,22 +154,21 @@
   padding: 10px 10px 10px 16px;
   display: flex;
   align-items: center;
-  background-color: rgba($gray-light, 0.2);
+  background-color: rgba($lt-light, 0.2);
   border-radius: 8px;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   text-decoration: none;
   cursor: pointer;
-  // transition: linear 0.2s;
 
   &_selected {
-    background-color: rgba($gray-light, 0.4);
-    border-left: 4px solid $color-yay;
-    border-right: 4px solid $color-yay;
+    background-color: rgba($lt-light, 0.4);
+    border-left: 4px solid $lt-good;
+    border-right: 4px solid $lt-good;
   }
 
   &:hover {
-    background-color: rgba($gray-light, 0.4);
+    background-color: rgba($lt-light, 0.4);
   }
 }
 
@@ -196,14 +194,14 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
-  color: $gray-darkest;
+  color: $lt-darkest;
 }
 
 .chains__chain-id {
   font-weight: 400;
   font-size: 14px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 

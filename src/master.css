@@ -1000,7 +1000,7 @@ html::-webkit-scrollbar-thumb:hover {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #add8e6;
+  color: #0d6573;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1015,7 +1015,7 @@ html::-webkit-scrollbar-thumb:hover {
 .chain__nav-divider {
   height: 12px;
   margin: 0 36px 0 36px;
-  border-left: 2px solid rgba(173, 216, 230, 0.7);
+  border-left: 2px solid rgba(13, 101, 115, 0.7);
 }
 
 .chain__container {
@@ -2614,16 +2614,6 @@ html::-webkit-scrollbar-thumb:hover {
   color: #e60032;
 }
 
-.validator__data-link {
-  font-weight: 400;
-  font-size: 16px;
-  color: #0d6573;
-}
-
-.validator__data-link:hover {
-  color: #464646;
-}
-
 .app.dark-theme
 .validator__overlay {
   background-color: rgba(15, 15, 15, 0.7);
@@ -2706,16 +2696,6 @@ html::-webkit-scrollbar-thumb:hover {
 .app.dark-theme
 .validator__commission-value_high {
   color: #c97180;
-}
-
-.app.dark-theme
-.validator__data-link {
-  color: #0d6573;
-}
-
-.app.dark-theme
-.validator__data-link:hover {
-  color: #464646;
 }
 
 /* Напоминалка: здесь не используются внутренние контейнеры для ограничения ширины, поскольку она уже задана в родительском компоненте Chain. */

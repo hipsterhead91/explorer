@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-column-gap: 8px;
-  background-color: rgba($color-second, 0.7);
+  background-color: rgba($lt-intense, 0.7);
   border-radius: 12px 12px 8px 8px;
 }
 
@@ -57,26 +57,26 @@
 
     &:first-child {
       top: -1px;
-      border-left: 2px solid $color-main;
-      border-top: 2px solid $color-main;
+      border-left: 2px solid $lt-background;
+      border-top: 2px solid $lt-background;
     }
 
     &:last-child {
       bottom: -1px;
-      border-right: 2px solid $color-main;
-      border-bottom: 2px solid $color-main;
+      border-right: 2px solid $lt-background;
+      border-bottom: 2px solid $lt-background;
     }
   }
 
   &_asc {
     span {
       &:first-child {
-        border-left: 2px solid $color-main;
-        border-top: 2px solid $color-main;
+        border-left: 2px solid $lt-background;
+        border-top: 2px solid $lt-background;
       }
       &:last-child {
-        border-right: 2px solid $white;
-        border-bottom: 2px solid $white;
+        border-right: 2px solid $lt-white;
+        border-bottom: 2px solid $lt-white;
       }
     }
   }
@@ -84,12 +84,12 @@
   &_dsc {
     span {
       &:first-child {
-        border-left: 2px solid $white;
-        border-top: 2px solid $white;
+        border-left: 2px solid $lt-white;
+        border-top: 2px solid $lt-white;
       }
       &:last-child {
-        border-right: 2px solid $color-main;
-        border-bottom: 2px solid $color-main;
+        border-right: 2px solid $lt-background;
+        border-bottom: 2px solid $lt-background;
       }
     }
   }
@@ -98,7 +98,7 @@
 .validators-th__column-name {
   font-weight: 600;
   font-size: 16px;
-  color: $color-main;
+  color: $lt-background
 }
 
 

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* НАПОМИНАНИЕ: при смене темы элементы НЕ ВСЕГДА меняют цвета строго по постфиксу (lt-intense на dt-intense, lt-pale на dt-pale, и т.д.) - вместо этого, все стили подбирались индивидуально по ситуации, поэтому в светлой теме один и тот же элемент может, например, иметь цвет lt-background, а в тёмной - dt-light. Так что, на постфиксы сильно не ориентируйся - они НЕ аналогичны. */
 * {
   padding: 0;
   margin: 0;
@@ -154,8 +155,6 @@ html::-webkit-scrollbar-thumb:hover {
   font-size: 14px;
   color: #0d6573;
   text-decoration: none;
-  -webkit-transition: linear 0.2s;
-  transition: linear 0.2s;
 }
 
 .not-found__link span {
@@ -167,6 +166,26 @@ html::-webkit-scrollbar-thumb:hover {
 
 .not-found__link:hover {
   color: #464646;
+}
+
+.app.dark-theme
+.not-found__heading {
+  color: #828282;
+}
+
+.app.dark-theme
+.not-found__description {
+  color: #828282;
+}
+
+.app.dark-theme
+.not-found__link {
+  color: rgba(197, 201, 113, 0.85);
+}
+
+.app.dark-theme
+.not-found__link:hover {
+  color: #c5c971;
 }
 
 .header {
@@ -261,6 +280,16 @@ html::-webkit-scrollbar-thumb:hover {
 .app.dark-theme
 .header {
   background-color: #1D2F5B;
+}
+
+.app.dark-theme
+.header__logo-top {
+  color: #fafafa;
+}
+
+.app.dark-theme
+.header__logo-bottom {
+  color: #bebebe;
 }
 
 .chains {
@@ -665,11 +694,6 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .app.dark-theme
-.footer__info a {
-  color: #ffc83d;
-}
-
-.app.dark-theme
 .footer__info a:hover {
   color: #fafafa;
 }
@@ -869,11 +893,11 @@ html::-webkit-scrollbar-thumb:hover {
 
 .homepage__link {
   font-weight: 500;
-  color: #0d6573;
+  color: rgba(13, 101, 115, 0.9);
 }
 
 .homepage__link:hover {
-  color: #3D8E99;
+  color: #0d6573;
 }
 
 .homepage__list {
@@ -1083,7 +1107,7 @@ html::-webkit-scrollbar-thumb:hover {
 .dashboard__provider-note {
   font-size: 14px;
   font-weight: 400;
-  color: #a0a0a0;
+  color: #828282;
 }
 
 .dashboard__provider-button {
@@ -1367,7 +1391,7 @@ html::-webkit-scrollbar-thumb:hover {
   margin: 4px 0 0;
   font-weight: 400;
   font-size: 14px;
-  color: rgba(13, 101, 115, 0.8);
+  color: rgba(13, 101, 115, 0.85);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

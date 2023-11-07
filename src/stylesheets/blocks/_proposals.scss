@@ -26,7 +26,7 @@
   margin: 0 0 12px 0;
   border-radius: 16px;
   background-color: transparent;
-  border: 4px solid rgba($gray-darkest, 0.6);
+  border: 4px solid rgba($lt-darkest, 0.6);
   font-size: 14px;
   font-weight: 400;
 
@@ -52,7 +52,7 @@
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr;
   grid-column-gap: 8px;
-  background-color: rgba($color-second, 0.6);
+  background-color: rgba($lt-intense, 0.6);
   border-radius: 12px 12px 8px 8px;
 }
 
@@ -63,7 +63,7 @@
   justify-content: center;
   font-weight: 600;
   font-size: 16px;
-  color: $color-main;
+  color: $lt-background;
 }
 
 #column-id {
@@ -114,7 +114,7 @@
   justify-content: center;
   border: none;
   outline: none;
-  background-color: rgba($color-second, 0.5);
+  background-color: rgba($lt-intense, 0.5);
   cursor: pointer;
 
   &_top {
@@ -127,7 +127,7 @@
   }
 
   &:hover {
-    background-color: rgba($color-second, 0.6);
+    background-color: rgba($lt-intense, 0.6);
   }
 }
 
@@ -135,8 +135,8 @@
   position: relative;
   width: 8px;
   height: 8px;
-  border-top: 4px solid $color-main;
-  border-left: 4px solid $color-main;
+  border-top: 4px solid $lt-background;
+  border-left: 4px solid $lt-background;
   transform: rotate(45deg);
 
   &_top {
@@ -161,14 +161,14 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px 4px 8px 8px;
-  background-color: $white;
+  background-color: $lt-white;
 }
 
 .proposals__placeholder-text-top {
   margin: 0 0 8px 0;
   font-size: 24px;
   font-weight: 400;
-  color: $gray-darker;
+  color: $lt-darker;
   text-align: center;
   
   span {
@@ -179,7 +179,7 @@
 .proposals__placeholder-text-bottom {
   font-size: 16px;
   font-weight: 400;
-  color: $gray-darker;
+  color: $lt-darker;
   text-align: center;
 
   span {

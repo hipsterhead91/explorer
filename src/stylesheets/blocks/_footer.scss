@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $gray-darkest;
+  background-color: $lt-darkest;
 }
 
 // Миксуется с section-limiter, который ограничивает ширину секций
@@ -19,14 +19,14 @@
   font-weight: 200;
   font-size: 16px;
   line-height: 140%;
-  color: $gray-light;
+  color: $lt-light;
 
   a {
-    color: $color-accent;
+    color: $brand-color;
     text-decoration: none;
 
     &:hover {
-      color: $white;
+      color: $lt-white;
     }
   }
 }
@@ -46,8 +46,6 @@
   color: $dt-text-comfort;
 
   a {
-    color: $brand-color;
-
     &:hover {
       color: $dt-text-light;
     }

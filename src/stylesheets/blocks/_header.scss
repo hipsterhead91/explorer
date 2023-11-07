@@ -46,7 +46,7 @@
   font-weight: 900;
   font-size: 24px;
   line-height: 100%;
-  color: $dt-text-light;
+  color: $lt-white;
 
   span {
     color: $brand-color;
@@ -60,7 +60,7 @@
   font-size: 13px;
   line-height: 100%;
   letter-spacing: 0.2px;
-  color: $dt-text-comfort;
+  color: $lt-lighter;
   text-transform: lowercase;
 }
 
@@ -73,4 +73,14 @@
 .app.dark-theme
 .header {
   background-color: $dt-intense;
+}
+
+.app.dark-theme
+.header__logo-top {
+  color: $dt-text-light;
+}
+
+.app.dark-theme
+.header__logo-bottom {
+  color: $dt-text-comfort;
 }

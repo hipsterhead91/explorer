@@ -14,7 +14,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba($color-main, 0.6);
+  background-color: rgba($lt-background, 0.6);
   backdrop-filter: blur(1px);
 }
 
@@ -26,7 +26,7 @@
   padding: 60px 100px 60px 40px;
   display: flex;
   flex-direction: column;
-  background-color: $white;
+  background-color: $lt-white;
   border-radius: 16px;
 }
   
@@ -37,14 +37,14 @@
   margin: 0 12px 0 auto;
   font-size: 36px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
   border: none;
   background-color: transparent;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    color: $gray-darkest;
+    color: $lt-darkest;
   }
 }
 
@@ -76,7 +76,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 1;
-  color: $gray-dark;
+  color: $lt-dark;
 }
 
 .validator__heading {
@@ -91,7 +91,7 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .validator__valoper {
@@ -99,7 +99,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .validator__statuses {
@@ -118,23 +118,23 @@
   border-radius: 4px;
 
   &_good {
-    color: rgba($color-second, 0.7);
-    background-color: rgba($color-main, 0.5);
+    color: rgba($lt-intense, 0.7);
+    background-color: rgba($lt-background, 0.5);
   }
 
   &_neutral {
-    color: rgba($gray-dark, 0.8);
-    background-color: rgba($gray, 0.2);
+    color: rgba($lt-dark, 0.8);
+    background-color: rgba($lt-middle, 0.2);
   }
 
   &_bad {
-    color: rgba($color-nay, 0.6);
-    background-color: rgba($color-nay, 0.1);
+    color: rgba($lt-bad, 0.6);
+    background-color: rgba($lt-bad, 0.1);
   }
 
   &_special {
-    color: rgba($gray-darkest, 0.6);
-    background-color: rgba($color-accent, 0.3);
+    color: rgba($lt-darkest, 0.6);
+    background-color: rgba($brand-color, 0.3);
   }
 
   &_hidden {
@@ -156,14 +156,14 @@
 .validator__data-heading {
   font-weight: 600;
   font-size: 16px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .validator__data-text {
   padding: 0 0 0 0;
   font-weight: 400;
   font-size: 16px;
-  color: $gray-darker;
+  color: $lt-darker;
   word-wrap: break-word;
 }
 
@@ -171,26 +171,26 @@
   margin: 0 0 0 4px;
   font-weight: 400;
   font-size: 12px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .validator__commission-value {
   font-weight: 400;
   font-size: 16px;
-  color: $gray-darker;
+  color: $lt-darker;
 
   &_high {
-    color: $color-nay;
+    color: $lt-bad;
   }
 }
 
 .validator__data-link {
   font-weight: 400;
   font-size: 16px;
-  color: $color-second;
+  color: $lt-intense;
 
   &:hover {
-    color: $gray-darker;
+    color: $lt-darker;
   }
 }
 

@@ -1,40 +1,20 @@
-// ПЕРЕМЕННЫЕ
-
-$whitest:           #ffffff; // максимально белый, если потребуется
-$white:             #fafafa; // "рабочий" белый, более приятный глазу
-$gray-lightest:     #dcdcdc;
-$gray-lighter:      #bebebe;
-$gray-light:        #a0a0a0;
-$gray:              #828282;
-$gray-dark:         #646464;
-$gray-darker:       #464646;
-$gray-darkest:      #282828;
-$black:             #0f0f0f; // "рабочий" чёрный, более приятный глазу
-$blackest:          #000000; // максимально чёрный, если потребуется
-
-$color-main:        #add8e6;
-$color-second:      #0d6573;
-$color-accent:      #ffc83d;
-$color-yay:         #00e696;
-$color-nay:         #e60032;
+/* НАПОМИНАНИЕ: при смене темы элементы НЕ ВСЕГДА меняют цвета строго по постфиксу (lt-intense на dt-intense, lt-pale на dt-pale, и т.д.) - вместо этого, все стили подбирались индивидуально по ситуации, поэтому в светлой теме один и тот же элемент может, например, иметь цвет lt-background, а в тёмной - dt-light. Так что, на постфиксы сильно не ориентируйся - они НЕ аналогичны. */ 
 
 $brand-color:       #ffc83d;
 
 $lt-intense:        #0d6573;
-$lt-pale:           #3D8E99;
 $lt-background:     #add8e6;
-
-// $dt-intense:        #0d3328;
-// $dt-light:          #1E332B;
-// $dt-pale:           #152420;
-// $dt-background:     #111c19;
-// $dt-black:          #0f0f0f;
-// $dt-accent:         #c5c971;
-// $dt-text-light:     #fafafa;
-// $dt-text-comfort:   #bebebe;
-// $dt-text-dark:      #828282;
-// $dt-good:           #71c97d;
-// $dt-bad:            #c97180;
+$lt-good:           #00e696;
+$lt-bad:            #e60032;
+$lt-whitest:        #ffffff;
+$lt-white:          #fafafa;
+$lt-lightest:       #dcdcdc;
+$lt-lighter:        #bebebe;
+$lt-light:          #a0a0a0;
+$lt-middle:         #828282;
+$lt-dark:           #646464;
+$lt-darker:         #464646;
+$lt-darkest:        #282828;
 
 $dt-intense:        #1D2F5B;
 $dt-light:          #1E3359;

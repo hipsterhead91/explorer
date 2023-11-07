@@ -7,12 +7,12 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   grid-column-gap: 8px;
-  background-color: $white;
+  background-color: $lt-white;
   text-decoration: none;
   border-radius: 8px;
 
   &:hover {
-    background-color: $whitest;
+    background-color: $lt-whitest;
   }
 }
 
@@ -47,20 +47,20 @@
   border-radius: 0 4px 0 4px;
 
   &_active {
-    color: $color-second;
-    background-color: $color-main;
+    color: $lt-intense;
+    background-color: $lt-background;
   }
 
   &_inactive {
-    color: $gray-darker;
-    background-color: $gray-lighter;
+    color: $lt-darker;
+    background-color: $lt-lighter;
   }
 }
 
 .validators-tr__moniker {
   font-weight: 500;
   font-size: 14px;
-  color: $color-second;
+  color: $lt-intense;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -78,14 +78,14 @@
 .validators-tr__stake {
   font-weight: 500;
   font-size: 14px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .validators-tr__symbol {
   margin: 0 0 0 4px;
   font-weight: 400;
   font-size: 12px;
-  color: $gray;
+  color: $lt-middle;
 }
 
 .validators-tr__power {
@@ -93,8 +93,8 @@
   margin: 2px 0 0 0;
   font-weight: 400;
   font-size: 12px;
-  color: $gray;
-  background-color: rgba($gray-lightest, 0.5);
+  color: $lt-middle;
+  background-color: rgba($lt-lightest, 0.5);
   border-radius: 2px;
 }
 
@@ -109,10 +109,10 @@
 .validators-tr__commission-value {
   font-weight: 500;
   font-size: 14px;
-  color: $gray-darker;
+  color: $lt-darker;
 
   &_high {
-    color: $color-nay;
+    color: $lt-bad;
   }
 }
 

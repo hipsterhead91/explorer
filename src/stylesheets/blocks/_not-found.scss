@@ -45,7 +45,6 @@
   font-size: 14px;
   color: $color-second;
   text-decoration: none;
-  transition: linear 0.2s;
 
   span {
     position: relative;
@@ -56,5 +55,30 @@
 
   &:hover {
     color: $gray-darker;
+  }
+}
+
+
+
+// NIGHT MODE
+
+
+
+.app.dark-theme
+.not-found__heading {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.not-found__description {
+  color: $dt-text-dark;
+}
+
+.app.dark-theme
+.not-found__link {
+  color: rgba($dt-accent, 0.85);
+
+  &:hover {
+    color: $dt-accent;
   }
 }

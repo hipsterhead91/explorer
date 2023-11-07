@@ -7,13 +7,13 @@
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr;
   grid-column-gap: 8px;
-  background-color: $white;
+  background-color: $lt-white;
   text-decoration: none;
   cursor: pointer;
   border-radius: 8px;
 
   &:hover {
-    background-color: $whitest;
+    background-color: $lt-whitest;
   }
 
   &:last-child {
@@ -34,7 +34,7 @@
   margin: 0 4px 0 0;
   font-weight: 400;
   font-size: 14px;
-  color: $gray;
+  color: $lt-middle;
 }
 
 .proposals-tr__title {
@@ -42,7 +42,7 @@
   max-width: 460px;
   font-weight: 500;
   font-size: 14px;
-  color: $color-second;
+  color: $lt-intense;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -59,18 +59,18 @@
   border-radius: 2px;
 
   &_neutral {
-    color: $color-second;
-    background-color: rgba($color-main, 0.5);
+    color: $lt-intense;
+    background-color: rgba($lt-background, 0.5);
   }
 
   &_good {
-    color: rgba($color-second, 0.9);
-    background-color: rgba($color-yay, 0.3);
+    color: rgba($lt-intense, 0.9);
+    background-color: rgba($lt-good, 0.3);
   }
 
   &_bad {
-    color: rgba($color-nay, 0.8);
-    background-color: rgba($color-nay, 0.1);
+    color: rgba($lt-bad, 0.8);
+    background-color: rgba($lt-bad, 0.1);
   }
 }
 
@@ -80,7 +80,7 @@
   font-weight: 400;
   font-size: 14px;
   text-align: center;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposals-tr__voting-end {
@@ -93,13 +93,13 @@
 .proposals-tr__end-time {
   font-weight: 400;
   font-size: 14px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposals-tr__end-date {
   font-weight: 400;
   font-size: 14px;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 
@@ -124,7 +124,6 @@
 
 .app.dark-theme
 .proposals-tr__title {
-  // color: rgba($dt-good, 0.9);
   color: $dt-text-comfort;
 }
 

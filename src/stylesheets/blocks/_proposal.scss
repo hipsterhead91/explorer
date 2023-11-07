@@ -14,7 +14,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba($color-main, 0.6);
+  background-color: rgba($lt-background, 0.6);
   backdrop-filter: blur(1px);
 }
 
@@ -27,7 +27,7 @@
   padding: 60px 40px 60px 40px;
   display: flex;
   flex-direction: column;
-  background-color: $white;
+  background-color: $lt-white;
   border-radius: 16px;
 }
 
@@ -38,14 +38,14 @@
   margin: 0 12px 0 auto;
   font-size: 36px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
   border: none;
   background-color: transparent;
   outline: none;
   cursor: pointer;
 
   &:hover {
-    color: $gray-darkest;
+    color: $lt-darkest;
   }
 }
 
@@ -61,16 +61,16 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: rgba($gray-lightest, 0.4);
+    background-color: rgba($lt-lightest, 0.4);
     border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 20px;
-    background-color: $gray-lightest;
+    background-color: $lt-lightest;
 
     &:hover {
-      background-color: $gray-light;
+      background-color: $lt-light;
     }
   }
 }
@@ -80,7 +80,7 @@
   font-weight: 300;
   font-size: 16px;
   line-height: 1;
-  color: $gray-dark;
+  color: $lt-dark;
 }
 
 .proposal__title {
@@ -89,13 +89,13 @@
   font-weight: 600;
   font-size: 22px;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__divider {
   width: 100%;
   margin: 6px 0 20px 0;
-  border-bottom: 1px solid $gray-lightest;
+  border-bottom: 1px solid $lt-lightest;
 }
 
 .proposal__main-info {
@@ -108,14 +108,14 @@
   margin: 0 0 2px 0;
   font-size: 16px;
   font-weight: 600;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__data {
   margin: 0 0 0 2px;
   font-size: 14px;
   font-weight: 400;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__status {
@@ -127,18 +127,18 @@
   border-radius: 4px;
 
   &_neutral {
-    color: $color-second;
-    background-color: rgba($color-main, 0.5);
+    color: $lt-intense;
+    background-color: rgba($lt-background, 0.5);
   }
 
   &_good {
-    color: rgba($color-second, 0.9);
-    background-color: rgba($color-yay, 0.3);
+    color: rgba($lt-intense, 0.9);
+    background-color: rgba($lt-good, 0.3);
   }
 
   &_bad {
-    color: rgba($color-nay, 0.8);
-    background-color: rgba($color-nay, 0.1);
+    color: rgba($lt-bad, 0.8);
+    background-color: rgba($lt-bad, 0.1);
   }
 }
 
@@ -161,19 +161,19 @@
   border-radius: 8px;
 
   &_yes {
-    background-color: rgba($color-yay, 0.3);
+    background-color: rgba($lt-good, 0.3);
   }
 
   &_no {
-    background-color: rgba($color-nay, 0.3);
+    background-color: rgba($lt-bad, 0.3);
   }
 
   &_veto {
-    background-color: rgba($gray, 0.3);
+    background-color: rgba($lt-middle, 0.3);
   }
 
   &_abstain {
-    background-color: rgba($color-second, 0.3);
+    background-color: rgba($lt-intense, 0.3);
   }
 }
 
@@ -188,7 +188,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
   text-transform: uppercase;
 }
 
@@ -197,7 +197,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__vote-bottom {
@@ -211,7 +211,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__vote-symbol {
@@ -219,7 +219,7 @@
   font-size: 10px;
   font-weight: 400;
   line-height: 1;
-  color: $gray-darker;
+  color: $lt-darker;
   text-transform: uppercase;
 }
 
@@ -233,13 +233,13 @@
   margin: 0 0 8px 0;
   font-size: 16px;
   font-weight: 600;
-  color: $gray-darker;
+  color: $lt-darker;
 }
 
 .proposal__description-text {
   font-size: 16px;
   font-weight: 400;
-  color: $gray-darker;
+  color: $lt-darker;
   word-wrap: break-word;
 }
 

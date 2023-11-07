@@ -184,16 +184,6 @@
   }
 }
 
-.validator__data-link {
-  font-weight: 400;
-  font-size: 16px;
-  color: $lt-intense;
-
-  &:hover {
-    color: $lt-darker;
-  }
-}
-
 
 
 // NIGHT MODE
@@ -278,14 +268,5 @@
 
   &_high {
     color: $dt-bad;
-  }
-}
-
-.app.dark-theme
-.validator__data-link {
-  color: $color-second;
-
-  &:hover {
-    color: $gray-darker;
   }
 }

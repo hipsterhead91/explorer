@@ -26,19 +26,27 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   text-decoration: none;
-  color: $lt-intense;
+  color: $lt-background;
   user-select: none;
 
   &_active {
     color: $brand-color;
     text-decoration: underline;
   }
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .chain__nav-divider {
   height: 12px;
   margin: 0 36px 0 36px;
-  border-left: 2px solid rgba($lt-intense, 0.7);
+  border-left: 2px solid rgba($lt-background, 0.7);
+
+  @media (max-width: 991px) {
+    height: 10px;
+  }
 }
 
 // Миксуется с section-limiter, который ограничивает ширину секций

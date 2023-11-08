@@ -30,6 +30,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 }
 
 .chains__indicator {
@@ -41,6 +45,11 @@
   justify-content: center;
   background-color: $brand-color;
   transition: linear 0.2s;
+
+  @media (max-width: 991px) {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .chains__indicator-arrow {
@@ -56,6 +65,11 @@
   &_up {
     top: 3px;
     transform: rotate(45deg);
+  }
+
+  @media (max-width: 991px) {
+    width: 7px;
+    height: 7px;
   }
 }
 
@@ -95,6 +109,10 @@
   &_hidden {
     display: none;
   }
+
+  @media (max-width: 991px) {
+    top: 88px;
+  }
 }
 
 .chains__popup {
@@ -107,6 +125,11 @@
   align-items: center;
   border-radius: 16px;
   background-color: $lt-white;
+
+  @media (max-width: 991px) {
+    max-width: calc(100% - 18px - 18px); 
+    padding: 20px 28px 48px 28px;
+  }
 }
 
 .chains__popup-head {
@@ -117,12 +140,20 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 991px) {
+    margin: 0 0 16px 0;
+  }
 }
 
 .chains__popup-heading {
   font-weight: 600;
   font-size: 24px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 20px;
+  }
 }
 
 .chains__close-button {
@@ -138,6 +169,10 @@
   &:hover {
     color: $lt-darkest;
   }
+
+  @media (max-width: 991px) {
+    font-size: 28px;
+  }
 }
 
 .chains__list {
@@ -145,7 +180,10 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 12px;
-  border-radius: 6px;
+
+  @media (max-width: 991px) {
+    grid-gap: 10px;
+  }
 }
 
 .chains__chain {
@@ -165,10 +203,19 @@
     background-color: rgba($lt-light, 0.4);
     border-left: 4px solid $lt-good;
     border-right: 4px solid $lt-good;
+
+    @media (max-width: 991px) {
+      border-left: 3px solid $lt-good;
+      border-right: 3px solid $lt-good;
+    }
   }
 
   &:hover {
     background-color: rgba($lt-light, 0.4);
+  }
+
+  @media (max-width: 991px) {
+    padding: 8px 8px 8px 16px;
   }
 }
 
@@ -179,6 +226,12 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+
+  @media (max-width: 991px) {
+    width: 32px;
+    height: 32px;
+    margin: 0 8px 0 0;
+  }
 }
 
 .chains__chain-info {
@@ -195,6 +248,10 @@
   font-size: 16px;
   line-height: 1;
   color: $lt-darkest;
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 }
 
 .chains__chain-id {
@@ -202,6 +259,10 @@
   font-size: 14px;
   line-height: 1;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 
@@ -257,6 +318,11 @@
     background-color: rgba($dt-accent, 0.15);
     border-left: 4px solid $dt-accent;
     border-right: 4px solid $dt-accent;
+
+    @media (max-width: 991px) {
+      border-left: 3px solid $dt-accent;
+      border-right: 3px solid $dt-accent;
+    }
   }
 
   &:hover:not(.chains__chain_selected) {

@@ -13,6 +13,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 991px) {
+    margin: 28px 0 44px 0;
+  }
 }
 
 .homepage__switchers-alignment {
@@ -21,6 +25,10 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 12px;
+
+  @media (max-width: 991px) {
+    grid-gap: 10px;
+  }
 }
 
 .homepage__switchers {
@@ -59,6 +67,10 @@
   outline: none;
   cursor: pointer;
   
+  @media (max-width: 991px) {
+    min-height: 28px;
+  }
+
   &:first-child {
     border-radius: 12px 0 0 0;
   }
@@ -78,13 +90,18 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-
+  
   &_eng {
     background-image: url("/public/images/flag-uk.png");
   }
 
   &_rus {
     background-image: url("/public/images/flag-russia.png");
+  }
+
+  @media (max-width: 991px) {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -102,6 +119,11 @@
   &_dark {
     background-image: url("/public/images/moon.png");
   }
+
+  @media (max-width: 991px) {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .homepage__block {
@@ -111,12 +133,25 @@
   background-color: $lt-white;
   border-radius: 16px;
 
+  @media (max-width: 991px) {
+    padding: 28px 28px 28px 28px;
+    border-radius: 12px;
+  }
+
   &_first {
     border-radius: 16px 0 16px 16px;
+
+    @media (max-width: 991px) {
+      border-radius: 12px 0 12px 12px;
+    }
   }
 
   &:not(:last-child) {
     margin: 0 0 12px 0;
+
+    @media (max-width: 991px) {
+      margin: 0 0 10px 0;
+    }
   }
 }
 
@@ -125,6 +160,10 @@
   font-weight: 600;
   font-size: 28px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 20px;
+  }
 }
 
 .homepage__paragraph {
@@ -134,6 +173,14 @@
 
   &:not(:last-child) {
     margin: 0 0 12px 0;
+
+    @media (max-width: 991px) {
+      margin: 0 0 10px 0;
+    }
+  }
+
+  @media (max-width: 991px) {
+    font-size: 14px;
   }
 }
 
@@ -152,6 +199,10 @@
 
 .homepage__list {
   margin: 14px 0 0 0;
+
+  @media (max-width: 991px) {
+    margin: 12px 0 0 0;
+  }
 }
 
 .homepage__list-element {
@@ -160,6 +211,11 @@
   font-weight: 400;
   font-size: 16px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    margin: 0 0 8px 18px;
+    font-size: 14px;
+  }
 }
 
 

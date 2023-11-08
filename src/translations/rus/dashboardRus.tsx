@@ -4,7 +4,7 @@ const dashboardRus = {
   providerButton: "попробовать следующего провайдера ",
   provider: "провайдер: ",
   communityPool: "Пул сообщества:",
-  activeProposals: "Активные предложения:",
+  activeProposals: "Активные предлож.:",
   tokensBonded: "Монет застейкано:",
   validators: "Валидаторы:",
   inflation: "Инфляция:",

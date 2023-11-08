@@ -13,6 +13,10 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 991px) {
+    min-height: 46px;
+  }
 }
 
 .footer__info {
@@ -20,6 +24,10 @@
   font-size: 16px;
   line-height: 140%;
   color: $lt-light;
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 
   a {
     color: $brand-color;

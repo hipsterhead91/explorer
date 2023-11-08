@@ -19,6 +19,13 @@
   border-radius: 16px;
   background-color: $lt-darker;
   border: 4px solid rgba($lt-darkest, 0.6);
+
+  @media (max-width: 991px) {
+    padding: 8px 13px 8px 13px;
+    margin: 0 0 10px 0;
+    border: 3px solid rgba($lt-darkest, 0.6);
+    border-radius: 12px;
+  }
 }
 
 .dashboard__provider-switcher {
@@ -32,6 +39,10 @@
   font-size: 14px;
   font-weight: 400;
   color: $lt-middle;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__provider-button {
@@ -43,6 +54,10 @@
 
   &:hover {
     color: $lt-lightest;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 12px;
   }
 }
 
@@ -57,24 +72,40 @@
   font-size: 14px;
   font-weight: 400;
   color: $lt-middle;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__provider-name {
   font-size: 14px;
   font-weight: 600;
   color: $lt-light;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__provider-number {
   font-size: 14px;
   font-weight: 600;
   color: $lt-light;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__provider-address {
   font-size: 14px;
   font-weight: 400;
   color: $lt-middle;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__grid {
@@ -83,6 +114,10 @@
   grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: 1fr;
   grid-gap: 12px;
+
+  @media (max-width: 991px) {
+    grid-gap: 10px;
+  }
 }
 
 /* Следующие две конструкции нужны для того, чтобы стандартная ячейка имела равное соотношение сторон, без использования aspect-ratio: 1/1 и padding-trick'а, ибо они имеют нюансы. Приём взят отсюда: https://medium.com/cloudaper/how-to-create-a-flexible-square-grid-with-css-grid-layout-ea48baf038f3 */
@@ -107,6 +142,11 @@
   flex-direction: column;
   border-radius: 16px;
   background-color: $lt-white;
+
+  @media (max-width: 991px) {
+    padding: 16px 16px 16px 16px;
+    border-radius: 12px;
+  }
 }
 
 #main-plate {
@@ -157,6 +197,11 @@
   padding: 20px 16px 20px 16px;
   background-color: transparent;
   border: 4px solid $lt-white;
+
+  @media (max-width: 991px) {
+    padding: 13px 13px 13px 13px;
+    border: 3px solid $lt-white;
+  }
 }
 
 #validators-plate {
@@ -181,18 +226,31 @@
   color: $lt-light;
   background-color: rgba($lt-lightest, 0.8);
   border-radius: 4px;
+
+  @media (max-width: 991px) {
+    padding: 3px 6px 3px 6px;
+    font-size: 12px;
+  }
 }
 
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
   color: $lt-white;
+
+  @media (max-width: 991px) {
+    font-size: 20px;
+  }
 }
 
 .dashboard__subheading {
   font-weight: 300;
   font-size: 16px;
   color: $lt-background;
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 }
 
 .dashboard__description {
@@ -200,6 +258,10 @@
   font-weight: 300;
   font-size: 16px;
   color: $lt-white;
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 }
 
 .dashboard__logo {
@@ -209,6 +271,11 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+
+  @media (max-width: 991px) {
+    width: 90%;
+    height: 90%;
+  }
 }
 
 .dashboard__plate-heading {
@@ -216,6 +283,10 @@
   font-weight: 400;
   font-size: 14px;
   color: $lt-dark;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__plate-data {
@@ -224,11 +295,19 @@
   font-size: 16px;
   color: $lt-darker;
 
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
+
   span {
     margin: 0 0 0 4px;
     font-weight: 400;
     font-size: 12px;
     color: $lt-middle;
+
+    @media (max-width: 991px) {
+      font-size: 10px;
+    }
   }
 }
 
@@ -249,6 +328,10 @@
     &:hover {
       color: $lt-intense;
     }
+
+    @media (max-width: 991px) {
+      font-size: 12px;
+    }
   }
 }
 
@@ -256,6 +339,10 @@
   font-weight: 400;
   font-size: 14px;
   color: $lt-background;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 
   a {
     font-weight: 500;
@@ -273,41 +360,58 @@
 }
 
 .dashboard__coingecko-price {
-  padding: 0 0 2px 0;
+  padding: 0 0 4px 0;
   margin: 12px 0 0 0;
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   border-bottom: 1px solid $lt-background;
+
+  @media (max-width: 991px) {
+    padding: 0 0 3px 0;
+    margin: 10px 0 0 0;
+  }
 }
 
 .dashboard__coingecko-subheading {
   font-weight: 300;
   font-size: 14px;
   color: $lt-background;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .dashboard__coingecko-value {
-  display: flex;
   font-weight: 300;
   font-size: 16px;
+  line-height: 1;
   color: $lt-background;
 
   &_bright {
     font-weight: 500;
     color: $brand-color;
   }
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
 }
 
 .dashboard__coingecko-dynamic {
-  display: flex;
-  align-items: baseline;
   font-size: 16px;
   font-weight: 500;
+  line-height: 1;
   color: $lt-good;
 
   &_down {
     font-weight: 600;
     color: $lt-bad;
+  }
+
+  @media (max-width: 991px) {
+    font-size: 14px;
   }
 }
 
@@ -321,6 +425,10 @@
 .dashboard__providers {
   background-color: transparent;
   border: 4px solid $dt-pale;
+
+  @media (max-width: 991px) {
+    border: 3px solid $dt-pale;
+  }
 }
 
 .app.dark-theme
@@ -371,6 +479,10 @@
 .app.dark-theme
 #links-plate {
   border: 4px solid $dt-pale;
+
+  @media (max-width: 991px) {
+    border: 3px solid $dt-pale;
+  }
 }
 
 .app.dark-theme

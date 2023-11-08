@@ -12,6 +12,10 @@
   box-sizing: border-box;
   width: 100%;
   padding: 58px 0 52px 0; // верхний и нижний паддинги равны высоте шапки и подвала
+
+  @media (max-width: 991px) {
+    padding: 52px 0 46px 0;
+  }
 }
 
 

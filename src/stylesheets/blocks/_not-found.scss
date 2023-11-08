@@ -14,13 +14,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 991px) {
+    padding: 0 18px 0 18px;
+  }
 }
 
 .not-found__error {
   position: relative;
-  margin: 20vh 0 0 0;
+  margin: 20vh 0 0 40px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 991px) {
+    margin: 25vh 0 0 40px;
+  }
 }
 
 .not-found__heading {
@@ -30,6 +38,10 @@
   font-size: 200px;
   line-height: 1;
   color: $lt-darkest;
+
+  @media (max-width: 991px) {
+    font-size: 168px;
+  }
 }
 
 .not-found__description {
@@ -37,6 +49,10 @@
   font-weight: 600;
   font-size: 14px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .not-found__link {
@@ -46,11 +62,20 @@
   color: $lt-intense;
   text-decoration: none;
 
+  @media (max-width: 991px) {
+    margin: 16px 24px 0 auto;
+    font-size: 12px;
+  }
+
   span {
     position: relative;
     top: 1px;
     font-weight: 600;
     font-size: 20px;
+
+    @media (max-width: 991px) {
+      font-size: 18px;
+    }
   }
 
   &:hover {

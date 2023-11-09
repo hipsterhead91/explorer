@@ -19,6 +19,12 @@
   &:last-child {
     border-radius: 4px 4px 8px 8px;
   }
+
+  @media (max-width: 991px) {
+    min-height: 48px;
+    padding: 6px 32px 6px 32px;
+    margin: 4px 0 0 0;
+  }
 }
 
 .proposals-tr__cell {
@@ -35,6 +41,10 @@
   font-weight: 400;
   font-size: 14px;
   color: $lt-middle;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .proposals-tr__title {
@@ -46,6 +56,11 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @media (max-width: 991px) {
+    max-width: 360px;
+    font-size: 12px;
+  }
 }
 
 .proposals-tr__status {
@@ -72,6 +87,11 @@
     color: rgba($lt-bad, 0.8);
     background-color: rgba($lt-bad, 0.1);
   }
+
+  @media (max-width: 991px) {
+    padding: 3px 5px 3px 5px;
+    font-size: 12px;
+  }
 }
 
 .proposals-tr__type {
@@ -81,6 +101,10 @@
   font-size: 14px;
   text-align: center;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .proposals-tr__voting-end {
@@ -94,12 +118,20 @@
   font-weight: 400;
   font-size: 14px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 .proposals-tr__end-date {
   font-weight: 400;
   font-size: 14px;
   color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
 }
 
 

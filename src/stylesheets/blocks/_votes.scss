@@ -1,0 +1,199 @@
+.votes {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 20px 0 6px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+
+  &_hidden {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    margin: 16px 0 4px 0;
+    grid-gap: 10px;
+  }
+}
+
+.votes__vote {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+    
+  &_yes {
+    background-color: rgba($lt-good, 0.3);
+  }
+
+  &_no {
+    background-color: rgba($lt-bad, 0.3);
+  }
+
+  &_veto {
+    background-color: rgba($lt-intense, 0.3);
+  }
+
+  &_abstain {
+    background-color: rgba($lt-middle, 0.3);
+  }
+}
+
+.votes__vote-bar {
+  position: absolute;
+  height: 100%;
+    
+  &_yes {
+    background-color: rgba($lt-good, 0.5);
+  }
+
+  &_no {
+    background-color: rgba($lt-bad, 0.3);
+  }
+
+  &_veto {
+    background-color: rgba($lt-intense, 0.3);
+  }
+
+  &_abstain {
+    background-color: rgba($lt-middle, 0.4);
+  }
+}
+
+.votes__vote-info {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 16px 16px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 12px;
+}
+
+.votes__vote-type {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: $lt-darker;
+  text-transform: uppercase;
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
+}
+
+.votes__vote-percent {
+  width: 100%;
+  margin: 0 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: end;
+  color: $lt-darker;
+  grid-column: 2/3;
+  grid-row: 1/2;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
+}
+
+.votes__vote-weight {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-end;
+  grid-column: 1/3;
+  grid-row: 2/3;
+}
+
+.votes__vote-tokens {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  color: $lt-darker;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
+}
+
+.votes__vote-symbol {
+  margin: 0 0 0 4px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1;
+  color: $lt-darker;
+  text-transform: uppercase;
+
+  @media (max-width: 991px) {
+    font-size: 8px;
+  }
+}
+
+
+
+// NIGHT MODE
+
+
+
+
+.app.dark-theme
+.votes__vote {
+  &_yes {
+    background-color: rgba($dt-good, 0.6);
+  }
+
+  &_no {
+    background-color: rgba($dt-bad, 0.6);
+  }
+
+  &_veto {
+    background-color: rgba($brand-color, 0.45);
+  }
+
+  &_abstain {
+    background-color: rgba($dt-text-comfort, 0.5);
+  }
+}
+
+.app.dark-theme
+.votes__vote-bar {
+  &_yes {
+    background-color: rgba($dt-good, 0.7);
+  }
+
+  &_no {
+    background-color: rgba($dt-bad, 0.8);
+  }
+
+  &_veto {
+    background-color: rgba($brand-color, 0.5);
+  }
+
+  &_abstain {
+    background-color: rgba($dt-text-comfort, 0.5);
+  }
+}
+
+.app.dark-theme
+.votes__vote-type {
+  color: rgba($dt-background, 0.9);
+}
+
+.app.dark-theme
+.votes__vote-percent {
+  color: rgba($dt-background, 0.9);
+}
+
+.app.dark-theme
+.votes__vote-tokens {
+  color: rgba($dt-background, 0.9);
+}
+
+.app.dark-theme
+.votes__vote-symbol {
+  color: rgba($dt-background, 0.9);
+}

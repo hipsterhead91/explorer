@@ -1,6 +1,9 @@
 // Пакеты
 import { useEffect, useState } from "react";
-import { useParams, useOutletContext, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
+// Компоненты
+import Votes from "./Votes";
 
 // Типизация
 import IProposal from "../models/IProposal";
@@ -25,7 +28,7 @@ function Proposal() {
   const currentId = useParams()["id"]; // из ссылки в браузерной строке получаем id текущего пропозала
   const currentChain = useAppSelector(selectCurrentChain);
   const proposals = useAppSelector(selectProposals);
-  const [currentProposal, setCurrentProposal] = useState<IProposal | null>();
+  const [currentProposal, setCurrentProposal] = useState<IProposal | null>(null);
   const navigate = useNavigate();
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ПРОПОЗАЛА
@@ -119,7 +122,10 @@ function Proposal() {
             <p className="proposal__data-heading">{translatedContent.votingEnd}<span className="proposal__data">{votingEndText}</span></p>
           </div>
 
-          <div className="proposal__votes">
+          <Votes proposal={currentProposal} />
+
+
+          {/* <div className="proposal__votes">
             <div className="proposal__vote proposal__vote_yes">
               <div className="proposal__vote-top">
                 <span className="proposal__vote-name">{translatedContent.yes}</span>
@@ -160,7 +166,7 @@ function Proposal() {
                 <span className="proposal__vote-symbol">{currentChain?.denom}</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="proposal__divider"></div>
 

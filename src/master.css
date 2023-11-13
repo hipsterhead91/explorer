@@ -4369,6 +4369,8 @@ html::-webkit-scrollbar-thumb:hover {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
+  border-radius: 8px;
+  contain: content;
 }
 
 .votes__vote_yes {

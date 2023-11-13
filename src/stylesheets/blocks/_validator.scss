@@ -33,6 +33,10 @@
     max-width: 732px; 
     padding: 40px 28px 48px 28px;
   }
+
+  @media (max-width: 767px) {
+    max-width: calc(100% - 12px - 12px); 
+  }
 }
   
 .validator__close-button {
@@ -69,6 +73,11 @@
     grid-template-columns: 62px calc(100% - 62px - 30px);
     grid-column-gap: 30px;
     grid-row-gap: 16px;
+  }
+
+  @media (max-width: 767px) {
+    grid-template-columns: 62px calc(100% - 62px - 24px);
+    grid-column-gap: 24px;
   }
 }
 

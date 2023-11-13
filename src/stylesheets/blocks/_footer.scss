@@ -11,11 +11,17 @@
 .footer__container {
   min-height: 52px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
 
   @media (max-width: 991px) {
     min-height: 46px;
+  }
+
+  @media (max-width: 767px) {
+    padding: 16px 0 16px 0;
+    flex-direction: column;
   }
 }
 
@@ -25,16 +31,22 @@
   line-height: 140%;
   color: $lt-light;
 
-  @media (max-width: 991px) {
-    font-size: 14px;
-  }
-
   a {
     color: $brand-color;
     text-decoration: none;
 
     &:hover {
       color: $lt-white;
+    }
+  }
+
+  @media (max-width: 991px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 767px) {
+    &:not(:last-child) {
+      margin: 0 0 4px 0;
     }
   }
 }

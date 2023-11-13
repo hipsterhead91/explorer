@@ -8,4 +8,12 @@
   @media (max-width: 991px) {
     padding: 0 18px 0 18px;
   }
+
+  @media (max-width: 767px) {
+    padding: 0 12px 0 12px;
+  }
+
+  @media (max-width: 575px) {
+    padding: 0 8px 0 8px;
+  }
 }

@@ -37,6 +37,10 @@
   @media (max-width: 991px) {
     font-size: 12px;
   }
+
+  @media (max-width: 575px) {
+    font-size: 10px;
+  }
 }
 
 .chain__nav-divider {
@@ -46,6 +50,10 @@
 
   @media (max-width: 991px) {
     height: 10px;
+  }
+
+  @media (max-width: 575px) {
+    margin: 0 24px 0 24px;
   }
 }
 

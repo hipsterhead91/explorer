@@ -34,6 +34,10 @@
     max-width: 732px; 
     padding: 40px 36px 48px 36px;
   }
+
+  @media (max-width: 767px) {
+    max-width: calc(100% - 12px - 12px); 
+  }
 }
 
 .proposal__close-button {

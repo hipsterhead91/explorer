@@ -2,6 +2,10 @@
   position: relative;
   margin: auto 0 auto 0;
   grid-column: 5/7;
+
+  @media (max-width: 767px) {
+    grid-column: 3/5;
+  }
 }
 
 .chains__switcher {
@@ -17,6 +21,10 @@
   background-color: $lt-intense;
   outline: none;
   cursor: pointer;
+
+  @media (max-width: 575px) {
+    border: 2px solid $brand-color;
+  }
 }
 
 .chains__current-chain {
@@ -33,6 +41,10 @@
 
   @media (max-width: 991px) {
     font-size: 14px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 12px;
   }
 }
 
@@ -70,6 +82,11 @@
   @media (max-width: 991px) {
     width: 7px;
     height: 7px;
+  }
+
+  @media (max-width: 575px) {
+    border-top: 2px solid $lt-intense;
+    border-left: 2px solid $lt-intense;
   }
 }
 
@@ -113,6 +130,10 @@
   @media (max-width: 991px) {
     top: 88px;
   }
+
+  @media (max-width: 575px) {
+    top: 54px;
+  }
 }
 
 .chains__popup {
@@ -129,6 +150,16 @@
   @media (max-width: 991px) {
     max-width: calc(100% - 18px - 18px); 
     padding: 20px 28px 48px 28px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: calc(100% - 12px - 12px); 
+  }
+
+  @media (max-width: 575px) {
+    max-width: calc(100% - 8px - 8px); 
+    padding: 16px 8px 32px 8px;
+    border-radius: 8px;
   }
 }
 
@@ -153,6 +184,10 @@
 
   @media (max-width: 991px) {
     font-size: 20px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 18px;
   }
 }
 
@@ -184,6 +219,14 @@
   @media (max-width: 991px) {
     grid-gap: 10px;
   }
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 575px) {
+    grid-gap: 4px;
+  }
 }
 
 .chains__chain {
@@ -203,11 +246,6 @@
     background-color: rgba($lt-light, 0.4);
     border-left: 4px solid $lt-good;
     border-right: 4px solid $lt-good;
-
-    @media (max-width: 991px) {
-      border-left: 3px solid $lt-good;
-      border-right: 3px solid $lt-good;
-    }
   }
 
   &:hover {
@@ -216,6 +254,16 @@
 
   @media (max-width: 991px) {
     padding: 8px 8px 8px 16px;
+
+    &_selected {
+      border-left: 3px solid $lt-good;
+      border-right: 3px solid $lt-good;
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 4px 4px 4px 4px;
+    border-radius: 4px;
   }
 }
 
@@ -231,6 +279,12 @@
     width: 32px;
     height: 32px;
     margin: 0 8px 0 0;
+  }
+
+  @media (max-width: 575px) {
+    width: 24px;
+    height: 24px;
+    margin: 0 6px 0 0;
   }
 }
 
@@ -252,6 +306,10 @@
   @media (max-width: 991px) {
     font-size: 14px;
   }
+
+  @media (max-width: 575px) {
+    font-size: 12px;
+  }
 }
 
 .chains__chain-id {
@@ -262,6 +320,10 @@
 
   @media (max-width: 991px) {
     font-size: 12px;
+  }
+
+  @media (max-width: 575px) {
+    font-size: 10px;
   }
 }
 

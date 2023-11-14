@@ -12,7 +12,7 @@ const akashMainnet: IChain = {
   api: [
     { provider: "Notional", address: "https://api-akash-ia.cosmosia.notional.ventures" },
     { provider: "Polkachu", address: "https://akash-api.polkachu.com" },
-    { provider: "c29r3", address: "https://akash.c29r3.xyz:443/api" },
+    // { provider: "c29r3", address: "https://akash.c29r3.xyz:443/api" },
     { provider: "Allnodes", address: "https://akash-rest.publicnode.com" },
   ],
   descriptionEng: "The world first decentralized open source cloud, and DeCloud for DeFi, built with the Cosmos SDK.",

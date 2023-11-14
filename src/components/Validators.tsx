@@ -93,20 +93,6 @@ function Validators() {
     }
   }
 
-  // СБРОС ФИЛЬТРА ПО КЛАВИШЕ ESCAPE
-  const closeByEscapeButton = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      clearFilter();
-    }
-  };
-
-  // СЛУШАЕМ ESCAPE
-  useEffect(() => {
-    document.addEventListener('keydown', closeByEscapeButton);
-    return () => document.removeEventListener('keydown', closeByEscapeButton);
-  }, []);
-
   // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ
   const activeButtonStyle = (isCurrentSetActive)
     ? "validators__switcher-button validators__switcher-button_selected"

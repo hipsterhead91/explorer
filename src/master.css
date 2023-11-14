@@ -596,7 +596,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: fixed;
   z-index: 20;
   top: 112px;
-  left: 50%;
+  left: calc(50% - 6px);
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
   -webkit-box-sizing: border-box;

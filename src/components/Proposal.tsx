@@ -43,6 +43,26 @@ function Proposal() {
     navigate(`/${currentChain?.chainId}/proposals`);
   }
 
+  // ЗАКРЫТИЕ ПО КЛАВИШЕ ESCAPE
+  const closeByEscapeButton = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      returnToProposals();
+    }
+  };
+
+  // СЛУШАЕМ ESCAPE
+  useEffect(() => {
+    document.addEventListener('keydown', closeByEscapeButton);
+    return () => document.removeEventListener('keydown', closeByEscapeButton);
+  }, []);
+
+  // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {document.body.style.overflowY = 'scroll'};
+  }, []);
+
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = proposalEng;
   if (currentLanguage == "eng") translatedContent = proposalEng;

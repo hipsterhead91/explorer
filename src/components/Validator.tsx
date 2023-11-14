@@ -12,6 +12,7 @@ import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Прочее
 import { tweakTokens, tweakVotingPower, tweakCommission } from "../utils/formatting";
+import { log } from "console";
 
 
 
@@ -36,11 +37,17 @@ function Validator() {
       returnToValidators();
     }
   };
-  
+
   // СЛУШАЕМ ESCAPE
   useEffect(() => {
     document.addEventListener('keydown', closeByEscapeButton);
     return () => document.removeEventListener('keydown', closeByEscapeButton);
+  }, []);
+
+  // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
+  useEffect(() => {
+    document.body.style.overflowY = 'hidden';
+    return () => {document.body.style.overflowY = 'scroll'};
   }, []);
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ВАЛИДАТОРА

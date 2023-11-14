@@ -1,5 +1,5 @@
 // Пакеты
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 // Типизация
@@ -28,12 +28,14 @@ function Chains() {
   const container = useRef<HTMLDivElement | null>(null);
   const arrow = useRef<HTMLSpanElement | null>(null);
   const overlay = useRef<HTMLDivElement | null>(null);
+  const [isChainListOpen, setIsChainListOpen] = useState<boolean>(false);
 
   // ОТКРЫТИЕ/ЗАКРЫТИЕ СПИСКА СЕТЕЙ
   const toggleChainList = () => {
     container.current?.classList.toggle("chains__popup-container_hidden");
     arrow.current?.classList.toggle("chains__indicator-arrow_up");
     overlay.current?.classList.toggle("chains__overlay_hidden");
+    isChainListOpen ? setIsChainListOpen(false) : setIsChainListOpen(true);
   };
 
   // ЗАКРЫТИЕ СПИСКА СЕТЕЙ
@@ -41,6 +43,7 @@ function Chains() {
     container.current?.classList.add("chains__popup-container_hidden");
     arrow.current?.classList.remove("chains__indicator-arrow_up");
     overlay.current?.classList.add("chains__overlay_hidden");
+    setIsChainListOpen(false);
   };
 
   // ЗАКРЫТИЕ ПО КЛАВИШЕ ESCAPE
@@ -56,6 +59,14 @@ function Chains() {
     document.addEventListener('keydown', closeByEscapeButton);
     return () => document.removeEventListener('keydown', closeByEscapeButton);
   }, []);
+
+  // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
+  useEffect(() => {
+    isChainListOpen
+      ? document.body.style.overflowY = 'hidden'
+      : document.body.style.overflowY = 'scroll'
+    return () => { document.body.style.overflowY = 'scroll' };
+  }, [isChainListOpen]);
 
   // ПЕРЕКЛЮЧЕНИЕ СЕТИ
   const switchChain = (chain: IChain) => {
@@ -117,7 +128,7 @@ function Chains() {
           </div>
         </div>
       </div>
-      
+
     </div>
   )
 }

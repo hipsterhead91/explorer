@@ -7,7 +7,12 @@ html {
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: $lt-darker;
+  scrollbar-gutter: stable;
+}
+
+body {
   overflow-y: scroll;
+  scrollbar-gutter: stable;
 
   &::-webkit-scrollbar{
     width: 12px;    

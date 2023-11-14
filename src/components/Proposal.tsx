@@ -59,8 +59,8 @@ function Proposal() {
 
   // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
   useEffect(() => {
-    document.body.style.overflowY = 'hidden';
-    return () => {document.body.style.overflowY = 'scroll'};
+    document.body.classList.add("noScroll");
+    return () => {document.body.classList.remove("noScroll")};
   }, []);
 
   // ЛОКАЛИЗАЦИЯ

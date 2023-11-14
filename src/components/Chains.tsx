@@ -63,9 +63,9 @@ function Chains() {
   // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
   useEffect(() => {
     isChainListOpen
-      ? document.body.style.overflowY = 'hidden'
-      : document.body.style.overflowY = 'scroll'
-    return () => { document.body.style.overflowY = 'scroll' };
+      ? document.body.classList.add("noScroll")
+      : document.body.classList.remove("noScroll")
+    return () => { document.body.classList.remove("noScroll") };
   }, [isChainListOpen]);
 
   // ПЕРЕКЛЮЧЕНИЕ СЕТИ

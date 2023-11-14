@@ -12,7 +12,6 @@ html {
 
 body {
   overflow-y: scroll;
-  scrollbar-gutter: stable;
 
   &::-webkit-scrollbar{
     width: 12px;    
@@ -31,4 +30,8 @@ body {
       background-color: $lt-middle;
     }
   }
+}
+
+.noScroll {
+  overflow-y: hidden;
 }

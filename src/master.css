@@ -15,7 +15,6 @@ html {
 
 body {
   overflow-y: scroll;
-  scrollbar-gutter: stable;
 }
 
 body::-webkit-scrollbar {
@@ -34,6 +33,10 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
   background-color: #828282;
+}
+
+.noScroll {
+  overflow-y: hidden;
 }
 
 .app {
@@ -2820,6 +2823,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .validators__table {
+  position: relative;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2849,9 +2853,9 @@ body::-webkit-scrollbar-thumb:hover {
 
 .validators__scroll-buttons {
   position: fixed;
-  bottom: 22%;
-  right: calc(((100% - 998px) / 2) - 28px);
-  width: 40px;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2868,25 +2872,20 @@ body::-webkit-scrollbar-thumb:hover {
   display: none;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 991px) {
   .validators__scroll-buttons {
-    width: 68px;
-    height: 80px;
-    bottom: 64px;
-    right: calc(11% + 60px);
+    display: none;
   }
 }
 
-@media (max-width: 991px) {
-  .validators__scroll-buttons {
-    bottom: 54px;
-    right: calc(5% + 80px);
-  }
+body.noScroll
+.validators__scroll-buttons {
+  right: 12px;
 }
 
 .validators__scroll-button {
-  width: 40px;
-  height: 40px;
+  width: 300px;
+  height: 52px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2907,35 +2906,32 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .validators__scroll-button_top {
-  border-radius: 12px 12px 0 0;
+  border-radius: 28px 0 0 0;
   margin: 0 0 4px 0;
 }
 
 .validators__scroll-button_bottom {
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 0 0;
 }
 
 .validators__scroll-button:hover {
   background-color: rgba(13, 101, 115, 0.6);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
   .validators__scroll-button {
-    width: 100%;
-    height: 50%;
+    width: 200px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .validators__scroll-button {
+    width: 160px;
+    height: 40px;
   }
   .validators__scroll-button_top {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    border-radius: 20px 20px 0 0;
-    border-bottom: 1px solid #add8e6;
-    margin: 0 0 0 0;
-  }
-  .validators__scroll-button_bottom {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    border-radius: 0 0 20px 20px;
-    border-top: 1px solid #add8e6;
+    border-radius: 16px 0 0 0;
   }
 }
 
@@ -3074,17 +3070,6 @@ body::-webkit-scrollbar-thumb:hover {
 .app.dark-theme
 .validators__scroll-button:hover {
   background-color: #1e3359;
-}
-
-@media (max-width: 1100px) {
-  .app.dark-theme
-.validators__scroll-button_top {
-    border-bottom: 1px solid #0E131E;
-  }
-  .app.dark-theme
-.validators__scroll-button_bottom {
-    border-top: 1px solid #0E131E;
-  }
 }
 
 .app.dark-theme
@@ -4154,9 +4139,9 @@ body::-webkit-scrollbar-thumb:hover {
 
 .proposals__scroll-buttons {
   position: fixed;
-  top: 69%;
-  right: calc(((100% - 998px) / 2) - 28px);
-  width: 40px;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4173,9 +4158,20 @@ body::-webkit-scrollbar-thumb:hover {
   display: none;
 }
 
+@media (max-width: 991px) {
+  .proposals__scroll-buttons {
+    display: none;
+  }
+}
+
+body.noScroll
+.proposals__scroll-buttons {
+  right: 12px;
+}
+
 .proposals__scroll-button {
-  width: 40px;
-  height: 40px;
+  width: 300px;
+  height: 52px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4196,16 +4192,33 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .proposals__scroll-button_top {
-  border-radius: 12px 12px 0 0;
+  border-radius: 28px 0 0 0;
   margin: 0 0 4px 0;
 }
 
 .proposals__scroll-button_bottom {
-  border-radius: 0 0 12px 12px;
+  border-radius: 0 0 0 0;
 }
 
 .proposals__scroll-button:hover {
   background-color: rgba(13, 101, 115, 0.6);
+}
+
+@media (max-width: 1400px) {
+  .proposals__scroll-button {
+    width: 200px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .proposals__scroll-button {
+    width: 160px;
+    height: 40px;
+  }
+  .proposals__scroll-button_top {
+    border-radius: 16px 0 0 0;
+  }
 }
 
 .proposals__scroll-arrow {

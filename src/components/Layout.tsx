@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { Outlet } from "react-router-dom";
 
 // Компоненты

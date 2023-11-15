@@ -11,7 +11,7 @@ import { RootState } from "../store";
 
 // ИСХОДНОЕ СОСТОЯНИЕ ТЕКУЩЕГО ЯЗЫКА
 const initialLanguageState: ICurrentLanguageState = {
-  language: "eng",
+  language: "english",
 }
 
 // СЛАЙС ТЕКУЩЕГО ЯЗЫКА
@@ -19,7 +19,7 @@ export const currentLanguageSlice = createSlice({
   name: "currentLanguage",
   initialState: initialLanguageState,
   reducers: {
-    setCurrentLanguage: (state, action: PayloadAction<"eng" | "rus">) => {
+    setCurrentLanguage: (state, action: PayloadAction<"english" | "russian">) => {
       state.language = action.payload;
     },
   }

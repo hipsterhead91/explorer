@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { Link } from "react-router-dom";
 
 // Типизация
@@ -48,8 +48,8 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = proposalsTableRowEng;
-  if (currentLanguage == "eng") translatedContent = proposalsTableRowEng;
-  if (currentLanguage == "rus") translatedContent = proposalsTableRowRus;
+  if (currentLanguage == "english") translatedContent = proposalsTableRowEng;
+  if (currentLanguage == "russian") translatedContent = proposalsTableRowRus;
   const titleText = (proposal.content.title) ? proposal.content.title : translatedContent.noTitle;
 
   return (

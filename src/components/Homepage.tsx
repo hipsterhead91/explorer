@@ -8,6 +8,7 @@ import homepageEng from "../translations/eng/homepageEng";
 import homepageRus from "../translations/rus/homepageRus";
 
 
+
 function Homepage() {
 
   const currentLanguage = useAppSelector(selectCurrentLanguage);
@@ -15,9 +16,9 @@ function Homepage() {
   const dispatch = useAppDispatch();
 
   // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
-  const switchLanguage = (language: "eng" | "rus") => {
+  const switchLanguage = (language: "english" | "russian") => {
     dispatch(setCurrentLanguage(language));
-    localStorage.setItem("lang", language);
+    localStorage.setItem("language", language);
   };
 
   // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
@@ -26,11 +27,11 @@ function Homepage() {
     localStorage.setItem("theme", theme);
   };
 
-  const englishButtonStyle = (currentLanguage == "eng")
+  const englishButtonStyle = (currentLanguage == "english")
     ? "homepage__switcher-button homepage__switcher-button_selected"
     : "homepage__switcher-button"
 
-  const russianButtonStyle = (currentLanguage == "rus")
+  const russianButtonStyle = (currentLanguage == "russian")
     ? "homepage__switcher-button homepage__switcher-button_selected"
     : "homepage__switcher-button"
 
@@ -44,8 +45,8 @@ function Homepage() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = homepageEng;
-  if (currentLanguage == "eng") translatedContent = homepageEng;
-  if (currentLanguage == "rus") translatedContent = homepageRus;
+  if (currentLanguage == "english") translatedContent = homepageEng;
+  if (currentLanguage == "russian") translatedContent = homepageRus;
 
   return (
     <section className="homepage">
@@ -53,10 +54,10 @@ function Homepage() {
         <div className="homepage__switchers-alignment">
           <div className="homepage__switchers">
             <div className="homepage__switcher">
-              <button className={englishButtonStyle} onClick={() => { switchLanguage("eng") }}>
+              <button className={englishButtonStyle} onClick={() => { switchLanguage("english") }}>
                 <div className="homepage__language homepage__language_eng"></div>
               </button>
-              <button className={russianButtonStyle} onClick={() => { switchLanguage("rus") }}>
+              <button className={russianButtonStyle} onClick={() => { switchLanguage("russian") }}>
                 <div className="homepage__language homepage__language_rus"></div>
               </button>
             </div>

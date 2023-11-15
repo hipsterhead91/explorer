@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useState, useEffect, useRef } from "react";
 
 // Типизация
@@ -125,8 +125,8 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = validatorsTableHeaderEng;
-  if (currentLanguage == "eng") translatedContent = validatorsTableHeaderEng;
-  if (currentLanguage == "rus") translatedContent = validatorsTableHeaderRus;
+  if (currentLanguage == "english") translatedContent = validatorsTableHeaderEng;
+  if (currentLanguage == "russian") translatedContent = validatorsTableHeaderRus;
 
   return (
     <div className="validators-th">

@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { Link } from "react-router-dom";
 
 // Redux
@@ -17,8 +17,8 @@ function NotFound() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = notFoundEng;
-  if (currentLanguage == "eng") translatedContent = notFoundEng;
-  if (currentLanguage == "rus") translatedContent = notFoundRus;
+  if (currentLanguage == "english") translatedContent = notFoundEng;
+  if (currentLanguage == "russian") translatedContent = notFoundRus;
 
   return (
     <section className="not-found">

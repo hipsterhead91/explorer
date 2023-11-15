@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { Link } from "react-router-dom";
 
 // Компоненты
@@ -6,14 +6,17 @@ import Chains from "./Chains";
 
 // Redux
 import { useAppDispatch } from "../store/hooks";
-import { setCurrentChain } from "../store/reducers/currentChainSlice";
+import { setCurrentChain, resetAllChainData } from "../store/reducers/currentChainSlice";
 
 
 
 function Header() {
 
   const dispatch = useAppDispatch();
-  const resetChain = () => dispatch(setCurrentChain(null));
+  const resetChain = () => {
+    dispatch(resetAllChainData());
+    dispatch(setCurrentChain(null));
+  };
 
   return (
     <header className="header">

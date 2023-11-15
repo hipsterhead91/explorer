@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { Link } from "react-router-dom";
 
 // Типизация

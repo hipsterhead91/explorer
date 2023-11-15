@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -164,14 +164,14 @@ function Validator() {
 
   // ЛОКАЛИЗАЦИЯ
   let tokensHeading, votingPowerHeading, commissionHeading, websiteHeading, contactHeading, detailsHeading;
-  if (currentLanguage == "eng") {
+  if (currentLanguage == "english") {
     tokensHeading = "Tokens Bonded:";
     votingPowerHeading = "Voting Power:";
     commissionHeading = "Commission:";
     websiteHeading = "Website:";
     contactHeading = "Security Contact:";
     detailsHeading = "Details:";
-  } else if (currentLanguage == "rus") {
+  } else if (currentLanguage == "russian") {
     tokensHeading = "Стейк:";
     votingPowerHeading = "Вес голоса:";
     commissionHeading = "Комиссия:";

@@ -14,8 +14,8 @@ function Footer() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = footerEng;
-  if (currentLanguage == "eng") translatedContent = footerEng;
-  if (currentLanguage == "rus") translatedContent = footerRus;
+  if (currentLanguage == "english") translatedContent = footerEng;
+  if (currentLanguage == "russian") translatedContent = footerRus;
 
   return (
     <footer className="footer">

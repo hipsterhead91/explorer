@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useRef, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import INavLink from "../models/INavLink";
 
 // Redux
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { selectCurrentChain, setCurrentChain } from "../store/reducers/currentChainSlice";
+import { selectCurrentChain, setApi, setCurrentChain, resetAllChainData } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Локализации
@@ -70,7 +70,9 @@ function Chains() {
 
   // ПЕРЕКЛЮЧЕНИЕ СЕТИ
   const switchChain = (chain: IChain) => {
+    dispatch(resetAllChainData()); 
     dispatch(setCurrentChain(chain));
+    dispatch(setApi(chain.api[0]));
     hideChainList();
   };
 
@@ -83,8 +85,8 @@ function Chains() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = chainsEng;
-  if (currentLanguage == "eng") translatedContent = chainsEng;
-  if (currentLanguage == "rus") translatedContent = chainsRus;
+  if (currentLanguage == "english") translatedContent = chainsEng;
+  if (currentLanguage == "russian") translatedContent = chainsRus;
   const currentChainText = (currentChain) ? currentChain.name : translatedContent.noChain;
 
   return (

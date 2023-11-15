@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router";
 
@@ -34,34 +34,28 @@ function App() {
 
   const currentChain = useAppSelector(selectCurrentChain);
   const currentTheme = useAppSelector(selectCurrentTheme);
-  const coinsData = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 60000 }).data;
-  const [coins, setCoins] = useState<ICoin[] | null>(null);
+  const localStoreTheme = localStorage.getItem("theme");
+  const localStoreLanguage = localStorage.getItem("language");
+  const coinGeckoData = coinGeckoApi.useFetchCoinsQuery(null, { pollingInterval: 60000 }).data;
+  const [coinGeckoPrices, setCoinGeckoPrices] = useState<ICoin[] | null>(null);
   const dispatch = useAppDispatch();
-  const locStorLanguage = localStorage.getItem("lang");
-  const locStorTheme = localStorage.getItem("theme");
 
-  // СИНХРОНИЗИРУЕМ ЯЗЫК ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
+  // СИНХРОНИЗИРУЕМ ЯЗЫК И ТЕМУ
   useEffect(() => {
-    if (!locStorLanguage || locStorLanguage == "eng") {
-      dispatch(setCurrentLanguage("eng"));
-    } else if (locStorLanguage == "rus") {
-      dispatch(setCurrentLanguage("rus"));
-    }
+    ((localStoreLanguage == "english") || (!localStoreLanguage))
+      ? dispatch(setCurrentLanguage("english"))
+      : dispatch(setCurrentLanguage("russian"));
+    ((localStoreTheme == "light-theme") || (!localStoreTheme))
+      ? dispatch(setCurrentTheme("light-theme"))
+      : dispatch(setCurrentTheme("dark-theme"));
   }, [])
 
-  // СИНХРОНИЗИРУЕМ ТЕМУ ПРИЛОЖЕНИЯ С ЛОКАЛЬНЫМ ХРАНИЛИЩЕМ
+  /* Поскольку coinGeckoData может быть undefined в случае, если API не сработает, его нельзя напрямую передавать пропсом в компонент Dashboard. Точнее, наверно можно, если в интерфейсе IDashboardProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
   useEffect(() => {
-    if (!locStorTheme || locStorTheme == "light-theme") {
-      dispatch(setCurrentTheme("light-theme"));
-    } else if (locStorTheme == "dark-theme") {
-      dispatch(setCurrentTheme("dark-theme"));
-    }
-  }, [])
-
-  /* Поскольку coinsData может быть undefined в случае, если API не сработает, его нельзя напрямую передавать пропсом в элемент Chain. Точнее, наверно можно, если в интерфейсе IChainProps добавить вариант undefined, но это вроде как противоречит идее тайпскрипта. Поэтому сделал так, с проверкой и транзитом через локальный стейт. */
-  useEffect(() => {
-    if (coinsData) setCoins(coinsData);
-  }, [coinsData])
+    (coinGeckoData)
+      ? setCoinGeckoPrices(coinGeckoData)
+      : setCoinGeckoPrices(null)
+  }, [coinGeckoData])
 
   // МЕНЯЕМ ИМЯ ВКЛАДКИ
   useEffect(() => {
@@ -76,8 +70,8 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="*" element={<NotFound />} />
           {chains.map(chain => {
-            return <Route key={chain.chainId} path={chain.chainId} element={<Chain coins={coins} />}>
-              <Route path="dashboard" element={<Dashboard />} />
+            return <Route key={chain.chainId} path={chain.chainId} element={<Chain />}>
+              <Route path="dashboard" element={<Dashboard coinGeckoPrices={coinGeckoPrices} />} />
               <Route path="validators" element={<Validators />} >
                 <Route path=":valoper" element={<Validator />} />
               </Route>

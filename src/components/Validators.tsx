@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -130,8 +130,8 @@ function Validators() {
   // ЛОКАЛИЗАЦИЯ И РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
   let tableContent;
   let translatedContent = validatorsEng;
-  if (currentLanguage == "eng") translatedContent = validatorsEng;
-  if (currentLanguage == "rus") translatedContent = validatorsRus;
+  if (currentLanguage == "english") translatedContent = validatorsEng;
+  if (currentLanguage == "russian") translatedContent = validatorsRus;
   if (!validators) tableContent = translatedContent.noValidatorsPlaceholder;
   if (validators) tableContent = shownValidators?.map(validator => {
     return <ValidatorsTableRow key={validator.operator_address} validator={validator} />

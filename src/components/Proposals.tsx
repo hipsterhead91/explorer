@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useEffect, useState, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -61,12 +61,12 @@ function Proposals() {
 
   // ЗАГЛУШКА, ЕСЛИ ВАЛИДАТОРЫ НЕ ПОЛУЧЕНЫ
   let noProposalsPlaceholder;
-  if (currentLanguage == "eng") {
+  if (currentLanguage == "english") {
     noProposalsPlaceholder = <div className="proposals__placeholder">
       <p className="proposals__placeholder-text-top">Proposals are loading or unavailable now.</p>
       <p className="proposals__placeholder-text-bottom">If it lasts too long, you may try to refresh this page (<span>press F5</span>).</p>
     </div>
-  } else if (currentLanguage == "rus") {
+  } else if (currentLanguage == "russian") {
     noProposalsPlaceholder = <div className="proposals__placeholder">
       <p className="proposals__placeholder-text-top">Предложения грузятся, либо недоступны в данный момент.</p>
       <p className="proposals__placeholder-text-bottom">Если это длится слишком долго, попробуйте обновить страницу (<span>нажмите F5</span>).</p>
@@ -82,8 +82,8 @@ function Proposals() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = proposalsEng;
-  if (currentLanguage == "eng") translatedContent = proposalsEng;
-  if (currentLanguage == "rus") translatedContent = proposalsRus;
+  if (currentLanguage == "english") translatedContent = proposalsEng;
+  if (currentLanguage == "russian") translatedContent = proposalsRus;
 
   return (
     <div className="proposals">

@@ -1,4 +1,4 @@
-// Пакеты
+// Общее
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -65,8 +65,8 @@ function Proposal() {
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = proposalEng;
-  if (currentLanguage == "eng") translatedContent = proposalEng;
-  if (currentLanguage == "rus") translatedContent = proposalRus;
+  if (currentLanguage == "english") translatedContent = proposalEng;
+  if (currentLanguage == "russian") translatedContent = proposalRus;
 
   // ФОРМАТИРОВАНИЕ ДАННЫХ
   let idText, titleText, typeText, statusText, statusStyle, submitTimeText, depositEndText, depositText, symbolText, votingStartText, votingEndText, abstainPercent, noPercent, vetoPercent, yesPercent, abstainTokens, noTokens, yesTokens, vetoTokens, descriptionText;

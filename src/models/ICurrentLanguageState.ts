@@ -1,5 +1,5 @@
 interface ICurrentLanguageState {
-  language: "eng" | "rus",
+  language: "english" | "russian",
 }
 
 export default ICurrentLanguageState;

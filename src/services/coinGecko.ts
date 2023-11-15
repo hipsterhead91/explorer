@@ -21,3 +21,5 @@ export const coinGeckoApi = createApi({
     })
   })
 });
+
+export const { useFetchCoinsQuery } = coinGeckoApi;

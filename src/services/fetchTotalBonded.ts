@@ -11,7 +11,7 @@ export const fetchTotalBonded = createAsyncThunk(
       const response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/pool`);
       if (!response.ok) throw new Error('Something went wrong');
       const data = await response.json();
-      return data;
+      return data.pool.bonded_tokens;
     }
 
     catch (error: any) {

@@ -5,6 +5,7 @@ import IAvatarData from "./IAvatarData";
 import IValidator from "./IValidator";
 import IProposal from "./IProposal";
 import IChainApi from "./IChainApi";
+import IPool from "./IPool";
 
 
 
@@ -20,7 +21,7 @@ interface ICurrentChainState {
   "proposals": IProposal[] | null,
   "proposalsStatus": string | null,
   "proposalsError": any,
-  "communityPool": string | null,
+  "communityPool": IPool[] | null,
   "communityPoolStatus": string | null,
   "communityPoolError": any,
   "totalBonded": string | null,

@@ -84,9 +84,7 @@ function Chains() {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let translatedContent = chainsEng;
-  if (currentLanguage == "english") translatedContent = chainsEng;
-  if (currentLanguage == "russian") translatedContent = chainsRus;
+  const translatedContent = (currentLanguage == "english") ? chainsEng : chainsRus;
   const currentChainText = (currentChain) ? currentChain.name : translatedContent.noChain;
 
   return (

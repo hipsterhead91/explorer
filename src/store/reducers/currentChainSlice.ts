@@ -68,9 +68,9 @@ export const currentChainSlice = createSlice({
     setInflation: (state, action: PayloadAction<string | null>) => {
       state.inflation = action.payload;
     },
-    setCommunityPool: (state, action: PayloadAction<string | null>) => {
-      state.communityPool = action.payload;
-    },
+    // setCommunityPool: (state, action: PayloadAction<string | null>) => {
+    //   state.communityPool = action.payload;
+    // },
     setTotalBonded: (state, action: PayloadAction<string | null>) => {
       state.totalBonded = action.payload;
     },
@@ -280,7 +280,7 @@ export const {
   setCurrentChain,
   // setPrice,
   setInflation,
-  setCommunityPool,
+  // setCommunityPool,
   setTotalBonded,
   setUnbondingTime,
   setBlockHeight,

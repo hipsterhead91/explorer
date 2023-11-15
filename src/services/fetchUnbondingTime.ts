@@ -8,9 +8,17 @@ export const fetchUnbondingTime = createAsyncThunk(
   async function (baseUrl: string, { rejectWithValue }) {
 
     try {
-      /* На самом деле, по этому адресу мы получаем не сроки анбондинга напрямую, а объект с различными данными, среди которых, помимо всего прочего, хранятся и сроки - сейчас я извлекаю их в другом месте, но возможно стоит перенести логику сюда. */
-      const response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/params`);
-      if (!response.ok) throw new Error('Something went wrong');
+      // const response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/params`);
+      // if (!response.ok) throw new Error('Something went wrong');
+      // const data = await response.json();
+      // return data.params.unbonding_time;
+      let response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/params`);
+      if (!response.ok) {
+        setTimeout(async () => {
+          response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/params`);
+          if (!response.ok) return;
+        }, 8000);
+      }
       const data = await response.json();
       return data.params.unbonding_time;
     }

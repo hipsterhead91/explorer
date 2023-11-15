@@ -10,6 +10,15 @@ import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain, selectApi, selectValidators, selectProposals, selectCommunityPool, selectTotalBonded, selectInflation, selectUnbondingTime, selectBlockHeight, setApi } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
+// API, сервисы
+import { fetchValidators } from "../services/fetchValidators";
+import { fetchProposals } from "../services/fetchProposals";
+import { fetchCommunityPool } from "../services/fetchCommunityPool";
+import { fetchTotalBonded } from "../services/fetchTotalBonded";
+import { fetchInflation } from "../services/fetchInflation";
+import { fetchUnbondingTime } from "../services/fetchUnbondingTime";
+import { fetchBlockHeight } from "../services/fetchBlockHeight";
+
 // Локализации
 import dashboardEng from "../translations/eng/dashboardEng";
 import dashboardRus from "../translations/rus/dashboardRus";
@@ -45,6 +54,15 @@ function Dashboard(props: IDashboardProps) {
         : dispatch(setApi(currentChain.api[indexOfCurrentApi + 1]))
     }
   }
+
+  // ОБНОВЛЯЕМ ВЫСОТУ БЛОКА ПО ТАЙМЕРУ
+  useEffect(() => {
+    if (currentApi) {
+      const fetchBlock = () => dispatch(fetchBlockHeight(currentApi.address));
+      const latestBlockTimer = setInterval(fetchBlock, 5000); // 5 сек.
+      return () => { clearTimeout(latestBlockTimer) };
+    }
+  }, [currentChain, currentApi])
 
   // ФИЛЬТРАЦИЯ АКТИВНЫХ ГОЛОСОВАНИЙ
   useEffect(() => {
@@ -148,10 +166,13 @@ function Dashboard(props: IDashboardProps) {
       ? <p className="dashboard__plate-data">{unbondingTimeText}</p>
       : errorElement;
 
-  // // РЕНДЕР ВЫСОТЫ БЛОКА
-  // const blockHeightEl = (blockHeight)
-  //   ? <p className="dashboard__plate-data">{Number(blockHeight).toLocaleString("en")}</p>
-  //   : errorEl;
+  // РЕНДЕР ВЫСОТЫ БЛОКА
+  let blockHeightText;
+  if (rawBlockHeight) blockHeightText = Number(rawBlockHeight).toLocaleString("en");
+  const blockHeightElement =
+    (blockHeightText)
+      ? <p className="dashboard__plate-data">{blockHeightText}</p>
+      : errorElement;
 
   // РЕНДЕР ЦЕНЫ
   let currentTokenInfo, dynamic, isDynamicPositive, dynamicText, currentPriceText, highestPriceText, lowestPriceText, marketCapText;
@@ -171,8 +192,8 @@ function Dashboard(props: IDashboardProps) {
     (!currentTokenInfo)
       ? errorElement
       : (isDynamicPositive)
-      ? <div className="dashboard__coingecko-dynamic">&#9652;{dynamicText}</div>
-      : <div className="dashboard__coingecko-dynamic dashboard__coingecko-dynamic_down">&#9662;{dynamicText}</div>
+        ? <div className="dashboard__coingecko-dynamic">&#9652;{dynamicText}</div>
+        : <div className="dashboard__coingecko-dynamic dashboard__coingecko-dynamic_down">&#9662;{dynamicText}</div>
   const currentPriceElement =
     (currentPriceText)
       ? <span className="dashboard__coingecko-value dashboard__coingecko-value_bright">{currentPriceText}</span>
@@ -264,10 +285,10 @@ function Dashboard(props: IDashboardProps) {
         </div>
 
         {/* ВЫСОТА БЛОКА */}
-        {/* <div id="block-plate" className="dashboard__plate">
+        <div id="block-plate" className="dashboard__plate">
           <span className="dashboard__plate-heading">{translatedContent.blockHeight}</span>
-          {blockHeightEl}
-        </div> */}
+          {blockHeightElement}
+        </div>
 
         {/* ЦЕНА */}
         <div id="price-plate" className="dashboard__plate">

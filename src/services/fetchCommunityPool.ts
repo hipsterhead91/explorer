@@ -17,7 +17,7 @@ export const fetchCommunityPool = createAsyncThunk(
         setTimeout(async () => {
           response = await fetch(`${baseUrl}/cosmos/distribution/v1beta1/community_pool`);
           if (!response.ok) return;
-        }, 5000);
+        }, 6000);
       };
       const data = await response.json();
       return data.pool;

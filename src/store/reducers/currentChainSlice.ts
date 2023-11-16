@@ -3,10 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Типизация
 import IChain from "../../models/IChain";
-import ICoin from "../../models/ICoin";
 import ICurrentChainState from "../../models/ICurrentChainState";
-import IValidator from "../../models/IValidator";
-import IProposal from "../../models/IProposal";
 import IChainApi from "../../models/IChainApi";
 
 // Redux
@@ -26,7 +23,6 @@ import { fetchBlockHeight } from "../../services/fetchBlockHeight";
 const initialChainState: ICurrentChainState = {
   chain: null,
   api: null,
-  // price: null,
   avatars: null,
   avatarsStatus: null,
   avatarsError: null,
@@ -62,37 +58,12 @@ export const currentChainSlice = createSlice({
     setCurrentChain: (state, action: PayloadAction<IChain | null>) => {
       state.chain = action.payload;
     },
-    // setPrice: (state, action: PayloadAction<ICoin | null>) => {
-    //   state.price = action.payload;
-    // },
-    setInflation: (state, action: PayloadAction<string | null>) => {
-      state.inflation = action.payload;
-    },
-    // setCommunityPool: (state, action: PayloadAction<string | null>) => {
-    //   state.communityPool = action.payload;
-    // },
-    setTotalBonded: (state, action: PayloadAction<string | null>) => {
-      state.totalBonded = action.payload;
-    },
-    setUnbondingTime: (state, action: PayloadAction<string | null>) => {
-      state.unbondingTime = action.payload;
-    },
-    setBlockHeight: (state, action: PayloadAction<string | null>) => {
-      state.blockHeight = action.payload;
-    },
-    setValidators: (state, action: PayloadAction<IValidator[] | null>) => {
-      state.validators = action.payload;
-    },
-    setProposals: (state, action: PayloadAction<IProposal[] | null>) => {
-      state.proposals = action.payload;
-    },
     setApi: (state, action: PayloadAction<IChainApi | null>) => {
       state.api = action.payload;
     },
     resetAllChainData: (state) => {
       state.chain = null;
       state.api = null;
-      // state.price = null;
       state.avatars = null;
       state.avatarsStatus = null;
       state.avatarsError = null;
@@ -278,14 +249,6 @@ export const currentChainSlice = createSlice({
 /* Собственно, о чём я писал выше: извлекаем экшн криэйтеры, хотя в слайсе под этими именами мы описывали редьюсеры. Окей, из редьюсеров были автоматически сгенерированы экшн криэйтеры - но почему нельзя было назвать их чуть по-другому? И почему, если это именно криэйтеры, они находятся в свойстве actions? Мне это всё не понятно, но кого это волнует. */
 export const {
   setCurrentChain,
-  // setPrice,
-  setInflation,
-  // setCommunityPool,
-  setTotalBonded,
-  setUnbondingTime,
-  setBlockHeight,
-  setValidators,
-  setProposals,
   setApi,
   resetAllChainData,
 } = currentChainSlice.actions;
@@ -302,8 +265,6 @@ export const selectTotalBonded = (state: RootState) => state.currentChain.totalB
 export const selectInflation = (state: RootState) => state.currentChain.inflation;
 export const selectUnbondingTime = (state: RootState) => state.currentChain.unbondingTime;
 export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
-
-
 
 /* Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется "непонятно откуда взявшийся" currentChainReducer. Также, обрати внимание, что при создании слайса в нём описывалось поле reducers во множественном числе, а из готового слайса оно извлекается уже в единственном. Очередной прикол от Redux Toolkit, но как я понял, RTK просто генерирует из всех редьюсеров один общий. Просто прими это. */
 export default currentChainSlice.reducer;

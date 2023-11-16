@@ -11,12 +11,6 @@ import { selectCurrentChain, selectApi, selectValidators, selectProposals, selec
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
-import { fetchValidators } from "../services/fetchValidators";
-import { fetchProposals } from "../services/fetchProposals";
-import { fetchCommunityPool } from "../services/fetchCommunityPool";
-import { fetchTotalBonded } from "../services/fetchTotalBonded";
-import { fetchInflation } from "../services/fetchInflation";
-import { fetchUnbondingTime } from "../services/fetchUnbondingTime";
 import { fetchBlockHeight } from "../services/fetchBlockHeight";
 
 // Локализации
@@ -59,7 +53,7 @@ function Dashboard(props: IDashboardProps) {
   useEffect(() => {
     if (currentApi) {
       const fetchBlock = () => dispatch(fetchBlockHeight(currentApi.address));
-      const latestBlockTimer = setInterval(fetchBlock, 5000); // 5 сек.
+      const latestBlockTimer = setInterval(fetchBlock, 5000);
       return () => { clearTimeout(latestBlockTimer) };
     }
   }, [currentChain, currentApi])
@@ -87,8 +81,9 @@ function Dashboard(props: IDashboardProps) {
     providerAddress = currentApi.address;
   }
 
-  // РЕНДЕР ОШИБКИ
+  // РЕНДЕР ОШИБОК
   const errorElement = <span className="dashboard__error">{noDataText}</span>
+  const noPriceElement = <span className="dashboard__price-error">{noDataText}</span>
 
   // РЕНДЕР ОСНОВНОЙ ИНФОРМАЦИИ
   const headingText = currentChain?.name;
@@ -188,28 +183,33 @@ function Dashboard(props: IDashboardProps) {
     lowestPriceText = tweakPrice(currentTokenInfo.atl) + "$";
     marketCapText = currentTokenInfo.market_cap.toLocaleString("en") + "$";
   }
+
   const dynamicElement =
     (!currentTokenInfo)
-      ? errorElement
+      ? noPriceElement
       : (isDynamicPositive)
         ? <div className="dashboard__coingecko-dynamic">&#9652;{dynamicText}</div>
         : <div className="dashboard__coingecko-dynamic dashboard__coingecko-dynamic_down">&#9662;{dynamicText}</div>
+
   const currentPriceElement =
     (currentPriceText)
       ? <span className="dashboard__coingecko-value dashboard__coingecko-value_bright">{currentPriceText}</span>
-      : errorElement;
+      : noPriceElement;
+
   const highestPriceElement =
     (highestPriceText)
       ? <span className="dashboard__coingecko-value">{highestPriceText}</span>
-      : errorElement;
+      : noPriceElement;
+
   const lowestPriceElement =
     (lowestPriceText)
       ? <span className="dashboard__coingecko-value">{lowestPriceText}</span>
-      : errorElement;
+      : noPriceElement;
+
   const marketCapElement =
     (marketCapText)
       ? <span className="dashboard__coingecko-value">{marketCapText}</span>
-      : errorElement;
+      : noPriceElement;
 
   return (
     <div className="dashboard">

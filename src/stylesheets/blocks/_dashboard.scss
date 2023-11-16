@@ -355,6 +355,16 @@
   }
 }
 
+.dashboard__price-error {
+  font-weight: 400;
+  font-size: 14px;
+  color: $lt-background;
+
+  @media (max-width: 991px) {
+    font-size: 12px;
+  }
+}
+
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
@@ -628,6 +638,11 @@
 .dashboard__error {
   color: $dt-text-dark;
   background-color: rgba($dt-text-dark, 0.2);
+}
+
+.app.dark-theme
+.dashboard__price-error {
+  color: $dt-text-comfort;
 }
 
 .app.dark-theme

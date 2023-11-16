@@ -10,41 +10,64 @@ import ValidatorsTableRow from "./ValidatorsTableRow";
 import IValidator from "../models/IValidator";
 
 // Redux
-import { useAppSelector } from "../store/hooks";
-import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { selectCurrentChain, selectApi, selectValidators, selectTotalBonded, selectAvatars } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
+
+// API, сервисы
+import { fetchAvatars } from "../services/fetchAvatars";
+import { fetchValidators } from "../services/fetchValidators";
+import { fetchTotalBonded } from "../services/fetchTotalBonded";
 
 // Локализации
 import validatorsEng from "../translations/eng/validatorsEng";
 import validatorsRus from "../translations/rus/validatorsRus";
 
 // Прочее
-import { filterActive, filterInactive } from "../utils/formatting";
+import { addAvatars, addVotingPower, filterActive, filterInactive } from "../utils/formatting";
 
 
 
 function Validators() {
 
+  const dispatch = useAppDispatch();
   const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentChain = useAppSelector(selectCurrentChain);
-  const validators = useAppSelector(selectValidators);
+  const currentApi = useAppSelector(selectApi);
+  const rawValidators = useAppSelector(selectValidators);
+  const rawTotalBonded = useAppSelector(selectTotalBonded);
+  const rawAvatars = useAppSelector(selectAvatars);
   const [activeValidators, setActiveValidators] = useState<IValidator[] | null>(null);
   const [inactiveValidators, setInactiveValidators] = useState<IValidator[] | null>(null);
   const [shownValidators, setShownValidators] = useState<IValidator[] | null>(null);
   const [shownValidatorsBackup, setShownValidatorsBackup] = useState<IValidator[] | null>(null);
   const [isCurrentSetActive, setIsCurrentSetActive] = useState<boolean>(true);
-  /* Если я всё правильно понял, при использовании хука useRef нужно указывать тип элемента, который ему присваивается, и null как "стартовый" тип, поскольку ref инициализируется ДО рендера, т.е. тогда, когда искомого элемента ещё нет. При этом, обращаясь к элементу через element.current, мы будем получать ошибку, мол элемент возможно равен null - чтобы этого избежать, используем оператор состояния ? после каждого current. */
   const validatorsWrapper = useRef<HTMLDivElement | null>(null);
   const filterInput = useRef<HTMLInputElement | null>(null);
   const scrollButtons = useRef<HTMLDivElement>(null);
 
-  // ДЕЛИМ ВАЛИДАТОРОВ НА АКТИВНЫХ И НЕАКТИВНЫХ
+  // ПОВТОРНО ФЕТЧИМ ДАННЫЕ, ЕСЛИ ОНИ НЕ ЗАГРУЗИЛИСЬ РАНЕЕ
   useEffect(() => {
-    if (validators) {
-      setActiveValidators(filterActive(validators));
-      setInactiveValidators(filterInactive(validators));
+    if (currentChain && currentApi) {
+      if (!rawValidators) dispatch(fetchValidators(currentApi.address));
+      if (!rawTotalBonded) dispatch(fetchTotalBonded(currentApi.address));
+      if (!rawAvatars) dispatch(fetchAvatars(currentChain));
     }
-  }, [currentChain, validators])
+  }, [currentChain, currentApi])
+
+  // ФОРМАТИРУЕМ ВАЛИДАТОРОВ
+  useEffect(() => {
+    if (rawValidators && rawTotalBonded && rawAvatars) {
+      /* Глубоко копируем массив, чтобы объектам в нём можно было добавлять новые свойства.  */
+      let validators = JSON.parse(JSON.stringify(rawValidators));
+      validators = addVotingPower(validators, rawTotalBonded);
+      validators = addAvatars(validators, rawAvatars);
+      const active = filterActive(validators);
+      const inactive = filterInactive(validators);
+      setActiveValidators(active);
+      setInactiveValidators(inactive);
+    }
+  }, [rawValidators, rawTotalBonded, rawAvatars])
 
   // РЕНДЕРИМ АКТИВНЫХ ВАЛИДАТОРОВ КОГДА ОНИ ПОЛУЧЕНЫ
   useEffect(() => {
@@ -94,13 +117,15 @@ function Validators() {
   }
 
   // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ
-  const activeButtonStyle = (isCurrentSetActive)
-    ? "validators__switcher-button validators__switcher-button_selected"
-    : "validators__switcher-button"
+  const activeButtonStyle =
+    (isCurrentSetActive)
+      ? "validators__switcher-button validators__switcher-button_selected"
+      : "validators__switcher-button"
 
-  const inactiveButtonStyle = (isCurrentSetActive)
-    ? "validators__switcher-button"
-    : "validators__switcher-button validators__switcher-button_selected"
+  const inactiveButtonStyle =
+    (!isCurrentSetActive)
+      ? "validators__switcher-button validators__switcher-button_selected"
+      : "validators__switcher-button"
 
   // СКРОЛЛИМ СТРАНИЦУ ВВЕРХ
   const scrollToTop = () => {
@@ -120,23 +145,19 @@ function Validators() {
 
   // СКРЫВАЕМ КНОПКИ СКРОЛЛА В ЗАВИСИМОСТИ ОТ ВЫСОТЫ СТРАНИЦЫ
   useEffect(() => {
-    if (document.body.clientHeight > window.innerHeight) {
-      scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden");
-    } else {
-      scrollButtons.current?.classList.add("validators__scroll-buttons_hidden");
-    }
+    (document.body.clientHeight > window.innerHeight)
+      ? scrollButtons.current?.classList.remove("validators__scroll-buttons_hidden")
+      : scrollButtons.current?.classList.add("validators__scroll-buttons_hidden")
   }, [shownValidators])
 
   // ЛОКАЛИЗАЦИЯ И РЕНДЕР КОНТЕНТА В ТАБЛИЦЕ
+  const translatedContent = (currentLanguage == "english") ? validatorsEng : validatorsRus;
   let tableContent;
-  let translatedContent = validatorsEng;
-  if (currentLanguage == "english") translatedContent = validatorsEng;
-  if (currentLanguage == "russian") translatedContent = validatorsRus;
-  if (!validators) tableContent = translatedContent.noValidatorsPlaceholder;
-  if (validators) tableContent = shownValidators?.map(validator => {
+  if (!shownValidators) tableContent = translatedContent.noValidatorsPlaceholder;
+  if (shownValidators && !shownValidators.length && filterInput.current?.value) tableContent = translatedContent.nothingFoundPlaceholder;
+  if (shownValidators) tableContent = shownValidators.map(validator => {
     return <ValidatorsTableRow key={validator.operator_address} validator={validator} />
   })
-  if (validators && !shownValidators?.length && filterInput.current?.value) tableContent = translatedContent.nothingFoundPlaceholder;
 
   return (
     <div className="validators">

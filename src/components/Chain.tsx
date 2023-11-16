@@ -1,14 +1,13 @@
 // Общее
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 // Типизация
-import IValidator from "../models/IValidator";
 import INavLink from "../models/INavLink";
 
 // Redux
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { setCurrentChain, selectCurrentChain, selectApi, selectTotalBonded, setApi } from "../store/reducers/currentChainSlice";
+import { setCurrentChain, selectCurrentChain, selectApi, setApi } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
@@ -67,7 +66,7 @@ function Chain() {
     }
   }, [currentChain, currentApi])
 
-  // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ СЕТОВ
+  // СТИЛИ ПЕРЕКЛЮЧАТЕЛЯ ВКЛАДОК
   const linkStyle = ({ isActive }: INavLink) => {
     return (isActive) ? "chain__nav-link chain__nav-link_active" : "chain__nav-link";
   }

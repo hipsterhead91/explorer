@@ -17,7 +17,7 @@ export const fetchInflation = createAsyncThunk(
         setTimeout(async () => {
           response = await fetch(`${baseUrl}/cosmos/mint/v1beta1/inflation`);
           if (!response.ok) return;
-        }, 7000);
+        }, 8000);
       }
       const data = await response.json();
       return data.inflation;

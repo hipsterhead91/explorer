@@ -17,7 +17,7 @@ export const fetchProposals = createAsyncThunk(
         setTimeout(async () => {
           response = await fetch(`${baseUrl}/cosmos/gov/v1beta1/proposals`);
           if (!response.ok) return;
-        }, 6000);
+        }, 5000);
       }
       const data = await response.json();
       return data.proposals;

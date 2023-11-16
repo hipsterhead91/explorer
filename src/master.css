@@ -1612,6 +1612,17 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
+.dashboard__price-error {
+  font-weight: 400;
+  font-size: 14px;
+  color: #add8e6;
+}
+@media (max-width: 991px) {
+  .dashboard__price-error {
+    font-size: 12px;
+  }
+}
+
 .dashboard__heading {
   font-weight: 600;
   font-size: 28px;
@@ -1873,6 +1884,10 @@ body::-webkit-scrollbar-thumb:hover {
 .app.dark-theme .dashboard__error {
   color: #828282;
   background-color: rgba(130, 130, 130, 0.2);
+}
+
+.app.dark-theme .dashboard__price-error {
+  color: #bebebe;
 }
 
 .app.dark-theme .dashboard__heading {
@@ -2644,6 +2659,9 @@ body.noScroll .validators__scroll-buttons {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.validator_hidden {
+  display: none;
 }
 
 .validator__overlay {

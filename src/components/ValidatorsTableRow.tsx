@@ -9,7 +9,7 @@ import { useAppSelector } from "../store/hooks";
 import { selectCurrentChain } from "../store/reducers/currentChainSlice";
 
 // Прочее
-import { tweakTokens, tweakVotingPower, tweakCommission } from "../utils/formatting";
+import { tweakTokens, tweakCommission } from "../utils/formatting";
 
 
 
@@ -18,43 +18,33 @@ function ValidatorsTableRow(props: IValidatorsTableRowProps) {
   const currentChain = useAppSelector(selectCurrentChain);
   const validator = props.validator;
 
-  let avatarUrl, monikerText, rankText, rankStyle, tokensText, symbolText, votingPowerText, commissionText, commissionStyle;
+  // АВАТАР
+  const avatarUrl =
+    (validator.avatar)
+      ? validator.avatar
+      : `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
 
-  avatarUrl = (validator.avatar)
-    ? validator.avatar
-    : `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
+  // РАНГ
+  const rankText = validator.rank?.toString().padStart(3, "0");
+  const rankStyle =
+    (validator.status === "BOND_STATUS_BONDED")
+      ? "validators-tr__rank validators-tr__rank_active"
+      : "validators-tr__rank validators-tr__rank_inactive"
 
-  if (validator.rank) {
-    rankText = validator.rank.toString().padStart(3, "0");
-  }
+  // МОНИКЕР
+  const monikerText = validator.description.moniker;
 
-  if (validator.status === "BOND_STATUS_BONDED") {
-    rankStyle = "validators-tr__rank validators-tr__rank_active";
-  } else {
-    rankStyle = "validators-tr__rank validators-tr__rank_inactive";
-  }
+  // ВЕС ГОЛОСА
+  const tokensText = (currentChain) ? tweakTokens(validator.tokens, currentChain) : "—";
+  const symbolText = (currentChain) ? currentChain.symbol : "";
+  const votingPowerText = (validator.voting_power) ? "[" + validator.voting_power + "%" + "]" : "";
 
-  monikerText = validator.description.moniker;
-
-  if ((Number(validator.commission.commission_rates.rate) > 0.1)) {
-    commissionStyle = "validators-tr__commission-value validators-tr__commission-value_high";
-  } else {
-    commissionStyle = "validators-tr__commission-value";
-  }
-
-  if (currentChain) {
-    tokensText = tweakTokens(validator.tokens, currentChain);
-    symbolText = currentChain.symbol;
-  } else {
-    tokensText = "—";
-    symbolText = "";
-  }
-
-  votingPowerText = (validator.voting_power && currentChain)
-    ? "[" + tweakVotingPower(validator.voting_power, currentChain) + "%" + "]"
-    : "";
-
-  commissionText = tweakCommission(validator.commission.commission_rates.rate) + "%";
+  // КОМИССИЯ
+  const commissionText = tweakCommission(validator.commission.commission_rates.rate) + "%";
+  const commissionStyle =
+    ((Number(validator.commission.commission_rates.rate) > 0.1))
+      ? "validators-tr__commission-value validators-tr__commission-value_high"
+      : "validators-tr__commission-value";
 
   return (
     <Link to={`/${currentChain?.chainId}/validators/${validator.operator_address}`} className="validators-tr">

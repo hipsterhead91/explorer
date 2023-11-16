@@ -17,7 +17,7 @@ export const fetchUnbondingTime = createAsyncThunk(
         setTimeout(async () => {
           response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/params`);
           if (!response.ok) return;
-        }, 8000);
+        }, 7000);
       }
       const data = await response.json();
       return data.params.unbonding_time;

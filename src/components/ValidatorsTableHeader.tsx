@@ -42,18 +42,13 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
     commissionSortIcon.current?.classList.remove('validators-th__sort-icon_dsc');
   }
 
-  // СБРОС СОРТИРОВКИ ПРИ СМЕНЕ СЕТИ
-  /* По какой-то причине я создал два юзэффекта с разными условиями для одного и того же действия. Надо попробовать объединить их в один. */
+  // СБРОС СОРТИРОВКИ
   useEffect(() => {
     resetIconStyles();
-  }, [currentChain])
-
-  useEffect(() => {
-    resetIconStyles();
-  }, [isCurrentSetActive])
+  }, [currentChain, isCurrentSetActive])
 
   // СОРТИРОВКА ПО МОНИКЕРУ
-  /* Примечание: trim() обрезает пробелы в начале и конце строки, регулярное выражение убирает спецсимволы и эмодзи - всё кроме букв и цифр. */
+  /* Примечание: с помощью trim() обрезаем пробелы в начале и конце строки, а регулярное выражение убирает спецсимволы и эмодзи - всё кроме букв и цифр. */
   const sortByMoniker = () => {
     if (validatorOrder === 'ASC' && shownValidators) {
       const sorted = [...shownValidators].sort((a, b) => {
@@ -124,9 +119,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   }
 
   // ЛОКАЛИЗАЦИЯ
-  let translatedContent = validatorsTableHeaderEng;
-  if (currentLanguage == "english") translatedContent = validatorsTableHeaderEng;
-  if (currentLanguage == "russian") translatedContent = validatorsTableHeaderRus;
+  const translatedContent = (currentLanguage == "english") ? validatorsTableHeaderEng : validatorsTableHeaderRus;
 
   return (
     <div className="validators-th">

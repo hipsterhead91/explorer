@@ -59,8 +59,8 @@ function App() {
 
   // МЕНЯЕМ ИМЯ ВКЛАДКИ
   useEffect(() => {
-    if (currentChain) document.title = `Oops!plorer | ${currentChain.chainId}`
-    else document.title = "Oops!plorer";
+    if (!currentChain) document.title = "Oops!plorer"
+    else document.title = `Oops!plorer | ${currentChain.chainId}`;
   }, [currentChain])
 
   return (

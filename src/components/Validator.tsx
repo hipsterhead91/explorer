@@ -7,12 +7,15 @@ import IValidator from "../models/IValidator";
 
 // Redux
 import { useAppSelector } from "../store/hooks";
-import { selectCurrentChain, selectValidators } from "../store/reducers/currentChainSlice";
+import { selectAvatars, selectCurrentChain, selectTotalBonded, selectValidators } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
+// Локализация
+import validatorEng from "../translations/eng/validatorEng";
+import validatorRus from "../translations/rus/validatorRus";
+
 // Прочее
-import { tweakTokens, tweakVotingPower, tweakCommission } from "../utils/formatting";
-import { log } from "console";
+import { tweakTokens, tweakCommission, addVotingPower, addAvatars } from "../utils/formatting";
 
 
 
@@ -21,14 +24,41 @@ function Validator() {
   const currentLanguage = useAppSelector(selectCurrentLanguage);
   const currentValoper = useParams()["valoper"]; // из ссылки в браузерной строке получаем адрес текущего валидатора
   const currentChain = useAppSelector(selectCurrentChain);
-  const validators = useAppSelector(selectValidators);
+  const rawValidators = useAppSelector(selectValidators);
+  const rawTotalBonded = useAppSelector(selectTotalBonded);
+  const rawAvatars = useAppSelector(selectAvatars);
+  const [tweakedValidators, setTweakedValidators] = useState<IValidator[] | null>(null);
   const [currentValidator, setCurrentValidator] = useState<IValidator | null>();
+  const validatorElement = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
+
+  // ФОРМАТИРУЕМ ВАЛИДАТОРОВ
+  useEffect(() => {
+    if (rawValidators && rawTotalBonded && rawAvatars) {
+      /* Глубоко копируем массив, чтобы объектам в нём можно было добавлять новые свойства.  */
+      let validators = JSON.parse(JSON.stringify(rawValidators));
+      validators = addVotingPower(validators, rawTotalBonded);
+      validators = addAvatars(validators, rawAvatars);
+      setTweakedValidators(validators);
+    }
+  }, [rawValidators, rawTotalBonded, rawAvatars])
 
   // ВОЗВРАТ К ТАБЛИЦЕ ВАЛИДАТОРОВ
   const returnToValidators = () => {
     navigate(`/${currentChain?.chainId}/validators`);
   }
+
+  // ЕСЛИ ВАЛИДАТОРА НЕ СУЩЕСТВУЕТ, ВОЗВРАЩАЕМСЯ В ТАБЛИЦУ
+  useEffect(() => {
+    if (rawValidators && currentValoper) {
+      const doesExist = rawValidators.find(validator => validator.operator_address == currentValoper);
+      if (doesExist) validatorElement.current?.classList.remove("validator_hidden")
+      else {
+        validatorElement.current?.classList.add("validator_hidden");
+        returnToValidators();
+      }
+    }
+  }, [rawValidators, currentValoper])
 
   // ЗАКРЫТИЕ ПО КЛАВИШЕ ESCAPE
   const closeByEscapeButton = (event: KeyboardEvent) => {
@@ -47,141 +77,131 @@ function Validator() {
   // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
   useEffect(() => {
     document.body.classList.add("noScroll");
-    return () => {document.body.classList.remove("noScroll")};
+    return () => { document.body.classList.remove("noScroll") };
   }, []);
 
   // ПОЛУЧАЕМ ОБЪЕКТ ТЕКУЩЕГО ВАЛИДАТОРА
   useEffect(() => {
-    const validator = validators?.find((val: { operator_address: string }) => val.operator_address === currentValoper);
+    const validator = tweakedValidators?.find((val: { operator_address: string }) => val.operator_address === currentValoper);
     if (validator) setCurrentValidator(validator);
     else setCurrentValidator(null);
-  }, [currentValoper, currentChain, validators])
+  }, [currentValoper, currentChain, tweakedValidators])
 
-  let avatarUrl, monikerText, valoperText, activityText, activityStyle, bondText, bondStyle, jailText, jailStyle, highCommissionText, highCommissionStyle, rankText, tokensText, symbolText, votingPowerText, commissionText, commissionStyle, websiteText, securityContactText, detailsText;
-
-  // РЕНДЕР ИНФОРМАЦИИ О ВАЛИДАТОРЕ
-  if (currentValidator) {
-
-    avatarUrl = (currentValidator.avatar)
+  // АВАТАР
+  const avatarUrl =
+    (currentValidator?.avatar)
       ? currentValidator.avatar
       : `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
 
-    monikerText = currentValidator.description.moniker;
-    valoperText = currentValidator.operator_address;
-
-    if (currentValidator.status === "BOND_STATUS_BONDED") {
-      activityText = "Active";
-      activityStyle = "validator__status validator__status_good";
-    } else {
-      activityText = "Inactive";
-      activityStyle = "validator__status validator__status_neutral";
-    }
-
-    if (currentValidator.status === 'BOND_STATUS_BONDED') {
-      bondText = "Bonded";
-      bondStyle = "validator__status validator__status_good";
-    } else if (currentValidator.status === 'BOND_STATUS_UNBONDING') {
-      bondText = "Unbonding";
-      bondStyle = "validator__status validator__status_special";
-    } else {
-      bondText = "Unbonded";
-      bondStyle = "validator__status validator__status_neutral";
-    }
-
-    if (currentValidator.jailed) {
-      jailText = "Jailed";
-      jailStyle = "validator__status validator__status_bad";
-    } else {
-      jailText = "";
-      jailStyle = "validator__status validator__status_hidden";
-    }
-
-    if (Number(currentValidator.commission.commission_rates.rate) > 0.1) {
-      highCommissionText = "High %";
-      highCommissionStyle = "validator__status validator__status_bad";
-      commissionStyle = "validator__commission-value validator__commission-value_high";
-    } else {
-      highCommissionText = "";
-      highCommissionStyle = "validator__status validator__status_hidden";
-      commissionStyle = "validator__commission-value";
-    }
-
-    rankText = (currentValidator.rank)
+  // РАНГ
+  const rankText =
+    (currentValidator?.rank)
       ? "#" + currentValidator.rank.toString().padStart(3, '0')
-      : "000";
+      : "#000";
 
-    if (currentChain) {
-      tokensText = tweakTokens(currentValidator.tokens, currentChain);
-      symbolText = currentChain.symbol;
-    } else {
-      tokensText = "—";
-      symbolText = "";
-    }
+  // МОНИКЕР
+  const monikerText =
+    (currentValidator)
+      ? currentValidator.description.moniker
+      : "This validator doesn't exist";
 
-    votingPowerText = (currentValidator.voting_power && currentChain)
-      ? tweakVotingPower(currentValidator.voting_power, currentChain) + '%'
+  // ВАЛОПЕР
+  const valoperText =
+    (currentValidator)
+      ? currentValidator.operator_address
+      : "no validator operator address";
+
+  // СТАТУС АКТИВНОСТИ
+  const activityText =
+    (currentValidator?.status === "BOND_STATUS_BONDED")
+      ? "Active"
+      : "Inactive";
+
+  const activityStyle =
+    (currentValidator?.status === "BOND_STATUS_BONDED")
+      ? "validator__status validator__status_good"
+      : "validator__status validator__status_neutral";
+
+  // СТАТУС БОНДА
+  const bondText =
+    (currentValidator?.status === 'BOND_STATUS_BONDED')
+      ? "Bonded"
+      : (currentValidator?.status === 'BOND_STATUS_UNBONDING')
+        ? "Unbonding"
+        : "Unbonded";
+
+  const bondStyle =
+    (currentValidator?.status === 'BOND_STATUS_BONDED')
+      ? "validator__status validator__status_good"
+      : (currentValidator?.status === 'BOND_STATUS_UNBONDING')
+        ? "validator__status validator__status_special"
+        : "validator__status validator__status_neutral";
+
+  // СТАТУС ТЮРЬМЫ
+  const jailText = (currentValidator?.jailed) ? "Jailed" : "";
+  const jailStyle =
+    (currentValidator?.jailed)
+      ? "validator__status validator__status_bad"
+      : "validator__status validator__status_hidden";
+
+  // СТАТУС ВЫСОКОЙ КОМИССИИ
+  const highCommissionText =
+    (Number(currentValidator?.commission.commission_rates.rate) > 0.1)
+      ? "High %"
       : "";
 
-    commissionText = tweakCommission(currentValidator.commission.commission_rates.rate) + '%';
+  const highCommissionStyle =
+    (Number(currentValidator?.commission.commission_rates.rate) > 0.1)
+      ? "validator__status validator__status_hidden"
+      : "";
 
-    /* В ранней версии вместо websiteText у меня был websiteEl, который в случае отсутствия ссылки превращался в текстовый прочерк, а в случае наличия - в кликабельную ссылку. Однако я обнаружил, что если валидатор указал ссылку не в формате http://site.com, а просто как site.com, то её нельзя передавать в href - ссылка не будет корректно работать. Таких валидаторов меньшинство, но всё же. По этой причине решил пока оставить сайт обычным текстом, но позже возможно напишу для ссылок валидацию, чтобы все варианты работали корректно.  */
-    websiteText = (currentValidator.description.website)
+  // КОМИССИЯ
+  const commissionText =
+    (currentValidator)
+      ? tweakCommission(currentValidator.commission.commission_rates.rate) + '%'
+      : "—";
+
+  const commissionStyle =
+    (Number(currentValidator?.commission.commission_rates.rate) > 0.1)
+      ? "validator__commission-value validator__commission-value_high"
+      : "validator__commission-value";
+
+  // ТОКЕНЫ
+  const symbolText = (currentChain && currentValidator) ? currentChain.symbol : "";
+  const tokensText =
+    (currentChain && currentValidator)
+      ? tweakTokens(currentValidator.tokens, currentChain)
+      : "—";
+
+  // ВЕС ГОЛОСА
+  const votingPowerText = (currentValidator?.voting_power && currentChain)
+    ? currentValidator.voting_power + '%'
+    : "—";
+
+  // САЙТ
+  const websiteText =
+    (currentValidator?.description.website)
       ? currentValidator.description.website
       : "—";
 
-    securityContactText = (currentValidator.description.security_contact)
+  // КОНТАКТ
+  const securityContactText =
+    (currentValidator?.description.security_contact)
       ? currentValidator.description.security_contact
       : "—";
 
-    detailsText = (currentValidator.description.details)
+  // ДЕТАЛИ
+  const detailsText =
+    (currentValidator?.description.details)
       ? currentValidator.description.details
       : "—";
-  }
 
-  // РЕНДЕР ДЛЯ НЕ СУЩЕСТВУЮЩЕГО ВАЛИДАТОРА
-  else {
-    avatarUrl = `${process.env["PUBLIC_URL"]}/images/no-avatar.png`;
-    monikerText = "Oops! Validator Doesn't Exist";
-    valoperText = "Here could be a validator operator address";
-    activityText = "No activity";
-    activityStyle = "validator__status validator__status_neutral";
-    bondText = "";
-    bondStyle = "validator__status validator__status_hidden";
-    jailText = "";
-    jailStyle = "validator__status validator__status_hidden";
-    highCommissionText = "";
-    highCommissionStyle = "validator__status validator__status_hidden";
-    rankText = "#000";
-    tokensText = "—";
-    symbolText = "";
-    votingPowerText = "—";
-    commissionText = "—";
-    commissionStyle = "validator__commission-value";
-    websiteText = "—";
-    securityContactText = "—";
-    detailsText = "—";
-  }
 
   // ЛОКАЛИЗАЦИЯ
-  let tokensHeading, votingPowerHeading, commissionHeading, websiteHeading, contactHeading, detailsHeading;
-  if (currentLanguage == "english") {
-    tokensHeading = "Tokens Bonded:";
-    votingPowerHeading = "Voting Power:";
-    commissionHeading = "Commission:";
-    websiteHeading = "Website:";
-    contactHeading = "Security Contact:";
-    detailsHeading = "Details:";
-  } else if (currentLanguage == "russian") {
-    tokensHeading = "Стейк:";
-    votingPowerHeading = "Вес голоса:";
-    commissionHeading = "Комиссия:";
-    websiteHeading = "Сайт:";
-    contactHeading = "Контакты:";
-    detailsHeading = "Детали:";
-  }
+  const translatedContent = (currentLanguage == "english") ? validatorEng : validatorRus;
 
   return (
-    <div className="validator">
+    <div ref={validatorElement} className="validator validator_hidden">
 
       <div onClick={() => returnToValidators()} className="validator__overlay"></div>
 
@@ -207,17 +227,17 @@ function Validator() {
           </div>
 
           <div className="validator__data">
-            <p className="validator__data-heading">{tokensHeading}</p>
+            <p className="validator__data-heading">{translatedContent.tokens}</p>
             <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>
-            <p className="validator__data-heading">{votingPowerHeading}</p>
+            <p className="validator__data-heading">{translatedContent.votingPower}</p>
             <span className="validator__data-text">{votingPowerText}</span>
-            <p className="validator__data-heading">{commissionHeading}</p>
+            <p className="validator__data-heading">{translatedContent.commission}</p>
             <span className={commissionStyle}>{commissionText}</span>
-            <p className="validator__data-heading">{websiteHeading}</p>
+            <p className="validator__data-heading">{translatedContent.website}</p>
             <span className="validator__data-text">{websiteText}</span>
-            <p className="validator__data-heading">{contactHeading}</p>
+            <p className="validator__data-heading">{translatedContent.contact}</p>
             <span className="validator__data-text">{securityContactText}</span>
-            <p className="validator__data-heading">{detailsHeading}</p>
+            <p className="validator__data-heading">{translatedContent.details}</p>
             <span className="validator__data-text">{detailsText}</span>
           </div>
         </div>

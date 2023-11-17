@@ -124,7 +124,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
   return (
     <div className="validators-th">
 
-      {/* VALIDATOR */}
+      {/* МОНИКЕР */}
       <div id="th-validator" className="validators-th__cell">
         <div onClick={() => sortByMoniker()} id="srt-validator" className="validators-th__sort-button">
           <span className="validators-th__column-name">{translatedContent.moniker}</span>
@@ -135,7 +135,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
         </div>
       </div>
 
-      {/* VOTING POWER */}
+      {/* ВЕС ГОЛОСА */}
       <div id="th-power" className="validators-th__cell">
         <div onClick={() => sortByTokens()} id="srt-power" className="validators-th__sort-button">
           <span className="validators-th__column-name">{translatedContent.votingPower}</span>
@@ -146,7 +146,7 @@ function ValidatorsTableHeader(props: IValidatorsTableHeaderProps) {
         </div>
       </div>
 
-      {/* COMMISSION */}
+      {/* КОМИССИЯ */}
       <div id="th-commission" className="validators-th__cell">
         <div onClick={() => sortByCommission()} id="srt-commission" className="validators-th__sort-button">
           <span className="validators-th__column-name">{translatedContent.commission}</span>

@@ -60,7 +60,7 @@ function Proposal() {
   // ОТКЛЮЧАЕМ СКРОЛЛ КОНТЕНТА ПОД МОДАЛЬНЫМ ОКНОМ
   useEffect(() => {
     document.body.classList.add("noScroll");
-    return () => {document.body.classList.remove("noScroll")};
+    return () => { document.body.classList.remove("noScroll") };
   }, []);
 
   // ЛОКАЛИЗАЦИЯ
@@ -120,18 +120,17 @@ function Proposal() {
 
   return (
     <div className="proposal">
-
       <div onClick={() => returnToProposals()} className="proposal__overlay"></div>
-
       <div className="proposal__card">
+
+        {/* ШАПКА */}
         <button onClick={() => returnToProposals()} className="proposal__close-button">&#10006;</button>
         <span className="proposal__id">{idText}</span>
         <h1 className="proposal__title">{titleText}</h1>
-
         <div className="proposal__info">
-
           <div className="proposal__divider"></div>
 
+          {/* ДАННЫЕ */}
           <div className="proposal__main-info">
             <p className="proposal__data-heading">{translatedContent.type}<span className="proposal__data">{typeText}</span></p>
             <p className="proposal__data-heading">{translatedContent.status}<span className={statusStyle}>{statusText}</span></p>
@@ -142,54 +141,11 @@ function Proposal() {
             <p className="proposal__data-heading">{translatedContent.votingEnd}<span className="proposal__data">{votingEndText}</span></p>
           </div>
 
+          {/* ГОЛОСА */}
           <Votes proposal={currentProposal} />
-
-
-          {/* <div className="proposal__votes">
-            <div className="proposal__vote proposal__vote_yes">
-              <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{translatedContent.yes}</span>
-                <span className="proposal__vote-percent">{yesPercent}</span>
-              </div>
-              <div className="proposal__vote-bottom">
-                <span className="proposal__vote-tokens">{yesTokens}</span>
-                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
-              </div>
-            </div>
-            <div className="proposal__vote proposal__vote_no">
-              <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{translatedContent.no}</span>
-                <span className="proposal__vote-percent">{noPercent}</span>
-              </div>
-              <div className="proposal__vote-bottom">
-                <span className="proposal__vote-tokens">{noTokens}</span>
-                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
-              </div>
-            </div>
-            <div className="proposal__vote proposal__vote_veto">
-              <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{translatedContent.veto}</span>
-                <span className="proposal__vote-percent">{vetoPercent}</span>
-              </div>
-              <div className="proposal__vote-bottom">
-                <span className="proposal__vote-tokens">{vetoTokens}</span>
-                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
-              </div>
-            </div>
-            <div className="proposal__vote proposal__vote_abstain">
-              <div className="proposal__vote-top">
-                <span className="proposal__vote-name">{translatedContent.abstain}</span>
-                <span className="proposal__vote-percent">{abstainPercent}</span>
-              </div>
-              <div className="proposal__vote-bottom">
-                <span className="proposal__vote-tokens">{abstainTokens}</span>
-                <span className="proposal__vote-symbol">{currentChain?.denom}</span>
-              </div>
-            </div>
-          </div> */}
-
           <div className="proposal__divider"></div>
 
+          {/* ОПИСАНИЕ */}
           <div className="proposal__description">
             <span className="proposal__description-heading">{translatedContent.description}</span>
             <p className="proposal__description-text">{descriptionText}</p>

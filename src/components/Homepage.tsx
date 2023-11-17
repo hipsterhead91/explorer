@@ -27,21 +27,25 @@ function Homepage() {
     localStorage.setItem("theme", theme);
   };
 
-  const englishButtonStyle = (currentLanguage == "english")
-    ? "homepage__switcher-button homepage__switcher-button_selected"
-    : "homepage__switcher-button"
+  const englishButtonStyle =
+    (currentLanguage == "english")
+      ? "homepage__switcher-button homepage__switcher-button_selected"
+      : "homepage__switcher-button"
 
-  const russianButtonStyle = (currentLanguage == "russian")
-    ? "homepage__switcher-button homepage__switcher-button_selected"
-    : "homepage__switcher-button"
+  const russianButtonStyle =
+    (currentLanguage == "russian")
+      ? "homepage__switcher-button homepage__switcher-button_selected"
+      : "homepage__switcher-button"
 
-  const lightButtonStyle = (currentTheme == "light-theme")
-    ? "homepage__switcher-button homepage__switcher-button_selected"
-    : "homepage__switcher-button"
+  const lightButtonStyle =
+    (currentTheme == "light-theme")
+      ? "homepage__switcher-button homepage__switcher-button_selected"
+      : "homepage__switcher-button"
 
-  const darkButtonStyle = (currentTheme == "dark-theme")
-    ? "homepage__switcher-button homepage__switcher-button_selected"
-    : "homepage__switcher-button"
+  const darkButtonStyle =
+    (currentTheme == "dark-theme")
+      ? "homepage__switcher-button homepage__switcher-button_selected"
+      : "homepage__switcher-button"
 
   // ЛОКАЛИЗАЦИЯ
   let translatedContent = homepageEng;

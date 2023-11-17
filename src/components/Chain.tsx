@@ -77,7 +77,7 @@ function Chain() {
   return (
     <section className="chain">
 
-      {/* САБХЕДЕР (НАВИГАЦИЯ) */}
+      {/* САБХЕДЕР (ВКЛАДКИ) */}
       <nav className="chain__nav subheader">
         <div className="chain__nav-container section-limiter">
           <NavLink to="dashboard" className={linkStyle}>{translatedContent.dashboard}</NavLink>

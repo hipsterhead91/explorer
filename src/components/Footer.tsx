@@ -13,9 +13,7 @@ function Footer() {
   const currentLanguage = useAppSelector(selectCurrentLanguage);
 
   // ЛОКАЛИЗАЦИЯ
-  let translatedContent = footerEng;
-  if (currentLanguage == "english") translatedContent = footerEng;
-  if (currentLanguage == "russian") translatedContent = footerRus;
+  const translatedContent = (currentLanguage == "english") ? footerEng : footerRus;
 
   return (
     <footer className="footer">

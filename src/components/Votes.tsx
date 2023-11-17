@@ -47,6 +47,7 @@ function Votes(props: IVotesProps) {
   return (
     <div className={votesStyle}>
 
+      {/* ЗА */}
       <div className="votes__vote votes__vote_yes">
         <div className="votes__vote-bar votes__vote-bar_yes" style={{ width: yesPercent }}></div>
         <div className="votes__vote-info">
@@ -59,6 +60,7 @@ function Votes(props: IVotesProps) {
         </div>
       </div>
 
+      {/* ПРОТИВ */}
       <div className="votes__vote votes__vote_no">
         <div className="votes__vote-bar votes__vote-bar_no" style={{ width: noPercent }}></div>
         <div className="votes__vote-info">
@@ -71,6 +73,7 @@ function Votes(props: IVotesProps) {
         </div>
       </div>
 
+      {/* ВЕТО */}
       <div className="votes__vote votes__vote_veto">
         <div className="votes__vote-bar votes__vote-bar_veto" style={{ width: vetoPercent }}></div>
         <div className="votes__vote-info">
@@ -83,6 +86,7 @@ function Votes(props: IVotesProps) {
         </div>
       </div>
 
+      {/* ВОЗДЕРЖАЛИСЬ */}
       <div className="votes__vote votes__vote_abstain">
         <div className="votes__vote-bar votes__vote-bar_abstain" style={{ width: abstainPercent }}></div>
         <div className="votes__vote-info">

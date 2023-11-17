@@ -210,8 +210,10 @@ function Validator() {
 
         <div className="validator__grid">
 
+          {/* АВАТАР */}
           <div className="validator__avatar" style={{ backgroundImage: `url("${avatarUrl}")` }}></div>
 
+          {/* ШАПКА */}
           <div className="validator__heading">
             <div className="validator__main-info">
               <span className="validator__rank">{rankText}</span>
@@ -226,6 +228,7 @@ function Validator() {
             </div>
           </div>
 
+          {/* ДАННЫЕ */}
           <div className="validator__data">
             <p className="validator__data-heading">{translatedContent.tokens}</p>
             <span className="validator__data-text">{tokensText}<span className="validator__denom">{symbolText}</span></span>

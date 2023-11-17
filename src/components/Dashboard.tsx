@@ -11,6 +11,12 @@ import { selectCurrentChain, selectApi, selectValidators, selectProposals, selec
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // API, сервисы
+import { fetchValidators } from "../services/fetchValidators";
+import { fetchProposals } from "../services/fetchProposals";
+import { fetchCommunityPool } from "../services/fetchCommunityPool";
+import { fetchTotalBonded } from "../services/fetchTotalBonded";
+import { fetchInflation } from "../services/fetchInflation";
+import { fetchUnbondingTime } from "../services/fetchUnbondingTime";
 import { fetchBlockHeight } from "../services/fetchBlockHeight";
 
 // Локализации
@@ -37,6 +43,19 @@ function Dashboard(props: IDashboardProps) {
   const rawUnbondingTime = useAppSelector(selectUnbondingTime);
   const rawBlockHeight = useAppSelector(selectBlockHeight);
   const [activeProposals, setActiveProposals] = useState<IProposal[] | null>(null);
+
+  // ПОВТОРНО ФЕТЧИМ ДАННЫЕ, ЕСЛИ ОНИ НЕ ЗАГРУЗИЛИСЬ РАНЕЕ
+  useEffect(() => {
+    if (currentChain && currentApi) {
+      if (!rawValidators) dispatch(fetchValidators(currentApi.address));
+      if (!rawProposals) dispatch(fetchProposals(currentApi.address));
+      if (!rawCommunityPool) dispatch(fetchCommunityPool(currentApi.address));
+      if (!rawTotalBonded) dispatch(fetchTotalBonded(currentApi.address));
+      if (!rawInflation) dispatch(fetchInflation(currentApi.address));
+      if (!rawUnbondingTime) dispatch(fetchUnbondingTime(currentApi.address));
+      if (!rawBlockHeight) dispatch(fetchBlockHeight(currentApi.address));
+    }
+  }, [currentChain, currentApi])
 
   // ПЕРЕКЛЮЧАЕМСЯ НА СЛЕДУЮЩЕГО ПРОВАЙДЕРА ПО СПИСКУ
   const switchToNextProvider = () => {
@@ -184,6 +203,7 @@ function Dashboard(props: IDashboardProps) {
     marketCapText = currentTokenInfo.market_cap.toLocaleString("en") + "$";
   }
 
+  // ДИНАМИКА
   const dynamicElement =
     (!currentTokenInfo)
       ? noPriceElement
@@ -191,21 +211,25 @@ function Dashboard(props: IDashboardProps) {
         ? <div className="dashboard__coingecko-dynamic">&#9652;{dynamicText}</div>
         : <div className="dashboard__coingecko-dynamic dashboard__coingecko-dynamic_down">&#9662;{dynamicText}</div>
 
+  // ТЕКУЩАЯ ЦЕНА
   const currentPriceElement =
     (currentPriceText)
       ? <span className="dashboard__coingecko-value dashboard__coingecko-value_bright">{currentPriceText}</span>
       : noPriceElement;
 
+  // ВЫСШАЯ ЦЕНА
   const highestPriceElement =
     (highestPriceText)
       ? <span className="dashboard__coingecko-value">{highestPriceText}</span>
       : noPriceElement;
 
+  // НИЗШАЯ ЦЕНА
   const lowestPriceElement =
     (lowestPriceText)
       ? <span className="dashboard__coingecko-value">{lowestPriceText}</span>
       : noPriceElement;
 
+  // ОБЩАЯ СТОИМОСТЬ
   const marketCapElement =
     (marketCapText)
       ? <span className="dashboard__coingecko-value">{marketCapText}</span>

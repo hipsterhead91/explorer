@@ -163,6 +163,8 @@ function Validators() {
     <div className="validators">
       <Outlet />
       <div ref={validatorsWrapper} className="validators__wrapper">
+
+        {/* НАВИГАЦИЯ */}
         <div className="validators__navigation">
           <div className="validators__switcher">
             <button onClick={switchToActive} className={activeButtonStyle}>{translatedContent.active}</button>
@@ -173,11 +175,15 @@ function Validators() {
             <button onClick={clearFilter} className="validators__clear-button">{translatedContent.clear}</button>
           </div>
         </div>
+
+        {/* ТАБЛИЦА */}
         <div className="validators__table">
           <ValidatorsTableHeader shownValidators={shownValidators} setShownValidators={setShownValidators} isCurrentSetActive={isCurrentSetActive} />
           <div className="validators__table-rows">{tableContent}</div>
         </div>
       </div>
+
+      {/* КНОПКИ СКРОЛЛА */}
       <div ref={scrollButtons} className="validators__scroll-buttons">
         <button onClick={scrollToTop} className="validators__scroll-button validators__scroll-button_top">
           <div className="validators__scroll-arrow validators__scroll-arrow_top"></div>

@@ -13,6 +13,8 @@ import { setCurrentChain, resetAllChainData } from "../store/reducers/currentCha
 function Header() {
 
   const dispatch = useAppDispatch();
+
+  // СБРОС СЕТИ ПО КЛИКУ НА ЛОГОТИП
   const resetChain = () => {
     dispatch(resetAllChainData());
     dispatch(setCurrentChain(null));

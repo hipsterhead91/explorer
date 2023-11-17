@@ -55,22 +55,22 @@ function ProposalsTableRow(props: IProposalsTableRowProps) {
   return (
     <Link to={`/${currentChain?.chainId}/proposals/${proposal.proposal_id}`} className="proposals-tr">
 
-      {/* TITLE */}
+      {/* ТАЙТЛ */}
       <div className="proposals-tr__cell">
         <span className="proposals-tr__title"><span className="proposals-tr__id">{idText}</span>{titleText}</span>
       </div>
 
-      {/* STATUS */}
+      {/* СТАТУС */}
       <div className="proposals-tr__cell">
         <span className={statusStyle}>{statusText}</span>
       </div>
 
-      {/* TYPE */}
+      {/* ТИП */}
       <div className="proposals-tr__cell">
         <span className="proposals-tr__type">{typeText}</span>
       </div>
 
-      {/* VOTING END */}
+      {/* ОКОНЧАНИЕ */}
       <div className="proposals-tr__cell">
         <div className="proposals-tr__voting-end">
           <span className="proposals-tr__end-time">{timeText}</span>

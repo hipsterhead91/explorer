@@ -13,15 +13,6 @@ export const fetchBlockHeight = createAsyncThunk(
       if (!response.ok) throw new Error('Something went wrong');
       const data = await response.json();
       return data.block.last_commit.height;
-      // let response = await fetch(`${baseUrl}/cosmos/base/tendermint/v1beta1/blocks/latest`);
-      // if (!response.ok) {
-      //   setTimeout(async () => {
-      //     response = await fetch(`${baseUrl}/cosmos/base/tendermint/v1beta1/blocks/latest`);
-      //     if (!response.ok) return;
-      //   }, 9000)
-      // }
-      // const data = await response.json();
-      // return data.block.last_commit.height;
     }
 
     catch (error: any) {

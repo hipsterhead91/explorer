@@ -8,10 +8,6 @@ export const fetchProposals = createAsyncThunk(
   async function (baseUrl: string, { rejectWithValue }) {
 
     try {
-      // const response = await fetch(`${baseUrl}/cosmos/gov/v1beta1/proposals`);
-      // if (!response.ok) throw new Error('Something went wrong');
-      // const data = await response.json();
-      // return data.proposals;
       let response = await fetch(`${baseUrl}/cosmos/gov/v1beta1/proposals`);
       if (!response.ok) {
         setTimeout(async () => {

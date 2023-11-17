@@ -8,13 +8,8 @@ export const fetchTotalBonded = createAsyncThunk(
   async function (baseUrl: string, { rejectWithValue }) {
 
     try {
-      let response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/pool`);
-      if (!response.ok) {
-        setTimeout(async () => {
-          response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/pool`);
-          if (!response.ok) return;
-        }, 4000);
-      }
+      const response = await fetch(`${baseUrl}/cosmos/staking/v1beta1/pool`);
+      if (!response.ok) throw new Error('Something went wrong');
       const data = await response.json();
       return data.pool.bonded_tokens;
     }

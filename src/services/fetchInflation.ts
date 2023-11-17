@@ -8,13 +8,8 @@ export const fetchInflation = createAsyncThunk(
   async function (baseUrl: string, { rejectWithValue }) {
 
     try {
-      let response = await fetch(`${baseUrl}/cosmos/mint/v1beta1/inflation`);
-      if (!response.ok) {
-        setTimeout(async () => {
-          response = await fetch(`${baseUrl}/cosmos/mint/v1beta1/inflation`);
-          if (!response.ok) return;
-        }, 8000);
-      }
+      const response = await fetch(`${baseUrl}/cosmos/mint/v1beta1/inflation`);
+      if (!response.ok) throw new Error('Something went wrong');
       const data = await response.json();
       return data.inflation;
     }

@@ -10,15 +10,6 @@ import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { selectCurrentChain, selectApi, selectValidators, selectProposals, selectCommunityPool, selectTotalBonded, selectInflation, selectUnbondingTime, selectBlockHeight, setApi } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
-// API, сервисы
-import { fetchValidators } from "../services/fetchValidators";
-import { fetchProposals } from "../services/fetchProposals";
-import { fetchCommunityPool } from "../services/fetchCommunityPool";
-import { fetchTotalBonded } from "../services/fetchTotalBonded";
-import { fetchInflation } from "../services/fetchInflation";
-import { fetchUnbondingTime } from "../services/fetchUnbondingTime";
-import { fetchBlockHeight } from "../services/fetchBlockHeight";
-
 // Локализации
 import dashboardEng from "../translations/eng/dashboardEng";
 import dashboardRus from "../translations/rus/dashboardRus";
@@ -44,19 +35,6 @@ function Dashboard(props: IDashboardProps) {
   const rawBlockHeight = useAppSelector(selectBlockHeight);
   const [activeProposals, setActiveProposals] = useState<IProposal[] | null>(null);
 
-  // ПОВТОРНО ФЕТЧИМ ДАННЫЕ, ЕСЛИ ОНИ НЕ ЗАГРУЗИЛИСЬ РАНЕЕ
-  useEffect(() => {
-    if (currentChain && currentApi) {
-      if (!rawValidators) dispatch(fetchValidators(currentApi.address));
-      if (!rawProposals) dispatch(fetchProposals(currentApi.address));
-      if (!rawCommunityPool) dispatch(fetchCommunityPool(currentApi.address));
-      if (!rawTotalBonded) dispatch(fetchTotalBonded(currentApi.address));
-      if (!rawInflation) dispatch(fetchInflation(currentApi.address));
-      if (!rawUnbondingTime) dispatch(fetchUnbondingTime(currentApi.address));
-      if (!rawBlockHeight) dispatch(fetchBlockHeight(currentApi.address));
-    }
-  }, [currentChain, currentApi])
-
   // ПЕРЕКЛЮЧАЕМСЯ НА СЛЕДУЮЩЕГО ПРОВАЙДЕРА ПО СПИСКУ
   const switchToNextProvider = () => {
     if (currentChain && currentApi) {
@@ -67,15 +45,6 @@ function Dashboard(props: IDashboardProps) {
         : dispatch(setApi(currentChain.api[indexOfCurrentApi + 1]))
     }
   }
-
-  // ОБНОВЛЯЕМ ВЫСОТУ БЛОКА ПО ТАЙМЕРУ
-  useEffect(() => {
-    if (currentApi) {
-      const fetchBlock = () => dispatch(fetchBlockHeight(currentApi.address));
-      const latestBlockTimer = setInterval(fetchBlock, 5000);
-      return () => { clearTimeout(latestBlockTimer) };
-    }
-  }, [currentChain, currentApi])
 
   // ФИЛЬТРАЦИЯ АКТИВНЫХ ГОЛОСОВАНИЙ
   useEffect(() => {

@@ -10,6 +10,7 @@ const dashboardRus = {
   activeProposals: "Активные предлож.:",
   communityPool: "Пул сообщества:",
   tokensBonded: "Монет застейкано:",
+  supply: "Всего в обороте:",
   inflation: "Инфляция:",
   unbonding: "Сроки анбонда:",
   blockHeight: "Высота блока:",

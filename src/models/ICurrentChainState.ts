@@ -4,6 +4,7 @@ import IValidator from "./IValidator";
 import IProposal from "./IProposal";
 import IChainApi from "./IChainApi";
 import IPool from "./IPool";
+import ISupply from "./ISupply";
 
 
 
@@ -15,6 +16,7 @@ interface ICurrentChainState {
   "proposals": IProposal[] | null,
   "communityPool": IPool[] | null,
   "totalBonded": string | null,
+  "supply": ISupply[] | null,
   "inflation": string | null,
   "unbondingTime": string | null,
   "blockHeight": string | null,

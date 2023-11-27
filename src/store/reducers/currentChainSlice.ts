@@ -16,6 +16,7 @@ import { fetchTotalBonded } from "../../services/fetchTotalBonded";
 import { fetchInflation } from "../../services/fetchInflation";
 import { fetchUnbondingTime } from "../../services/fetchUnbondingTime";
 import { fetchBlockHeight } from "../../services/fetchBlockHeight";
+import { fetchSupply } from "../../services/fetchSupply";
 
 
 
@@ -31,6 +32,7 @@ const initialChainState: ICurrentChainState = {
   inflation: null,
   unbondingTime: null,
   blockHeight: null,
+  supply: null,
 };
 
 // СЛАЙС ТЕКУЩЕЙ СЕТИ
@@ -55,6 +57,7 @@ export const currentChainSlice = createSlice({
       state.inflation = null;
       state.unbondingTime = null;
       state.blockHeight = null;
+      state.supply = null;
     }
   },
   extraReducers: (builder) => {
@@ -89,6 +92,10 @@ export const currentChainSlice = createSlice({
     builder.addCase(fetchBlockHeight.fulfilled, (state, action) => {
       state.blockHeight = action.payload;
     })
+
+    builder.addCase(fetchSupply.fulfilled, (state, action) => {
+      state.supply = action.payload;
+    })
   }
 });
 
@@ -108,6 +115,7 @@ export const selectTotalBonded = (state: RootState) => state.currentChain.totalB
 export const selectInflation = (state: RootState) => state.currentChain.inflation;
 export const selectUnbondingTime = (state: RootState) => state.currentChain.unbondingTime;
 export const selectBlockHeight = (state: RootState) => state.currentChain.blockHeight;
+export const selectSupply = (state: RootState) => state.currentChain.supply;
 
 /* Напоминалка на будущее: экспорт по дефолту работает таким образом, что при импорте переменную сразу можно назвать любым именем. Именно поэтому здесь мы экспортируем currentChainSlice.reducer, а в store.ts импортируется "непонятно откуда взявшийся" currentChainReducer. Также, обрати внимание, что при создании слайса в нём описывалось поле reducers во множественном числе, а из готового слайса оно извлекается уже в единственном. Очередной прикол от Redux Toolkit, но как я понял, RTK просто генерирует из всех редьюсеров один общий. Просто прими это. */
 export default currentChainSlice.reducer;

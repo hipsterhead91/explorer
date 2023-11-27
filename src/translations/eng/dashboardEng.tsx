@@ -10,6 +10,7 @@ const dashboardEng = {
   activeProposals: "Active Proposals:",
   communityPool: "Community Pool:",
   tokensBonded: "Tokens Bonded:",
+  supply: "Total Supply:",
   inflation: "Inflation:",
   unbonding: "Unbonding:",
   blockHeight: "Block Height:",

@@ -2,12 +2,13 @@
 import IDashboardProps from "../models/IDashboardProps";
 import IProposal from "../models/IProposal";
 import IPool from "../models/IPool";
+import ISupply from "../models/ISupply";
 import ICoin from "../models/ICoin";
 
 // Redux
 import { useState, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
-import { selectCurrentChain, selectApi, selectValidators, selectProposals, selectCommunityPool, selectTotalBonded, selectInflation, selectUnbondingTime, selectBlockHeight, setApi } from "../store/reducers/currentChainSlice";
+import { selectCurrentChain, selectApi, selectValidators, selectProposals, selectCommunityPool, selectTotalBonded, selectInflation, selectUnbondingTime, selectBlockHeight, selectSupply, setApi } from "../store/reducers/currentChainSlice";
 import { selectCurrentLanguage } from "../store/reducers/currentLanguageSlice";
 
 // Локализации
@@ -33,6 +34,7 @@ function Dashboard(props: IDashboardProps) {
   const rawInflation = useAppSelector(selectInflation);
   const rawUnbondingTime = useAppSelector(selectUnbondingTime);
   const rawBlockHeight = useAppSelector(selectBlockHeight);
+  const rawSupply = useAppSelector(selectSupply);
   const [activeProposals, setActiveProposals] = useState<IProposal[] | null>(null);
 
   // ПЕРЕКЛЮЧАЕМСЯ НА СЛЕДУЮЩЕГО ПРОВАЙДЕРА ПО СПИСКУ
@@ -131,6 +133,20 @@ function Dashboard(props: IDashboardProps) {
   const totalBondedElement =
     (totalBondedText)
       ? <p className="dashboard__plate-data">{totalBondedText}<span>{currentChain?.symbol}</span></p>
+      : errorElement;
+
+  // РЕНДЕР САПЛАЯ
+  let supplyText;
+  if (currentChain && rawSupply) {
+    const supply = rawSupply.find((el: ISupply) => el.denom === currentChain.denom);
+    if (supply) {
+      const cutted = cutDecimals(supply.amount, currentChain.decimals);
+      supplyText = Number(cutted).toLocaleString("en");
+    }
+  }
+  const supplyElement =
+    (supplyText)
+      ? <p className="dashboard__plate-data">{supplyText}<span>{currentChain?.symbol}</span></p>
       : errorElement;
 
   // РЕНДЕР ИНФЛЯЦИИ
@@ -263,6 +279,12 @@ function Dashboard(props: IDashboardProps) {
         <div id="bonded-plate" className="dashboard__plate">
           <span className="dashboard__plate-heading">{translatedContent.tokensBonded}</span>
           {totalBondedElement}
+        </div>
+
+        {/* САПЛАЙ */}
+        <div id="supply-plate" className="dashboard__plate">
+          <span className="dashboard__plate-heading">{translatedContent.supply}</span>
+          {supplyElement}
         </div>
 
         {/* ИНФЛЯЦИЯ */}
